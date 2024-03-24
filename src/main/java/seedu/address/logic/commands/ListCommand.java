@@ -5,9 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.tag.TagContainsKeywordsPredicate;
+import seedu.address.model.person.ListKeywordsPredicate;
 
 /**
  * Lists all persons in the address book to the user.
@@ -22,12 +21,12 @@ public class ListCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG + "Fall-risk ";
 
-    private final TagContainsKeywordsPredicate predicate;
+    private final ListKeywordsPredicate predicate;
 
-    public static final String MESSAGE_SUCCESS_LIST = "Listed all persons";
-    public static final String MESSAGE_SUCCESS_LIST_TAG = "Listed all persons with tag: %1$s";
+    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS_LIST = "Listed all persons with: %1$s";
 
-    public ListCommand(TagContainsKeywordsPredicate predicate) {
+    public ListCommand(ListKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -40,10 +39,10 @@ public class ListCommand extends Command {
         requireNonNull(model);
         if (predicate != null) {
             model.updateFilteredPersonList(predicate);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_LIST_TAG, predicate.getKeywordsString()));
+            return new CommandResult(String.format(MESSAGE_SUCCESS_LIST, predicate.getKeywordsString()));
         } else {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(MESSAGE_SUCCESS_LIST);
+            return new CommandResult(MESSAGE_SUCCESS);
         }
     }
 

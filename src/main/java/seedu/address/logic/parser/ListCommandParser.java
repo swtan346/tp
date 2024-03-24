@@ -2,9 +2,7 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Ward;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.TagContainsKeywordsPredicate;
+import seedu.address.model.person.ListKeywordsPredicate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,17 +21,18 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            return new ListCommand();   // return a ListCommand object with no predicate
+        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_WARD);
 
-        List<String> tagList = ParserUtil.parseTagsKeywords(argMultimap.getAllValues(PREFIX_TAG));
-        // Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null));
+        List<String> tagList = ParserUtil
+                .parseTagsKeywords(argMultimap.getAllValues(PREFIX_TAG));
+        String ward = argMultimap.getValue(PREFIX_WARD).orElse("");
 
-        if (tagList.isEmpty()) {
-            return new ListCommand();   // return a ListCommand object with no predicate
-        } else {
-            return new ListCommand(new TagContainsKeywordsPredicate(tagList));
-        }
+        return new ListCommand(new ListKeywordsPredicate(tagList, ward));
     }
-
 }
