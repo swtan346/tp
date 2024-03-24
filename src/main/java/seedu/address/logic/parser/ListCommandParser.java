@@ -19,7 +19,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            return new ListCommand();
+            return new ListCommand();   // return a ListCommand object with no predicate
         }
 
         String[] tagKeywords = trimmedArgs.split("\\s+");

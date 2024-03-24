@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 
@@ -35,7 +36,18 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (predicate != null) {
+            model.updateFilteredPersonList(predicate);
+        } else {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        }
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("predicate", predicate == null ? "null" : predicate)
+                .toString();
     }
 }

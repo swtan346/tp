@@ -16,11 +16,23 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+
+    // Get the list of tags, and compare if any of it contains the keyword. basically, nest this current function!
+    @Override
+    public boolean test(Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> person.getTags().stream().anyMatch(
+                        tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)
+                        ));
+    }
+
+    /*
     @Override
     public boolean test(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
     }
+    */
 
     @Override
     public boolean equals(Object other) {
@@ -33,8 +45,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
             return false;
         }
 
-        TagContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (TagContainsKeywordsPredicate) other;
-        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
+        TagContainsKeywordsPredicate otherTagContainsKeywordsPredicate = (TagContainsKeywordsPredicate) other;
+        return keywords.equals(otherTagContainsKeywordsPredicate.keywords);
     }
 
     @Override
