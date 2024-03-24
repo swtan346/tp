@@ -1,7 +1,8 @@
-package seedu.address.model.person;
+package seedu.address.model.tag;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -16,8 +17,6 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
-
-    // Get the list of tags, and compare if any of it contains the keyword. basically, nest this current function!
     @Override
     public boolean test(Person person) {
         return keywords.stream()
@@ -25,14 +24,6 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
                         tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)
                         ));
     }
-
-    /*
-    @Override
-    public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
-    }
-    */
 
     @Override
     public boolean equals(Object other) {
@@ -52,5 +43,11 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("keywords", keywords).toString();
+    }
+
+    public String getKeywordsString() {
+        return keywords.toString()
+                .replace("[", "")
+                .replace("]", "");
     }
 }
