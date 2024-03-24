@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.List;
+
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ListKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
 
 import static seedu.address.logic.parser.CliSyntax.*;
 
@@ -32,6 +32,11 @@ public class ListCommandParser implements Parser<ListCommand> {
         List<String> tagList = ParserUtil
                 .parseTagsKeywords(argMultimap.getAllValues(PREFIX_TAG));
         String ward = argMultimap.getValue(PREFIX_WARD).orElse("");
+
+        if (ward.isEmpty() && tagList.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
 
         return new ListCommand(new ListKeywordsPredicate(tagList, ward));
     }
