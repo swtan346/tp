@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
-import java.util.List;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
+
+import java.util.List;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -23,7 +23,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            return new ListCommand();   // return a ListCommand object with no predicate
+            return new ListCommand(); // return a ListCommand object with no predicate
         }
 
         ArgumentMultimap argMultimap =

@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
-import java.util.function.Predicate;
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -13,6 +13,11 @@ public class ListKeywordsPredicate implements Predicate<Person> {
     private final List<String> tagKeywords;
     private final String wardKeyword;
 
+    /**
+     * Constructs a ListKeywordsPredicate object.
+     * @param tagKeywords List of tag keywords to filter the list of persons.
+     * @param wardKeyword Ward keyword to filter the list of persons.
+     */
     public ListKeywordsPredicate(List<String> tagKeywords, String wardKeyword) {
         this.tagKeywords = tagKeywords;
         this.wardKeyword = wardKeyword;
@@ -62,6 +67,10 @@ public class ListKeywordsPredicate implements Predicate<Person> {
                 .toString();
     }
 
+    /**
+     * Returns a string representation of the keywords.
+     * @return String representation of the keywords.
+     */
     public String getKeywordsString() {
         String tags = "\ntags: " + tagKeywords.toString()
                 .replace("[", "")
