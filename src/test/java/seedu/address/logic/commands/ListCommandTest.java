@@ -1,14 +1,16 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_BOB;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 
@@ -47,7 +49,8 @@ public class ListCommandTest {
 
     @Test
     public void execute_listFiltered_showsFiltered() {
-        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST, "\nTags: Diabetes, FallRisk \nWard: B1");
+        String expectedMessage =
+                String.format(ListCommand.MESSAGE_SUCCESS_LIST, "\nTags: Diabetes, FallRisk \nWard: B1");
         ListKeywordsPredicate predicate =
                 new ListKeywordsPredicate(Arrays.asList(VALID_TAG_DIABETES, VALID_TAG_FALL_RISK),
                         VALID_WARD_BOB);
