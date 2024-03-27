@@ -1,11 +1,16 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_BOB;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.*;
-import static seedu.address.testutil.TypicalPersons.FIONA;
+
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,11 +19,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ListKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -47,7 +47,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listFiltered_showsFiltered() {
-        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST, "\nTags: Diabetes, FallRisk\nWard: B1");
+        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST, "\nTags: Diabetes, FallRisk \nWard: B1");
         ListKeywordsPredicate predicate =
                 new ListKeywordsPredicate(Arrays.asList(VALID_TAG_DIABETES, VALID_TAG_FALL_RISK),
                         VALID_WARD_BOB);
