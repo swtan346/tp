@@ -72,10 +72,10 @@ public class ListKeywordsPredicate implements Predicate<Person> {
      * @return String representation of the keywords.
      */
     public String getKeywordsString() {
-        String tags = "\ntags: " + tagKeywords.toString()
+        String tags = "\nTags: " + tagKeywords.toString()
                 .replace("[", "")
                 .replace("]", "");
-        String ward = "\nward: " + wardKeyword;
+        String ward = "\nWard: " + wardKeyword;
         return tags + ward;
     }
 }
