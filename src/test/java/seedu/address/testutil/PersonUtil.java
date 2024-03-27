@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import java.util.Set;
 
@@ -37,8 +38,8 @@ public class PersonUtil {
         sb.append(PREFIX_WARD + person.getWard().value + " ");
         sb.append(PREFIX_ADMISSION_DATE + person.getAdmissionDate().value + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+            s -> sb.append(PREFIX_TAG + s.tagName + " "));
+        sb.append(PREFIX_REMARK + person.getRemark().value + " ");
         return sb.toString();
     }
 

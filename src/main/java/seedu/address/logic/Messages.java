@@ -46,7 +46,10 @@ public class Messages {
                 .append("\n Admitted: ")
                 .append(person.getAdmissionDate())
                 .append("\n Tags: ");
+
         person.getTags().forEach(builder::append);
+        builder.append("\n Remarks: ")
+                .append(person.getRemark());
         return builder.toString();
     }
 
