@@ -50,7 +50,7 @@ public class ListCommandTest {
     @Test
     public void execute_listFiltered_showsFiltered() {
         String expectedMessage =
-                String.format(ListCommand.MESSAGE_SUCCESS_LIST, "\nTags: Diabetes, FallRisk \nWard: B1");
+                String.format(ListCommand.MESSAGE_SUCCESS_LIST, "\nTags: Diabetes, FallRisk\nWard: B1");
         ListKeywordsPredicate predicate =
                 new ListKeywordsPredicate(Arrays.asList(VALID_TAG_DIABETES, VALID_TAG_FALL_RISK),
                         VALID_WARD_BOB);
