@@ -28,7 +28,7 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_WARD);
-
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_WARD);
         List<String> tagList = ParserUtil
                 .parseTagsKeywords(argMultimap.getAllValues(PREFIX_TAG));
         String ward = argMultimap.getValue(PREFIX_WARD).orElse("");

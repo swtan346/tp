@@ -50,6 +50,21 @@ public class ListCommand extends Command {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListCommand)) {
+            return false;
+        }
+
+        ListCommand otherListCommand = (ListCommand) other;
+        return predicate.equals(otherListCommand.predicate);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("predicate", predicate == null ? "null" : predicate)
