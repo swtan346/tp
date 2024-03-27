@@ -24,10 +24,9 @@ public class ListCommand extends Command {
             + PREFIX_TAG + "Fall-risk "
             + PREFIX_WARD + "3 ";
 
-    private final ListKeywordsPredicate predicate;
-
     public static final String MESSAGE_SUCCESS = "Listed all persons";
     public static final String MESSAGE_SUCCESS_LIST = "Listed all persons with: %1$s";
+    private final ListKeywordsPredicate predicate;
 
     public ListCommand(ListKeywordsPredicate predicate) {
         this.predicate = predicate;
