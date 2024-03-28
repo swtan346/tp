@@ -15,6 +15,7 @@ Designed for efficiency, NAB enables quick access to patient records, streamline
   * [Editing a Patient](#editing-a-patient--edit)
   * [Finding a Patient](#locating-patients-by-name-find)
   * [Deleting a Patient](#deleting-a-patient--delete)
+  * [Viewing Help](#viewing-help--help)
   * [Clearing all Entries](#clearing-all-entries--clear)
   * [Exiting the Application](#exiting-the-program--exit)
 * [FAQ](#faq)
@@ -211,6 +212,40 @@ Tags: SevereAllergies
 
 You now have 1 patient(s) in your contact book.
 ```
+### Viewing help : `help`
+
+Shows a message explaining the available commands and their usage.
+
+Format: `help`
+
+Output:
+
+```
+Here are the list of available commands:
+
+Add: add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [t\TAG]...
+   Example: add n\John Doe ic\T1234567P dob\01/01/2000 ad\25/03/2024 w\A1 t\Diabetes t\FallRisk
+
+Clear: clear 
+   Clears all entries from the address book.
+
+Delete: delete INDEX
+   Example: delete 3
+
+Edit: edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG]...  
+   Example: edit 1 ic\T0123456P t\
+
+Find: find KEYWORD [MORE_KEYWORDS]
+   Example: find John 
+
+List: list
+   Lists all patients.
+
+Exit: exit
+   Exits the application.
+  
+For more detailed information on each command, please refer to the User Guide.
+```
 
 ### Clearing all entries : `clear`
 
@@ -268,6 +303,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG]…​`<br> e.g.,`edit 2 n\James Lee w\A2`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Help** | `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
