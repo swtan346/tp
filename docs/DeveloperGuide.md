@@ -237,7 +237,51 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added}
+
+### List by tags and/or ward feature
+
+#### Implementation
+
+The filter by tags and/or ward mechanism is facilitated by `ListCommand`, `ListCommandParser` and `ListKeywordsPredicate`. Additionally, it implements the following operations:
+
+* `ListCommandParser#parse()` — Parses user input and creates a `ListCommand` object.
+
+Given below is an example usage scenario and how the filter by tags and/or ward mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. The `ListCommandParser` parses the user input, creating a new `ListCommand` and `ListKeywordPredicate` object as `predicate` (since there are keywords provided). `predicate` will filter the list of patients in the address book to only show patients with the diabetes tag. 
+
+![ListObjectDiagram](images/ListObjectDiagram.png)
+
+Step 3. For each patient in the address book, the `predicate` object will be passed to `Model#updateFilteredPersonList` check if the patient has the diabetes tag. If the patient has the diabetes tag, the patient will be shown in the list of patients.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/ListCommandActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: Command to filter:**
+
+* **Alternative 1 (current choice):** Add the parameters to list command instead of find.
+    * Pros: More appropriate as `list` will produce a useful list of relevant contacts, whereas `find` implies that only one useful result is expected.
+    * Cons: May not have such a clear distinction between `list` and `find`, as user just wants to search for results.
+
+* **Alternative 2:** Add parameters to find command instead of list.
+    * Pros: Easy to use, one command will perform all search.
+    * Cons: Unable to differentiate usefulness.
+
+**Aspect: Filter by a ward or many wards:**
+
+* **Alternative 1 (current choice):** Allow filtering only by at most 1 ward input.
+    * Pros: More targeted; Nurses will only refer to the ward that they are in or are visiting. Otherwise, will filter across all wards.
+    * Cons: Does not allow looking at specific, multiple wards.
+
+* **Alternative 2:** Allow multiple ward tags.
+    * Pros: Easy to be more specific.
+    * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
 
 ### \[Proposed\] Data archiving
 
