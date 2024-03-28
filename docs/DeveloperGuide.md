@@ -155,6 +155,31 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Help command
+
+The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
+
+The following class diagram shows the relevant classes involved in the help command implementation:
+
+![HelpCommandClassDiagram](images/HelpClassDiagram.png)
+
+The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
+
+The following sequence diagram shows how the help command works:
+
+![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
+
+When the user executes the help command, the following steps occur:
+
+1. The `LogicManager` is called to execute the "help" command.
+2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+4. The `HelpCommand` creates a new `CommandResult` with the help message.
+5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
+The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
