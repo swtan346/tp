@@ -1,15 +1,22 @@
 package seedu.address.logic.commands;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Person;
-import java.util.List;
-import seedu.address.logic.Messages;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.List;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
+
+
+
+/**
+ * Changes the remark of an existing person in the address book.
+ */
 public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "remark";
     public static final String MESSAGE_USAGE = COMMAND_WORD

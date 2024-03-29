@@ -15,9 +15,10 @@ import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.person.Remark;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
