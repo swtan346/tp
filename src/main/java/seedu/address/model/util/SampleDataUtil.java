@@ -21,17 +21,17 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[]{
             new Person(new Name("Alex Yeoh"), getTagSet("Diabetes"), new Dob("01/01/1990"),
-                new Ic("S1234567A"), new AdmissionDate("01/01/2022"), new Ward("Ward A")),
+                new Ic("S1234567A"), new AdmissionDate("01/01/2022"), new Ward("WA")),
             new Person(new Name("Bernice Yu"), getTagSet("FallRisk", "Diabetes"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("02/01/2022"), new Ward("Ward B")),
+                    new Ic("S1234567A"), new AdmissionDate("02/01/2022"), new Ward("WB")),
             new Person(new Name("Charlotte Oliveiro"), getTagSet("FallRisk"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("03/01/2022"), new Ward("Ward C")),
+                    new Ic("S1234567A"), new AdmissionDate("03/01/2022"), new Ward("WC")),
             new Person(new Name("David Li"), getTagSet("Dementia"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("04/01/2022"), new Ward("Ward D")),
+                    new Ic("S1234567A"), new AdmissionDate("04/01/2022"), new Ward("WD")),
             new Person(new Name("Irfan Ibrahim"), getTagSet("NPO"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("05/01/2022"), new Ward("Ward E")),
+                    new Ic("S1234567A"), new AdmissionDate("05/01/2022"), new Ward("WE")),
             new Person(new Name("Roy Balakrishnan"), getTagSet("Dementia"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("Bed Rest"), new Ward("Ward F"))
+                    new Ic("S1234567A"), new AdmissionDate("06/01/2022"), new Ward("WF"))
         };
     }
 
