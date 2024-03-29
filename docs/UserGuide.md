@@ -219,6 +219,7 @@ Format: `remark INDEX r\REMARK`
 - The index **must be a positive integer** 1, 2, 3,...
 
 Example command:
+
 `list` followed by `remark 1 r\Likes long walks by the beach.` adds the 
 remark "Likes long walks by the beach." to the 1st person.
 ```
