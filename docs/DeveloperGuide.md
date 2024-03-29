@@ -304,6 +304,43 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to be more specific.
     * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
 
+### Find feature
+
+#### Implementation
+
+The filter by tags and/or ward mechanism is facilitated by `FindCommand`, `FindCommandParser`, 
+`NameContainsKeywordsPredicate` and 
+`IcContainsKeywordsPredicate`.
+
+![FindClassDiagram](images/FindClassDiagram.png)
+
+Additionally, it implements the following operations:
+
+* `FindCommandParser#parse()` — Parses user input and creates a `FindCommand` object.
+
+Given below is an example usage scenario and how the find by name or ic mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The 
+`FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
+
+Step 3. For each patient in the address book, the `predicate` object will be passed to 
+`Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob, 
+the patient will be shown in result.
+
+#### Design considerations:
+
+**Aspect: Find by full word or letters:**
+
+* **Alternative 1 (current choice):** Allow finding by full word only.
+    * Pros: More meaningful to find by words instead of just letters.
+    * Cons: Harder to search when patient details is insufficient.
+
+* **Alternative 2:** Allow finding by letters.
+    * Pros: Able to search even if lacking patient information.
+    * Cons: Harder to get specific patient as result will be a list.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
