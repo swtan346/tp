@@ -249,12 +249,13 @@ Given below is an example usage scenario and how the add patient feature behaves
 
 Step 1. The user launches the application for the first time.
 
-Step 2. The user executes an Add Command (e.g. 'add n\Alice ad\01/01/2022 dob\01/01/2002 ward\WA') to add a new patient to the address book. 
+Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book. 
 
 n\: Indicates the name of the patient
+ic\: Indicates the NRIC of the patient
 ad\: Indicates the admission date of the patient
 dob\: Indicates the date of birth of the patient
-ward\: Indicates the ward of the patient is currently in
+w\: Indicates the ward of the patient is currently in
 
 The `AddCommandParser` parses the user input, creating a new `AddCommand` object. 
 The `AddCommand` object then creates a new `Person` object with the parsed details.
