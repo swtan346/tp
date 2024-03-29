@@ -233,7 +233,7 @@ Ward: A1
 Tags: 
 Remarks: Likes long walks by the beach.
 ```
-Doing `remark 1 r\ ` would make remarks for the 1st person empty.
+`list` followed by  `remark 1 r\ ` would make remarks for the 1st person empty.
 ```
 Remark added to patient:
 
