@@ -38,6 +38,8 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
+        assert !tagList.isEmpty() || !ward.isEmpty();
+
         return new ListCommand(new ListKeywordsPredicate(tagList, ward));
     }
 }

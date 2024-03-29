@@ -110,9 +110,9 @@ You now have 1 patient(s) in your address book.
 
 Displays a list of all registered patients.
 
-Format: `list`, `list INDEX`
+Format: `list`, `list [w\WARD] [t\TAG]...`
 
-* INDEX: Must be a positive integer not larger than the number of patients in the list.
+* WARD: Must only list at most 1 ward.
 
 Example command: 
 
@@ -126,15 +126,17 @@ Here are the details of the 2 patients in your contact book:
 
 Example command: 
 
-`list 2`
+`list w\B4 t\SeverAllergies`
 ```
-Here are the details of patient 2 in your contact book:
+Listed all persons with:
+Tags: FallRisk
+Ward: B4
 
 Jane Doe
 IC: I2103210P
 Date of Birth: 12 Nov 1999
 Admission Date: 3 Mar 2024
-Ward: B3
+Ward: B4
 Tags: SevereAllergies
 ```
 
