@@ -21,7 +21,7 @@ public class ListCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_WARD + "WARD]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TAG + "Fall-risk "
+            + PREFIX_TAG + "FallRisk "
             + PREFIX_WARD + "3 ";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
