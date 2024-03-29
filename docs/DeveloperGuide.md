@@ -154,6 +154,22 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Remarks feature
+The remark command is facilitated by `RemarkCommand`, `RemarkCommandParser` and `Remark`. It allows users to add optional remarks to 
+people in the address book and edit it if required.
+    
+- `RemarkCommandParser#parse()` - Parses user input and returns a `RemarkCommand` object. 
+
+Below is an example usage scenario and how the remarks mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `remark 1 r\This is a remark.`. This user input is parsed by `RemarkCommandParser` and creates 
+a `RemarkCommand`.
+
+Step 3. `RemarkCommand#execute()` replaces the person at index 1 in the last shown list with a new person
+which is a copy of original person except with the new remark. 
+
 
 ### \[Proposed\] Undo/redo feature
 
