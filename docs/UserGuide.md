@@ -212,6 +212,43 @@ Tags: SevereAllergies
 You now have 1 patient(s) in your contact book.
 ```
 
+### Adding or editing remarks for a patient : `remark` 
+Adds a remark to the specified patient in the address book.
+
+Format: `remark INDEX r\REMARK`
+
+- Replaces any existing remarks for the patient at the specified `INDEX` with `REMARK`
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer** 1, 2, 3,...
+
+Example command:
+
+`list` followed by `remark 1 r\Likes long walks by the beach.` adds the 
+remark "Likes long walks by the beach." to the 1st person.
+```
+Remark added to patient:
+
+John Doe
+IC: T0123456P
+Date of Birth: 21 Mar 2000
+Admission Date: 2 Feb 2022
+Ward: A1
+Tags: 
+Remarks: Likes long walks by the beach.
+```
+`list` followed by  `remark 1 r\ ` would make remarks for the 1st person empty.
+```
+Remark added to patient:
+
+John Doe
+IC: T0123456P
+Date of Birth: 21 Mar 2000
+Admission Date: 2 Feb 2022
+Ward: A1
+Tags: 
+Remarks: 
+```
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
