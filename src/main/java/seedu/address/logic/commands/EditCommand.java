@@ -48,7 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADMISSION_DATE + "ADMISSION DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_IC + "T123456Q "
+            + PREFIX_IC + "T1234567Q "
             + PREFIX_DOB + "12/08/1999";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
