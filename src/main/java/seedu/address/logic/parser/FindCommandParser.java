@@ -4,9 +4,10 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.Arrays;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ContainsKeywordsPredicate;
 import seedu.address.model.person.IcContainKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -27,22 +28,21 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_IC);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(trimmedArgs, PREFIX_NAME, PREFIX_IC);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_IC);
 
-        String keyword = null;
-
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            keyword = argMultimap.getValue(PREFIX_NAME).get();
-            return new FindCommand(new NameContainsKeywordsPredicate(keyword));
+            String keywords = argMultimap.getValue(PREFIX_NAME).get();
+            String[] nameKeywords = keywords.split("\\s+");
+            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultimap.getValue(PREFIX_IC).isPresent()) {
-            keyword = argMultimap.getValue(PREFIX_IC).get();
+            String keyword = argMultimap.getValue(PREFIX_IC).get();
             return new FindCommand(new IcContainKeywordPredicate(keyword));
         } else {
             assert false : "no keyword";
         }
-        return
+        return null;
     }
 
 }

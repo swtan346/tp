@@ -6,7 +6,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Ic} matches any of the keywords given.
  */
 public class IcContainKeywordPredicate implements Predicate<Person> {
     private final String keyword;
@@ -17,7 +17,7 @@ public class IcContainKeywordPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword);
+        return StringUtil.containsWordIgnoreCase(person.getIc().value, keyword);
     }
 
     @Override
