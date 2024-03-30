@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,7 +23,6 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        System.out.println(args);
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -35,8 +35,12 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String keywords = argMultimap.getValue(PREFIX_NAME).get();
-            String[] nameKeywords = keywords.split("\\s+");
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            if (keywords.equals("")) {
+                return new FindCommand(new NameContainsKeywordsPredicate(Collections.emptyList()));
+            } else {
+                String[] nameKeywords = keywords.split("\\s+");
+                return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            }
         } else if (argMultimap.getValue(PREFIX_IC).isPresent()) {
             String keyword = argMultimap.getValue(PREFIX_IC).get();
             if (keyword.split("\\s+").length != 1) {
