@@ -318,14 +318,12 @@ Additionally, it implements the following operations:
 
 * `FindCommandParser#parse()` — Parses user input and creates a `FindCommand` object.
 
-Given below is an example usage scenario and how the find by name or ic mechanism behaves at each step.
+Given below is an example usage scenario and how the find by name or IC mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time.
-
-Step 2. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The 
+Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The 
 `FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
 
-Step 3. For each patient in the address book, the `predicate` object will be passed to 
+Step 2. For each patient in the address book, the `predicate` object will be passed to 
 `Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob, 
 the patient will be shown in result.
 
