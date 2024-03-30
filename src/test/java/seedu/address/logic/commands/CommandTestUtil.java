@@ -41,7 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_WARD_AMY = "A1";
     public static final String VALID_WARD_BOB = "B1";
     public static final String VALID_REMARK_AMY = "";
-    public static final String VALID_REMARK_BOB = "This is a remark.";
+    public static final String VALID_REMARK_BOB = "Some remark.";
 
     // description + value
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;

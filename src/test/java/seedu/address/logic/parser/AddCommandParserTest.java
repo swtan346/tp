@@ -27,7 +27,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -46,20 +45,20 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_DIABETES).build();
+        Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_DIABETES).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + TAG_DESC_DIABETES + DOB_DESC_BOB + IC_DESC_BOB
-                + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_AMY + TAG_DESC_DIABETES + DOB_DESC_AMY + IC_DESC_AMY
+                + ADMISSION_DATE_DESC_AMY + WARD_DESC_AMY, new AddCommand(expectedPerson));
 
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_DIABETES, VALID_TAG_FALL_RISK)
+        Person expectedPersonMultipleTags = new PersonBuilder(AMY).withTags(VALID_TAG_DIABETES, VALID_TAG_FALL_RISK)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES
-                + DOB_DESC_BOB + IC_DESC_BOB
-                + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB,
+                NAME_DESC_AMY + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES
+                + DOB_DESC_AMY + IC_DESC_AMY
+                + ADMISSION_DATE_DESC_AMY + WARD_DESC_AMY,
                 new AddCommand(expectedPersonMultipleTags));
     }
 

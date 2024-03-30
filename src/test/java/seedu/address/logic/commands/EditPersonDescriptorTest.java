@@ -60,12 +60,13 @@ public class EditPersonDescriptorTest {
     public void toStringMethod() {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
-                + editPersonDescriptor.getName().orElse(null) + ", tags="
-                + editPersonDescriptor.getDob().orElse(null) + ", ic="
                 + editPersonDescriptor.getTags().orElse(null) + ", dob="
+                + editPersonDescriptor.getDob().orElse(null) + ", ic="
+                + editPersonDescriptor.getName().orElse(null) + ", tags="
                 + editPersonDescriptor.getIc().orElse(null) + ", admissionDate="
                 + editPersonDescriptor.getAdmissionDate().orElse(null) + ", ward="
-                + editPersonDescriptor.getWard().orElse(null) + "}";
+                + editPersonDescriptor.getWard().orElse(null) + ", remark="
+                + editPersonDescriptor.getRemark().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

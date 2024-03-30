@@ -5,12 +5,14 @@
     "dob": "20/02/2000",
     "ic": "A1234567B",
     "admissionDate": "01/03/2024",
-    "ward":"A1"
+    "ward":"A1",
+    "remark":""
   }, {
     "name": "Alice Pauline",
     "dob": "20/02/2000",
     "ic": "A1234567B",
     "admissionDate": "01/03/2024",
-    "ward":"A1"
+    "ward":"A1",
+    "remark":""
   } ]
 }

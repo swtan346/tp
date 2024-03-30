@@ -13,6 +13,7 @@ import seedu.address.model.person.AdmissionDate;
 import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
 
@@ -139,6 +140,16 @@ public class ParserUtil {
         // For now we assume all strings are valid wards.
         // We can change this to be better in the future.
         return new Ward(trimmedWard);
+    }
+
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
     }
 
 }

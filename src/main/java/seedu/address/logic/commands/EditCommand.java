@@ -170,7 +170,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, ic, dob, admissionDate, ward, tags, remark);
+            return CollectionUtil.isAnyNonNull(name, ic, dob, admissionDate, ward, tags);
         }
 
         public void setName(Name name) {
@@ -253,9 +253,9 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
-                    .add("tags", tags)
-                    .add("ic", ic)
                     .add("dob", dob)
+                    .add("ic", ic)
+                    .add("tags", tags)
                     .add("admissionDate", admissionDate)
                     .add("ward", ward)
                     .add("remark", remark)

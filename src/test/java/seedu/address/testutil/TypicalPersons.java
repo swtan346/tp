@@ -56,7 +56,7 @@ public class TypicalPersons {
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withTags(VALID_TAG_DIABETES, VALID_TAG_FALL_RISK)
             .withDob(VALID_DOB_BOB).withIc(VALID_IC_BOB).withAdmissionDate(VALID_ADMISSION_DATE_BOB)
-            .withWard(VALID_WARD_BOB).withWard(VALID_REMARK_BOB).build();
+            .withWard(VALID_WARD_BOB).withRemark(VALID_REMARK_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
