@@ -28,6 +28,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+        assert trimmedArgs.length() > 1;
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_IC);
 
@@ -49,9 +50,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             return new FindCommand(new IcContainsKeywordPredicate(keyword));
         } else {
-            assert false : "should not reach this line even if no keyword";
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        return null;
     }
 
 }
