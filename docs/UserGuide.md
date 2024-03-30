@@ -223,7 +223,7 @@ Example command:
 `list` followed by `remark 1 r\Likes long walks by the beach.` adds the 
 remark "Likes long walks by the beach." to the 1st person.
 ```
-Remark added to patient:
+Added remark to patient:
 
 John Doe
 IC: T0123456P
@@ -235,7 +235,7 @@ Remarks: Likes long walks by the beach.
 ```
 `list` followed by  `remark 1 r\ ` would make remarks for the 1st person empty.
 ```
-Remark added to patient:
+Removed remark from patient:
 
 John Doe
 IC: T0123456P
