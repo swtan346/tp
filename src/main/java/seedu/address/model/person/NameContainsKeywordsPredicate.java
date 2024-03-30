@@ -12,8 +12,14 @@ import seedu.address.commons.util.ToStringBuilder;
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
+    /**
+     * Instantiates the keywords.
+     *
+     * @param keywords to be found
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
+        System.out.println(keywords);
     }
 
     @Override

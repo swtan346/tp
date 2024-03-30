@@ -11,6 +11,11 @@ import seedu.address.commons.util.ToStringBuilder;
 public class IcContainKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
+    /**
+     * Instantiates the keyword.
+     *
+     * @param keyword to be found
+     */
     public IcContainKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
