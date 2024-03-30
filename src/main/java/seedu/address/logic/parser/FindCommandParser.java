@@ -28,7 +28,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(trimmedArgs, PREFIX_NAME, PREFIX_IC);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_IC);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_IC);
 
@@ -38,9 +38,13 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultimap.getValue(PREFIX_IC).isPresent()) {
             String keyword = argMultimap.getValue(PREFIX_IC).get();
+            if (keyword.split("\\s+").length != 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new FindCommand(new IcContainKeywordPredicate(keyword));
         } else {
-            assert false : "no keyword";
+            assert false : "should not reach this line even if no keyword";
         }
         return null;
     }
