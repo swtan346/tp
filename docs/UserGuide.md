@@ -76,7 +76,7 @@ Designed for efficiency, NAB enables quick access to patient records, streamline
 
 Adds a new patient's information to the address book.
 
-Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [t\TAG]…​`
+Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -87,11 +87,12 @@ A person can have any number of tags (including 0)
 * DATE_OF_BIRTH: The patient's date of birth in DD/MM/YYYY format. Dates must be in the past.
 * ADMISSION_DATE: The date the patient was admitted to the ward, also in DD/MM/YYYY format. This date should not be later than the current date.
 * WARD: The ward where the patient is located. This should contain alphanumeric characters only, with no spaces.
+* REMARK: Optional remarks about the patient.
 * TAG: Optional tags to categorize the patient by health condition or other descriptors. Tags should be alphanumeric and can be used multiple times.
 
 * Example command:
 
-`add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk t\Diabetes`
+`add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk r\Requires assistance feeding. t\Diabetes`
 
 ```
 The patient, John Doe, is added! Here are his details:
@@ -101,6 +102,7 @@ IC: T1234567P
 Date of Birth: 21 Mar 2000
 Admission Date: 2 Feb 2022
 Ward: A1
+Remarks: Requires assistance feeding.
 Tags: FallRisk, Diabetes
 
 You now have 1 patient(s) in your address book.
@@ -209,7 +211,7 @@ Tags: SevereAllergies
 You now have 1 patient(s) in your contact book.
 ```
 
-### Adding or editing remarks for a patient : `remark` 
+### Changing remarks of a patient : `remark` 
 Adds a remark to the specified patient in the address book.
 
 Format: `remark INDEX r\REMARK`
@@ -230,8 +232,8 @@ IC: T0123456P
 Date of Birth: 21 Mar 2000
 Admission Date: 2 Feb 2022
 Ward: A1
-Tags: 
 Remarks: Likes long walks by the beach.
+Tags: 
 ```
 `list` followed by  `remark 1 r\ ` would make remarks for the 1st person empty.
 ```
@@ -242,8 +244,8 @@ IC: T0123456P
 Date of Birth: 21 Mar 2000
 Admission Date: 2 Feb 2022
 Ward: A1
-Tags: 
 Remarks: 
+Tags: 
 ```
 
 ### Clearing all entries : `clear`
