@@ -166,6 +166,6 @@ public class AddCommandParserTest {
         String userInput = NAME_DESC_BOB
                 + " dob\\02/02/2022 " + IC_DESC_BOB
                 + " ad\\02/02/2002 " + WARD_DESC_BOB;
-        assertParseFailure(parser, userInput, Messages.MESSAGE_DOB_LATER_THAN_ADMISSION_DATE);
+        assertParseFailure(parser, userInput, Messages.MESSAGE_DOB_LATER_THAN_ADMISSION);
     }
 }

@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_DOB_LATER_THAN_ADMISSION_DATE;
+import static seedu.address.logic.Messages.MESSAGE_DOB_LATER_THAN_ADMISSION;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADMISSION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
@@ -58,7 +58,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         LocalDate dobDate = LocalDate.parse(dob.value, formatter);
         LocalDate admissionDateDate = LocalDate.parse(admissionDate.value, formatter);
         if (dobDate.isAfter(admissionDateDate)) {
-            throw new ParseException(MESSAGE_DOB_LATER_THAN_ADMISSION_DATE);
+            throw new ParseException(MESSAGE_DOB_LATER_THAN_ADMISSION);
         }
 
         Person person = new Person(name, tagList, dob, ic, admissionDate, ward);
