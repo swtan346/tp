@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -84,6 +86,14 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        LocalDate dobToCheck = LocalDate.parse(editedPerson.getDob().value, formatter);
+        LocalDate adToCheck = LocalDate.parse(editedPerson.getAdmissionDate().value, formatter);
+        if (dobToCheck.isAfter(adToCheck)) {
+            throw new CommandException(Messages.MESSAGE_DOB_LATER_THAN_ADMISSION);
         }
 
         model.setPerson(personToEdit, editedPerson);
