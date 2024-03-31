@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADMISSION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 
@@ -35,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG,
-                        PREFIX_DOB, PREFIX_IC, PREFIX_ADMISSION_DATE, PREFIX_WARD);
+                        PREFIX_DOB, PREFIX_IC, PREFIX_ADMISSION_DATE, PREFIX_WARD, PREFIX_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME,
                 PREFIX_DOB, PREFIX_IC, PREFIX_ADMISSION_DATE, PREFIX_WARD)
@@ -51,7 +52,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         AdmissionDate admissionDate =
                 ParserUtil.parseAdmissionDate(argMultimap.getValue(PREFIX_ADMISSION_DATE).orElse(null));
         Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null));
-        Remark remark = new Remark("");
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
+
         Person person = new Person(name, tagList, dob, ic, admissionDate, ward, remark);
 
         return new AddCommand(person);

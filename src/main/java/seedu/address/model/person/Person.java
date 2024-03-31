@@ -33,14 +33,19 @@ public class Person {
      */
     public Person(Name name, Set<Tag> tags,
                   Dob dob, Ic ic, AdmissionDate admissionDate, Ward ward, Remark remark) {
-        requireAllNonNull(name, dob, ic, admissionDate, ward, remark, tags);
+        requireAllNonNull(name, dob, ic, admissionDate, ward, tags);
         this.name = name;
         this.tags.addAll(tags);
         this.dob = dob;
         this.ic = ic;
         this.admissionDate = admissionDate;
         this.ward = ward;
-        this.remark = remark;
+
+        if (remark == null) {
+            this.remark = new Remark("");
+        } else {
+            this.remark = remark;
+        }
     }
 
     public Name getName() {

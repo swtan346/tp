@@ -147,9 +147,12 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      */
     public static Remark parseRemark(String remark) throws ParseException {
-        requireNonNull(remark);
-        String trimmedRemark = remark.trim();
-        return new Remark(trimmedRemark);
+        if (remark == null) {
+            return new Remark("");
+        } else {
+            String trimmedRemark = remark.trim();
+            return new Remark(trimmedRemark);
+        }
     }
 
 }

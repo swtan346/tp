@@ -45,11 +45,10 @@ public class Messages {
                 .append(person.getWard())
                 .append("\n Admitted: ")
                 .append(person.getAdmissionDate())
+                .append("\n Remarks: ")
+                .append(person.getRemark())
                 .append("\n Tags: ");
-
         person.getTags().forEach(builder::append);
-        builder.append("\n Remarks: ")
-                .append(person.getRemark());
         return builder.toString();
     }
 
