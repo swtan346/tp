@@ -48,7 +48,7 @@ public class Person {
         this.ward = ward;
 
         assert(dobToCompare.isBefore(admissionDateToCompare)
-                || dobToCompare.isEqual(admissionDateToCompare);
+                || dobToCompare.isEqual(admissionDateToCompare));
     }
 
     public Name getName() {
