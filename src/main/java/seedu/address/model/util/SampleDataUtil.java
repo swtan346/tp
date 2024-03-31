@@ -24,9 +24,11 @@ public class SampleDataUtil {
         return new Person[]{
 
             new Person(new Name("Alex Yeoh"), getTagSet("Diabetes"), new Dob("01/01/1990"),
-                new Ic("S1234567A"), new AdmissionDate("01/01/2022"), new Ward("WA"), new Remark("")),
+                    new Ic("S1234567A"), new AdmissionDate("01/01/2022"), new Ward("WA"),
+                    new Remark("Requires assistance with feeding.")),
             new Person(new Name("Bernice Yu"), getTagSet("FallRisk", "Diabetes"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("02/01/2022"), new Ward("WB"), new Remark("")),
+                    new Ic("S1234567A"), new AdmissionDate("02/01/2022"), new Ward("WB"),
+                    new Remark("Flip every 2 hours to prevent bed sores.")),
             new Person(new Name("Charlotte Oliveiro"), getTagSet("FallRisk"), new Dob("01/01/1990"),
                     new Ic("S1234567A"), new AdmissionDate("03/01/2022"), new Ward("WC"), new Remark("")),
             new Person(new Name("David Li"), getTagSet("Dementia"), new Dob("01/01/1990"),
