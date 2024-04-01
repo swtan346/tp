@@ -27,14 +27,14 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class RemarkCommandTest {
 
-    private static final String REMARK_STUB = "Some remark";
+    private static final String REMARK_SAMPLE = "Some remark";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withRemark(REMARK_STUB).build();
+        Person editedPerson = new PersonBuilder(firstPerson).withRemark(REMARK_SAMPLE).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedPerson.getRemark().value));
 
@@ -69,7 +69,7 @@ public class RemarkCommandTest {
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withRemark(REMARK_STUB).build();
+                .withRemark(REMARK_SAMPLE).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedPerson.getRemark().value));
 
