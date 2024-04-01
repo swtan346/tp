@@ -65,7 +65,4 @@ public class Dob {
     public int hashCode() {
         return value.hashCode();
     }
-
-    // Todo: isValidDob
-
 }
