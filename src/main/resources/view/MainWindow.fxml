@@ -19,7 +19,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@TestTheme.css" />
+        <URL value="@NabTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
