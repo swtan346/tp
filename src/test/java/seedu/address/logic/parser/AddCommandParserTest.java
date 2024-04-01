@@ -151,4 +151,21 @@ public class AddCommandParserTest {
                 + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_invalidDob_failure() {
+        // invalid dob
+        assertParseFailure(parser, NAME_DESC_BOB
+                + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES + INVALID_DOB_DESC + IC_DESC_BOB
+                + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, Dob.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_dobLaterThanAdmissionDate_failure() {
+        // dob later than admission date
+        String userInput = NAME_DESC_BOB
+                + " dob\\02/02/2022 " + IC_DESC_BOB
+                + " ad\\02/02/2002 " + WARD_DESC_BOB;
+        assertParseFailure(parser, userInput, Messages.MESSAGE_DOB_LATER_THAN_ADMISSION);
+    }
 }
