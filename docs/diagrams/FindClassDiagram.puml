@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+class State1 as "FindCommandParser"
+class State2 as "FindCommand"
+class State3 as "<<interface>>\nPredicate<Person> "
+class State4 as "NameContainsKeywordsPredicate"
+class State5 as "IcContainsKeywordsPredicate"
+
+State1 .down.> "0..1" State2
+State2 -right-> "1" State3
+State4 .up.|> State3
+State5 .up.|> State3
+
+@enduml

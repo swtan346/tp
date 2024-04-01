@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -33,7 +35,12 @@ public class Person {
      */
     public Person(Name name, Set<Tag> tags,
                   Dob dob, Ic ic, AdmissionDate admissionDate, Ward ward, Remark remark) {
-        requireAllNonNull(name, dob, ic, admissionDate, ward, tags);
+        requireAllNonNull(name, dob, ic, admissionDate, ward);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dobToCompare = LocalDate.parse(dob.toString(), formatter);
+        LocalDate admissionDateToCompare = LocalDate.parse(admissionDate.toString(), formatter);
+
         this.name = name;
         this.tags.addAll(tags);
         this.dob = dob;
