@@ -7,7 +7,7 @@
     "ic": "A1234567B",
     "admissionDate": "01/03/2024",
     "ward":"A1",
-    "remark":"This is a remark."
+    "remark":"Flip every 2 hours to prevent bed sores."
   }, {
     "name" : "Benson Meier",
     "tags" : [ "Dementia", "FallRisk" ],
@@ -15,7 +15,7 @@
     "ic": "A2345678B",
     "admissionDate": "01/02/2024",
     "ward": "B1",
-    "remark":"This is a remark."
+    "remark":""
   }, {
     "name" : "Carl Kurz",
     "tags" : [ ],
@@ -23,7 +23,7 @@
     "ic": "A3456789B",
     "admissionDate": "05/03/2024",
     "ward": "C1",
-    "remark":"This is a remark."
+    "remark":"Requires assistance with feeding."
   }, {
     "name" : "Daniel Meier",
     "tags" : [ "HearingImpaired" ],
@@ -31,7 +31,7 @@
     "ic": "A5678901B",
     "admissionDate": "10/03/2024",
     "ward": "D1",
-    "remark":"This is a remark."
+    "remark":""
   }, {
     "name" : "Elle Meyer",
     "tags" : [ ],
@@ -39,7 +39,7 @@
     "ic": "A4756976B",
     "admissionDate": "05/02/2024",
     "ward": "E1",
-    "remark":"This is a remark."
+    "remark":""
   }, {
     "name" : "Fiona Kunz",
     "tags" : [ ],
@@ -47,7 +47,7 @@
     "ic": "A5739485B",
     "admissionDate": "11/03/2024",
     "ward": "F1",
-    "remark":"This is a remark."
+    "remark":""
   }, {
     "name" : "George Best",
     "tags" : [ ],
@@ -55,6 +55,6 @@
     "ic": "A0987654B",
     "admissionDate": "16/03/2024",
     "ward": "G1",
-    "remark":"This is a remark."
+    "remark":""
   } ]
 }

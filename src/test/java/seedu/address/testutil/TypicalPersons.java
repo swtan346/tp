@@ -29,21 +29,23 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withTags("Diabetes").withDob("20/02/2000").withIc("A1234567B")
-            .withAdmissionDate("01/03/2024").withWard("A1").withRemark("This is a remark.").build();
+            .withAdmissionDate("01/03/2024").withWard("A1")
+            .withRemark("Flip every 2 hours to prevent bed sores.").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withTags("Dementia", "FallRisk").withDob("20/02/2001")
-            .withIc("A2345678B").withAdmissionDate("01/02/2024").withWard("B1").withRemark("This is a remark.").build();
+            .withIc("A2345678B").withAdmissionDate("01/02/2024").withWard("B1").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withDob("20/02/2002")
-            .withIc("A3456789B").withAdmissionDate("05/03/2024").withWard("C1").withRemark("This is a remark.").build();
+            .withIc("A3456789B").withAdmissionDate("05/03/2024").withWard("C1")
+            .withRemark("Requires assistance with feeding.").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withTags("HearingImpaired")
             .withDob("20/02/2003").withIc("A5678901B").withAdmissionDate("10/03/2024")
-            .withWard("D1").withRemark("This is a remark.").build();
+            .withWard("D1").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withDob("20/02/2004")
-            .withIc("A4756976B").withAdmissionDate("05/02/2024").withWard("E1").withRemark("This is a remark.").build();
+            .withIc("A4756976B").withAdmissionDate("05/02/2024").withWard("E1").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withDob("20/02/2006")
-            .withIc("A5739485B").withAdmissionDate("11/03/2024").withWard("F1").withRemark("This is a remark.").build();
+            .withIc("A5739485B").withAdmissionDate("11/03/2024").withWard("F1").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withDob("20/05/2000")
-            .withIc("A0987654B").withAdmissionDate("16/03/2024").withWard("G1").withRemark("This is a remark.").build();
+            .withIc("A0987654B").withAdmissionDate("16/03/2024").withWard("G1").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").build();
