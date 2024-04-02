@@ -10,6 +10,7 @@ import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
 
@@ -39,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setIc(person.getIc());
         descriptor.setAdmissionDate(person.getAdmissionDate());
         descriptor.setWard(person.getWard());
+        descriptor.setRemark(person.getRemark());
     }
 
     /**
@@ -86,6 +88,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAdmissionDate(String admissionDate) {
         descriptor.setAdmissionDate(new AdmissionDate(admissionDate));
+        return this;
+    }
+
+    /**
+     * Sets the {@code remark} of the {@code EditPersonDescriptorBuilder} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRemark(String remark) {
+        descriptor.setRemark((new Remark(remark)));
         return this;
     }
 

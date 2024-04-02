@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     private Label ward;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label remark;
 
 
     /**
@@ -58,5 +60,6 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        remark.setText("Remarks: " + person.getRemark().value);
     }
 }

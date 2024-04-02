@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADMISSION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 
@@ -21,6 +22,7 @@ import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
 
@@ -37,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG,
-                        PREFIX_DOB, PREFIX_IC, PREFIX_ADMISSION_DATE, PREFIX_WARD);
+                        PREFIX_DOB, PREFIX_IC, PREFIX_ADMISSION_DATE, PREFIX_WARD, PREFIX_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME,
                 PREFIX_DOB, PREFIX_IC, PREFIX_ADMISSION_DATE, PREFIX_WARD)
@@ -53,6 +55,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         AdmissionDate admissionDate =
                 ParserUtil.parseAdmissionDate(argMultimap.getValue(PREFIX_ADMISSION_DATE).orElse(null));
         Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null));
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
+
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dobDate = LocalDate.parse(dob.value, formatter);
@@ -61,7 +65,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(MESSAGE_DOB_LATER_THAN_ADMISSION);
         }
 
-        Person person = new Person(name, tagList, dob, ic, admissionDate, ward);
+        Person person = new Person(name, tagList, dob, ic, admissionDate, ward, remark);
 
         return new AddCommand(person);
     }

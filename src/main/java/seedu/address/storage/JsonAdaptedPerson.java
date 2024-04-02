@@ -15,8 +15,10 @@ import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -31,7 +33,7 @@ class JsonAdaptedPerson {
     private final String ic;
     private final String admissionDate;
     private final String ward;
-
+    private final String remark;
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -39,7 +41,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name,
             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("dob") String dob,
             @JsonProperty("ic") String ic, @JsonProperty("admissionDate") String admissionDate,
-            @JsonProperty("ward") String ward) {
+            @JsonProperty("ward") String ward, @JsonProperty("remark") String remark) {
         this.name = name;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -48,6 +50,7 @@ class JsonAdaptedPerson {
         this.ic = ic;
         this.admissionDate = admissionDate;
         this.ward = ward;
+        this.remark = remark;
     }
 
     /**
@@ -62,6 +65,7 @@ class JsonAdaptedPerson {
         ic = source.getIc().value;
         admissionDate = source.getAdmissionDate().value;
         ward = source.getWard().value;
+        remark = source.getRemark().value;
     }
 
     /**
@@ -115,8 +119,13 @@ class JsonAdaptedPerson {
         }
         final Ward modelWard = new Ward(ward);
 
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+
         return new Person(modelName, modelTags, modelDob, modelIc,
-                modelAdmissionDate, modelWard);
+                modelAdmissionDate, modelWard, modelRemark);
     }
 
 }
