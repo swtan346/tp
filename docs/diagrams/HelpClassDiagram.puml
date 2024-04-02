@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+Package Logic as LogicPackage <<Rectangle>>{
+Class "<<interface>>\nCommand" as Command
+Class "<<interface>>\nParser" as Parser
+Class "<<interface>>\nLogic" as Logic
+Class LogicManager
+Class HelpCommand
+Class CommandResult
+
+Logic -down-> Parser
+Logic -down-> Command
+Logic -right-> CommandResult
+LogicManager .up.|> Logic
+LogicManager -down-> Parser
+LogicManager -down-> Command
+
+HelpCommand .up.|> Command
+HelpCommand -right-> CommandResult
+
+Parser -[hidden]down-> HelpCommand
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside .down.> Logic
+
+@enduml

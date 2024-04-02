@@ -1,22 +1,26 @@
 ---
 layout: page
 title: User Guide
+nav_order : 2
 ---
-Nursing Address Book (NAB) is a desktop application tailored for ward nurses, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User Interface (GUI) for ease of use. 
+# Nursing Address Book (NAB)
+Nursing Address Book (NAB) is a desktop application tailored for ward nurses, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User Interface (GUI) for ease of use.
 Designed for efficiency, NAB enables quick access to patient records, streamlined contact management, and simplified logging of care details, proving to be a valuable tool for fast typists and those who prefer the precision of CLI operations.
 
 ## Table of Contents
-* Quick Start
-* Features
-  * Adding a Patient
-  * Viewing Patients
-  * Editing a Patient's details
-  * Finding a Patient
-  * Deleting a Patient
-  * Clearing all Entries
-  * Exiting the Application
-* FAQ
-* Command Summary
+* [Quick Start](#quick-start)
+* [Features](#features)
+  * [Adding a Patient](#adding-a-patient-add)
+  * [Viewing Patients](#listing-all-patients--list)
+  * [Editing a Patient](#editing-a-patient--edit)
+  * [Finding a Patient](#locating-patients-by-name-find)
+  * [Deleting a Patient](#deleting-a-patient--delete)
+  * [Viewing Help](#viewing-help--help)
+  * [Clearing all Entries](#clearing-all-entries--clear)
+  * [Exiting the Application](#exiting-the-program--exit)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
+* [Troubleshooting](#troubleshooting)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -28,7 +32,7 @@ Designed for efficiency, NAB enables quick access to patient records, streamline
 
 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-4. Open a command terminal, For Windows users, search for `cmd` in the Start menu and run it as an administrator if necessary. Use the `cd` command to navigate to the folder where you placed the jar file. Run the application by executing `java -jar addressbook`.jar.<br>
+4. Open a command terminal, For Windows users, search for `cmd` in the Start menu and run it as an administrator if necessary. Use the `cd` command to navigate to the folder where you placed the jar file. Run the application by executing `java -jar nab.jar`.<br>
    Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
    ![Ui](images/Ui.png)
    <br>
@@ -72,7 +76,7 @@ Designed for efficiency, NAB enables quick access to patient records, streamline
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Adding a person: `add`
+### Adding a patient: `add`
 
 Adds a new patient's information to the address book.
 
@@ -106,7 +110,7 @@ Tags: FallRisk, Diabetes
 You now have 1 patient(s) in your address book.
 ```
 
-### Listing all persons : `list`
+### Listing all patients : `list`
 
 Displays a list of all registered patients.
 
@@ -114,7 +118,7 @@ Format: `list`, `list [w\WARD] [t\TAG]...`
 
 * WARD: Must only list at most 1 ward.
 
-Example command: 
+Example command:
 
 `list`
 ```
@@ -124,7 +128,7 @@ Here are the details of the 2 patients in your contact book:
 2. Jane Doe
 ```
 
-Example command: 
+Example command:
 
 `list w\B4 t\SeverAllergies`
 ```
@@ -140,9 +144,9 @@ Ward: B4
 Tags: SevereAllergies
 ```
 
-### Editing a person : `edit`
+### Editing a patient : `edit`
 
-Edits an existing person in the address book.
+Edits an existing patient's details in the address book.
 
 Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG]…​`
 
@@ -170,7 +174,7 @@ Ward: A1
 Tags:
 ```
 
-### Locating persons by name: `find`
+### Locating patients by name: `find`
 
 Finds patients whose names contain any of the given keywords.
 
@@ -187,7 +191,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-### Deleting a person : `delete`
+### Deleting a patient : `delete`
 
 Deletes the specified patient from the address book.
 
@@ -209,6 +213,40 @@ Ward: A1
 Tags: SevereAllergies
 
 You now have 1 patient(s) in your contact book.
+```
+### Viewing help : `help`
+
+Shows a message explaining the available commands and their usage.
+
+Format: `help`
+
+Output:
+
+```
+Here are the list of available commands:
+
+Add: add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [t\TAG]...
+   Example: add n\John Doe ic\T1234567P dob\01/01/2000 ad\25/03/2024 w\A1 t\Diabetes t\FallRisk
+
+Clear: clear 
+   Clears all entries from the address book.
+
+Delete: delete INDEX
+   Example: delete 3
+
+Edit: edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG]...  
+   Example: edit 1 ic\T0123456P t\
+
+Find: find KEYWORD [MORE_KEYWORDS]
+   Example: find John 
+
+List: list
+   Lists all patients.
+
+Exit: exit
+   Exits the application.
+  
+For more detailed information on each command, please refer to the User Guide.
 ```
 
 ### Clearing all entries : `clear`
@@ -267,3 +305,10 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG]…​`<br> e.g.,`edit 2 n\James Lee w\A2`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Help** | `help`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Troubleshooting
+
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
