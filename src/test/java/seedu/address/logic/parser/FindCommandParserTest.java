@@ -39,6 +39,12 @@ public class FindCommandParserTest {
         // multiple ic
         assertParseFailure(parser, " " + PREFIX_IC + "a1233556a b2222222b",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // both name and ic
+        assertParseFailure(parser, " " + PREFIX_NAME + "Alice Bob " + PREFIX_IC + "a1233556a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " " + PREFIX_IC + "a1233556a " + PREFIX_NAME + "Alice Bob",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
