@@ -124,14 +124,29 @@ Format: `list [w\WARD] [t\TAG]...`
 
 * WARD: Must only list at most 1 ward.
 
+(For the below commands for list, we assume the list contains 2 people, John Doe and Jane Doe)
 
 `list`
 ```
 Listed all persons
+
+John Doe
+IC: T1234567P
+Date of Birth: 21 Mar 2000
+Admission Date: 2 Feb 2022
+Ward: A1
+Tags: FallRisk, Diabetes
+
+Jane Doe
+IC: I2103210P
+Date of Birth: 12 Nov 1999
+Admission Date: 3 Mar 2024
+Ward: B4
+Tags: SevereAllergies
 ```
 
 
-`list w\B4 t\SeverAllergies`
+`list w\B4 t\SevereAllergies`
 
 ```
 Listed all persons with:
