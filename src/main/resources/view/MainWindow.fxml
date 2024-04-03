@@ -20,7 +20,7 @@
     <Scene>
       <stylesheets>
         <URL value="@NabTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@NabExtensions.css" />
       </stylesheets>
 
       <VBox>
