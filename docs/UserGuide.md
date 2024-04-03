@@ -147,7 +147,7 @@ Tags: SevereAllergies
 
 Edits an existing patient's details in the address book.
 
-Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG]…​`
+Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]…​`
 
 * Edits the patient details at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -158,10 +158,21 @@ Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DA
 
 Example command:
 
-`edit 1 ic\T0123456P t\ `
+`edit 1 ic\T0123456P t\ r\`
 
-_Edits the IC_NUMBER and TAGS  of the 1st person to be `T0123456P` and empty respectively._
+_Edits the IC_NUMBER, TAGS and REMARKS of the 1st person to be `T0123456P` for IC_NUMBER and empty for both tags and remarks._
 
+**Before**:
+```
+John Doe
+IC: T1234567P
+Date of Birth: 21 Mar 2000
+Admission Date: 2 Feb 2022
+Ward: A1
+Remarks: Requires assistance feeding.
+Tags: FallRisk, Diabetes
+```
+**After**:
 ```
 Edited details of patient 1 in your contact book as follows:
 
@@ -170,6 +181,7 @@ IC: T0123456P
 Date of Birth: 21 Mar 2000
 Admission Date: 2 Feb 2022
 Ward: A1
+Remarks: 
 Tags:
 ```
 
@@ -214,42 +226,6 @@ Tags: SevereAllergies
 You now have 1 patient(s) in your contact book.
 ```
 
-### Changing remarks of a patient : `remark` 
-Adds a remark to the specified patient in the address book.
-
-Format: `remark INDEX r\REMARK`
-
-- Replaces any existing remarks for the patient at the specified `INDEX` with `REMARK`
-- The index refers to the index number shown in the displayed list.
-- The index **must be a positive integer** 1, 2, 3,...
-
-Example command:
-
-`list` followed by `remark 1 r\Likes long walks by the beach.` adds the 
-remark "Likes long walks by the beach." to the 1st person.
-```
-Added remark to patient:
-
-John Doe
-IC: T0123456P
-Date of Birth: 21 Mar 2000
-Admission Date: 2 Feb 2022
-Ward: A1
-Remarks: Likes long walks by the beach.
-Tags: 
-```
-`list` followed by  `remark 1 r\ ` would make remarks for the 1st person empty.
-```
-Removed remark from patient:
-
-John Doe
-IC: T0123456P
-Date of Birth: 21 Mar 2000
-Admission Date: 2 Feb 2022
-Ward: A1
-Remarks: 
-Tags: 
-```
 
 ### Clearing all entries : `clear`
 
