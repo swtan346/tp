@@ -150,7 +150,7 @@ Tags: SevereAllergies
 
 Edits an existing patient's details in the address book.
 
-Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG] [r\REMARK]…​`
+Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]... …​`
 
 * Edits the patient details at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
