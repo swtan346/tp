@@ -204,16 +204,15 @@ Format: `delete INDEX`
 
 Example command:
 
-`list` followed by `delete 2` deletes the 2nd person in the address book.
+`delete 2` deletes the 2nd person in the address book.
 ```
-Jane Doe is deleted. Their details were:
-
-Date of Birth: 12 Nov 1999
-Admission Date: 3 Mar 2024
+Deleted Person: Jane Doe
+IC: A1234567B
+DOB: 02/02/2000
 Ward: A1
+Admitted: 02/02/2020
+Remarks: likes to go to the park
 Tags: SevereAllergies
-
-You now have 1 patient(s) in your contact book.
 ```
 ### Viewing help : `help`
 
