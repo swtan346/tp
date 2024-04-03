@@ -48,6 +48,7 @@
               </padding>
             </StackPane>
 
+
             <!-- Your existing personList VBox -->
             <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
               <padding>
