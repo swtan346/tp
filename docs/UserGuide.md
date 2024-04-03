@@ -130,10 +130,9 @@ Format: `list [w\WARD] [t\TAG]...`
 Listed all persons
 ```
 
-// TODO: Add Screenshot
-
 
 `list w\B4 t\SeverAllergies`
+
 ```
 Listed all persons with:
 Tags: FallRisk
@@ -147,7 +146,7 @@ Ward: B4
 Tags: SevereAllergies
 ```
 
-### Editing a patient : `edit`
+### Editing a patient's details : `edit`
 
 Edits an existing patient's details in the address book.
 
