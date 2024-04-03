@@ -7,9 +7,11 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_IC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FALL_RISK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_AMY;
@@ -91,10 +93,10 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_DESC_FALL_RISK
-                + NAME_DESC_AMY + TAG_DESC_DIABETES;
+                + NAME_DESC_AMY + TAG_DESC_DIABETES + REMARK_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withTags(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES).build();
+                .withTags(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES).withRemark(VALID_REMARK_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
