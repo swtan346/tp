@@ -20,7 +20,7 @@
     <Scene>
       <stylesheets>
         <URL value="@NabTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@NabExtensions.css" />
       </stylesheets>
 
       <VBox>
@@ -47,6 +47,7 @@
                 <Insets top="5" right="10" bottom="5" left="10"/>
               </padding>
             </StackPane>
+
 
             <!-- Your existing personList VBox -->
             <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
