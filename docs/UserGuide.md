@@ -176,10 +176,11 @@ Tags:
 
 ### Locating patients either by name or by IC: `find`
 
-Finds patients whose names contain any of the given keywords.
+You can find patients whose names or IC contain any of the given keywords.
 
-Format: `find n\KEYWORD [MORE_KEYWORDS]`, `find ic\KEYWORD`
+Format: `find [n\KEYWORDS] [ic\KEYWORD]`
 
+* Exactly one of the optional fields must be provided
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
