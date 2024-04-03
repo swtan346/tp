@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class AdmissionDate {
     public static final String MESSAGE_CONSTRAINTS = "Admission date takes in a date in a DD/MM/YYYY format. \n"
-                    + "Admission date cannot be later than date of birth";
+                    + "Admission date cannot be earlier than date of birth";
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
 
     public final String value;
