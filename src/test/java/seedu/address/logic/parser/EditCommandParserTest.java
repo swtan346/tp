@@ -1,7 +1,24 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DOB_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DOB_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_IC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIABETES;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FALL_RISK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
