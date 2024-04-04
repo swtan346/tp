@@ -28,10 +28,15 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_WARD);
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_WARD);
         List<String> tagList = ParserUtil
                 .parseTagsKeywords(argMultimap.getAllValues(PREFIX_TAG));
-        String ward = argMultimap.getValue(PREFIX_WARD).orElse("");
+        String ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null)).toString();
 
         if (ward.isEmpty() && tagList.isEmpty()) {
             throw new ParseException(
