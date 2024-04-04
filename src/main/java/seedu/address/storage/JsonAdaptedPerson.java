@@ -92,8 +92,11 @@ class JsonAdaptedPerson {
         if (dob == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Dob.class.getSimpleName()));
         }
+        if (!Dob.isValidDate(dob)) {
+            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_FORMAT);
+        }
         if (!Dob.isValidDob(dob)) {
-            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE);
         }
         final Dob modelDob = new Dob(dob);
 
@@ -109,8 +112,11 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AdmissionDate.class.getSimpleName()));
         }
+        if (!AdmissionDate.isValidDate(admissionDate)) {
+            throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS_FORMAT);
+        }
         if (!AdmissionDate.isValidAdmissionDate(admissionDate)) {
-            throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS_OCCURRENCE);
         }
         final AdmissionDate modelAdmissionDate = new AdmissionDate(admissionDate);
 

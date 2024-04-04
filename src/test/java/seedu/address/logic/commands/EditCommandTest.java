@@ -10,11 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.EditCommand.MESSAGE_DOB_AFTER_ADMISSION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -145,14 +145,12 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
     @Test
-    @Disabled
     public void execute_dobEarlierThanAdmission_success() {
         Person person = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).withDob("12/08/2002")
-                .withAdmissionDate("12/08/2019").build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).withDob("20/02/2000")
+                .withAdmissionDate("01/03/2024").build();
 
         PersonBuilder personBuilder = new PersonBuilder(person);
-
 
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
@@ -170,7 +168,7 @@ public class EditCommandTest {
                 .withAdmissionDate("12/08/2019").build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_DOB_LATER_THAN_ADMISSION);
+        assertCommandFailure(editCommand, model, MESSAGE_DOB_AFTER_ADMISSION);
     }
 
     @Test

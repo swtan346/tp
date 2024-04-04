@@ -26,7 +26,8 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_IC = "T11222222222222Y";
     private static final String INVALID_WARD = "+";
-    private static final String INVALID_ADMISSION_DATE = "123/12/20300";
+    private static final String INVALID_ADMISSION_DATE_FUTURE = "12/12/2030";
+    private static final String INVALID_ADMISSION_DATE_FORMAT = "12-31-2000"; // Wrong format
     private static final String INVALID_TAG = "#Diabetes";
     private static final String INVALID_DOB_FUTURE = LocalDate.now().plusDays(1)
             .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // A future date
@@ -159,6 +160,17 @@ public class ParserUtilTest {
         Dob expectedDob = new Dob(VALID_DOB.trim());
         assertEquals(expectedDob, ParserUtil.parseDob(dobWithWhitespace));
     }
+
+    @Test
+    public void parseAdmissionDate_invalidValueFuture_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAdmissionDate(INVALID_ADMISSION_DATE_FUTURE));
+    }
+
+    @Test
+    public void parseAdmissionDate_invalidValueFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAdmissionDate(INVALID_ADMISSION_DATE_FORMAT));
+    }
+
     @Test
     public void parseTag_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
