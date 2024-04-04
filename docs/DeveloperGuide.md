@@ -241,6 +241,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 <img src="images/CommitActivityDiagram.png" width="250"/>
 
 When the user executes the help command, the following steps occur:
+  
 
 1. The `LogicManager` is called to execute the "help" command.
 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
@@ -248,6 +249,7 @@ When the user executes the help command, the following steps occur:
 4. The `HelpCommand` creates a new `CommandResult` with the help message.
 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
 
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
 
