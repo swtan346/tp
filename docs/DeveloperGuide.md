@@ -171,6 +171,31 @@ Step 3. `RemarkCommand#execute()` replaces the person at index 1 in the last sho
 which is a copy of original person except with the new remark. 
 
 
+### Help command
+
+The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
+
+The following class diagram shows the relevant classes involved in the help command implementation:
+
+![HelpCommandClassDiagram](images/HelpClassDiagram.png)
+
+The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
+
+The following sequence diagram shows how the help command works:
+
+![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
+
+When the user executes the help command, the following steps occur:
+
+1. The `LogicManager` is called to execute the "help" command.
+2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+4. The `HelpCommand` creates a new `CommandResult` with the help message.
+5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
+The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -321,6 +346,41 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to be more specific.
     * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
 
+### Find feature
+
+#### Implementation
+
+The filter by tags and/or ward mechanism is facilitated by `FindCommand`, `FindCommandParser`, 
+`NameContainsKeywordsPredicate` and 
+`IcContainsKeywordsPredicate`.
+
+![FindClassDiagram](images/FindClassDiagram.png)
+
+Additionally, it implements the following operations:
+
+* `FindCommandParser#parse()` — Parses user input and creates a `FindCommand` object.
+
+Given below is an example usage scenario and how the find by name or IC mechanism behaves at each step.
+
+Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The 
+`FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
+
+Step 2. For each patient in the address book, the `predicate` object will be passed to 
+`Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob, 
+the patient will be shown in result.
+
+#### Design considerations:
+
+**Aspect: Find by full word or letters:**
+
+* **Alternative 1 (current choice):** Allow finding by full word only.
+    * Pros: More meaningful to find by words instead of just letters.
+    * Cons: Harder to search when patient details is insufficient.
+
+* **Alternative 2:** Allow finding by letters.
+    * Pros: Able to search even if lacking patient information.
+    * Cons: Harder to get specific patient as result will be a list.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -403,7 +463,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to view contacts(UC01)
-2.  User requests to delete a specific person in the list 
+2.  User requests to delete a specific person in the list
 3.  AddressBook deletes the person
 
     Use case ends.
@@ -434,14 +494,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10.  The software should work without requiring an installer.
 11.  The software should not depend on a specific remote server.
 12.  The GUI should work well for standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%.
-13.  The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 
+13.  The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for,
      resolutions 1280x720 and higher, and, for screen scales 150%.
 14.  The product should be available as a single JAR file of size 100MB or below.
 15.  The web documents saved should be a PDF file of size 15MB or below.
 16.  The final JAR/PDF files should not be bloated unnecessarily.
 17.  The DG and UG should be PDF-friendly, without any expandable panels, embedded videos, animated GIFs etc.
-18.  The use of third-party frameworks/libraries/services is allowed only if they, are free, open-source (this 
-     doesn't apply to services), and have permissive license terms; do not require any installation by the user; do 
+18.  The use of third-party frameworks/libraries/services is allowed only if they, are free, open-source (this
+     doesn't apply to services), and have permissive license terms; do not require any installation by the user; do
      not violate other constraints.
 19.  The product should process a user input command within 1 second.
 20.  The system must perform without failure in 95 percent of use cases during a month.

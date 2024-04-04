@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_IC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_IC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_AMY;
@@ -27,12 +29,14 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withTags("Diabetes").withDob("20/02/2000").withIc("A1234567B")
-            .withAdmissionDate("01/03/2024").withWard("A1").build();
+            .withAdmissionDate("01/03/2024").withWard("A1")
+            .withRemark("Flip every 2 hours to prevent bed sores.").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withTags("Dementia", "FallRisk").withDob("20/02/2001")
             .withIc("A2345678B").withAdmissionDate("01/02/2024").withWard("B1").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withDob("20/02/2002")
-            .withIc("A3456789B").withAdmissionDate("05/03/2024").withWard("C1").build();
+            .withIc("A3456789B").withAdmissionDate("05/03/2024").withWard("C1")
+            .withRemark("Requires assistance with feeding.").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withTags("HearingImpaired")
             .withDob("20/02/2003").withIc("A5678901B").withAdmissionDate("10/03/2024")
             .withWard("D1").build();
@@ -44,17 +48,17 @@ public class TypicalPersons {
             .withIc("A0987654B").withAdmissionDate("16/03/2024").withWard("G1").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").build();
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withIc("A0000000A").build();
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withIc("A1111111A").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withTags(VALID_TAG_DIABETES)
             .withDob(VALID_DOB_AMY).withIc(VALID_IC_AMY).withAdmissionDate(VALID_ADMISSION_DATE_AMY)
-            .withWard(VALID_WARD_AMY).build();
+            .withWard(VALID_WARD_AMY).withRemark(VALID_REMARK_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withTags(VALID_TAG_DIABETES, VALID_TAG_FALL_RISK)
             .withDob(VALID_DOB_BOB).withIc(VALID_IC_BOB).withAdmissionDate(VALID_ADMISSION_DATE_BOB)
-            .withWard(VALID_WARD_BOB).build();
+            .withWard(VALID_WARD_BOB).withRemark(VALID_REMARK_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

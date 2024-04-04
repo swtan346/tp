@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -13,6 +15,7 @@ import seedu.address.model.person.AdmissionDate;
 import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
 
@@ -79,6 +82,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> tags} into a {@code List<String> keywords}.
+     */
+    public static List<String> parseTagsKeywords(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        Set <Tag> tagSet = parseTags(tags);
+        List<String> tagNames = new ArrayList<>();
+        for (Tag tag : tagSet) {
+            tagNames.add(tag.getTagName());
+        }
+        return tagNames;
+    }
+
+    /**
      * Parses a {@code String dob} into a {@code Dob}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -101,7 +117,6 @@ public class ParserUtil {
      */
     public static Ic parseIc(String ic) throws ParseException {
         requireNonNull(ic);
-        // Todo: Error handling
         String trimmedIc = ic.trim();
         if (!Ic.isValidIc(trimmedIc)) {
             throw new ParseException(Ic.MESSAGE_CONSTRAINTS);
@@ -139,6 +154,19 @@ public class ParserUtil {
         // For now we assume all strings are valid wards.
         // We can change this to be better in the future.
         return new Ward(trimmedWard);
+    }
+
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        if (remark == null) {
+            return new Remark("");
+        } else {
+            String trimmedRemark = remark.trim();
+            return new Remark(trimmedRemark);
+        }
     }
 
 }
