@@ -1,7 +1,7 @@
 #helpMessage {
-    -fx-text-fill: white;
+    -fx-text-fill: #424874;
 }
 
 .root {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#D8DCE1, 20%);
 }
