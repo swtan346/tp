@@ -20,6 +20,7 @@ Class Name
 Class Ic
 Class Ward
 Class Tag
+Class Remark
 
 Class I #FFFFFF
 }
@@ -43,6 +44,7 @@ Person *--> Ic
 Person *--> AdmissionDate
 Person *--> Dob
 Person *--> Ward
+Person *--> Remark
 Person *--> "*" Tag
 
 Person -[hidden]up--> I

@@ -19,4 +19,5 @@ Person *--> Ic
 Person *--> Dob
 Person *--> AdmissionDate
 Person *--> Ward
+Person *--> Remark
 @enduml
