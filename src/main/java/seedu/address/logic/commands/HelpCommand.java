@@ -9,11 +9,11 @@ public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions within application.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions on a separate window.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Here are the list of available commands:\n\n"
-            + "Add: add n\\NAME ic\\IC_NUMBER dob\\DATE_OF_BIRTH ad\\ADMISSION_DATE w\\WARD [t\\TAG]...\n"
+            + "Add: add n\\NAME ic\\IC_NUMBER dob\\DATE_OF_BIRTH ad\\ADMISSION_DATE w\\WARD [t\\TAG] [r\\REMARK] ...\n"
             + "   Example: add n\\John Doe ic\\T1234567P dob\\01/01/2000 "
             + "ad\\25/03/2024 w\\A1 t\\Diabetes t\\FallRisk\n\n"
             + "Clear: clear\n"
@@ -29,14 +29,12 @@ public class HelpCommand extends Command {
             + "   Lists all patients.\n\n"
             + "List by keyword: list [WARD] OR list [TAG]"
             + "   Lists patients in specified ward or by tag.\n\n"
-            + "Remark: remark\n"
-            + "   Adds a remark.\n\n"
             + "Exit: exit\n"
             + "   Exits the application.\n\n"
             + "For more detailed information on each command, please refer to the User Guide.";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, false, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }
