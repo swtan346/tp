@@ -88,8 +88,8 @@ A person can have any number of tags (including 0)
 
 * NAME: The full name of the patient. Only alphabetical characters are accepted. Each word should be split with a whitespace.
 * IC_NUMBER: The Identification Number of the patient. It must start with a capital letter, followed by a 7-digit number and ends with a capital letter.
-* DATE_OF_BIRTH: The patient's date of birth in DD/MM/YYYY format. Date of birth must not be later than admission date, and not be later than the current date.
-* ADMISSION_DATE: The date the patient was admitted to the ward, also in DD/MM/YYYY format. This date should not be later than the current date.
+* DATE_OF_BIRTH: The patient's date of birth in dd/MM/yyyy format. Date of birth must not be later than admission date, and not be later than the current date.
+* ADMISSION_DATE: The date the patient was admitted to the ward, also in dd/MM/yyyy format. This date should not be later than the current date.
 * WARD: The ward where the patient is located. This should contain alphanumeric characters only, with no spaces.
 * REMARK: Optional remarks about the patient (e.g. "Patient is an amputee"). Remarks have no limited length, and can only be used once.
 * TAG: Optional tags to categorize the patient by health condition or other descriptors. Tags should be alphanumeric and can be used multiple times.
@@ -180,7 +180,7 @@ Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DA
 
 Example command:
 
-`edit 1 ic\T0123456P t\ r\`
+`edit 1 ic\T0123456P t\ r\ `
 
 _Edits the IC_NUMBER, TAGS and REMARKS of the 1st person to be `T0123456P` for IC_NUMBER and empty for both tags and remarks._
 
