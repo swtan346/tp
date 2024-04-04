@@ -251,6 +251,26 @@ When the user executes the help command, the following steps occur:
 
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
 
+### Add a patient
+
+#### Implementation
+
+The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`.
+
+Given below is an example usage scenario and how the add patient feature behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book.
+
+n\: Indicates the name of the patient
+ic\: Indicates the NRIC of the patient
+ad\: Indicates the admission date of the patient
+dob\: Indicates the date of birth of the patient
+w\: Indicates the ward of the patient is currently in
+
+The `AddCommandParser` parses the user input, creating a new `AddCommand` object.
+The `AddCommand` object then creates a new `Person` object with the parsed details.
 
 ### List by tags and/or ward feature
 
@@ -302,8 +322,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The filter by tags and/or ward mechanism is facilitated by `FindCommand`, `FindCommandParser`, 
-`NameContainsKeywordsPredicate` and 
+The filter by tags and/or ward mechanism is facilitated by `FindCommand`, `FindCommandParser`,
+`NameContainsKeywordsPredicate` and
 `IcContainsKeywordsPredicate`.
 
 ![FindClassDiagram](images/FindClassDiagram.png)
@@ -314,11 +334,11 @@ Additionally, it implements the following operations:
 
 Given below is an example usage scenario and how the find by name or IC mechanism behaves at each step.
 
-Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The 
+Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
 `FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
 
-Step 2. For each patient in the address book, the `predicate` object will be passed to 
-`Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob, 
+Step 2. For each patient in the address book, the `predicate` object will be passed to
+`Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob,
 the patient will be shown in result.
 
 #### Design considerations:
