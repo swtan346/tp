@@ -23,6 +23,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
 import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_BOB;
+import static seedu.address.logic.commands.AddCommand.MESSAGE_DOB_AFTER_ADMISSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -127,7 +128,7 @@ public class AddCommandParserTest {
         // invalid dob
         assertParseFailure(parser, NAME_DESC_BOB
                 + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES + INVALID_DOB_DESC + IC_DESC_BOB
-                + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, Dob.MESSAGE_CONSTRAINTS);
+                + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, Dob.MESSAGE_CONSTRAINTS_FORMAT);
 
         // invalid ward
         assertParseFailure(parser, NAME_DESC_BOB
@@ -156,7 +157,7 @@ public class AddCommandParserTest {
         // invalid dob
         assertParseFailure(parser, NAME_DESC_BOB
                 + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES + INVALID_DOB_DESC + IC_DESC_BOB
-                + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, Dob.MESSAGE_CONSTRAINTS);
+                + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, Dob.MESSAGE_CONSTRAINTS_FORMAT);
     }
 
     @Test
@@ -165,6 +166,6 @@ public class AddCommandParserTest {
         String userInput = NAME_DESC_BOB
                 + " dob\\02/02/2022 " + IC_DESC_BOB
                 + " ad\\02/02/2002 " + WARD_DESC_BOB;
-        assertParseFailure(parser, userInput, Messages.MESSAGE_DOB_LATER_THAN_ADMISSION);
+        assertParseFailure(parser, userInput, MESSAGE_DOB_AFTER_ADMISSION);
     }
 }

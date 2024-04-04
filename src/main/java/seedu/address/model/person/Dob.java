@@ -5,15 +5,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a patient's date of birth in the address book.
  */
 public class Dob {
-    public static final String MESSAGE_CONSTRAINTS = "Dates of birth takes in a date. "
-            + "Date of birth should not be later than date of admission";
-    public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
-
+    public static final String MESSAGE_CONSTRAINTS_FORMAT =
+            "Dates of birth takes in a date of format dd/MM/yyyy";
+    public static final String MESSAGE_CONSTRAINTS_OCCURRENCE =
+            "Date of birth should not be later than date of admission";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public final LocalDate date;
     public final String value;
 
     /**
@@ -23,24 +26,39 @@ public class Dob {
      */
     public Dob(String value) {
         requireNonNull(value);
-        checkArgument(isValidDob(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS_FORMAT);
+        checkArgument(isValidDob(value), MESSAGE_CONSTRAINTS_OCCURRENCE);
+        this.date = LocalDate.parse(value, formatter);
         this.value = value;
     }
 
     /**
+     * Returns true if a given string is a valid date.
+     *
+     * @param dob The date of birth to be checked.
+     */
+    public static boolean isValidDate(String dob) {
+        try {
+            LocalDate date = LocalDate.parse(dob, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
      * Returns true if a given string is a valid date of birth.
+     *
+     * @param dob The date of birth to be checked.
      */
     public static boolean isValidDob(String dob) {
-        if (dob.matches(VALIDATION_REGEX)) {
-            LocalDate today = LocalDate.now();
-            // Define the date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            // Parse the string to LocalDate
+        if (isValidDate(dob)) {
             LocalDate date = LocalDate.parse(dob, formatter);
-            return date.isEqual(today) || date.isBefore(today);
+            return !date.isAfter(LocalDate.now());
         }
         return false;
     }
+
 
     @Override
     public String toString() {
@@ -58,7 +76,7 @@ public class Dob {
         }
 
         Dob otherDob = (Dob) other;
-        return value.equals(otherDob.value);
+        return date.equals(otherDob.date);
     }
 
     @Override

@@ -18,9 +18,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-
-    public static final String MESSAGE_DOB_LATER_THAN_ADMISSION =
-            "Date of birth should not be later than date of admission";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

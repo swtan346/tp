@@ -42,6 +42,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
+    public static final String MESSAGE_DOB_AFTER_ADMISSION =
+            "Date of birth should not be later than date of admission.";
 
     private final Person toAdd;
 
@@ -59,6 +61,10 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (toAdd.getDob().date.isAfter(toAdd.getAdmissionDate().date)) {
+            throw new CommandException(MESSAGE_DOB_AFTER_ADMISSION);
         }
 
         model.addPerson(toAdd);

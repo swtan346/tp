@@ -37,10 +37,6 @@ public class Person {
                   Dob dob, Ic ic, AdmissionDate admissionDate, Ward ward, Remark remark) {
         requireAllNonNull(name, dob, ic, admissionDate, ward);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate dobToCompare = LocalDate.parse(dob.toString(), formatter);
-        LocalDate admissionDateToCompare = LocalDate.parse(admissionDate.toString(), formatter);
-
         this.name = name;
         this.tags.addAll(tags);
         this.dob = dob;

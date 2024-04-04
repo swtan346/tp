@@ -99,8 +99,11 @@ public class ParserUtil {
     public static Dob parseDob(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
+        if (!Dob.isValidDate(trimmedDob)) {
+            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_FORMAT);
+        }
         if (!Dob.isValidDob(trimmedDob)) {
-            throw new ParseException(Dob.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE);
         }
         return new Dob(trimmedDob);
     }
@@ -113,7 +116,6 @@ public class ParserUtil {
      */
     public static Ic parseIc(String ic) throws ParseException {
         requireNonNull(ic);
-        // Todo: Error handling
         String trimmedIc = ic.trim();
         if (!Ic.isValidIc(trimmedIc)) {
             throw new ParseException(Ic.MESSAGE_CONSTRAINTS);
@@ -122,7 +124,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String admissionDate} into a {@code AdmissionDate}.
+     * Parses a {@code String admissionDate, Dob dob} into a {@code AdmissionDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code admissionDate} is invalid.
@@ -130,8 +132,12 @@ public class ParserUtil {
     public static AdmissionDate parseAdmissionDate(String admissionDate) throws ParseException {
         requireNonNull(admissionDate);
         String trimmedAdmissionDate = admissionDate.trim();
+        if (!AdmissionDate.isValidDate(admissionDate.trim())) {
+            throw new ParseException(AdmissionDate.MESSAGE_CONSTRAINTS_FORMAT);
+        }
+
         if (!AdmissionDate.isValidAdmissionDate(admissionDate.trim())) {
-            throw new ParseException(AdmissionDate.MESSAGE_CONSTRAINTS);
+            throw new ParseException(AdmissionDate.MESSAGE_CONSTRAINTS_OCCURRENCE);
         }
         return new AdmissionDate(trimmedAdmissionDate);
     }

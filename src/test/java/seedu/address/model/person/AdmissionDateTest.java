@@ -24,19 +24,19 @@ public class AdmissionDateTest {
     @Test
     public void isValidAdmissionDate() {
         // null AdmissionDate
-        assertThrows(NullPointerException.class, () -> AdmissionDate.isValidAdmissionDate(null));
+        assertThrows(NullPointerException.class, () -> AdmissionDate.isValidDate(null));
 
         // blank AdmissionDate
-        assertFalse(AdmissionDate.isValidAdmissionDate("")); // empty string
-        assertFalse(AdmissionDate.isValidAdmissionDate(" ")); // spaces only
+        assertFalse(AdmissionDate.isValidDate("")); // empty string
+        assertFalse(AdmissionDate.isValidDate(" ")); // spaces only
 
         // missing parts
-        assertFalse(AdmissionDate.isValidAdmissionDate("17/03/")); // missing year
-        assertFalse(AdmissionDate.isValidAdmissionDate("/03/2024")); // missing day
-        assertFalse(AdmissionDate.isValidAdmissionDate("17/2024")); // missing month
-        assertFalse(AdmissionDate.isValidAdmissionDate("17/03")); // missing year
-        assertFalse(AdmissionDate.isValidAdmissionDate("03/2024")); // missing day
-        assertFalse(AdmissionDate.isValidAdmissionDate("17/2024")); // missing month
+        assertFalse(AdmissionDate.isValidDate("17/03/")); // missing year
+        assertFalse(AdmissionDate.isValidDate("/03/2024")); // missing day
+        assertFalse(AdmissionDate.isValidDate("17/2024")); // missing month
+        assertFalse(AdmissionDate.isValidDate("17/03")); // missing year
+        assertFalse(AdmissionDate.isValidDate("03/2024")); // missing day
+        assertFalse(AdmissionDate.isValidDate("17/2024")); // missing month
 
         // future date
         LocalDate today = LocalDate.now();
@@ -46,11 +46,11 @@ public class AdmissionDateTest {
         // Format date
         String todayFormatted = today.format(formatter);
         String tomorrowFormatted = tomorrow.format(formatter);
-        assertFalse(AdmissionDate.isValidAdmissionDate(tomorrowFormatted));
+        assertFalse(AdmissionDate.isValidDate(tomorrowFormatted));
 
         // valid AdmissionDate
-        assertTrue(AdmissionDate.isValidAdmissionDate("17/03/2024"));
-        assertTrue(AdmissionDate.isValidAdmissionDate(todayFormatted));
+        assertTrue(AdmissionDate.isValidDate("17/03/2024"));
+        assertTrue(AdmissionDate.isValidDate(todayFormatted));
     }
 
     @Test

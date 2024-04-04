@@ -24,19 +24,19 @@ public class DobTest {
     @Test
     public void isValidDob() {
         // null dob
-        assertThrows(NullPointerException.class, () -> Dob.isValidDob(null));
+        assertThrows(NullPointerException.class, () -> Dob.isValidDate(null));
 
         // blank dob
-        assertFalse(Dob.isValidDob("")); // empty string
-        assertFalse(Dob.isValidDob(" ")); // spaces only
+        assertFalse(Dob.isValidDate("")); // empty string
+        assertFalse(Dob.isValidDate(" ")); // spaces only
 
         // missing parts
-        assertFalse(Dob.isValidDob("17/03/")); // missing year
-        assertFalse(Dob.isValidDob("/03/2024")); // missing day
-        assertFalse(Dob.isValidDob("17/2024")); // missing month
-        assertFalse(Dob.isValidDob("17/03")); // missing year
-        assertFalse(Dob.isValidDob("03/2024")); // missing day
-        assertFalse(Dob.isValidDob("17/2024")); // missing month
+        assertFalse(Dob.isValidDate("17/03/")); // missing year
+        assertFalse(Dob.isValidDate("/03/2024")); // missing day
+        assertFalse(Dob.isValidDate("17/2024")); // missing month
+        assertFalse(Dob.isValidDate("17/03")); // missing year
+        assertFalse(Dob.isValidDate("03/2024")); // missing day
+        assertFalse(Dob.isValidDate("17/2024")); // missing month
 
         // future date
         LocalDate today = LocalDate.now();
@@ -46,11 +46,11 @@ public class DobTest {
         // Format date
         String todayFormatted = today.format(formatter);
         String tomorrowFormatted = tomorrow.format(formatter);
-        assertFalse(Dob.isValidDob(tomorrowFormatted));
+        assertFalse(Dob.isValidDate(tomorrowFormatted));
 
         // valid Dob
-        assertTrue(Dob.isValidDob("17/03/2024"));
-        assertTrue(Dob.isValidDob(todayFormatted));
+        assertTrue(Dob.isValidDate("17/03/2024"));
+        assertTrue(Dob.isValidDate(todayFormatted));
     }
 
     @Test
