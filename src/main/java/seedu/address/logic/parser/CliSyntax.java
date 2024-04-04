@@ -12,4 +12,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_WARD = new Prefix("w\\");
     public static final Prefix PREFIX_IC = new Prefix("ic\\");
     public static final Prefix PREFIX_ADMISSION_DATE = new Prefix("ad\\");
+    public static final Prefix PREFIX_REMARK = new Prefix("r\\");
 }

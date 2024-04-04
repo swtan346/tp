@@ -99,7 +99,8 @@ public class PersonTest {
                 + ", dob=" + ALICE.getDob()
                 + ", ic=" + ALICE.getIc()
                 + ", admissionDate=" + ALICE.getAdmissionDate()
-                + ", ward=" + ALICE.getWard() + "}";
+                + ", ward=" + ALICE.getWard()
+                + ", remark=" + ALICE.getRemark() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

@@ -155,6 +155,31 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Help command
+
+The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
+
+The following class diagram shows the relevant classes involved in the help command implementation:
+
+![HelpCommandClassDiagram](images/HelpClassDiagram.png)
+
+The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
+
+The following sequence diagram shows how the help command works:
+
+![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
+
+When the user executes the help command, the following steps occur:
+
+1. The `LogicManager` is called to execute the "help" command.
+2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+4. The `HelpCommand` creates a new `CommandResult` with the help message.
+5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
+The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -237,7 +262,108 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added}
+
+### Add a patient
+
+#### Implementation
+
+The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`. 
+
+Given below is an example usage scenario and how the add patient feature behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book. 
+
+n\: Indicates the name of the patient
+ic\: Indicates the NRIC of the patient
+ad\: Indicates the admission date of the patient
+dob\: Indicates the date of birth of the patient
+w\: Indicates the ward of the patient is currently in
+
+The `AddCommandParser` parses the user input, creating a new `AddCommand` object. 
+The `AddCommand` object then creates a new `Person` object with the parsed details.
+
+
+### List by tags and/or ward feature
+
+#### Implementation
+
+The filter by tags and/or ward mechanism is facilitated by `ListCommand`, `ListCommandParser` and `ListKeywordsPredicate`. Additionally, it implements the following operations:
+
+* `ListCommandParser#parse()` — Parses user input and creates a `ListCommand` object.
+
+Given below is an example usage scenario and how the filter by tags and/or ward mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. The `ListCommandParser` parses the user input, creating a new `ListCommand` and `ListKeywordPredicate` object as `predicate` (since there are keywords provided). `predicate` will filter the list of patients in the address book to only show patients with the diabetes tag. 
+
+![ListObjectDiagram](images/ListObjectDiagram.png)
+
+Step 3. For each patient in the address book, the `predicate` object will be passed to `Model#updateFilteredPersonList` check if the patient has the diabetes tag. If the patient has the diabetes tag, the patient will be shown in the list of patients.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/ListCommandActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: Command to filter:**
+
+* **Alternative 1 (current choice):** Add the parameters to list command instead of find.
+    * Pros: More appropriate as `list` will produce a useful list of relevant contacts, whereas `find` implies that only one useful result is expected.
+    * Cons: May not have such a clear distinction between `list` and `find`, as user just wants to search for results.
+
+* **Alternative 2:** Add parameters to find command instead of list.
+    * Pros: Easy to use, one command will perform all search.
+    * Cons: Unable to differentiate usefulness.
+
+**Aspect: Filter by a ward or many wards:**
+
+* **Alternative 1 (current choice):** Allow filtering only by at most 1 ward input.
+    * Pros: More targeted; Nurses will only refer to the ward that they are in or are visiting. Otherwise, will filter across all wards.
+    * Cons: Does not allow looking at specific, multiple wards.
+
+* **Alternative 2:** Allow multiple ward tags.
+    * Pros: Easy to be more specific.
+    * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
+
+### Find feature
+
+#### Implementation
+
+The filter by tags and/or ward mechanism is facilitated by `FindCommand`, `FindCommandParser`, 
+`NameContainsKeywordsPredicate` and 
+`IcContainsKeywordsPredicate`.
+
+![FindClassDiagram](images/FindClassDiagram.png)
+
+Additionally, it implements the following operations:
+
+* `FindCommandParser#parse()` — Parses user input and creates a `FindCommand` object.
+
+Given below is an example usage scenario and how the find by name or IC mechanism behaves at each step.
+
+Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The 
+`FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
+
+Step 2. For each patient in the address book, the `predicate` object will be passed to 
+`Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob, 
+the patient will be shown in result.
+
+#### Design considerations:
+
+**Aspect: Find by full word or letters:**
+
+* **Alternative 1 (current choice):** Allow finding by full word only.
+    * Pros: More meaningful to find by words instead of just letters.
+    * Cons: Harder to search when patient details is insufficient.
+
+* **Alternative 2:** Allow finding by letters.
+    * Pros: Able to search even if lacking patient information.
+    * Cons: Harder to get specific patient as result will be a list.
 
 ### \[Proposed\] Data archiving
 

@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Dob {
     public static final String MESSAGE_CONSTRAINTS = "Dates of birth takes in a date. "
-            + "Date of birth should not be later than date of recording";
+            + "Date of birth should not be later than date of admission";
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
 
     public final String value;
@@ -65,7 +65,4 @@ public class Dob {
     public int hashCode() {
         return value.hashCode();
     }
-
-    // Todo: isValidDob
-
 }
