@@ -127,13 +127,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -153,25 +146,47 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
-### Remarks feature
-The remark command is facilitated by `RemarkCommand`, `RemarkCommandParser` and `Remark`. It allows users to add optional remarks to 
-people in the address book and edit it if required.
-    
-- `RemarkCommandParser#parse()` - Parses user input and returns a `RemarkCommand` object. 
+This section contains some noteworthy details on how certain features are being implemented.
 
-Below is an example usage scenario and how the remarks mechanism behaves at each step.
+### Adding a patient into Nursing Address Book
 
-Step 1. The user launches the application.
+#### Implementation
 
-Step 2. The user executes `remark 1 r\This is a remark.`. This user input is parsed by `RemarkCommandParser` and creates 
-a `RemarkCommand`.
+The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`.
 
-Step 3. `RemarkCommand#execute()` replaces the person at index 1 in the last shown list with a new person
-which is a copy of original person except with the new remark. 
+Given below is an example usage scenario and how the add patient feature behaves at each step.
+
+Step 1. The user inputs an add Command (e.g. `add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA`) to add a new patient named Alice to the address book.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The format of the add command is as follows:
+n\: Indicates the name of the patient
+ic\: Indicates the NRIC of the patient
+ad\: Indicates the admission date of the patient
+dob\: Indicates the date of birth of the patient
+w\: Indicates the ward of the patient is currently in
+r\: Indicates remarks for the patient (optional)
+t\: Indicates the tags of the patient (optional, can have multiple)
+</div>
+
+Step 2. The `add` command calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
+
+Step 3. The created `AddCommand` is returned to `LogicManager` to be executed by calling `AddCommand#execute(Model)`.
+
+Step 4. The `AddCommand` object calls `Model#addPerson(Person)` to add the new patient to the address book.
+
+Step 5. The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+
+UML Diagrams:
+
+The following sequence diagram summarizes what happens when a user executes a new command:
+
+// TODO: Add Diagram
+![Add](images/AddSequenceDiagram.puml)
 
 
 ### Help command
+
+#### Implementation
 
 The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
 
@@ -196,71 +211,6 @@ When the user executes the help command, the following steps occur:
 
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/CommitActivityDiagram.png" width="250" />
@@ -277,30 +227,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}
-
-### Add a patient
-
-#### Implementation
-
-The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`. 
-
-Given below is an example usage scenario and how the add patient feature behaves at each step.
-
-Step 1. The user launches the application for the first time.
-
-Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book. 
-
-n\: Indicates the name of the patient
-ic\: Indicates the NRIC of the patient
-ad\: Indicates the admission date of the patient
-dob\: Indicates the date of birth of the patient
-w\: Indicates the ward of the patient is currently in
-
-The `AddCommandParser` parses the user input, creating a new `AddCommand` object. 
-The `AddCommand` object then creates a new `Person` object with the parsed details.
-
 
 ### List by tags and/or ward feature
 
@@ -380,11 +306,6 @@ the patient will be shown in result.
 * **Alternative 2:** Allow finding by letters.
     * Pros: Able to search even if lacking patient information.
     * Cons: Harder to get specific patient as result will be a list.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
