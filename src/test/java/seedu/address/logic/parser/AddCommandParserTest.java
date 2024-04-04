@@ -52,7 +52,6 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_AMY + TAG_DESC_DIABETES + DOB_DESC_AMY + IC_DESC_AMY
                 + ADMISSION_DATE_DESC_AMY + WARD_DESC_AMY, new AddCommand(expectedPerson));
 
-
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(AMY).withTags(VALID_TAG_DIABETES, VALID_TAG_FALL_RISK)
                 .build();
@@ -95,8 +94,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + DOB_DESC_AMY + IC_DESC_AMY
-                       + ADMISSION_DATE_DESC_AMY + WARD_DESC_AMY,
-                new AddCommand(expectedPerson));
+                       + ADMISSION_DATE_DESC_AMY + WARD_DESC_AMY, new AddCommand(expectedPerson));
     }
 
     @Test
@@ -105,12 +103,10 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, TAG_DESC_DIABETES + DOB_DESC_BOB + IC_DESC_BOB
-                        + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB,
-                expectedMessage);
+                        + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB, expectedMessage);
     }
 
     @Test
@@ -158,14 +154,5 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB
                 + TAG_DESC_FALL_RISK + TAG_DESC_DIABETES + INVALID_DOB_DESC + IC_DESC_BOB
                 + ADMISSION_DATE_DESC_BOB + WARD_DESC_BOB, Dob.MESSAGE_CONSTRAINTS_FORMAT);
-    }
-
-    @Test
-    public void parse_dobLaterThanAdmissionDate_failure() {
-        // dob later than admission date
-        String userInput = NAME_DESC_BOB
-                + " dob\\02/02/2022 " + IC_DESC_BOB
-                + " ad\\02/02/2002 " + WARD_DESC_BOB;
-        assertParseFailure(parser, userInput, MESSAGE_DOB_AFTER_ADMISSION);
     }
 }

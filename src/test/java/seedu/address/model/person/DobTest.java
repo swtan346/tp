@@ -46,11 +46,13 @@ public class DobTest {
         // Format date
         String todayFormatted = today.format(formatter);
         String tomorrowFormatted = tomorrow.format(formatter);
-        assertFalse(Dob.isValidDate(tomorrowFormatted));
 
-        // valid Dob
+        // valid Dob date
         assertTrue(Dob.isValidDate("17/03/2024"));
         assertTrue(Dob.isValidDate(todayFormatted));
+
+        // valid Dob
+        assertFalse(Dob.isValidDob(tomorrowFormatted));
     }
 
     @Test

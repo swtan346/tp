@@ -46,11 +46,13 @@ public class AdmissionDateTest {
         // Format date
         String todayFormatted = today.format(formatter);
         String tomorrowFormatted = tomorrow.format(formatter);
-        assertFalse(AdmissionDate.isValidDate(tomorrowFormatted));
 
-        // valid AdmissionDate
+        // valid date for AdmissionDate
         assertTrue(AdmissionDate.isValidDate("17/03/2024"));
         assertTrue(AdmissionDate.isValidDate(todayFormatted));
+
+        // valid AdmissionDate
+        assertFalse(AdmissionDate.isValidAdmissionDate(tomorrowFormatted));
     }
 
     @Test

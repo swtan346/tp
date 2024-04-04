@@ -4,8 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.EditCommand.MESSAGE_DOB_AFTER_ADMISSION;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -18,14 +22,20 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
+    @Test
+    public void execute_dobLaterThanAdmission_failure() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Person person = new PersonBuilder().withDob("01/01/2000").withAdmissionDate("01/01/1999").build();
+        AddCommand addCommand = new AddCommand(person);
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DOB_AFTER_ADMISSION,
+                () -> addCommand.execute(model));
+    }
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {

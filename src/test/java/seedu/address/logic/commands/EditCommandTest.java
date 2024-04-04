@@ -146,14 +146,12 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
     @Test
-    @Disabled
     public void execute_dobEarlierThanAdmission_success() {
         Person person = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).withDob("12/08/2002")
-                .withAdmissionDate("12/08/2019").build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).withDob("20/02/2000")
+                .withAdmissionDate("01/03/2024").build();
 
         PersonBuilder personBuilder = new PersonBuilder(person);
-
 
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
