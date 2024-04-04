@@ -19,9 +19,7 @@ import seedu.address.model.person.Person;
  * Adds a person to the address book.
  */
 public class AddCommand extends Command {
-
     public static final String COMMAND_WORD = "add";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -39,9 +37,12 @@ public class AddCommand extends Command {
             + PREFIX_WARD + "3 "
             + PREFIX_REMARK + "Prevent bed sores. "
             + PREFIX_TAG + "FallRisk";
-
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+
     public static final String MESSAGE_DUPLICATE_PERSON = "A patient with this IC already exists in the address book";
+
+    public static final String MESSAGE_DOB_AFTER_ADMISSION =
+            "Date of birth should not be later than date of admission.";
 
     private final Person toAdd;
 
@@ -59,6 +60,10 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (toAdd.getDob().date.isAfter(toAdd.getAdmissionDate().date)) {
+            throw new CommandException(MESSAGE_DOB_AFTER_ADMISSION);
         }
 
         model.addPerson(toAdd);

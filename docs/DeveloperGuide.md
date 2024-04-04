@@ -9,8 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
+* The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book is based from.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -23,9 +23,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -36,7 +33,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -68,13 +65,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -85,7 +82,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -115,7 +112,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -127,16 +124,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -153,23 +143,105 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section contains some noteworthy details on how certain features are being implemented.
 
-### Help command
+### Adding a patient into Nursing Address Book
+
+#### Implementation
+
+The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `LogicManager`.
+
+Given below is an example usage scenario and how the add patient feature behaves at each step.
+
+Step 1. The user inputs an add Command (e.g. `add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA`) to add a new patient named Alice to the address book.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The format of the add command is as follows:
+n\: Indicates the name of the patient
+ic\: Indicates the NRIC of the patient
+ad\: Indicates the admission date of the patient
+dob\: Indicates the date of birth of the patient
+w\: Indicates the ward of the patient is currently in
+r\: Indicates remarks for the patient (optional)
+t\: Indicates the tags of the patient (optional, can have multiple)
+</div>
+
+Step 2. The `add` command calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
+
+Step 3. The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
+
+Step 4. The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+
+Step 5. The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+
+**UML Diagrams:**
+
+The following sequence diagram summarizes what happens when a user executes a new command:
+
+![AddSequenceDiagram.png](images%2FAddSequenceDiagram.png)
+
+### Editing a patient's details
+
+#### Implementation
+
+Editing a patient's details is facilitated by `EditCommand`, `EditCommandParser` and `LogicManager`.
+
+Given below is an example usage scenario and how the edit patient feature behaves at each step.
+
+Step 1. The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
+
+Step 2. The `edit` command calls `EditCommandParser#parse(String)` to parse the user input. 
+
+Step 3. A new `EditPersonDescriptor` object is created with the new ward details. 
+A new `EditCommand` instance will be created with the index of the patient to be edited and the new `EditPersonDescriptor` object.
+
+Step 4. The `EditCommand` instace is returned to the `LogicManager` and `execute` is called.
+
+Step 5. The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
+The patient specified will have its ward updated to the new ward specified.
+
+**UML Diagrams:**
+
+The following sequence diagram summarizes what happens when a user executes a new command:
+
+![EditSequenceDiagram.png](images/EditSequenceDiagram.png)
+
+
+### Showing help for commands
+
+#### Implementation
 
 The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
 
-The following class diagram shows the relevant classes involved in the help command implementation:
 
-![HelpCommandClassDiagram](images/HelpClassDiagram.png)
 
 The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
+
+**UML Diagrams:**
+
+The following class diagram shows the relevant classes involved in the help command implementation:
+
+Step 1. The `LogicManager` is called to execute the "help" command.
+Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
+Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
+The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+
+
+![HelpCommandClassDiagram](images/HelpClassDiagram.png)
 
 The following sequence diagram shows how the help command works:
 
 ![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250"/>
+
 When the user executes the help command, the following steps occur:
+  
 
 1. The `LogicManager` is called to execute the "help" command.
 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
@@ -178,113 +250,29 @@ When the user executes the help command, the following steps occur:
 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
 
+
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}
 
 ### Add a patient
 
 #### Implementation
 
-The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`. 
+The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`.
 
 Given below is an example usage scenario and how the add patient feature behaves at each step.
 
 Step 1. The user launches the application for the first time.
 
-Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book. 
+Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book.
 
-n\: Indicates the name of the patient <br>
-ic\: Indicates the NRIC of the patient <br>
-ad\: Indicates the admission date of the patient <br>
-dob\: Indicates the date of birth of the patient <br>
-w\: Indicates the ward of the patient is currently in <br>
+n\: Indicates the name of the patient
+ic\: Indicates the NRIC of the patient
+ad\: Indicates the admission date of the patient
+dob\: Indicates the date of birth of the patient
+w\: Indicates the ward of the patient is currently in
 
-The `AddCommandParser` parses the user input, creating a new `AddCommand` object. 
+The `AddCommandParser` parses the user input, creating a new `AddCommand` object.
 The `AddCommand` object then creates a new `Person` object with the parsed details.
-
 
 ### List by tags and/or ward feature
 
@@ -303,6 +291,8 @@ Step 2. The user executes `list t\diabetes` command to list patients with the di
 ![ListObjectDiagram](images/ListObjectDiagram.png)
 
 Step 3. For each patient in the address book, the `predicate` object will be passed to `Model#updateFilteredPersonList` check if the patient has the diabetes tag. If the patient has the diabetes tag, the patient will be shown in the list of patients.
+
+**UML Diagrams:**
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -334,8 +324,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The filter by tags and/or ward mechanism is facilitated by `FindCommand`, `FindCommandParser`, 
-`NameContainsKeywordsPredicate` and 
+The filter by tags and/or ward mechanism is facilitated by `FindCommand`, `FindCommandParser`,
+`NameContainsKeywordsPredicate` and
 `IcContainsKeywordsPredicate`.
 
 ![FindClassDiagram](images/FindClassDiagram.png)
@@ -346,11 +336,11 @@ Additionally, it implements the following operations:
 
 Given below is an example usage scenario and how the find by name or IC mechanism behaves at each step.
 
-Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The 
+Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
 `FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
 
-Step 2. For each patient in the address book, the `predicate` object will be passed to 
-`Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob, 
+Step 2. For each patient in the address book, the `predicate` object will be passed to
+`Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob,
 the patient will be shown in result.
 
 #### Design considerations:
@@ -364,11 +354,6 @@ the patient will be shown in result.
 * **Alternative 2:** Allow finding by letters.
     * Pros: Able to search even if lacking patient information.
     * Cons: Harder to get specific patient as result will be a list.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -404,65 +389,155 @@ Ward nurses
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                  | So that I can…​                                         |
-| -------- | -------------------------------------- |-------------------------------|---------------------------------------------------------|
-| `* * *`  | user                                   | add a new patient             | store new patient records                               |
-| `* * *`  | user                                   | view existing patient records | access information on existing patients                 |
-| `* * *`  | user                                   | delete a patient record       | remove outdated or irrelevant patient data              |
-
-*{More to be added}*
+| Priority | As a …​                                | I want to …​                                | So that I can…​                                              |
+| ---- | -------------------------------------- |---------------------------------------------|--------------------------------------------------------------|
+| `* * *` | user                                   | add patient records                      | keep track of their medical condition in the hospital        |
+| `* * *` | user                                   | view existing patient records               | access information on existing patients                      |
+| `* * *` | user                                   | delete a patient record                     | remove outdated or irrelevant patient data                   |
+| `* *` | user                                   | edit patient records                        | ensure that all patient details are current and accurate     |
+| `* *` | user                                   | list patients based on their tags           | view patients based on category                              |
+| `* *` | user                                   | list all patients tied to a specific ward   | know which patients belong to which ward                     |
+| `* *` | user                                   | find patients via their name or NRIC        | quickly find information of specific patient                 |
+| `* *` | user                                   | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
+| `*`  | user                                   | view patient list sorted by name            | look through the list of patients in a more organized manner |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Nursing Address Book` and the **Actor** is the `user`, unless 
+specified otherwise)
 
-**Use case: UC01 - View contacts**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-
-    Use case ends.
-
-**Use case: UC02 - Add a person**
+**Use case: UC01 - View all patient records**
 
 **MSS**
 
-1.  User requests to add a person
-2.  AddressBook adds the person
+1.  User requests to list patients.
+2.  Nursing Address Book shows a list of patients.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The given person details are invalid.
+* 1a. Nursing Address Book detects that the command is invalid. 
+  * 1a1. Nursing Address Book shows an error message.
 
-    * 2a1. AddressBook shows an error message.
+  Use case resumes at step 1.
 
-      Use case ends.
-
-**Use case: US03 - Delete a person**
+**Use case: UC02 - Add a patient**
 
 **MSS**
 
-1.  User requests to view contacts(UC01)
-2.  User requests to delete a specific person in the list
-3.  AddressBook deletes the person
+1.  User requests to add a patient.
+2.  Nursing Address Book adds the patient.
+3.  Nursing Address Book shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. Nursing Address Book detects that the patient details is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+    
+    Use case resumes at step 1.
 
-  Use case ends.
+**Use case: US03 - Delete a patient**
+
+**MSS**
+
+1.  User requests to view patient records(UC01).
+2.  User requests to delete a patient in the list.
+3.  Nursing Address Book deletes the person.
+4.  Nursing Address Book shows success message to the user.
+
+    Use case ends.
+
+**Extensions**
 
 * 2a. The given index is invalid.
+  * 2a2. AddressBook shows an error message.
 
-    * 2a1. AddressBook shows an error message.
+    Use case resumes at step 2.
+
+**Use case: US04 - Edit a patient records**
+
+**MSS**
+
+1.  User requests to view patient records(UC01).
+2.  User requests to edit a patient's record in the list.
+3.  Nursing Address Book edits the patient's record.
+4.  Nursing Address Book shows success message to the user.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Nursing Address Book detects that the patient details is invalid.
+    * 2a1. Nursing Address Book shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: US05 - Find patient**
+
+**MSS**
+
+1. User requests to find a patient in the list. 
+2. Nursing Address Book shows the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the given parameter is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: US06 - View patient with specific tags**
+
+**MSS**
+
+1. User requests to view patients with specific tags.
+2. Nursing Address Book shows the patient list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the given parameter is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: US07 - View patients in specific ward**
+
+**MSS**
+
+1. User requests to view patients in specific ward.
+2. Nursing Address Book shows the patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the given parameter is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: US08 - Get help with command usage**
+
+**MSS**
+
+1. User requests to get help with command usage.
+2. Nursing Address Book shows command usage.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the command is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
@@ -493,9 +568,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **DG**: Developer guide
-* **UG**: User guide
+* **Patient**: A person receiving medical services at a hospital
+* **NRIC**: Identity card number of the National Registration Identity Card, used as the primary means of 
+  identification for patients in Nursing Address Book
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -503,27 +578,136 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;)
 
-</div>
+[//]: # (testers are expected to do more *exploratory* testing)
+
+[//]: # (</div>)
 
 ### Launch and shutdown
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder 
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum. 
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+2. Saving window preferences
 
-1. Saving window preferences
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   2. Re-launch the app by double-clicking the jar file.<br>
+    Expected: The most recent window size and location is retained.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Adding a patient
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+1. Adding a patient
 
-1. _{ more test cases …​ }_
+   1. Prerequisites: There exist no patient with NRIC `A1234567B` in the patient records. 
+
+   2. Test case (Valid parameters): `add n\John Smith ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea 
+      r\likes to go to the park`<br>
+      Expected: Patient successfully added into patient list. Details of the added patient shown in the status bar. 
+
+   3. Test case (Missing parameter): `add n\John Smith`<br>
+   Expected: No patient is added. Error details shown in the status bar.
+
+   4. Test case (Invalid Name): `add n\ ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
+      Expected: Similar to previous.
+
+   5. Test case (Invalid NRIC): `add n\John Smith ic\A12347B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
+      Expected: Similar to previous.
+
+   6. Test case (Invalid Date of Birth): `add n\John Smith ic\A1234567B dob\2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
+      Expected: Similar to previous.
+
+   7. Test case (Repeated Parameter): `add n\John Smith ic\A1234567B ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 
+   t\diarrhea r\likes to go to the park`<br>
+      Expected: Similar to previous.
+
+### Viewing patients
+
+1. Viewing all patients
+
+   1. Prerequisites: Multiple patients in the patient list.
+
+   2. Test case: `list`<br>
+   Expected: List of patients is shown.
+
+   3. Test case: `list 181` or any command with extra characters supplied<br>
+      Expected: Similar to previous.
+
+2. Viewing patients by tags and ward
+
+    1. Prerequisites: Multiple patients in the patient list.
+
+    1. Test case: `list tag\diarrhea w\a1`<br>
+        Expected: List of patients is shown.
+
+    1. Test case: `list t\diarrhea`<br>
+       Expected: List of patients is shown.
+
+    1. Test case: `list w\a1`<br>
+       Expected: List of patients is shown.
+
+### Editing a patient
+
+1. Edit a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `edit 1 n\John`<br>
+       Expected: Name of first patient is changed. Details of the edited patient is shown in the status bar.
+
+   1. Test case: `edit 1 ic\W9876543M`<br>
+      Expected: NRIC of first patient is changed. Details of the edited patient is shown in the status bar.
+
+   1. Test case: `edit 1 dob\03/03/2005`<br>
+      Expected: Date of birth of first patient is changed. Details of the edited patient is shown in the status bar.
+
+   1. Test case: `edit 1 ad\05/05/2021`<br>
+      Expected: Admission date of first patient is changed. Details of the edited patient is shown in the status bar.
+
+   1. Test case: `edit 1 t\flu r\afraid of darkness`<br>
+      Expected: tag and remark of first patient is changed. Details of the edited patient is shown in the status bar.
+
+    1. Test case(invalid name): `edit n\ `<br>
+       Expected: Patient name is not changed. Error details shown in the status message.
+
+### Finding a patient
+
+1. Finding a patient by name
+
+    1. Prerequisites: There exist only 1 patient `John Smith` in the patient records.
+
+    1. Test case: `find n\John Smith`<br>
+       Expected: `John Smith` is shown.
+
+    1. Test case: `find n\john`<br>
+       Expected: Similar to previous.
+
+    1. Test case: `find n\Smith`<br>
+       Expected: Similar to previous.
+
+   1. Test case: `find n\j`<br>
+      Expected: No patient is shown.
+
+   1. Test case: `find n\`<br>
+      Expected: Similar to previous.
+
+2. Finding a patient by NRIC
+
+    1. Prerequisites: There exist a patient with the NRIC `A1234567B` in the patient records.
+
+    1. Test case: `find ic\A1234567`<br>
+       Expected: The patient with the NRIC `A1234567B` is shown.
+
+    1. Test case: `find ic\a1234567b`<br>
+       Expected: Similar to previous.
+
+    1. Test case: `find n\Smith`<br>
+       Expected: Similar to previous.
+
+    1. Test case: `find ic\`<br>
+       Expected: No patient is shown.
 
 ### Deleting a person
 
@@ -532,21 +716,20 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First patient is deleted from the list. Details of the deleted contact shown in the status message. 
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: The addressbook.json file in the data directory must exist.
 
-1. _{ more test cases …​ }_
-
+    1. Test case: Delete the addressbook.json file.<br>
+    Expected: The app launches successfully, populated with the sample data.
