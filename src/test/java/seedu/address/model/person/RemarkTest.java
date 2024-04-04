@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 public class RemarkTest {
+    private static final String VALID_REMARK_STRING = "Valid Remark";
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Remark(null));
@@ -13,10 +14,10 @@ public class RemarkTest {
 
     @Test
     public void equals() {
-        Remark remark = new Remark("Valid Remark");
+        Remark remark = new Remark(VALID_REMARK_STRING);
 
         // same values -> returns true
-        assertTrue(remark.equals(new Remark("Valid Remark")));
+        assertTrue(remark.equals(new Remark(VALID_REMARK_STRING)));
 
         // same object -> returns true
         assertTrue(remark.equals(remark));
@@ -29,5 +30,10 @@ public class RemarkTest {
 
         // different values -> returns false
         assertFalse(remark.equals(new Remark("Other Valid Remark")));
+    }
+    @Test
+    public void toStringMethod() {
+        Remark remark = new Remark(VALID_REMARK_STRING);
+        assertTrue(remark.toString().equals(VALID_REMARK_STRING));
     }
 }

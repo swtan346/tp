@@ -80,22 +80,23 @@ Designed for efficiency, NAB enables quick access to patient records, streamline
 
 Adds a new patient's information to the address book.
 
-Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [t\TAG]…​`
+Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 * NAME: The full name of the patient. Only alphabetical characters are accepted. Each word should be split with a whitespace.
-* IC: The Identification Number of the patient. It must start with a capital letter, followed by a 7-digit number and ends with a capital letter.
+* IC_NUMBER: The Identification Number of the patient. It must start with a capital letter, followed by a 7-digit number and ends with a capital letter.
 * DATE_OF_BIRTH: The patient's date of birth in DD/MM/YYYY format. Dates must be in the past.
 * ADMISSION_DATE: The date the patient was admitted to the ward, also in DD/MM/YYYY format. This date should not be later than the current date.
 * WARD: The ward where the patient is located. This should contain alphanumeric characters only, with no spaces.
+* REMARK: Optional remarks about the patient.
 * TAG: Optional tags to categorize the patient by health condition or other descriptors. Tags should be alphanumeric and can be used multiple times.
 
 * Example command:
 
-`add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk t\Diabetes`
+`add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk r\Requires assistance feeding. t\Diabetes`
 
 ```
 The patient, John Doe, is added! Here are his details:
@@ -105,6 +106,7 @@ IC: T1234567P
 Date of Birth: 21 Mar 2000
 Admission Date: 2 Feb 2022
 Ward: A1
+Remarks: Requires assistance feeding.
 Tags: FallRisk, Diabetes
 
 You now have 1 patient(s) in your address book.
@@ -148,7 +150,7 @@ Tags: SevereAllergies
 
 Edits an existing patient's details in the address book.
 
-Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG]…​`
+Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]…​`
 
 * Edits the patient details at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -159,10 +161,21 @@ Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DA
 
 Example command:
 
-`edit 1 ic\T0123456P t\ `
+`edit 1 ic\T0123456P t\ r\`
 
-_Edits the IC_NUMBER and TAGS  of the 1st person to be `T0123456P` and empty respectively._
+_Edits the IC_NUMBER, TAGS and REMARKS of the 1st person to be `T0123456P` for IC_NUMBER and empty for both tags and remarks._
 
+**Before**:
+```
+John Doe
+IC: T1234567P
+Date of Birth: 21 Mar 2000
+Admission Date: 2 Feb 2022
+Ward: A1
+Remarks: Requires assistance feeding.
+Tags: FallRisk, Diabetes
+```
+**After**:
 ```
 Edited details of patient 1 in your contact book as follows:
 
@@ -171,6 +184,7 @@ IC: T0123456P
 Date of Birth: 21 Mar 2000
 Admission Date: 2 Feb 2022
 Ward: A1
+Remarks: 
 Tags:
 ```
 
@@ -249,6 +263,7 @@ Exit: exit
   
 For more detailed information on each command, please refer to the User Guide.
 ```
+
 
 ### Clearing all entries : `clear`
 
