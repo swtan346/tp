@@ -38,9 +38,12 @@ public class AddCommand extends Command {
             + PREFIX_REMARK + "Prevent bed sores. "
             + PREFIX_TAG + "FallRisk";
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
+
+    public static final String MESSAGE_DUPLICATE_PERSON = "A patient with this IC already exists in the address book";
+
     public static final String MESSAGE_DOB_AFTER_ADMISSION =
             "Date of birth should not be later than date of admission.";
+
     private final Person toAdd;
 
     /**
