@@ -8,6 +8,7 @@ import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -22,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_IC = "S1234567A";
     public static final String DEFAULT_ADMISSION_DATE = "01/01/2020";
     public static final String DEFAULT_WARD = "A1";
+    public static final String DEFAULT_REMARK = "";
 
     private Name name;
     private Set<Tag> tags;
@@ -29,7 +31,7 @@ public class PersonBuilder {
     private Ic ic;
     private AdmissionDate admissionDate;
     private Ward ward;
-
+    private Remark remark;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -40,6 +42,7 @@ public class PersonBuilder {
         ic = new Ic(DEFAULT_IC);
         admissionDate = new AdmissionDate(DEFAULT_ADMISSION_DATE);
         ward = new Ward(DEFAULT_WARD);
+        remark = new Remark(DEFAULT_REMARK);
     }
 
     /**
@@ -52,6 +55,7 @@ public class PersonBuilder {
         ic = personToCopy.getIc();
         admissionDate = personToCopy.getAdmissionDate();
         ward = personToCopy.getWard();
+        remark = personToCopy.getRemark();
     }
 
     /**
@@ -102,8 +106,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     **/
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, tags, dob, ic, admissionDate, ward);
+        return new Person(name, tags, dob, ic, admissionDate, ward, remark);
     }
 
 }

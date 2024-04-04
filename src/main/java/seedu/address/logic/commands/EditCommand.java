@@ -5,10 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADMISSION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +30,7 @@ import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
 
@@ -42,13 +46,14 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_IC + "I/C] "
-            + "[" + PREFIX_DOB + "DATE OF BIRTH] "
+            + "[" + PREFIX_IC + "IC_NUMBER] "
+            + "[" + PREFIX_DOB + "DATE_OF_BIRTH] "
             + "[" + PREFIX_WARD + "WARD] "
-            + "[" + PREFIX_ADMISSION_DATE + "ADMISSION DATE] "
+            + "[" + PREFIX_ADMISSION_DATE + "ADMISSION_DATE] "
+            + "[" + PREFIX_REMARK + "REMARK]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_IC + "T123456Q "
+            + PREFIX_IC + "T1234567Q "
             + PREFIX_DOB + "12/08/1999";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -86,6 +91,14 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        LocalDate dobToCheck = LocalDate.parse(editedPerson.getDob().value, formatter);
+        LocalDate adToCheck = LocalDate.parse(editedPerson.getAdmissionDate().value, formatter);
+        if (dobToCheck.isAfter(adToCheck)) {
+            throw new CommandException(Messages.MESSAGE_DOB_LATER_THAN_ADMISSION);
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
@@ -105,8 +118,10 @@ public class EditCommand extends Command {
         AdmissionDate updatedAdmissionDate =
                 editPersonDescriptor.getAdmissionDate().orElse(personToEdit.getAdmissionDate());
         Ward updatedWard = editPersonDescriptor.getWard().orElse(personToEdit.getWard());
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
 
-        return new Person(updatedName, updatedTags, updatedDob, updatedIc, updatedAdmissionDate, updatedWard);
+        return new Person(updatedName, updatedTags, updatedDob, updatedIc, updatedAdmissionDate,
+                updatedWard, updatedRemark);
     }
 
     @Override
@@ -144,7 +159,7 @@ public class EditCommand extends Command {
         private Dob dob;
         private AdmissionDate admissionDate;
         private Ward ward;
-
+        private Remark remark;
         public EditPersonDescriptor() {}
 
         /**
@@ -158,13 +173,14 @@ public class EditCommand extends Command {
             setIc(toCopy.ic);
             setAdmissionDate(toCopy.admissionDate);
             setWard(toCopy.ward);
+            setRemark(toCopy.remark);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, ic, dob, admissionDate, ward, tags);
+            return CollectionUtil.isAnyNonNull(name, ic, dob, admissionDate, ward, tags, remark);
         }
 
         public void setName(Name name) {
@@ -215,6 +231,12 @@ public class EditCommand extends Command {
         public Optional<Ward> getWard() {
             return Optional.ofNullable(ward);
         }
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -232,7 +254,8 @@ public class EditCommand extends Command {
                     && Objects.equals(ic, otherEditPersonDescriptor.ic)
                     && Objects.equals(dob, otherEditPersonDescriptor.dob)
                     && Objects.equals(admissionDate, otherEditPersonDescriptor.admissionDate)
-                    && Objects.equals(ward, otherEditPersonDescriptor.ward);
+                    && Objects.equals(ward, otherEditPersonDescriptor.ward)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark);
 
         }
 
@@ -240,11 +263,12 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
-                    .add("tags", tags)
-                    .add("ic", ic)
                     .add("dob", dob)
+                    .add("ic", ic)
+                    .add("tags", tags)
                     .add("admissionDate", admissionDate)
                     .add("ward", ward)
+                    .add("remark", remark)
                     .toString();
         }
     }

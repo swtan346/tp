@@ -19,6 +19,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
+    public static final String MESSAGE_DOB_LATER_THAN_ADMISSION =
+            "Date of birth should not be later than date of admission";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
@@ -45,6 +47,8 @@ public class Messages {
                 .append(person.getWard())
                 .append("\n Admitted: ")
                 .append(person.getAdmissionDate())
+                .append("\n Remarks: ")
+                .append(person.getRemark())
                 .append("\n Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

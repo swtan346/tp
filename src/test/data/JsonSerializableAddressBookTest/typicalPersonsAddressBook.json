@@ -6,48 +6,55 @@
     "dob": "20/02/2000",
     "ic": "A1234567B",
     "admissionDate": "01/03/2024",
-    "ward":"A1"
+    "ward":"A1",
+    "remark":"Flip every 2 hours to prevent bed sores."
   }, {
     "name" : "Benson Meier",
     "tags" : [ "Dementia", "FallRisk" ],
     "dob": "20/02/2001",
     "ic": "A2345678B",
     "admissionDate": "01/02/2024",
-    "ward": "B1"
+    "ward": "B1",
+    "remark":""
   }, {
     "name" : "Carl Kurz",
     "tags" : [ ],
     "dob": "20/02/2002",
     "ic": "A3456789B",
     "admissionDate": "05/03/2024",
-    "ward": "C1"
+    "ward": "C1",
+    "remark":"Requires assistance with feeding."
   }, {
     "name" : "Daniel Meier",
     "tags" : [ "HearingImpaired" ],
     "dob": "20/02/2003",
     "ic": "A5678901B",
     "admissionDate": "10/03/2024",
-    "ward": "D1"
+    "ward": "D1",
+    "remark":""
   }, {
     "name" : "Elle Meyer",
     "tags" : [ ],
     "dob": "20/02/2004",
     "ic": "A4756976B",
     "admissionDate": "05/02/2024",
-    "ward": "E1"
+    "ward": "E1",
+    "remark":""
   }, {
     "name" : "Fiona Kunz",
     "tags" : [ ],
     "dob": "20/02/2006",
     "ic": "A5739485B",
     "admissionDate": "11/03/2024",
-    "ward": "F1"
+    "ward": "F1",
+    "remark":""
   }, {
     "name" : "George Best",
     "tags" : [ ],
     "dob": "20/05/2000",
     "ic": "A0987654B",
     "admissionDate": "16/03/2024",
-    "ward": "G1"
+    "ward": "G1",
+    "remark":""
   } ]
 }

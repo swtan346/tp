@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADMISSION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 
@@ -21,20 +22,22 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_IC + "IC "
-            + PREFIX_DOB + "DOB "
-            + PREFIX_ADMISSION_DATE + "ADMISSION DATE "
-            + PREFIX_WARD + "WARD NUMBER "
+            + PREFIX_IC + "IC_NUMBER "
+            + PREFIX_DOB + "DATE_OF_BIRTH "
+            + PREFIX_ADMISSION_DATE + "ADMISSION_DATE "
+            + PREFIX_WARD + "WARD_NUMBER "
+            + "[" + PREFIX_REMARK + "REMARK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_IC + "S0123456A "
-            + PREFIX_DOB + "1/1/2000 "
+            + PREFIX_DOB + "01/01/2000 "
             + PREFIX_ADMISSION_DATE + "15/03/2024 "
             + PREFIX_WARD + "3 "
+            + PREFIX_REMARK + "Prevent bed sores. "
             + PREFIX_TAG + "FallRisk";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";

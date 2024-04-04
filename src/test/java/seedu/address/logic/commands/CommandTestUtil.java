@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADMISSION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -39,7 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_ADMISSION_DATE_BOB = "10/03/2024";
     public static final String VALID_WARD_AMY = "A1";
     public static final String VALID_WARD_BOB = "B1";
-
+    public static final String VALID_REMARK_AMY = "";
+    public static final String VALID_REMARK_BOB = "Some remark.";
 
     // description + value
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -54,6 +56,8 @@ public class CommandTestUtil {
     public static final String ADMISSION_DATE_DESC_BOB = " " + PREFIX_ADMISSION_DATE + VALID_ADMISSION_DATE_BOB;
     public static final String WARD_DESC_AMY = " " + PREFIX_WARD + VALID_WARD_AMY;
     public static final String WARD_DESC_BOB = " " + PREFIX_WARD + VALID_WARD_BOB;
+    public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + VALID_REMARK_AMY;
+    public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "diabetes*"; // '*' not allowed in tags
@@ -69,9 +73,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withWard(VALID_WARD_AMY)
-                .withTags(VALID_TAG_DIABETES).build();
+                .withTags(VALID_TAG_DIABETES).withRemark(VALID_REMARK_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withTags(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES).build();
+                .withTags(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES).withRemark(VALID_REMARK_BOB).build();
     }
 
     /**
