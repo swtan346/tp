@@ -130,19 +130,21 @@ Format: `list [w\WARD] [t\TAG]...`
 ```
 Listed all persons
 
-John Doe
+1. John Doe
 IC: T1234567P
-Date of Birth: 21 Mar 2000
-Admission Date: 2 Feb 2022
+DOB: 21 Mar 2000
 Ward: A1
+Admission Date: 2 Feb 2022
+Remarks: 
 Tags: FallRisk, Diabetes
 
-Jane Doe
-IC: I2103210P
-Date of Birth: 12 Nov 1999
-Admission Date: 3 Mar 2024
-Ward: B4
-Tags: SevereAllergies
+1. Jane Doe
+IC: T1234765P
+DOB: 22 Apr 2000
+Ward: A2
+Admission Date: 3 Feb 2022
+Remarks: Likes to read
+Tags: FallRisk, Diabetes
 ```
 
 
