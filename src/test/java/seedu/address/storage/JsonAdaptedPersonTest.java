@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.AdmissionDate;
 import seedu.address.model.person.Dob;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
@@ -24,6 +25,8 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_IC = "T11222222222222Y";
     private static final String INVALID_WARD = " ";
     private static final String INVALID_ADMISSION_DATE = "123/12/20300";
+    private static final String INVALID_ADMISSION_DATE_FUTURE = LocalDate.now().plusDays(1)
+            .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // A future date
     private static final String INVALID_TAG = "#Diabetes";
     private static final String INVALID_DOB_FUTURE = LocalDate.now().plusDays(1)
             .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // A future date
@@ -79,17 +82,42 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_invalidDateDob_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_TAGS,
+                INVALID_DOB_FORMAT, VALID_IC, VALID_ADMISSION_DATE, VALID_WARD, VALID_REMARK);
+        String expectedMessage = Dob.MESSAGE_CONSTRAINTS_FORMAT;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_invalidDob_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_TAGS,
                 INVALID_DOB_FUTURE, VALID_IC, VALID_ADMISSION_DATE, VALID_WARD, VALID_REMARK);
-        String expectedMessage = Dob.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Dob.MESSAGE_CONSTRAINTS_OCCURRENCE;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+
     @Test
     public void toModelType_nullDob_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_TAGS,
                 null, VALID_IC, VALID_ADMISSION_DATE, VALID_WARD, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Dob.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDateAdmissionDate_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_TAGS,
+                VALID_DOB, VALID_IC, INVALID_ADMISSION_DATE, VALID_WARD, VALID_REMARK);
+        String expectedMessage = AdmissionDate.MESSAGE_CONSTRAINTS_FORMAT;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidAdmissionDate_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_TAGS,
+                VALID_DOB, VALID_IC, INVALID_ADMISSION_DATE_FUTURE, VALID_WARD, VALID_REMARK);
+        String expectedMessage = AdmissionDate.MESSAGE_CONSTRAINTS_OCCURRENCE;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
