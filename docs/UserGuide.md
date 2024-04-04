@@ -225,12 +225,8 @@ Deleted Person: Jane Doe
 IC: A1234567B
 DOB: 02/02/2000
 Ward: A1
-<<<<<<< HEAD
-Remarks:
-=======
 Admitted: 02/02/2020
 Remarks: likes to go to the park
->>>>>>> 078193eafdd0590706eff5a64ce34362144dbd50
 Tags: SevereAllergies
 ```
 ### Viewing help : `help`
