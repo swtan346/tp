@@ -167,9 +167,9 @@ t\: Indicates the tags of the patient (optional, can have multiple)
 
 Step 2. The `add` command calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
-Step 3. The created `AddCommand` is returned to `LogicManager` to be executed by calling `AddCommand#execute(Model)`.
+Step 3. The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
 
-Step 4. The `AddCommand` object calls `Model#addPerson(Person)` to add the new patient to the address book.
+Step 4. The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
 
 Step 5. The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
@@ -189,19 +189,21 @@ Given below is an example usage scenario and how the edit patient feature behave
 
 Step 1. The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
 
-Step 2. The `edit` command calls `EditCommandParser#parse(String)` to parse the user input and creates a new `EditCommand` object.
+Step 2. The `edit` command calls `EditCommandParser#parse(String)` to parse the user input. 
 
-Step 3. The created `EditCommand` is returned to `LogicManager` to be executed by calling `EditCommand#execute(Model)`.
+Step 3. A new `EditPersonDescriptor` object is created with the new ward details. 
+A new `EditCommand` instance will be created with the index of the patient to be edited and the new `EditPersonDescriptor` object.
 
-Step 4. The `EditCommand` object calls `Model#setPerson(Person, Person)` to edit the details of the patient in the address book.
+Step 4. The `EditCommand` instace is returned to the `LogicManager` and `execute` is called.
 
-Step 5. The `CommandResult` from the `EditCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+Step 5. The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
+The patient specified will have its ward updated to the new ward specified.
 
 UML Diagrams:
 
 The following sequence diagram summarizes what happens when a user executes a new command:
 
-![EditSequenceDiagram.png](images%2FEditSequenceDiagram.png)
+![EditSequenceDiagram.png](images/EditSequenceDiagram.png)
 
 
 ### Showing help for commands
@@ -447,9 +449,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing
-</div>
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;)
+
+[//]: # (testers are expected to do more *exploratory* testing)
+
+[//]: # (</div>)
 
 ### Launch and shutdown
 
