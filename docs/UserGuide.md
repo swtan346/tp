@@ -86,7 +86,7 @@ A person can have any number of tags (including 0)
 </div>
 
 * NAME: The full name of the patient. Only alphabetical characters are accepted. Each word should be split with a whitespace.
-* IC: The Identification Number of the patient. It must start with a capital letter, followed by a 7-digit number and ends with a capital letter.
+* IC_NUMBER: The Identification Number of the patient. It must start with a capital letter, followed by a 7-digit number and ends with a capital letter.
 * DATE_OF_BIRTH: The patient's date of birth in DD/MM/YYYY format. Dates must be in the past.
 * ADMISSION_DATE: The date the patient was admitted to the ward, also in DD/MM/YYYY format. This date should not be later than the current date.
 * WARD: The ward where the patient is located. This should contain alphanumeric characters only, with no spaces.
@@ -217,10 +217,11 @@ Example command:
 `list` followed by `delete 2` deletes the 2nd person in the address book.
 ```
 Jane Doe is deleted. Their details were:
-
+IC: I2103210P
 Date of Birth: 12 Nov 1999
 Admission Date: 3 Mar 2024
 Ward: A1
+Remarks: 
 Tags: SevereAllergies
 
 You now have 1 patient(s) in your contact book.
