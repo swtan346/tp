@@ -34,7 +34,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_IC);
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_IC).isPresent()) {
             String keywords = argMultimap.getValue(PREFIX_NAME).get();
             if (keywords.equals("")) {
                 return new FindCommand(new NameContainsKeywordsPredicate(Collections.emptyList()));
@@ -42,7 +42,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 String[] nameKeywords = keywords.split("\\s+");
                 return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
             }
-        } else if (argMultimap.getValue(PREFIX_IC).isPresent()) {
+        } else if (argMultimap.getValue(PREFIX_IC).isPresent() && !argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String keyword = argMultimap.getValue(PREFIX_IC).get();
             if (keyword.split("\\s+").length != 1) {
                 throw new ParseException(

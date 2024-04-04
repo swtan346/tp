@@ -21,10 +21,9 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the person whose name or ic contain any of "
             + "the specified keywords (case-insensitive).\n"
-            + "type 1 parameter: " + PREFIX_NAME + "KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + PREFIX_NAME + "alice herman\n"
-            + "type 2 parameter: " + PREFIX_IC + "KEYWORD\n"
-            + "Example: " + COMMAND_WORD + PREFIX_IC + "A1234567W";
+            + "Parameters: [" + PREFIX_NAME + "NAME] [" + PREFIX_IC + "IC_NUMBER]\n"
+            + "Examples: " + COMMAND_WORD + " " + PREFIX_NAME + "alice herman, "
+            + COMMAND_WORD + " " + PREFIX_IC + "A1234567W";
 
     private final Predicate<Person> predicate;
 
