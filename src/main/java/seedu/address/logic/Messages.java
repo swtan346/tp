@@ -45,7 +45,7 @@ public class Messages {
                 .append(person.getDob())
                 .append("\n Ward: ")
                 .append(person.getWard())
-                .append("\n Admitted: ")
+                .append("\n Admission Date: ")
                 .append(person.getAdmissionDate())
                 .append("\n Remarks: ")
                 .append(person.getRemark())
