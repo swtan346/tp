@@ -23,7 +23,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
 import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.WARD_DESC_BOB;
-import static seedu.address.logic.commands.AddCommand.MESSAGE_DOB_AFTER_ADMISSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
