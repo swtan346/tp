@@ -30,7 +30,7 @@ Designed for efficiency, NAB enables quick access to patient records, streamline
 
 2. Download the latest `nab.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your Nursing Address Book.
 
 4. Open a command terminal, For Windows users, search for `cmd` in the Start menu and run it as an administrator if necessary. Use the `cd` command to navigate to the folder where you placed the jar file. Run the application by executing `java -jar nab.jar`.<br>
    Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
@@ -88,11 +88,12 @@ A person can have any number of tags (including 0)
 
 * NAME: The full name of the patient. Only alphabetical characters are accepted. Each word should be split with a whitespace.
 * IC_NUMBER: The Identification Number of the patient. It must start with a capital letter, followed by a 7-digit number and ends with a capital letter.
-* DATE_OF_BIRTH: The patient's date of birth in DD/MM/YYYY format. Dates must be in the past.
+* DATE_OF_BIRTH: The patient's date of birth in DD/MM/YYYY format. Date of birth must not be later than admission date, and not be later than the current date.
 * ADMISSION_DATE: The date the patient was admitted to the ward, also in DD/MM/YYYY format. This date should not be later than the current date.
 * WARD: The ward where the patient is located. This should contain alphanumeric characters only, with no spaces.
-* REMARK: Optional remarks about the patient.
+* REMARK: Optional remarks about the patient (e.g. "Patient is an amputee"). Remarks have no limited length, and can only be used once.
 * TAG: Optional tags to categorize the patient by health condition or other descriptors. Tags should be alphanumeric and can be used multiple times.
+
 
 * Example command:
 
@@ -101,52 +102,70 @@ A person can have any number of tags (including 0)
 ```
 The patient, John Doe, is added! Here are his details:
 
-John Doe
+1. John Doe
 IC: T1234567P
-Date of Birth: 21 Mar 2000
-Admission Date: 2 Feb 2022
+DOB: 21 Mar 2000
 Ward: A1
-Remarks: Requires assistance feeding.
+Admission Date: 2 Feb 2022
+Remarks: 
 Tags: FallRisk, Diabetes
 
 You now have 1 patient(s) in your address book.
 ```
 
-### Listing all patients : `list`
+### Listing patients : `list`
 
-Displays a list of all registered patients.
+Displays a list of patients in NAB. 
 
-Format: `list`, `list [w\WARD] [t\TAG]...`
+By using list with optional parameters, you will be able to list all patients.
+
+Optionally, you can filter by ward or tags to list only patients in a specific ward or with specific tags.
+
+Format: `list [w\WARD] [t\TAG]...`
 
 * WARD: Must only list at most 1 ward.
 
-Example command:
+(For the below commands for list, we assume the list contains 2 people, John Doe and Jane Doe)
 
 `list`
 ```
-Here are the details of the 2 patients in your contact book:
+Listed all persons
 
 1. John Doe
+IC: T1234567P
+DOB: 21 Mar 2000
+Ward: A1
+Admission Date: 2 Feb 2022
+Remarks: 
+Tags: FallRisk, Diabetes
+
 2. Jane Doe
+IC: T1234765P
+DOB: 22 Apr 2000
+Ward: A2
+Admission Date: 3 Feb 2022
+Remarks: Likes to read
+Tags: FallRisk, Diabetes
 ```
 
-Example command:
 
 `list w\B4 t\SevereAllergies`
+
 ```
 Listed all persons with:
 Tags: FallRisk
 Ward: B4
 
-Jane Doe
-IC: I2103210P
-Date of Birth: 12 Nov 1999
-Admission Date: 3 Mar 2024
-Ward: B4
-Tags: SevereAllergies
+1. Jane Doe
+IC: T1234765P
+DOB: 22 Apr 2000
+Ward: A2
+Admission Date: 3 Feb 2022
+Remarks: Likes to read
+Tags: FallRisk, Diabetes
 ```
 
-### Editing a patient : `edit`
+### Editing a patient's details : `edit`
 
 Edits an existing patient's details in the address book.
 
@@ -188,22 +207,24 @@ Remarks:
 Tags:
 ```
 
-### Locating patients by name: `find`
+### Locating patients either by name or by IC: `find`
 
-Finds patients whose names contain any of the given keywords.
+You can find patients whose names or IC contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n\NAME] [ic\IC_NUMBER]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* Exactly one of the optional fields must be provided
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full IC will be matched e.g. `a1234567b` will not match `123`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n\John` returns `john` and `John Doe`
+* `find n\alex david` returns `Alex Yeoh` and `David Li`
+* `find ic\a1234567b` returns `A1234567B`<br>
 
 ### Deleting a patient : `delete`
 
@@ -217,17 +238,15 @@ Format: `delete INDEX`
 
 Example command:
 
-`list` followed by `delete 2` deletes the 2nd person in the address book.
+`delete 2` deletes the 2nd person in the address book.
 ```
-Jane Doe is deleted. Their details were:
-IC: I2103210P
-Date of Birth: 12 Nov 1999
-Admission Date: 3 Mar 2024
+Deleted Person: Jane Doe
+IC: A1234567B
+DOB: 02/02/2000
 Ward: A1
-Remarks: 
+Admitted: 02/02/2020
+Remarks: likes to go to the park
 Tags: SevereAllergies
-
-You now have 1 patient(s) in your contact book.
 ```
 ### Viewing help : `help`
 
@@ -279,38 +298,34 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Data from Nursing Address Book are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Nursing Address Book data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, Nursing Address Book will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the Nursing Address Book to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Viewing help : `help`
 
 Shows a message explaining commands available.
 
-_coming in v1.3 ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Nursing Address Book home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
---------------------------------------------------------------------------------------------------------------------
-
+   
 ## Command summary
 
 Action | Format, Examples
@@ -319,7 +334,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]…​`<br> e.g.,`edit 2 n\James Lee w\A2`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` `find T1231234J`
+**Find** | `find n\KEYWORD [MORE_KEYWORDS]`, `find ic\KEYWORD`<br> e.g., `find n\James Jake`, `find ic\a1234567b`
 **List** | `list`
 **Help** | `help`
 
