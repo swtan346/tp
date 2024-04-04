@@ -34,15 +34,8 @@ public class HelpCommand extends Command {
             + "   Exits the application.\n\n"
             + "For more detailed information on each command, please refer to the User Guide.";
 
-    private final HelpWindow helpWindow;
-
-    public HelpCommand(HelpWindow helpWindow) {
-        this.helpWindow = helpWindow;
-    }
-
     @Override
     public CommandResult execute(Model model) {
-        helpWindow.show(SHOWING_HELP_MESSAGE);
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }
