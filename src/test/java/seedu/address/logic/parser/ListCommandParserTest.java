@@ -36,7 +36,7 @@ public class ListCommandParserTest {
         // no leading and trailing whitespaces
         ListCommand expectedListCommand =
                 new ListCommand(
-                        new ListKeywordsPredicate(Arrays.asList(VALID_TAG_DIABETES, VALID_TAG_FALL_RISK),
+                        new ListKeywordsPredicate(Arrays.asList(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES),
                                 VALID_WARD_BOB));
         assertParseSuccess(parser, TAG_DESC_DIABETES
                 + TAG_DESC_FALL_RISK + WARD_DESC_BOB, expectedListCommand);
