@@ -173,7 +173,7 @@ Step 4. The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to 
 
 Step 5. The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
-UML Diagrams:
+**UML Diagrams:**
 
 The following sequence diagram summarizes what happens when a user executes a new command:
 
@@ -199,7 +199,7 @@ Step 4. The `EditCommand` instace is returned to the `LogicManager` and `execute
 Step 5. The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
 The patient specified will have its ward updated to the new ward specified.
 
-UML Diagrams:
+**UML Diagrams:**
 
 The following sequence diagram summarizes what happens when a user executes a new command:
 
@@ -212,15 +212,33 @@ The following sequence diagram summarizes what happens when a user executes a ne
 
 The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
 
-The following class diagram shows the relevant classes involved in the help command implementation:
 
-![HelpCommandClassDiagram](images/HelpClassDiagram.png)
 
 The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
+
+**UML Diagrams:**
+
+The following class diagram shows the relevant classes involved in the help command implementation:
+
+Step 1. The `LogicManager` is called to execute the "help" command.
+Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
+Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
+The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+
+
+![HelpCommandClassDiagram](images/HelpClassDiagram.png)
 
 The following sequence diagram shows how the help command works:
 
 ![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250"/>
 
 When the user executes the help command, the following steps occur:
 
@@ -233,9 +251,6 @@ When the user executes the help command, the following steps occur:
 
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
 
 ### List by tags and/or ward feature
 
@@ -254,6 +269,8 @@ Step 2. The user executes `list t\diabetes` command to list patients with the di
 ![ListObjectDiagram](images/ListObjectDiagram.png)
 
 Step 3. For each patient in the address book, the `predicate` object will be passed to `Model#updateFilteredPersonList` check if the patient has the diabetes tag. If the patient has the diabetes tag, the patient will be shown in the list of patients.
+
+**UML Diagrams:**
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
