@@ -14,7 +14,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.AdmissionDate;
+import seedu.address.model.person.Dob;
+import seedu.address.model.person.Ic;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Ward;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
