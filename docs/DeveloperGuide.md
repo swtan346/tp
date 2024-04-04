@@ -404,69 +404,155 @@ Ward nurses
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                 | So that I can…​                                              |
-| ---- | -------------------------------------- |----------------------------------------------|--------------------------------------------------------------|
-| `* * *` | user                                   | add add patient records                      | keep track of their medical condition in the hospital        |
-| `* * *` | user                                   | view existing patient records                | access information on existing patients                      |
-| `* * *` | user                                   | delete a patient record                      | remove outdated or irrelevant patient data                   |
-| `* *` | user                                   | edit patient records                         | ensure that all patient details are current and accurate     |
-| `* *` | user                                   | list patients based on their tags            | view patients based on category                              |
-| `* *` | user                                   | list all patients tied to a specific ward    | know which patients belong to which ward                     |
-| `* *` | user                                   | find patients via their name or NRIC         | quickly find information of specific patient                 |
+| Priority | As a …​                                | I want to …​                                | So that I can…​                                              |
+| ---- | -------------------------------------- |---------------------------------------------|--------------------------------------------------------------|
+| `* * *` | user                                   | add patient records                      | keep track of their medical condition in the hospital        |
+| `* * *` | user                                   | view existing patient records               | access information on existing patients                      |
+| `* * *` | user                                   | delete a patient record                     | remove outdated or irrelevant patient data                   |
+| `* *` | user                                   | edit patient records                        | ensure that all patient details are current and accurate     |
+| `* *` | user                                   | list patients based on their tags           | view patients based on category                              |
+| `* *` | user                                   | list all patients tied to a specific ward   | know which patients belong to which ward                     |
+| `* *` | user                                   | find patients via their name or NRIC        | quickly find information of specific patient                 |
 | `* *` | user                                   | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
-| `*`  | user                                   | view patient list sorted by name             | look through the list of patients in a more organized manner |
+| `*`  | user                                   | view patient list sorted by name            | look through the list of patients in a more organized manner |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Nursing Address Book` and the **Actor** is the `user`, unless 
+specified otherwise)
 
-**Use case: UC01 - View contacts**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-
-    Use case ends.
-
-**Use case: UC02 - Add a person**
+**Use case: UC01 - View all patient records**
 
 **MSS**
 
-1.  User requests to add a person
-2.  AddressBook adds the person
+1.  User requests to list patients.
+2.  Nursing Address Book shows a list of patients.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The given person details are invalid.
+* 1a. Nursing Address Book detects that the command is invalid. 
+  * 1a1. Nursing Address Book shows an error message.
 
-    * 2a1. AddressBook shows an error message.
+  Use case resumes at step 1.
 
-      Use case ends.
-
-**Use case: US03 - Delete a person**
+**Use case: UC02 - Add a patient**
 
 **MSS**
 
-1.  User requests to view contacts(UC01)
-2.  User requests to delete a specific person in the list
-3.  AddressBook deletes the person
+1.  User requests to add a patient.
+2.  Nursing Address Book adds the patient.
+3.  Nursing Address Book shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. Nursing Address Book detects that the patient details is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+    
+    Use case resumes at step 1.
 
-  Use case ends.
+**Use case: US03 - Delete a patient**
+
+**MSS**
+
+1.  User requests to view patient records(UC01).
+2.  User requests to delete a patient in the list.
+3.  Nursing Address Book deletes the person.
+4.  Nursing Address Book shows success message to the user.
+
+    Use case ends.
+
+**Extensions**
 
 * 2a. The given index is invalid.
+  * 2a2. AddressBook shows an error message.
 
-    * 2a1. AddressBook shows an error message.
+    Use case resumes at step 2.
+
+**Use case: US04 - Edit a patient records**
+
+**MSS**
+
+1.  User requests to view patient records(UC01).
+2.  User requests to edit a patient's record in the list.
+3.  Nursing Address Book edits the patient's record.
+4.  Nursing Address Book shows success message to the user.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Nursing Address Book detects that the patient details is invalid.
+    * 2a1. Nursing Address Book shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: US05 - Find patient**
+
+**MSS**
+
+1. User requests to find a patient in the list. 
+2. Nursing Address Book shows the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the given parameter is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: US06 - View patient with specific tags**
+
+**MSS**
+
+1. User requests to view patients with specific tags.
+2. Nursing Address Book shows the patient list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the given parameter is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: US07 - View patients in specific ward**
+
+**MSS**
+
+1. User requests to view patients in specific ward.
+2. Nursing Address Book shows the patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the given parameter is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: US08 - Get help with command usage**
+
+**MSS**
+
+1. User requests to get help with command usage.
+2. Nursing Address Book shows command usage.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the command is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
