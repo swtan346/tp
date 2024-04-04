@@ -86,8 +86,12 @@ public class ParserUtil {
      */
     public static List<String> parseTagsKeywords(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final List<String> tagSet = new ArrayList<>(tags);
-        return tagSet;
+        Set <Tag> tagSet = parseTags(tags);
+        List<String> tagNames = new ArrayList<>();
+        for (Tag tag : tagSet) {
+            tagNames.add(tag.getTagName());
+        }
+        return tagNames;
     }
 
     /**

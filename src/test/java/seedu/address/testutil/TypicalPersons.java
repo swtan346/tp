@@ -48,8 +48,8 @@ public class TypicalPersons {
             .withIc("A0987654B").withAdmissionDate("16/03/2024").withWard("G1").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").build();
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withIc("A0000000A").build();
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withIc("A1111111A").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withTags(VALID_TAG_DIABETES)

@@ -44,19 +44,19 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_IC + "I/C] "
-            + "[" + PREFIX_DOB + "DATE OF BIRTH] "
+            + "[" + PREFIX_IC + "IC_NUMBER] "
+            + "[" + PREFIX_DOB + "DATE_OF_BIRTH] "
             + "[" + PREFIX_WARD + "WARD] "
-            + "[" + PREFIX_ADMISSION_DATE + "ADMISSION DATE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ADMISSION_DATE + "ADMISSION_DATE] "
             + "[" + PREFIX_REMARK + "REMARK]...\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_IC + "T1234567Q "
             + PREFIX_DOB + "12/08/1999";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "A patient with this IC already exists in the address book.";
 
     public static final String MESSAGE_DOB_AFTER_ADMISSION =
             "Date of birth should not be later than date of admission.";
