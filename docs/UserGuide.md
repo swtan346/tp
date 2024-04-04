@@ -184,7 +184,7 @@ IC: T0123456P
 Date of Birth: 21 Mar 2000
 Admission Date: 2 Feb 2022
 Ward: A1
-Remarks: 
+Remarks:
 Tags:
 ```
 
@@ -224,7 +224,7 @@ IC: I2103210P
 Date of Birth: 12 Nov 1999
 Admission Date: 3 Mar 2024
 Ward: A1
-Remarks: 
+Remarks:
 Tags: SevereAllergies
 
 You now have 1 patient(s) in your contact book.
@@ -243,7 +243,7 @@ Here are the list of available commands:
 Add: add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [t\TAG]...
    Example: add n\John Doe ic\T1234567P dob\01/01/2000 ad\25/03/2024 w\A1 t\Diabetes t\FallRisk
 
-Clear: clear 
+Clear: clear
    Clears all entries from the address book.
 
 Delete: delete INDEX
@@ -253,14 +253,14 @@ Edit: edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE]
    Example: edit 1 ic\T0123456P t\
 
 Find: find KEYWORD [MORE_KEYWORDS]
-   Example: find John 
+   Example: find John
 
 List: list
    Lists all patients.
 
 Exit: exit
    Exits the application.
-  
+
 For more detailed information on each command, please refer to the User Guide.
 ```
 
