@@ -178,7 +178,7 @@ Tags:
 
 You can find patients whose names or IC contain any of the given keywords.
 
-Format: `find [n\KEYWORDS] [ic\KEYWORD]`
+Format: `find [n\NAME] [ic\IC_NUMBER]`
 
 * Exactly one of the optional fields must be provided
 * The search is case-insensitive. e.g. `hans` will match `Hans`
