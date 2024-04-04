@@ -117,7 +117,6 @@ public class ParserUtil {
      */
     public static Ic parseIc(String ic) throws ParseException {
         requireNonNull(ic);
-        // Todo: Error handling
         String trimmedIc = ic.trim();
         if (!Ic.isValidIc(trimmedIc)) {
             throw new ParseException(Ic.MESSAGE_CONSTRAINTS);
