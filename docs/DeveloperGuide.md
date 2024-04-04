@@ -583,9 +583,9 @@ specified otherwise)
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **DG**: Developer guide
-* **UG**: User guide
+* **Patient**: A person receiving medical services at a hospital
+* **NRIC**: Identity card number of the National Registration Identity Card, used as the primary means of 
+  identification for patients in Nursing Address Book
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -602,18 +602,126 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder 
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum. 
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+2. Saving window preferences
 
-1. Saving window preferences
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   2. Re-launch the app by double-clicking the jar file.<br>
+    Expected: The most recent window size and location is retained.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Adding a patient
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+1. Adding a patient
 
-1. _{ more test cases …​ }_
+   1. Prerequisites: There exist no patient with NRIC `A1234567B` in the patient records. 
+
+   2. Test case (Valid parameters): `add n\John Smith ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea 
+      r\likes to go to the park`<br>
+      Expected: Patient successfully added into patient list. Details of the added patient shown in the status bar. 
+
+   3. Test case (Missing parameter): `add n\John Smith`<br>
+   Expected: No patient is added. Error details shown in the status bar.
+
+   4. Test case (Invalid Name): `add n\ ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
+      Expected: Similar to previous.
+
+   5. Test case (Invalid NRIC): `add n\John Smith ic\A12347B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
+      Expected: Similar to previous.
+
+   6. Test case (Invalid Date of Birth): `add n\John Smith ic\A1234567B dob\2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
+      Expected: Similar to previous.
+
+   7. Test case (Repeated Parameter): `add n\John Smith ic\A1234567B ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 
+   t\diarrhea r\likes to go to the park`<br>
+      Expected: Similar to previous.
+
+### Viewing patients
+
+1. Viewing all patients
+
+   1. Prerequisites: Multiple patients in the patient list.
+
+   2. Test case: `list`<br>
+   Expected: List of patients is shown.
+
+   3. Test case: `list 181` or any command with extra characters supplied<br>
+      Expected: Similar to previous.
+
+2. Viewing patients by tags and ward
+
+    1. Prerequisites: Multiple patients in the patient list.
+
+    1. Test case: `list tag\diarrhea w\a1`<br>
+        Expected: List of patients is shown.
+
+    1. Test case: `list t\diarrhea`<br>
+       Expected: List of patients is shown.
+
+    1. Test case: `list w\a1`<br>
+       Expected: List of patients is shown.
+
+### Editing a patient
+
+1. Edit a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `edit 1 n\John`<br>
+       Expected: Name of first patient is changed. Details of the edited patient is shown in the status bar.
+
+   1. Test case: `edit 1 ic\W9876543M`<br>
+      Expected: NRIC of first patient is changed. Details of the edited patient is shown in the status bar.
+
+   1. Test case: `edit 1 dob\03/03/2005`<br>
+      Expected: Date of birth of first patient is changed. Details of the edited patient is shown in the status bar.
+
+   1. Test case: `edit 1 ad\05/05/2021`<br>
+      Expected: Admission date of first patient is changed. Details of the edited patient is shown in the status bar.
+
+   1. Test case: `edit 1 t\flu r\afraid of darkness`<br>
+      Expected: tag and remark of first patient is changed. Details of the edited patient is shown in the status bar.
+
+    1. Test case(invalid name): `edit n\ `<br>
+       Expected: Patient name is not changed. Error details shown in the status message.
+
+### Finding a patient
+
+1. Finding a patient by name
+
+    1. Prerequisites: There exist only 1 patient `John Smith` in the patient records.
+
+    1. Test case: `find n\John Smith`<br>
+       Expected: `John Smith` is shown.
+
+    1. Test case: `find n\john`<br>
+       Expected: Similar to previous.
+
+    1. Test case: `find n\Smith`<br>
+       Expected: Similar to previous.
+
+   1. Test case: `find n\j`<br>
+      Expected: No patient is shown.
+
+   1. Test case: `find n\`<br>
+      Expected: Similar to previous.
+
+2. Finding a patient by NRIC
+
+    1. Prerequisites: There exist a patient with the NRIC `A1234567B` in the patient records.
+
+    1. Test case: `find ic\A1234567`<br>
+       Expected: The patient with the NRIC `A1234567B` is shown.
+
+    1. Test case: `find ic\a1234567b`<br>
+       Expected: Similar to previous.
+
+    1. Test case: `find n\Smith`<br>
+       Expected: Similar to previous.
+
+    1. Test case: `find ic\`<br>
+       Expected: No patient is shown.
 
 ### Deleting a person
 
@@ -622,21 +730,20 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First patient is deleted from the list. Details of the deleted contact shown in the status message. 
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: The addressbook.json file in the data directory must exist.
 
-1. _{ more test cases …​ }_
-
+    1. Test case: Delete the addressbook.json file.<br>
+    Expected: The app launches successfully, populated with the sample data.
