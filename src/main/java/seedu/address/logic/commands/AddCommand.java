@@ -19,14 +19,12 @@ import seedu.address.model.person.Person;
  * Adds a person to the address book.
  */
 public class AddCommand extends Command {
-
     public static final String COMMAND_WORD = "add";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_IC + "IC "
-            + PREFIX_DOB + "DOB "
+            + PREFIX_IC + "IC_NUMBER "
+            + PREFIX_DOB + "DATE_OF_BIRTH "
             + PREFIX_ADMISSION_DATE + "ADMISSION_DATE "
             + PREFIX_WARD + "WARD_NUMBER "
             + "[" + PREFIX_REMARK + "REMARK] "
@@ -34,14 +32,17 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_IC + "S0123456A "
-            + PREFIX_DOB + "1/1/2000 "
+            + PREFIX_DOB + "01/01/2000 "
             + PREFIX_ADMISSION_DATE + "15/03/2024 "
             + PREFIX_WARD + "3 "
             + PREFIX_REMARK + "Prevent bed sores. "
             + PREFIX_TAG + "FallRisk";
-
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+
     public static final String MESSAGE_DUPLICATE_PERSON = "A patient with this IC already exists in the address book";
+
+    public static final String MESSAGE_DOB_AFTER_ADMISSION =
+            "Date of birth should not be later than date of admission.";
 
     private final Person toAdd;
 
@@ -59,6 +60,10 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (toAdd.getDob().date.isAfter(toAdd.getAdmissionDate().date)) {
+            throw new CommandException(MESSAGE_DOB_AFTER_ADMISSION);
         }
 
         model.addPerson(toAdd);
