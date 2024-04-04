@@ -19,6 +19,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
+    public static final String MESSAGE_DOB_LATER_THAN_ADMISSION =
+            "Date of birth should not be later than date of admission";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
@@ -32,18 +34,22 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code persgeton} for display to the user.
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
-                .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
+                .append("\n IC: ")
+                .append(person.getIc())
+                .append("\n DOB: ")
+                .append(person.getDob())
+                .append("\n Ward: ")
+                .append(person.getWard())
+                .append("\n Admitted: ")
+                .append(person.getAdmissionDate())
+                .append("\n Remarks: ")
+                .append(person.getRemark())
+                .append("\n Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }

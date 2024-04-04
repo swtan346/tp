@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -18,39 +20,43 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Dob dob;
+    private final Ic ic;
+
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final AdmissionDate admissionDate;
+    private final Ward ward;
+    private final Remark remark;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Set<Tag> tags,
+                  Dob dob, Ic ic, AdmissionDate admissionDate, Ward ward, Remark remark) {
+        requireAllNonNull(name, dob, ic, admissionDate, ward);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dobToCompare = LocalDate.parse(dob.toString(), formatter);
+        LocalDate admissionDateToCompare = LocalDate.parse(admissionDate.toString(), formatter);
+
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
         this.tags.addAll(tags);
+        this.dob = dob;
+        this.ic = ic;
+        this.admissionDate = admissionDate;
+        this.ward = ward;
+
+        if (remark == null) {
+            this.remark = new Remark("");
+        } else {
+            this.remark = remark;
+        }
     }
 
     public Name getName() {
         return name;
-    }
-
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -59,6 +65,22 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Dob getDob() {
+        return dob;
+    }
+    public Ic getIc() {
+        return ic;
+    }
+    public AdmissionDate getAdmissionDate() {
+        return admissionDate;
+    }
+    public Ward getWard() {
+        return ward;
+    }
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -71,7 +93,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getIc().equals(getIc());
     }
 
     /**
@@ -91,26 +113,30 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && dob.equals(otherPerson.dob)
+                && ic.equals(otherPerson.ic)
+                && admissionDate.equals(otherPerson.admissionDate)
+                && ward.equals(otherPerson.ward)
+                && remark.equals(otherPerson.remark);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, tags, dob, ic, admissionDate, ward, remark);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
                 .add("tags", tags)
+                .add("dob", dob)
+                .add("ic", ic)
+                .add("admissionDate", admissionDate)
+                .add("ward", ward)
+                .add("remark", remark)
                 .toString();
     }
 

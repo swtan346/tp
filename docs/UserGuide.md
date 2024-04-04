@@ -1,12 +1,26 @@
 ---
 layout: page
 title: User Guide
+nav_order : 2
 ---
+# Nursing Address Book (NAB)
+Nursing Address Book (NAB) is a desktop application tailored for ward nurses, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User Interface (GUI) for ease of use.
+Designed for efficiency, NAB enables quick access to patient records, streamlined contact management, and simplified logging of care details, proving to be a valuable tool for fast typists and those who prefer the precision of CLI operations.
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
+## Table of Contents
+* [Quick Start](#quick-start)
+* [Features](#features)
+  * [Adding a Patient](#adding-a-patient-add)
+  * [Viewing Patients](#listing-all-patients--list)
+  * [Editing a Patient](#editing-a-patient--edit)
+  * [Finding a Patient](#locating-patients-by-name-find)
+  * [Deleting a Patient](#deleting-a-patient--delete)
+  * [Viewing Help](#viewing-help--help)
+  * [Clearing all Entries](#clearing-all-entries--clear)
+  * [Exiting the Application](#exiting-the-program--exit)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
+* [Troubleshooting](#troubleshooting)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,28 +28,27 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `nab.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample input.<br>
+4. Open a command terminal, For Windows users, search for `cmd` in the Start menu and run it as an administrator if necessary. Use the `cd` command to navigate to the folder where you placed the jar file. Run the application by executing `java -jar nab.jar`.<br>
+   Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
    ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   <br>
+   _Note for Windows Users: Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be required._
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all patients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n\John Doe ic\T1234567P dob\01/01/2000 w\A1 ad\25/03/2024` : Adds a patient named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
+   * `delete 3` : Deletes the 3rd patient shown in the current list.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -46,72 +59,138 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n\NAME`, `NAME` is a parameter which can be used as `add n\John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n\NAME [t\TAG]` can be used as `n\John Doe t\FallRisk` or as `n\John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t\TAG]…​` can be used as ` ` (i.e. 0 times), `t\Diabetes`, `t\Diabetes t\HearingImpaired` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n\NAME ic\IC_NUMBER`, `ic\IC_NUMBER n\NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
+### Adding a patient: `add`
 
-Shows a message explaning how to access the help page.
+Adds a new patient's information to the address book.
 
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* NAME: The full name of the patient. Only alphabetical characters are accepted. Each word should be split with a whitespace.
+* IC_NUMBER: The Identification Number of the patient. It must start with a capital letter, followed by a 7-digit number and ends with a capital letter.
+* DATE_OF_BIRTH: The patient's date of birth in DD/MM/YYYY format. Dates must be in the past.
+* ADMISSION_DATE: The date the patient was admitted to the ward, also in DD/MM/YYYY format. This date should not be later than the current date.
+* WARD: The ward where the patient is located. This should contain alphanumeric characters only, with no spaces.
+* REMARK: Optional remarks about the patient.
+* TAG: Optional tags to categorize the patient by health condition or other descriptors. Tags should be alphanumeric and can be used multiple times.
 
-### Listing all persons : `list`
+* Example command:
 
-Shows a list of all persons in the address book.
+`add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk r\Requires assistance feeding. t\Diabetes`
 
-Format: `list`
+```
+The patient, John Doe, is added! Here are his details:
 
-### Editing a person : `edit`
+John Doe
+IC: T1234567P
+Date of Birth: 21 Mar 2000
+Admission Date: 2 Feb 2022
+Ward: A1
+Remarks: Requires assistance feeding.
+Tags: FallRisk, Diabetes
 
-Edits an existing person in the address book.
+You now have 1 patient(s) in your address book.
+```
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### Listing all patients : `list`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Displays a list of all registered patients.
+
+Format: `list`, `list [w\WARD] [t\TAG]...`
+
+* WARD: Must only list at most 1 ward.
+
+Example command:
+
+`list`
+```
+Here are the details of the 2 patients in your contact book:
+
+1. John Doe
+2. Jane Doe
+```
+
+Example command:
+
+`list w\B4 t\SeverAllergies`
+```
+Listed all persons with:
+Tags: FallRisk
+Ward: B4
+
+Jane Doe
+IC: I2103210P
+Date of Birth: 12 Nov 1999
+Admission Date: 3 Mar 2024
+Ward: B4
+Tags: SevereAllergies
+```
+
+### Editing a patient : `edit`
+
+Edits an existing patient's details in the address book.
+
+Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]…​`
+
+* Edits the patient details at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing `t\ ` without
     specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Example command:
 
-### Locating persons by name: `find`
+`edit 1 ic\T0123456P t\ r\`
 
-Finds persons whose names contain any of the given keywords.
+_Edits the IC_NUMBER, TAGS and REMARKS of the 1st person to be `T0123456P` for IC_NUMBER and empty for both tags and remarks._
+
+**Before**:
+```
+John Doe
+IC: T1234567P
+Date of Birth: 21 Mar 2000
+Admission Date: 2 Feb 2022
+Ward: A1
+Remarks: Requires assistance feeding.
+Tags: FallRisk, Diabetes
+```
+**After**:
+```
+Edited details of patient 1 in your contact book as follows:
+
+John Doe
+IC: T0123456P
+Date of Birth: 21 Mar 2000
+Admission Date: 2 Feb 2022
+Ward: A1
+Remarks: 
+Tags:
+```
+
+### Locating patients by name: `find`
+
+Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -125,21 +204,66 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a patient : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified patient from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient records at the specified `INDEX`.
+* The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Example command:
+
+`list` followed by `delete 2` deletes the 2nd person in the address book.
+```
+Jane Doe is deleted. Their details were:
+IC: I2103210P
+Date of Birth: 12 Nov 1999
+Admission Date: 3 Mar 2024
+Ward: A1
+Remarks: 
+Tags: SevereAllergies
+
+You now have 1 patient(s) in your contact book.
+```
+### Viewing help : `help`
+
+Shows a message explaining the available commands and their usage.
+
+Format: `help`
+
+Output:
+
+```
+Here are the list of available commands:
+
+Add: add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [t\TAG]...
+   Example: add n\John Doe ic\T1234567P dob\01/01/2000 ad\25/03/2024 w\A1 t\Diabetes t\FallRisk
+
+Clear: clear 
+   Clears all entries from the address book.
+
+Delete: delete INDEX
+   Example: delete 3
+
+Edit: edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG]...  
+   Example: edit 1 ic\T0123456P t\
+
+Find: find KEYWORD [MORE_KEYWORDS]
+   Example: find John 
+
+List: list
+   Lists all patients.
+
+Exit: exit
+   Exits the application.
+  
+For more detailed information on each command, please refer to the User Guide.
+```
+
 
 ### Clearing all entries : `clear`
 
@@ -166,9 +290,11 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Viewing help : `help`
 
-_Details coming soon ..._
+Shows a message explaining commands available.
+
+_coming in v1.3 ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,10 +315,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [t\TAG]…​` <br> e.g., `add n\James Ho ic\A1234567B dob\21/03/1999 ad\21/01/2023 w\A1 t\HearingImpaired`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [t\TAG]…​`<br> e.g.,`edit 2 n\James Lee w\A2`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Troubleshooting
+
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
