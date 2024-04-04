@@ -404,13 +404,17 @@ Ward nurses
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                  | So that I can…​                                         |
-| -------- | -------------------------------------- |-------------------------------|---------------------------------------------------------|
-| `* * *`  | user                                   | add a new patient             | store new patient records                               |
-| `* * *`  | user                                   | view existing patient records | access information on existing patients                 |
-| `* * *`  | user                                   | delete a patient record       | remove outdated or irrelevant patient data              |
-
-*{More to be added}*
+| Priority | As a …​                                | I want to …​                                 | So that I can…​                                              |
+| ---- | -------------------------------------- |----------------------------------------------|--------------------------------------------------------------|
+| `* * *` | user                                   | add add patient records                      | keep track of their medical condition in the hospital        |
+| `* * *` | user                                   | view existing patient records                | access information on existing patients                      |
+| `* * *` | user                                   | delete a patient record                      | remove outdated or irrelevant patient data                   |
+| `* *` | user                                   | edit patient records                         | ensure that all patient details are current and accurate     |
+| `* *` | user                                   | list patients based on their tags            | view patients based on category                              |
+| `* *` | user                                   | list all patients tied to a specific ward    | know which patients belong to which ward                     |
+| `* *` | user                                   | find patients via their name or NRIC         | quickly find information of specific patient                 |
+| `* *` | user                                   | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
+| `*`  | user                                   | view patient list sorted by name             | look through the list of patients in a more organized manner |
 
 ### Use cases
 
