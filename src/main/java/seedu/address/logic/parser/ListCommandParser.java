@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,9 +35,16 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_WARD);
-        List<String> tagList = ParserUtil
-                .parseTagsKeywords(argMultimap.getAllValues(PREFIX_TAG));
-        String ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null)).toString();
+
+        List<String> tagList = List.of();
+        if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
+            tagList = ParserUtil.parseTagsKeywords(argMultimap.getAllValues(PREFIX_TAG));
+        }
+
+        String ward = "";
+        if (arePrefixesPresent(argMultimap, PREFIX_WARD)) {
+            ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null)).toString();
+        }
 
         if (ward.isEmpty() && tagList.isEmpty()) {
             throw new ParseException(
@@ -46,5 +54,13 @@ public class ListCommandParser implements Parser<ListCommand> {
         assert !tagList.isEmpty() || !ward.isEmpty();
 
         return new ListCommand(new ListKeywordsPredicate(tagList, ward));
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
