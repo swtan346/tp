@@ -16,6 +16,7 @@ public class AdmissionDate {
     public static final String MESSAGE_CONSTRAINTS_OCCURRENCE =
             "Admission date should not be earlier than date of birth or later than current date";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     public final LocalDate date;
     public final String value;
 

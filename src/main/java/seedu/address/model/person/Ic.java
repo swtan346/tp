@@ -11,7 +11,7 @@ public class Ic {
             "ICs starts with a capital letter, followed by a 7 digit number and ends with a capital letter."
             + "It should not be blank.";
 
-    // singapore regex for ic
+    // Singapore regex for ic
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{7}[A-Z]$";
     public final String value;
 
