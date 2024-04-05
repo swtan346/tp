@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,6 +41,18 @@ public class ListCommandParserTest {
                                 VALID_WARD_BOB));
         assertParseSuccess(parser, TAG_DESC_DIABETES
                 + TAG_DESC_FALL_RISK + WARD_DESC_BOB, expectedListCommand);
+
+        // valid tags
+        expectedListCommand =
+                new ListCommand(
+                        new ListKeywordsPredicate(Arrays.asList(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES), ""));
+        assertParseSuccess(parser, TAG_DESC_DIABETES + TAG_DESC_FALL_RISK, expectedListCommand);
+
+        // valid ward
+        expectedListCommand =
+                new ListCommand(
+                        new ListKeywordsPredicate(List.of(), VALID_WARD_BOB));
+        assertParseSuccess(parser, WARD_DESC_BOB, expectedListCommand);
 
         // multiple fields repeated for ward
         assertParseFailure(parser, WARD_DESC_AMY + WARD_DESC_BOB,
