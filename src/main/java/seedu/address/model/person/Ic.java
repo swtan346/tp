@@ -13,6 +13,7 @@ public class Ic {
 
     // Singapore regex for ic
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{7}[A-Z]$";
+
     public final String value;
 
     /**
@@ -25,6 +26,10 @@ public class Ic {
         checkArgument(isValidIc(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
+
+    /**
+     * Returns true if a given string is a valid IC.
+     */
     public static boolean isValidIc(String ic) {
         return ic.matches(VALIDATION_REGEX);
     }
