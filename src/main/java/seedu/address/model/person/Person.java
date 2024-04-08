@@ -21,7 +21,6 @@ public class Person {
     private final Dob dob;
     private final Ic ic;
 
-
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
     private final AdmissionDate admissionDate;
@@ -133,5 +132,4 @@ public class Person {
                 .add("remark", remark)
                 .toString();
     }
-
 }

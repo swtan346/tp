@@ -29,7 +29,9 @@ public class ListCommand extends Command {
     private final ListKeywordsPredicate predicate;
 
     /**
-     * Creates a ListCommand with the given predicate.
+     * Creates a ListCommand to list relevant patients as filtered by predicate.
+     *
+     * @param predicate the predicate to filter the list of patients.
      */
     public ListCommand(ListKeywordsPredicate predicate) {
         this.predicate = predicate;
