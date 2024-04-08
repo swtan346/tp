@@ -87,6 +87,8 @@ class JsonAdaptedPerson {
         final Ward modelWard = validateAndConvertWard();
         final Remark modelRemark = validateAndConvertRemark();
 
+        isDobBeforeAdmissionDate(modelDob, modelAdmissionDate);
+
         return new Person(modelName, modelTags, modelDob, modelIc,
                 modelAdmissionDate, modelWard, modelRemark);
     }
@@ -189,5 +191,11 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         return new Remark(remark);
+    }
+
+    private void isDobBeforeAdmissionDate(Dob dob, AdmissionDate admissionDate) throws IllegalValueException {
+        if (dob.date.isAfter(admissionDate.date)) {
+            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE);
+        }
     }
 }
