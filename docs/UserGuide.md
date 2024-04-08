@@ -260,25 +260,36 @@ Output:
 Here are the list of available commands:
 
 Add: add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]...
+   Adds a patient to the address book.
    Example: add n\John Doe ic\T1234567P dob\01/01/2000 ad\25/03/2024 w\A1 r\Has a sweet tooth. t\Diabetes t\FallRisk
 
 Clear: clear
    Clears all entries from the address book.
+   Example: clear
 
 Delete: delete INDEX
+   Deletes the patient at the specified INDEX.
    Example: delete 3
 
 Edit: edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]...  
+   Edits the patient at the specified INDEX.
    Example: edit 1 ic\T0123456P t\
 
-Find: find KEYWORD [MORE_KEYWORDS]
-   Example: find John
+Find: find n\NAME, find ic\IC_NUMBER
+   Finds patients based on NAME or IC_NUMBER.
+   Example: find n\John Doe
 
 List: list
    Lists all patients.
+   Example: list
+   
+List by keyword: list [n\WARD] [t\TAG]...
+   Lists patients in the specified ward or with the specified tags.
+   Example: list t\FallRisk w\3
 
 Exit: exit
    Exits the application.
+   Example: exit
 
 For more detailed information on each command, please refer to the User Guide.
 ```
