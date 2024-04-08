@@ -238,7 +238,7 @@ Format: `delete INDEX`
 
 Example command:
 
-`delete 2` deletes the 2nd person in the address book.
+`delete 2` deletes the 2nd person in the displayed list.
 ```
 Deleted Person: Jane Doe
 IC: A1234567B
