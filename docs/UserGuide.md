@@ -338,7 +338,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]…​`<br> e.g.,`edit 2 n\James Lee w\A2`
 **Find** | `find n\KEYWORD [MORE_KEYWORDS]`, `find ic\KEYWORD`<br> e.g., `find n\James Jake`, `find ic\a1234567b`
-**List** | `list [w\WARD] [t\TAG]...`
+**List** | `list [w\WARD] [t\TAG]...`<br> e.g., `list w\B4 t\SevereAllergies`
 **Help** | `help`
 
 --------------------------------------------------------------------------------------------------------------------
