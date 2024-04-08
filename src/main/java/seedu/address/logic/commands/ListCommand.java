@@ -38,7 +38,7 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Creates a ListCommand to list all persons.
+     * Creates a ListCommand with no predicate to display all patients.
      */
     public ListCommand() {
         this.predicate = null;
