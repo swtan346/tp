@@ -278,13 +278,10 @@ Edit: edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE]
 Find: find n\NAME [MORE_NAMES] OR find ic\IC_NUMBER
    Finds patients based on NAME or IC_NUMBER.
    Example: find n\John Doe
-
-List: list
-   Lists all patients.
-   Example: list
    
-List by keyword: list [n\WARD] [t\TAG]...
-   Lists patients in the specified ward or with the specified tags.
+List: list [n\WARD] [t\TAG]...
+   If used without parameters, lists all patients. 
+   If parameters are specified, lists patients in the specified ward and/or with the specified tags.
    Example: list t\FallRisk w\3
 
 Exit: exit
