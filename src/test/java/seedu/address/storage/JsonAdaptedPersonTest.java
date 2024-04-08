@@ -127,7 +127,7 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_TAGS,
                         VALID_DOB, VALID_IC, VALID_ADMISSION_DATE, INVALID_WARD, VALID_REMARK);
         String expectedMessage = Ward.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalArgumentException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
