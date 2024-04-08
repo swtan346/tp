@@ -30,6 +30,10 @@ public class ListCommandParserTest {
         // ineligible parameters after list command
         assertParseFailure(parser, "BOO",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+
+        // multiple fields repeated for ward
+        assertParseFailure(parser, WARD_DESC_AMY + WARD_DESC_BOB,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_WARD));
     }
 
     @Test
@@ -53,10 +57,6 @@ public class ListCommandParserTest {
                 new ListCommand(
                         new ListKeywordsPredicate(List.of(), VALID_WARD_BOB));
         assertParseSuccess(parser, WARD_DESC_BOB, expectedListCommand);
-
-        // multiple fields repeated for ward
-        assertParseFailure(parser, WARD_DESC_AMY + WARD_DESC_BOB,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_WARD));
     }
 
 }
