@@ -28,7 +28,6 @@ public class LogicManager implements Logic {
             "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
-
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;

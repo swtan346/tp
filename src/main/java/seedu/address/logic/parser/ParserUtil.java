@@ -174,5 +174,4 @@ public class ParserUtil {
             return new Remark(trimmedRemark);
         }
     }
-
 }

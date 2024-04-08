@@ -37,7 +37,6 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return fullName;
@@ -62,5 +61,4 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }
