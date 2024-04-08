@@ -291,7 +291,6 @@ Exit: exit
 For more detailed information on each command, please refer to the User Guide.
 ```
 
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
