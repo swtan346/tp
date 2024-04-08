@@ -275,7 +275,7 @@ Edit: edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE]
    Edits the patient at the specified INDEX.
    Example: edit 1 ic\T0123456P t\
 
-Find: find n\NAME, find ic\IC_NUMBER
+Find: find n\NAME [MORE_NAMES] OR find ic\IC_NUMBER
    Finds patients based on NAME or IC_NUMBER.
    Example: find n\John Doe
 
