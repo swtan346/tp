@@ -27,6 +27,9 @@ public class FindCommand extends Command {
 
     private final Predicate<Person> predicate;
 
+    /**
+     * Creates a FindCommand to find the specified {@code Predicate<Person>}
+     */
     public FindCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }

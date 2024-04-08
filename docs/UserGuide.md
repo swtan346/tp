@@ -4,7 +4,7 @@ title: User Guide
 nav_order : 2
 ---
 # Nursing Address Book (NAB)
-Nursing Address Book (NAB) is a desktop application tailored for ward nurses, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User Interface (GUI) for ease of use.
+Nursing Address Book (NAB) is a desktop application tailored for ward nurses in Singapore, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User Interface (GUI) for ease of use.
 Designed for efficiency, NAB enables quick access to patient records, streamlined contact management, and simplified logging of care details, proving to be a valuable tool for fast typists and those who prefer the precision of CLI operations.
 
 ## Table of Contents
@@ -78,7 +78,7 @@ Designed for efficiency, NAB enables quick access to patient records, streamline
 
 ### Adding a patient: `add`
 
-Adds a new patient's information to the address book.
+Allows you to add a new patient's information to the address book.
 
 Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]…​`
 
@@ -115,15 +115,14 @@ You now have 1 patient(s) in your address book.
 
 ### Listing patients : `list`
 
-Displays a list of patients in NAB. 
+Allows you to view a list of patients in NAB.  With no optional parameters, you will be able to list all patients.
 
-By using list with optional parameters, you will be able to list all patients.
-
-Optionally, you can filter by ward or tags to list only patients in a specific ward or with specific tags.
+You may also filter by ward and/or tags to list only patients in a specific ward and/or with specific tags.
 
 Format: `list [w\WARD] [t\TAG]...`
 
 * WARD: Must only list at most 1 ward.
+* If multiple tags are provided, only patients with tags that encompass all the provided tags will be listed.
 
 (For the below commands for list, we assume the list contains 2 people, John Doe and Jane Doe)
 
@@ -142,10 +141,10 @@ Tags: FallRisk, Diabetes
 2. Jane Doe
 IC: T1234765P
 DOB: 22 Apr 2000
-Ward: A2
+Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
-Tags: FallRisk, Diabetes
+Tags: FallRisk, SevereAllergies
 ```
 
 
@@ -159,20 +158,20 @@ Ward: B4
 1. Jane Doe
 IC: T1234765P
 DOB: 22 Apr 2000
-Ward: A2
+Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
-Tags: FallRisk, Diabetes
+Tags: FallRisk, SevereAllergies
 ```
 
 ### Editing a patient's details : `edit`
 
-Edits an existing patient's details in the address book.
+Allows you to edit an existing patient's details in the address book.
 
 Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]…​`
 
 * Edits the patient details at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* You must provide at least one of the optional fields.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t\ ` without
@@ -209,7 +208,7 @@ Tags:
 
 ### Locating patients either by name or by IC: `find`
 
-You can find patients whose names or IC contain any of the given keywords.
+Allows you to find patients whose names or IC contain any of the given keywords.
 
 Format: `find n\NAME [MORE_NAMES] OR find ic\IC_NUMBER`
 
@@ -228,7 +227,7 @@ Examples:
 
 ### Deleting a patient : `delete`
 
-Deletes the specified patient from the address book.
+Allows you to delete the specified patient from the address book.
 
 Format: `delete INDEX`
 
@@ -250,7 +249,7 @@ Tags: SevereAllergies
 ```
 ### Viewing help : `help`
 
-Shows a message explaining the available commands and their usage.
+Allows you to view a message explaining the available commands and their usage.
 
 Format: `help`
 
@@ -293,13 +292,16 @@ For more detailed information on each command, please refer to the User Guide.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Allows you to clear all entries from the address book.
+
+:exclamation: **Caution:** This action is irreversible.
+
 
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Allows you to exit the program.
 
 Format: `exit`
 
@@ -315,10 +317,6 @@ Nursing Address Book data are saved automatically as a JSON file `[JAR file loca
 If your changes to the data file makes its format invalid, Nursing Address Book will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the Nursing Address Book to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Viewing help : `help`
-
-Shows a message explaining commands available.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -344,6 +342,22 @@ Action | Format, Examples
 **Find** | `find n\KEYWORD [MORE_KEYWORDS]`, `find ic\KEYWORD`<br> e.g., `find n\James Jake`, `find ic\a1234567b`
 **List** | `list`
 **Help** | `help`
+
+## Glossary
+
+Term | Further Explanation, Representation and Examples
+--------|------------------
+**Alphanumeric** | A string that must contain any of alphabetical and numerical characters only. Excludes other special characters, whitespace etc. e.g., `A1`, `T1234567P`. 
+**CLI** | Command Line Interface
+**GUI** | Graphical User Interface
+**INDEX** | A positive integer that represents the position of a patient in the displayed list. e.g., `1`, `2`, `3`.
+**NAME** | The name of a patient. e.g., `John Doe`.
+**IC_NUMBER** | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.
+**DATE_OF_BIRTH** | The date of birth of a patient in the format of dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future etc).
+**ADMISSION_DATE** | The date a patient was admitted to the ward in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future etc).
+**WARD** | The ward where a patient is located. e.g., `A1`.
+**REMARK** | Optional remarks about a patient. e.g., `Patient is an amputee`.
+**TAG** | Optional tags to categorize a patient by health condition or other descriptors. e.g., `FallRisk`, `Diabetes`.
 
 --------------------------------------------------------------------------------------------------------------------
 
