@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Ic {
     public static final String MESSAGE_CONSTRAINTS =
-            "ICs starts with a capital letter, followed by a 7 digit number and ends with a capital letter."
+            "ICs starts with a capital letter, followed by a 7 digit number and ends with a capital letter. "
             + "It should not be blank.";
 
     // singapore regex for ic
