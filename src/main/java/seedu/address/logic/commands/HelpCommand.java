@@ -27,7 +27,7 @@ public class HelpCommand extends Command {
             + "[ad\\ADMISSION_DATE] [w\\WARD] [t\\TAG]...\n"
             + "   Edits the patient at the specified INDEX.\n"
             + "   Example: edit 1 ic\\T0123456P t\\\n\n"
-            + "Find: find n\\NAME [MORE_NAMES] OR find ic\\IC_NUMBER\n"
+            + "Find: find n\\NAME OR find ic\\IC_NUMBER\n"
             + "   Finds patients based on NAME or IC_NUMBER.\n"
             + "   Example: find n\\John Doe\n\n"
             + "List: list [n\\WARD] [t\\TAG]...\n"
