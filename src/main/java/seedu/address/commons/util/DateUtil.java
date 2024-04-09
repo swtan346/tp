@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A utility class for handling dates.
+ */
 public class DateUtil {
 
     public static final String MESSAGE_CONSTRAINTS_FORMAT = "%1$s takes in a date of format dd/MM/yyyy";
