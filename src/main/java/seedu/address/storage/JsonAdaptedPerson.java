@@ -61,9 +61,9 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        dob = source.getDob().value;
+        dob = source.getDob().toString();
         ic = source.getIc().value;
-        admissionDate = source.getAdmissionDate().value;
+        admissionDate = source.getAdmissionDate().toString();
         ward = source.getWard().value;
         remark = source.getRemark().value;
     }
@@ -115,7 +115,7 @@ class JsonAdaptedPerson {
         if (!AdmissionDate.isValidDate(admissionDate)) {
             throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS_FORMAT);
         }
-        if (!AdmissionDate.isValidAdmissionDate(admissionDate)) {
+        if (AdmissionDate.isFutureDate(admissionDate)) {
             throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS_OCCURRENCE);
         }
         final AdmissionDate modelAdmissionDate = new AdmissionDate(admissionDate);

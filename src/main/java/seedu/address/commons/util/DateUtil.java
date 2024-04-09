@@ -32,4 +32,11 @@ public class DateUtil {
         }
         return false;
     }
+
+    /**
+     * Returns the formatter for the date.
+     */
+    public static DateTimeFormatter getFormatter() {
+        return formatter;
+    }
 }

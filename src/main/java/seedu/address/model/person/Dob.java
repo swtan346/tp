@@ -38,7 +38,7 @@ public class Dob extends DateUtil {
     /**
      * Returns the date of birth
      */
-    public LocalDate getDob() {
+    public LocalDate getDate() {
         return dob;
     }
 

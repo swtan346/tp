@@ -139,7 +139,7 @@ public class ParserUtil {
             throw new ParseException(AdmissionDate.MESSAGE_CONSTRAINTS_FORMAT);
         }
 
-        if (!AdmissionDate.isValidAdmissionDate(admissionDate.trim())) {
+        if (AdmissionDate.isFutureDate(admissionDate.trim())) {
             throw new ParseException(AdmissionDate.MESSAGE_CONSTRAINTS_OCCURRENCE);
         }
         return new AdmissionDate(trimmedAdmissionDate);
