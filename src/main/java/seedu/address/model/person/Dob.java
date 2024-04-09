@@ -19,8 +19,8 @@ public class Dob extends DateUtil {
             "Date of birth should not be later than current date";
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    public final LocalDate dob;
-    public final String value;
+    private final LocalDate dob;
+    private final String value;
 
     /**
      * Constructs a {@code Dob}.
