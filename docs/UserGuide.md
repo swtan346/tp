@@ -94,24 +94,10 @@ A person can have any number of tags (including 0)
 * REMARK: Optional remarks about the patient (e.g. "Patient is an amputee"). Remarks have no limited length, and can only be used once.
 * TAG: Optional tags to categorize the patient by health condition or other descriptors. Tags should be alphanumeric and can be used multiple times.
 
-
-* Example command:
-
-`add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk r\Requires assistance feeding. t\Diabetes`
-
-```
-The patient, John Doe, is added! Here are his details:
-
-1. John Doe
-IC: T1234567P
-DOB: 21 Mar 2000
-Ward: A1
-Admission Date: 2 Feb 2022
-Remarks: 
-Tags: FallRisk, Diabetes
-
-You now have 1 patient(s) in your address book.
-```
+![AddCommand](images/command-examples/AddCommandExample.png)
+<center> input: add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk r\Requires assistance 
+feeding. t\Diabetes<br> 
+result: Adds the patient into the Nursing Address Book</center>
 
 ### Listing patients : `list`
 
@@ -124,45 +110,14 @@ Format: `list [w\WARD] [t\TAG]...`
 * WARD: Must only list at most 1 ward.
 * If multiple tags are provided, only patients with tags that encompass all the provided tags will be listed.
 
-(For the below commands for list, we assume the list contains 2 people, John Doe and Jane Doe)
+(For the below examples for list, we assume the list contains 2 people, John Doe and Jane Doe)
+![ListCommand](images/command-examples/ListCommandExample.png)
+<center> input: list<br> 
+result: Lists all patient in the Nursing Address Book</center>
 
-`list`
-```
-Listed all persons
-
-1. John Doe
-IC: T1234567P
-DOB: 21 Mar 2000
-Ward: A1
-Admission Date: 2 Feb 2022
-Remarks: 
-Tags: FallRisk, Diabetes
-
-2. Jane Doe
-IC: T1234765P
-DOB: 22 Apr 2000
-Ward: B4
-Admission Date: 3 Feb 2022
-Remarks: Likes to read
-Tags: FallRisk, SevereAllergies
-```
-
-
-`list w\B4 t\SevereAllergies`
-
-```
-Listed all persons with:
-Tags: FallRisk
-Ward: B4
-
-1. Jane Doe
-IC: T1234765P
-DOB: 22 Apr 2000
-Ward: B4
-Admission Date: 3 Feb 2022
-Remarks: Likes to read
-Tags: FallRisk, SevereAllergies
-```
+![ListByWardAndTag](images/command-examples/ListByWardAndTag.png)
+<center> input: list w\B4 t\SevereAllergies<br> 
+result: Lists all patient in ward B4 and have severe allergies</center>
 
 ### Editing a patient's details : `edit`
 
@@ -177,34 +132,10 @@ Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DA
 * You can remove all the patient’s tags by typing `t\ ` without
     specifying any tags after it.
 
-Example command:
-
-`edit 1 ic\T0123456P t\ r\ `
-
-_Edits the IC_NUMBER, TAGS and REMARKS of the 1st person to be `T0123456P` for IC_NUMBER and empty for both tags and remarks._
-
-**Before**:
-```
-John Doe
-IC: T1234567P
-Date of Birth: 21 Mar 2000
-Admission Date: 2 Feb 2022
-Ward: A1
-Remarks: Requires assistance feeding.
-Tags: FallRisk, Diabetes
-```
-**After**:
-```
-Edited details of patient 1 in your contact book as follows:
-
-John Doe
-IC: T0123456P
-Date of Birth: 21 Mar 2000
-Admission Date: 2 Feb 2022
-Ward: A1
-Remarks:
-Tags:
-```
+![EditCommand](images/command-examples/EditCommandExample.png)
+<center> input: edit 1 ic\T0123456P t\ r\
+<br> 
+result: Edits the IC_NUMBER, TAGS and REMARKS of the first person</center>
 
 ### Locating patients either by name or by IC: `find`
 
@@ -220,10 +151,9 @@ Format: `find [n\NAME] [ic\IC_NUMBER]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * Only full IC will be matched e.g. `a1234567b` will not match `123`
 
-Examples:
-* `find n\John` returns `john` and `John Doe`
-* `find n\alex david` returns `Alex Yeoh` and `David Li`
-* `find ic\a1234567b` returns `A1234567B`<br>
+![FindCommand](images/command-examples/FindCommandExample.png)
+<center> input: find n\john<br> 
+result: Finds patient with the name john</center>
 
 ### Deleting a patient : `delete`
 
@@ -235,53 +165,21 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Example command:
+![DeleteCommand](images/command-examples/DeleteCommandExample.png)
+<center> input: delete 2<br> 
+result: Deletes the second person in the displayed list</center>
 
-`delete 2` deletes the 2nd person in the address book.
-```
-Deleted Person: Jane Doe
-IC: A1234567B
-DOB: 02/02/2000
-Ward: A1
-Admitted: 02/02/2020
-Remarks: likes to go to the park
-Tags: SevereAllergies
-```
 ### Viewing help : `help`
 
 Allows you to view a message explaining the available commands and their usage.
 
 Format: `help`
 
-Output:
+* A pop-up window will appear after executing the help command
 
-```
-Here are the list of available commands:
-
-Add: add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]...
-   Example: add n\John Doe ic\T1234567P dob\01/01/2000 ad\25/03/2024 w\A1 r\Has a sweet tooth. t\Diabetes t\FallRisk
-
-Clear: clear
-   Clears all entries from the address book.
-
-Delete: delete INDEX
-   Example: delete 3
-
-Edit: edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]...  
-   Example: edit 1 ic\T0123456P t\
-
-Find: find KEYWORD [MORE_KEYWORDS]
-   Example: find John
-
-List: list [w\WARD] [t\TAG]...
-   Example: list w\A1 t\Diabetes
-
-Exit: exit
-   Exits the application.
-
-For more detailed information on each command, please refer to the User Guide.
-```
-
+![HelpCommand](images/command-examples/HelpCommandExample.png)
+<center> input: help<br> 
+result: Displays the help window</center>
 
 ### Clearing all entries : `clear`
 
@@ -289,8 +187,12 @@ Allows you to clear all entries from the address book.
 
 :exclamation: **Caution:** This action is irreversible.
 
-
 Format: `clear`
+
+![ClearCommand](images/command-examples/ClearCommandExample.png)
+<center> input: clear<br> 
+result: Removes all patients in the Nursing Address Book</center>
+
 
 ### Exiting the program : `exit`
 
