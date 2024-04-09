@@ -141,7 +141,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_dobAndAdmissionDateInFuture_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_TAGS,
                 INVALID_DOB_FUTURE, VALID_IC, INVALID_ADMISSION_DATE_FUTURE, VALID_WARD, VALID_REMARK);
-        String expectedMessage = Dob.MESSAGE_CONSTRAINTS_OCCURRENCE;
+        String expectedMessage = Dob.MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
