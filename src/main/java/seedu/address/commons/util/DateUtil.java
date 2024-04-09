@@ -7,6 +7,11 @@ import java.time.format.DateTimeParseException;
 public class DateUtil {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+    /**
+     * Returns true if a given string is a valid date.
+     *
+     * @param value The date to be checked.
+     */
     public static boolean isValidDate(String value) {
         try {
             LocalDate date = LocalDate.parse(value, formatter);
@@ -15,7 +20,11 @@ public class DateUtil {
             return false;
         }
     }
-
+    /**
+     * Returns true if a given string is a future date.
+     *
+     * @param value The date to be checked.
+     */
     public static boolean isFutureDate(String value) {
         if (isValidDate(value)) {
             LocalDate date = LocalDate.parse(value, formatter);

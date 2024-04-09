@@ -1,16 +1,17 @@
 package seedu.address.model.person;
 
+import seedu.address.commons.util.DateUtil;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a patient's date of birth in the address book.
  */
-public class Dob {
+public class Dob extends DateUtil {
     public static final String MESSAGE_CONSTRAINTS_FORMAT =
             "Dates of birth takes in a date of format dd/MM/yyyy";
 
@@ -18,7 +19,7 @@ public class Dob {
             "Date of birth should not be later than current date";
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    public final LocalDate date;
+    public final LocalDate dob;
     public final String value;
 
     /**
@@ -29,36 +30,16 @@ public class Dob {
     public Dob(String value) {
         requireNonNull(value);
         checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS_FORMAT);
-        checkArgument(isValidDob(value), MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE);
-        this.date = LocalDate.parse(value, formatter);
+        checkArgument(!isFutureDate(value), MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE);
+        this.dob = LocalDate.parse(value, formatter);
         this.value = value;
     }
 
     /**
-     * Returns true if a given string is a valid date.
-     *
-     * @param dob The date of birth to be checked.
+     * Returns the date of birth
      */
-    public static boolean isValidDate(String dob) {
-        try {
-            LocalDate date = LocalDate.parse(dob, formatter);
-            return true;
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Returns true if a given string is a valid date of birth.
-     *
-     * @param dob The date of birth to be checked.
-     */
-    public static boolean isValidDob(String dob) {
-        if (isValidDate(dob)) {
-            LocalDate date = LocalDate.parse(dob, formatter);
-            return !date.isAfter(LocalDate.now());
-        }
-        return false;
+    public LocalDate getDob() {
+        return dob;
     }
 
     @Override
@@ -77,7 +58,7 @@ public class Dob {
         }
 
         Dob otherDob = (Dob) other;
-        return date.equals(otherDob.date);
+        return dob.equals(otherDob.dob);
     }
 
     @Override

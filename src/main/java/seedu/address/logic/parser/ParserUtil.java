@@ -105,7 +105,7 @@ public class ParserUtil {
         if (!Dob.isValidDate(trimmedDob)) {
             throw new ParseException(Dob.MESSAGE_CONSTRAINTS_FORMAT);
         }
-        if (!Dob.isValidDob(trimmedDob)) {
+        if (Dob.isFutureDate(trimmedDob)) {
             throw new ParseException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE);
         }
         return new Dob(trimmedDob);

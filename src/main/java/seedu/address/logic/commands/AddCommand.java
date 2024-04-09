@@ -62,7 +62,7 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (toAdd.getDob().date.isAfter(toAdd.getAdmissionDate().date)) {
+        if (toAdd.getDob().getDob().isAfter(toAdd.getAdmissionDate().date)) {
             throw new CommandException(MESSAGE_DOB_AFTER_ADMISSION);
         }
 
