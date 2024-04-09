@@ -13,8 +13,12 @@ import java.time.format.DateTimeParseException;
 public class Dob {
     public static final String MESSAGE_CONSTRAINTS_FORMAT =
             "Dates of birth takes in a date of format dd/MM/yyyy";
-    public static final String MESSAGE_CONSTRAINTS_OCCURRENCE =
+    public static final String MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_ADMISSION =
             "Date of birth should not be later than date of admission";
+
+    public static final String MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE =
+            "Date of birth should not be later than current date";
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public final LocalDate date;
     public final String value;
@@ -27,7 +31,7 @@ public class Dob {
     public Dob(String value) {
         requireNonNull(value);
         checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS_FORMAT);
-        checkArgument(isValidDob(value), MESSAGE_CONSTRAINTS_OCCURRENCE);
+        checkArgument(isValidDob(value), MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE);
         this.date = LocalDate.parse(value, formatter);
         this.value = value;
     }
