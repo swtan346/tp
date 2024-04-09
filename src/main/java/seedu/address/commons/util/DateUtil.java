@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DateUtil {
+
+    public static final String MESSAGE_CONSTRAINTS_FORMAT = "%1$s takes in a date of format dd/MM/yyyy";
+    public static final String MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE = "%1$s should not be later than current date";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**

@@ -11,8 +11,9 @@ import java.time.LocalDate;
  * Represents a patient's admission date in the address book.
  */
 public class AdmissionDate extends DateUtil {
+    public static final String DATE_TYPE = "Admission date";
     public static final String MESSAGE_CONSTRAINTS_FORMAT =
-            "Admission dates take in date of format dd/MM/yyyy.";
+            String.format(DateUtil.MESSAGE_CONSTRAINTS_FORMAT, DATE_TYPE);
     public static final String MESSAGE_CONSTRAINTS_OCCURRENCE =
             "Admission date should not be earlier than date of birth or later than current date";
 

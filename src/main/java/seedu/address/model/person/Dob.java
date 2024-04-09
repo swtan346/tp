@@ -12,11 +12,11 @@ import java.time.format.DateTimeFormatter;
  * Represents a patient's date of birth in the address book.
  */
 public class Dob extends DateUtil {
+    public static final String DATE_TYPE = "Date of birth";
     public static final String MESSAGE_CONSTRAINTS_FORMAT =
-            "Dates of birth takes in a date of format dd/MM/yyyy";
-
-    public static final String MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE =
-            "Date of birth should not be later than current date";
+            String.format(DateUtil.MESSAGE_CONSTRAINTS_FORMAT, DATE_TYPE);
+    public static final String MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE =
+            String.format(DateUtil.MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE, DATE_TYPE);
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private final LocalDate dob;
@@ -30,7 +30,7 @@ public class Dob extends DateUtil {
     public Dob(String value) {
         requireNonNull(value);
         checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS_FORMAT);
-        checkArgument(!isFutureDate(value), MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE);
+        checkArgument(!isFutureDate(value), MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE);
         this.dob = LocalDate.parse(value, formatter);
         this.value = value;
     }

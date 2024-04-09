@@ -96,7 +96,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_FORMAT);
         }
         if (Dob.isFutureDate(dob)) {
-            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE);
+            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE);
         }
         final Dob modelDob = new Dob(dob);
 
