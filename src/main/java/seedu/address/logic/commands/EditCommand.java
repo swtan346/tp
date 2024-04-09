@@ -91,7 +91,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (editedPerson.getDob().getDate().isAfter(editedPerson.getAdmissionDate().getAdmissionDate())) {
+        if (editedPerson.getDob().getDate().isAfter(editedPerson.getAdmissionDate().getDate())) {
             throw new CommandException(MESSAGE_DOB_AFTER_ADMISSION);
         }
 

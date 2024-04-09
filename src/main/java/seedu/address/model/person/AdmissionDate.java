@@ -35,7 +35,7 @@ public class AdmissionDate extends DateUtil {
     /**
      * Returns the date of birth
      */
-    public LocalDate getAdmissionDate() {
+    public LocalDate getDate() {
         return admissionDate;
     }
 
