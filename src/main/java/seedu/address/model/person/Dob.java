@@ -36,6 +36,13 @@ public class Dob extends DateUtil {
     }
 
     /**
+     * Checks if the date of birth is after the admission date
+     */
+    public boolean isAfterAdmissionDate(AdmissionDate admissionDate) {
+        return dob.isAfter(admissionDate.getDate());
+    }
+
+    /**
      * Returns the date of birth
      */
     public LocalDate getDate() {
