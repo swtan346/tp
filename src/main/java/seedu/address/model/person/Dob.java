@@ -13,8 +13,6 @@ import java.time.format.DateTimeParseException;
 public class Dob {
     public static final String MESSAGE_CONSTRAINTS_FORMAT =
             "Dates of birth takes in a date of format dd/MM/yyyy";
-    public static final String MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_ADMISSION =
-            "Date of birth should not be later than date of admission";
 
     public static final String MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE =
             "Date of birth should not be later than current date";
