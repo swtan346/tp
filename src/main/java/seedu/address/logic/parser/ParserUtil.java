@@ -102,13 +102,11 @@ public class ParserUtil {
     public static Dob parseDob(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
-        if (!Dob.isValidDate(trimmedDob)) {
-            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_FORMAT);
+        try {
+            return new Dob(trimmedDob);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        if (Dob.isFutureDate(trimmedDob)) {
-            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE_LATER_THAN_CURRENT_DATE);
-        }
-        return new Dob(trimmedDob);
     }
 
     /**
@@ -135,14 +133,11 @@ public class ParserUtil {
     public static AdmissionDate parseAdmissionDate(String admissionDate) throws ParseException {
         requireNonNull(admissionDate);
         String trimmedAdmissionDate = admissionDate.trim();
-        if (!AdmissionDate.isValidDate(admissionDate.trim())) {
-            throw new ParseException(AdmissionDate.MESSAGE_CONSTRAINTS_FORMAT);
+        try {
+            return new AdmissionDate(trimmedAdmissionDate);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-
-        if (AdmissionDate.isFutureDate(admissionDate.trim())) {
-            throw new ParseException(AdmissionDate.MESSAGE_CONSTRAINTS_OCCURRENCE);
-        }
-        return new AdmissionDate(trimmedAdmissionDate);
     }
 
     /**
