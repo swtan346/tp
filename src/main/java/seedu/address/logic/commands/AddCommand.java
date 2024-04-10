@@ -13,6 +13,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Dob;
 import seedu.address.model.person.Person;
 
 /**
@@ -41,9 +42,6 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "A patient with this IC already exists in the address book";
 
-    public static final String MESSAGE_DOB_AFTER_ADMISSION =
-            "Date of birth should not be later than date of admission.";
-
     private final Person toAdd;
 
     /**
@@ -62,8 +60,8 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (toAdd.getDob().getDate().isAfter(toAdd.getAdmissionDate().getDate())) {
-            throw new CommandException(MESSAGE_DOB_AFTER_ADMISSION);
+        if (toAdd.getDob().isAfterAdmissionDate(toAdd.getAdmissionDate())) {
+            throw new CommandException(Dob.MESSAGE_DOB_AFTER_ADMISSION);
         }
 
         model.addPerson(toAdd);

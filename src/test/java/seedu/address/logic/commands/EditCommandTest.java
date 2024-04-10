@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.logic.commands.EditCommand.MESSAGE_DOB_AFTER_ADMISSION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -24,6 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Dob;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -168,7 +168,7 @@ public class EditCommandTest {
                 .withAdmissionDate("12/08/2019").build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, MESSAGE_DOB_AFTER_ADMISSION);
+        assertCommandFailure(editCommand, model, Dob.MESSAGE_DOB_AFTER_ADMISSION);
     }
 
     @Test

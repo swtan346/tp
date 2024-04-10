@@ -18,6 +18,9 @@ public class Dob extends DateUtil {
     public static final String MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE =
             String.format(DateUtil.MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE, DATE_TYPE);
 
+    public static final String MESSAGE_DOB_AFTER_ADMISSION =
+            "Date of birth should not be later than date of admission.";
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private final LocalDate dob;
     private final String value;
