@@ -30,30 +30,21 @@ public class ListCommandParserTest {
         // ineligible parameters after list command
         assertParseFailure(parser, "BOO",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validArgs_returnsListCommand() {
+        // no leading and trailing whitespaces
+        ListCommand expectedListCommand =
+                new ListCommand(
+                        new ListKeywordsPredicate(Arrays.asList(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES),
+                                VALID_WARD_BOB));
+        assertParseSuccess(parser, TAG_DESC_DIABETES
+                + TAG_DESC_FALL_RISK + WARD_DESC_BOB, expectedListCommand);
 
         // multiple fields repeated for ward
         assertParseFailure(parser, WARD_DESC_AMY + WARD_DESC_BOB,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_WARD));
     }
 
-    @Test
-    public void parse_validArgs_returnsListCommand() {
-        // ward only
-        ListCommand expectedListCommand = new ListCommand(
-                new ListKeywordsPredicate(Arrays.asList(), VALID_WARD_BOB));
-        assertParseSuccess(parser, WARD_DESC_BOB, expectedListCommand);
-
-        // tag only
-        expectedListCommand = new ListCommand(
-                new ListKeywordsPredicate(Arrays.asList(VALID_TAG_FALL_RISK), ""));
-        assertParseSuccess(parser, TAG_DESC_FALL_RISK, expectedListCommand);
-
-        // both ward and tags
-        expectedListCommand =
-                new ListCommand(
-                        new ListKeywordsPredicate(Arrays.asList(VALID_TAG_FALL_RISK, VALID_TAG_DIABETES),
-                                VALID_WARD_BOB));
-        assertParseSuccess(parser, TAG_DESC_DIABETES
-                + TAG_DESC_FALL_RISK + WARD_DESC_BOB, expectedListCommand);
-    }
 }
