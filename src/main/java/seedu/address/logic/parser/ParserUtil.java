@@ -47,10 +47,11 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        try {
+            return new Name(trimmedName);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        return new Name(trimmedName);
     }
 
     /**
@@ -62,10 +63,11 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        try {
+            return new Tag(trimmedTag);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        return new Tag(trimmedTag);
     }
 
     /**
@@ -120,10 +122,11 @@ public class ParserUtil {
     public static Ic parseIc(String ic) throws ParseException {
         requireNonNull(ic);
         String trimmedIc = ic.trim();
-        if (!Ic.isValidIc(trimmedIc)) {
-            throw new ParseException(Ic.MESSAGE_CONSTRAINTS);
+        try {
+            return new Ic(trimmedIc);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        return new Ic(trimmedIc);
     }
 
     /**
@@ -154,12 +157,11 @@ public class ParserUtil {
     public static Ward parseWard(String ward) throws ParseException {
         requireNonNull(ward);
         String trimmedWard = ward.trim();
-        if (!Ward.isValidWard(trimmedWard)) {
-            throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
+        try {
+            return new Ward(trimmedWard);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        // For now we assume all strings are valid wards.
-        // We can change this to be better in the future.
-        return new Ward(trimmedWard);
     }
 
     /**
