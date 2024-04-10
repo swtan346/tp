@@ -10,9 +10,9 @@ public class Ward {
     public static final String MESSAGE_CONSTRAINTS =
             "Ward addresses should only contain alphanumeric characters and no spaces, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+$";
+    private static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+$";
 
-    public final String value;
+    private final String value;
 
     /**
     * Constructs a {@code Ward}.

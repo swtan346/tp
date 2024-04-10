@@ -61,11 +61,11 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        dob = source.getDob().value;
-        ic = source.getIc().value;
-        admissionDate = source.getAdmissionDate().value;
-        ward = source.getWard().value;
-        remark = source.getRemark().value;
+        dob = source.getDob().toString();
+        ic = source.getIc().toString();
+        admissionDate = source.getAdmissionDate().toString();
+        ward = source.getWard().toString();
+        remark = source.getRemark().toString();
     }
 
     /**
