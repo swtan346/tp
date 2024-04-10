@@ -52,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        name.setText(person.getName().toString());
         dob.setText("DOB: " + person.getDob().value);
         ic.setText("IC: " + person.getIc().value);
         admissionDate.setText("Admission Date: " + person.getAdmissionDate().value);
