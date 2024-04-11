@@ -29,11 +29,11 @@ If you are a current user, feel free to jump into our [table of contents](#table
 * [The Interface](#the-interface)
 * [Features](#features)
   * [Patient Management Features](#patient-management-features)
-    * [Adding a Patient](#adding-a-patient--add)
+    * [Adding a patient](#adding-a-patient--add)
     * [Listing relevant patients](#listing-patients--list)
     * [Editing a patient’s details](#editing-a-patients-details--edit)
     * [Locating patient contacts](#locating-a-patients-contact--find)
-    * [Deleting a Patient](#deleting-a-patient--delete)
+    * [Deleting a patient](#deleting-a-patient--delete)
   * [General Features](#general-features)
     * [Viewing Help](#viewing-help--help)
     * [Clearing all Entries](#clearing-all-entries--clear)
@@ -188,7 +188,7 @@ For patient management features, NAB provides the following commands:
 
 Back to [Features](#features) or [Table of Contents](#table-of-contents)
 
-#### Adding a patient: `add` 
+#### Adding a patient : `add`
 
 Allows you to add a new patient's information to the address book.
 
@@ -315,7 +315,7 @@ Admission Date: 02/02/2022
 Remarks:
 ```
 
-#### Locating a patient's contact: `find`
+#### Locating a patient's contact : `find`
 
 Allows you to find patients whose name or IC contain any of the given keywords.
 
