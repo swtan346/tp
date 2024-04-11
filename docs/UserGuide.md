@@ -197,17 +197,13 @@ Example command:
 `add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk r\Requires assistance feeding. t\Diabetes`
 
 ```
-The patient, John Doe, is added! Here are his details:
-
-1. John Doe
+New patient added: John Doe
 IC: T1234567P
-DOB: 21 Mar 2000
+DOB: 21/03/2000
 Ward: A1
-Admission Date: 2 Feb 2022
-Remarks: 
-Tags: FallRisk, Diabetes
-
-You now have 1 patient(s) in your address book.
+Admission Date: 02/02/2022
+Remarks: Requires assistance feeding.
+Tags: [FallRisk][Diabetes]
 ```
 
 #### Listing patients : `list`
