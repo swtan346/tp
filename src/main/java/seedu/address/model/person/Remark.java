@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's remarks in the address book.
  */
 public class Remark {
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Remark}.

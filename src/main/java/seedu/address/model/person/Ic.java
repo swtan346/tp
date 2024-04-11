@@ -12,9 +12,9 @@ public class Ic {
             + "It should not be blank.";
 
     // Singapore regex for ic
-    public static final String VALIDATION_REGEX = "^[A-Z]\\d{7}[A-Z]$";
+    private static final String VALIDATION_REGEX = "^[A-Z]\\d{7}[A-Z]$";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Ic}.

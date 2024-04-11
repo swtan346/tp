@@ -67,6 +67,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Check if only 1 parameter is used.
+     *
      * @param argMultimap Input being mapped.
      * @return true if only name or ic input.
      */
