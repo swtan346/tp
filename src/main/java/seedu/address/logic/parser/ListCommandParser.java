@@ -19,7 +19,10 @@ public class ListCommandParser implements Parser<ListCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
      * and returns a ListCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
+     * @param args the arguments to parse.
+     * @return a ListCommand object for execution.
      */
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
@@ -60,6 +63,9 @@ public class ListCommandParser implements Parser<ListCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap the {@code ArgumentMultimap} to check for the presence of prefixes.
+     * @param prefixes the prefixes to check for.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
