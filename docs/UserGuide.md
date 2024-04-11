@@ -163,9 +163,9 @@ The features are categorized into two main sections:
 | **IC_NUMBER**      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.             |
 | **DATE_OF_BIRTH**  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, impossible dates such as 30th February etc).       |              
 | **ADMISSION_DATE** | The date a patient was admitted to the ward.                                   | The admission date of the patient must be  in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future , impossible dates such as 30th February etc). |
-| **WARD**           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising camelCase e.g., `FallRisk`.                                                                                                                               |                                                                                               
+| **WARD**           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising CamelCase e.g., `FallRisk`.                                                                                                                               |                                                                                               
 | **REMARK**         | Optional remark about a patient.                                               | Any string input, e.g., `Patient is an amputee`.                                                                                                                                                                                                                                            |                                                                                              
-| **TAG**            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising camelCase e.g., `FallRisk`.                                                                               |                                                                                             
+| **TAG**            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising CamelCase e.g., `FallRisk`.                                                                               |                                                                                             
 
 ### Patient Management Features
 For patient management features, NAB provides the following commands:
@@ -284,27 +284,26 @@ Example command:
 
 _Edits the IC_NUMBER, TAGS and REMARKS of the 1st person to be `T0123456P` for IC_NUMBER and empty for both tags and remarks._
 
+The following shows the change in contact details:
 **Before**:
 ```
 John Doe
-IC: T1234567P
-Date of Birth: 21 Mar 2000
-Admission Date: 2 Feb 2022
-Ward: A1
-Remarks: Requires assistance feeding.
 Tags: FallRisk, Diabetes
+IC: T1234567P
+DOB: 21/03/2000
+Ward: A1
+Admission Date: 02/02/2022
+Remarks: Requires assistance feeding.
 ```
 **After**:
 ```
-Edited details of patient 1 in your contact book as follows:
-
 John Doe
-IC: T0123456P
-Date of Birth: 21 Mar 2000
-Admission Date: 2 Feb 2022
-Ward: A1
-Remarks:
 Tags:
+IC: T0123456P
+DOB: 21/03/2000
+Ward: A1
+Admission Date: 02/02/2022
+Remarks:
 ```
 
 #### Locating a patient's contact: `find`
@@ -365,6 +364,10 @@ Back to [Features](#features) or [Table of Contents](#table-of-contents)
 Allows you to view a message explaining the available commands and their usage.
 
 Format: `help`
+
+On entering the `help` command, the following window will pop up:
+![Help](images/help.png)
+
 
 Output:
 
@@ -465,6 +468,8 @@ Back to [Table of Contents](#table-of-contents)
 ## Known issues & Troubleshoting
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+2. **When re-accessing the help window after minimising it**, the help window may not pop up again. The remedy is to mouse over the NAB icon and click on the preview window to bring it back to the front.
+![help_window](images/help_window.png)
 
 Back to [Table of Contents](#table-of-contents)
 
