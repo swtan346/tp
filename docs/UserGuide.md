@@ -18,6 +18,9 @@ If you wish to get started immediately, you can skip the introduction and head s
 
 If you are a current user, feel free to jump into our [table of contents](#table-of-contents) to find the section you need help with.
 
+<div markdown="span" class="alert alert-info">
+**:information_source: Note:** The Nursing Address Book (NAB) application is currently available only in English. However, we are actively working on expanding the language support, and plan to offer additional language options in future releases.
+</div>
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
 * [Introduction](#introduction)
@@ -38,7 +41,7 @@ If you are a current user, feel free to jump into our [table of contents](#table
     * [Editing the data file](#editing-the-data-file)
 * [Command Summary](#command-summary)
 * [FAQ](#faq)
-* [Known Issues & Troubleshooting](#known-issues--troubleshoting)
+* [Known Issues & Troubleshooting](#known-issues--troubleshooting)
 * [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -62,7 +65,7 @@ If you are a new user, we recommend you to continue scrolling to get a better un
 
 If you are a current user, you can skip this section and head straight to the [Features](#features) section or the 
 [Command Summary](#command-summary) to hone your skills. If you encountered some trouble, be sure to look through our 
-[FAQ](#faq) and [Known Issues & Troubleshooting](#known-issues--troubleshoting) sections for solutions.
+[FAQ](#faq) and [Known Issues & Troubleshooting](#known-issues--troubleshooting) sections for solutions.
 
 Nonetheless, if you encounter any foreign terms, be sure to head to our [Glossary](#glossary)!
 
@@ -92,14 +95,17 @@ Back to [Table of Contents](#table-of-contents)
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Nursing Address Book.
 
-4. Open a command terminal. For Windows users, search for `cmd` in the Start menu and run it as an administrator if necessary. Use the `cd` command to navigate to the folder where you placed the jar file. Run the application by executing `java -jar nab.jar`.<br>
+4. Open a command terminal. 
+   * For Windows users: Search for `cmd` in the Start menu and run it as an administrator if necessary.
+   * For Mac/Linux users: Open the "Terminal" application (usually found within your Applications/Utilities folder).
+5. Use the `cd` command to navigate to the folder where you placed the jar file.
+6. Run the application by executing `java -jar nab.jar`.<br>
    Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
    ![Ui](images/Ui.png)
    <br>
-   _Note for Windows Users: Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be required._
-
-    Should you need help navigating the interface, refer to the [Interface](#the-interface) section.
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   _Note for Windows Users: Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file executable._
+   Should you need help navigating the interface, refer to the [Interface](#the-interface) section.
+7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all patients.
@@ -110,7 +116,7 @@ Back to [Table of Contents](#table-of-contents)
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+8. Refer to the [Features](#features) below for details of each command.
 
 Back to [Table of Contents](#table-of-contents)
 
@@ -143,16 +149,16 @@ The features are categorized into two main sections:
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n\NAME`, `NAME` is a parameter which can be used as `add n\John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n\NAME [t\TAG]` can be used as `n\John Doe t\FallRisk` or as `n\John Doe`.
+* Parameters in square brackets are optional.<br>
+  e.g. `n\NAME [t\TAG]` can be used as `n\John Doe t\FallRisk` or as `n\John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Parameters with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t\TAG]…​` can be used as ` ` (i.e. 0 times), `t\Diabetes`, `t\Diabetes t\HearingImpaired` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n\NAME ic\IC_NUMBER`, `ic\IC_NUMBER n\NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `exit` or `help`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -160,28 +166,28 @@ The features are categorized into two main sections:
 
 ### Parameters for commands
 
-| Parameter          | Description                                                                    | Valid Input                                                                                                                                                                                                                                                                                 |
-|--------------------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **INDEX**          | The position of a patient in the displayed list.                               | Positive integers (i.e. from 1 onwards) e.g., `1`, `2`, `3`. Should not be larger than the length of displayed list.                                                                                                                                                                        |                                                                                                                                         
-| **NAME**           | The name of a patient.                                                         | Common names are generally accepted. Names should be alphanumeric, with the inclusion of the following special characters: " ' ", " - " and " / ". e.g., `John Doe`, `Nagaratnam s/o Suppiah`.                                                                                              |                                                                                                                                                                                                         
-| **IC_NUMBER**      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.             |
-| **DATE_OF_BIRTH**  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, impossible dates such as 30th February etc).       |              
-| **ADMISSION_DATE** | The date a patient was admitted to the ward.                                   | The admission date of the patient must be  in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future , impossible dates such as 30th February etc). |
-| **WARD**           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising CamelCase e.g., `FallRisk`.                                                                                                                               |                                                                                               
-| **REMARK**         | Optional remark about a patient.                                               | Any string input, e.g., `Patient is an amputee`.                                                                                                                                                                                                                                            |                                                                                              
-| **TAG**            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising CamelCase e.g., `FallRisk`.                                                                               |                                                                                             
+| Parameter          | Description                                                                    | Valid Input                                                                                                                                                                                                                                                                               |
+|--------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **INDEX**          | The position of a patient in the displayed list.                               | Positive integers (i.e. from 1 onwards) e.g., `1`, `2`, `3`. Should not be larger than the length of displayed list.                                                                                                                                                                      |                                                                                                                                         
+| **NAME**           | The name of a patient.                                                         | Common names are generally accepted. Names should be alphanumeric, with the inclusion of the following special characters: " ' ", " - " and " / ". e.g., `John Doe`, `Nagaratnam s/o Suppiah`.                                                                                            |                                                                                                                                                                                                         
+| **IC_NUMBER**      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.           |
+| **DATE_OF_BIRTH**  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, impossible dates such as 30th February etc).     |              
+| **ADMISSION_DATE** | The date a patient was admitted to the ward.                                   | The admission date of the patient must be in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, impossible dates such as 30th February etc). |
+| **WARD**           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising CamelCase e.g., `FallRisk`.                                                                                                                             |                                                                                               
+| **REMARK**         | Optional remark about a patient.                                               | Any string input, e.g., `Patient is an amputee`.                                                                                                                                                                                                                                          |                                                                                              
+| **TAG**            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising CamelCase e.g., `FallRisk`.                                                                             |                                                                                             
 
 ### Patient Management Features
 For patient management features, NAB provides the following commands:
-- [**Adding a patient**](#adding-a-patient-add): `add`
+- [**Adding a patient**](#adding-a-patient--add): `add`
 - [**Listing relevant patients**](#listing-patients--list): `list`
 - [**Editing a patient's details**](#editing-a-patients-details--edit): `edit`
-- [**Locating patient contacts**](#locating-a-patients-contact-find): `find`
+- [**Locating patient contacts**](#locating-a-patients-contact--find): `find`
 - [**Deleting a patient**](#deleting-a-patient--delete): `delete`
 
 Back to [Features](#features) or [Table of Contents](#table-of-contents)
 
-#### Adding a patient: `add`
+#### Adding a patient: `add` 
 
 Allows you to add a new patient's information to the address book.
 
@@ -194,7 +200,7 @@ A person can have any number of tags (including 0)
 * NAME: The full name of the patient. Each word should be split with a whitespace.
 * DATE_OF_BIRTH: Date of birth must not be later than admission date, and not be later than the current date.
 * ADMISSION_DATE: Admission date must not be earlier than date of birth, and not be later than the current date.
-* REMARK: Remarks have no limited length, and each patient can only have ONE remark field.
+* REMARK: Remarks have no length limit, and each patient can only have ONE remark field.
 
 Example command:
 
@@ -212,7 +218,9 @@ Tags: [FallRisk][Diabetes]
 
 #### Listing patients : `list`
 
-Allows you to view a list of patients in NAB. With no optional parameters, you will be able to list all patients.
+Allows you to view a list of patients in the address book. 
+
+If you use `list` command without optional parameters, you will be able to list all patients.
 
 You may also filter by ward and/or tags to list only patients in a specific ward and/or with specific tags.
 
@@ -222,7 +230,7 @@ Format: `list [w\WARD] [t\TAG]...`
 * Only patients with tags (and appropriate ward, if specified) that encompass all the provided tags will be listed.
 
   :exclamation: **Caution:** If you wish to list all patients, utilise the command `list` instead of using empty parameters. Otherwise, it will assume that it is an invalid input.
-* `list` results are permissive, meaning that specified tags will be treated as case-insensitive. Patients with tags that meet the above criteria they will be listed. 
+* `list` results are permissive, meaning that specified tags will be treated as case-insensitive. Patients with tags that meet the above criteria will be listed. 
 * For the `list` commands below, we assume the list contains 2 people, John Doe and Jane Doe)
 
 Example command:
@@ -308,7 +316,7 @@ Remarks:
 
 #### Locating a patient's contact: `find`
 
-Allows you to find patients whose names or IC contain any of the given keywords.
+Allows you to find patients whose name or IC contain any of the given keywords.
 
 Format: `find n\NAME OR find ic\IC_NUMBER`
 
@@ -427,14 +435,15 @@ Back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues & Troubleshoting
+## Known issues & Troubleshooting
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. **When using multiple screens**, if you move the application window to a secondary screen, and later disconnect/turn off that secondary screen while the application is still open, the GUI will open off-screen on the primary screen. The remedy is to delete the `preferences.json` file created by the application before running it again.
 2. **When re-accessing the help window after minimising it**, the help window may not pop up again. The remedy is to mouse over the NAB icon and click on the preview window to bring it back to the front.
 ![help_window](images/help_window.png)
-
+3. **Empty tags cannot be listed.**  The `list` command will not display tags that do not contain any associated content. This is done to provide the most useful results.
 Back to [Table of Contents](#table-of-contents)
-
+4. **Language Support:** NAB is currently available only in English. Support for additional languages will be introduced in future releases.
+5. **Slow performance**: If you experience slow performance or lag while using NAB, especially on older or low-end systems, you can try closing other running applications to free up system resources. Additionally, you can try restarting the application or your system to clear any potential memory leaks or temporary issues.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
