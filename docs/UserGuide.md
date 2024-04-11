@@ -183,7 +183,7 @@ Allows you to add a new patient's information to the address book.
 
 Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 A person can have any number of tags (including 0)
 </div>
 
@@ -221,7 +221,7 @@ Format: `list [w\WARD] [t\TAG]...`
 * WARD: Must only list at most 1 ward.
 * Only patients with tags (and appropriate ward, if specified) that encompass all the provided tags will be listed.
 
-  :exclamation: **Caution** If you wish to list all patients, utilise the command `list` instead of using empty parameters. Otherwise, it will assume that it is an invalid input.
+  :exclamation: **Caution:** If you wish to list all patients, utilise the command `list` instead of using empty parameters. Otherwise, it will assume that it is an invalid input.
 * `list` results are permissive, meaning that specified tags will be treated as case-insensitive. Patients with tags that meet the above criteria they will be listed. 
 * For the `list` commands below, we assume the list contains 2 people, John Doe and Jane Doe)
 
@@ -393,7 +393,7 @@ Data from Nursing Address Book are saved in the hard disk automatically after an
 
 Nursing Address Book data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, Nursing Address Book will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the Nursing Address Book to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
