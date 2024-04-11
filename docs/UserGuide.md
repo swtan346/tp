@@ -312,7 +312,6 @@ Allows you to find patients whose names or IC contain any of the given keywords.
 
 Format: `find n\NAME OR find ic\IC_NUMBER`
 
-* Exactly one of the optional fields must be provided
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -322,8 +321,8 @@ Format: `find n\NAME OR find ic\IC_NUMBER`
 
 Example command:
 * `find n\John` returns `john` and `John Doe`
-* `find n\alex david` returns `Alex Yeoh` and `David Li`
-* `find ic\a1234567b` returns `A1234567B`<br>
+* `find n\alex denver` returns `Alex Denver` and `Denver Li`
+* `find ic\a1234567b` returns `A1234567B`
 
 #### Deleting a patient : `delete`
 
