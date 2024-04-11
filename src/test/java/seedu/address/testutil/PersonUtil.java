@@ -32,14 +32,14 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_IC + person.getIc().value + " ");
-        sb.append(PREFIX_DOB + person.getDob().value + " ");
-        sb.append(PREFIX_WARD + person.getWard().value + " ");
-        sb.append(PREFIX_ADMISSION_DATE + person.getAdmissionDate().value + " ");
+        sb.append(PREFIX_NAME + person.getName().toString() + " ");
+        sb.append(PREFIX_IC + person.getIc().toString() + " ");
+        sb.append(PREFIX_DOB + person.getDob().toString() + " ");
+        sb.append(PREFIX_WARD + person.getWard().toString() + " ");
+        sb.append(PREFIX_ADMISSION_DATE + person.getAdmissionDate().toString() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " "));
-        sb.append(PREFIX_REMARK + person.getRemark().value + " ");
+        sb.append(PREFIX_REMARK + person.getRemark().toString() + " ");
         return sb.toString();
     }
 
@@ -48,12 +48,12 @@ public class PersonUtil {
      */
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getIc().ifPresent(ic -> sb.append(PREFIX_IC).append(ic.value).append(" "));
-        descriptor.getDob().ifPresent(dob -> sb.append(PREFIX_DOB).append(dob.value).append(" "));
-        descriptor.getWard().ifPresent(ward -> sb.append(PREFIX_WARD).append(ward.value).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.toString()).append(" "));
+        descriptor.getIc().ifPresent(ic -> sb.append(PREFIX_IC).append(ic.toString()).append(" "));
+        descriptor.getDob().ifPresent(dob -> sb.append(PREFIX_DOB).append(dob.toString()).append(" "));
+        descriptor.getWard().ifPresent(ward -> sb.append(PREFIX_WARD).append(ward.toString()).append(" "));
         descriptor.getAdmissionDate().ifPresent(admissionDate -> sb.append(PREFIX_ADMISSION_DATE)
-                .append(admissionDate.value).append(" "));
+                .append(admissionDate.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
@@ -63,7 +63,7 @@ public class PersonUtil {
             }
         }
         descriptor.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK)
-                .append(remark.value).append(" "));
+                .append(remark.toString()).append(" "));
         return sb.toString();
     }
 }
