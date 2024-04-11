@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
+participant "d:ListCommand" as ListCommand LOGIC_COLOR
+participant ":ListKeywordsPredicate" as ListKeywordsPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list t\diabetes")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("list t\diabetes")
+activate AddressBookParser
+
+create ListCommandParser
+AddressBookParser -> ListCommandParser
+activate ListCommandParser
+
+
+ListCommandParser --> AddressBookParser
+deactivate ListCommandParser
+
+AddressBookParser -> ListCommandParser : parse("t\diabetes")
+activate ListCommandParser
+
+create ListCommand
+ListCommandParser -> ListCommand :
+activate ListCommand
+
+create ListKeywordsPredicate
+ListCommand -> ListKeywordsPredicate : ListKeywordsPredicate([diabetes], "")
+activate ListKeywordsPredicate
+ListKeywordsPredicate --> ListCommand : predicate
+deactivate ListKeywordsPredicate
+
+ListCommand --> ListCommandParser : d
+deactivate ListCommand
+
+ListCommandParser --> AddressBookParser : d
+deactivate ListCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListCommandParser -[hidden]-> AddressBookParser
+destroy ListCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> ListCommand : execute()
+activate ListCommand
+
+ListCommand -> Model : updateFilteredPersonList(predicate)
+activate Model
+
+Model --> ListCommand
+deactivate Model
+
+create CommandResult
+ListCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListCommand
+deactivate CommandResult
+
+ListCommand --> LogicManager : result
+deactivate ListCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -313,6 +313,9 @@ returns the full list of patients.)
 Step 5. The filtered list of patients (with diabetes) is displayed to the user through the GUI.
 
 **UML Diagrams:**
+The following sequence diagram shows how the listing of relevant patients would work:
+
+
 The following activity diagram summarizes what happens when a user executes a new command to list relevant patients:
 
 <img src="images/ListCommandActivityDiagram2.png" width="250" />
