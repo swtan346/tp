@@ -21,6 +21,7 @@ If you are a current user, feel free to jump into our [table of contents](#table
 <div markdown="span" class="alert alert-info">
 **:information_source: Note:** The Nursing Address Book (NAB) application is currently available only in English. However, we are actively working on expanding the language support, and plan to offer additional language options in future releases.
 </div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
 * [Introduction](#introduction)
