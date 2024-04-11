@@ -5,17 +5,24 @@ skinparam ArrowFontSize 12
 
 start
 :User executes command;
+:AddressBookParser parses the command;
+:ListCommandParser parses the command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command has parameters])
-    :Create a new predicate;
-    :Filter the addressbook
-    using the predicate;
-    :Show the filtered contacts;
-else ([else])
-    : Show all contacts;
+if () then ([argument(s) is valid])
+    if () then ([command has parameters])
+        :Create a new predicate
+        based on the parameters;
+        :Return filtered addressbook
+        using the predicate;
+        :Show the filtered contacts;
+    else ([command has no parameters])
+        : Show all contacts;
+    endif
+else ([argument is invalid])
+    : Show error message;
 endif
 stop
 @enduml
