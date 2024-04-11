@@ -5,19 +5,25 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
+import seedu.address.commons.util.DateUtil;
 
 /**
  * Represents a patient's date of birth in the address book.
  */
-public class Dob {
+public class Dob extends DateUtil {
+    public static final String DATE_TYPE = "Date of birth";
     public static final String MESSAGE_CONSTRAINTS_FORMAT =
-            "Dates of birth takes in a date of format dd/MM/yyyy";
-    public static final String MESSAGE_CONSTRAINTS_OCCURRENCE =
-            "Date of birth should not be later than date of admission";
+            String.format(DateUtil.MESSAGE_CONSTRAINTS_FORMAT, DATE_TYPE);
+    public static final String MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE =
+            String.format(DateUtil.MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE, DATE_TYPE);
+
+    public static final String MESSAGE_DOB_AFTER_ADMISSION =
+            "Date of birth should not be later than date of admission.";
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    public final LocalDate date;
-    public final String value;
+    private final LocalDate dob;
+    private final String value;
 
     /**
      * Constructs a {@code Dob}.
@@ -27,36 +33,23 @@ public class Dob {
     public Dob(String value) {
         requireNonNull(value);
         checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS_FORMAT);
-        checkArgument(isValidDob(value), MESSAGE_CONSTRAINTS_OCCURRENCE);
-        this.date = LocalDate.parse(value, formatter);
+        checkArgument(!isFutureDate(value), MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE);
+        this.dob = LocalDate.parse(value, formatter);
         this.value = value;
     }
 
     /**
-     * Returns true if a given string is a valid date.
-     *
-     * @param dob The date of birth to be checked.
+     * Checks if the date of birth is after the admission date
      */
-    public static boolean isValidDate(String dob) {
-        try {
-            LocalDate date = LocalDate.parse(dob, formatter);
-            return true;
-        } catch (DateTimeParseException e) {
-            return false;
-        }
+    public boolean isAfterAdmissionDate(AdmissionDate admissionDate) {
+        return dob.isAfter(admissionDate.getDate());
     }
 
     /**
-     * Returns true if a given string is a valid date of birth.
-     *
-     * @param dob The date of birth to be checked.
+     * Returns the date of birth
      */
-    public static boolean isValidDob(String dob) {
-        if (isValidDate(dob)) {
-            LocalDate date = LocalDate.parse(dob, formatter);
-            return !date.isAfter(LocalDate.now());
-        }
-        return false;
+    public LocalDate getDate() {
+        return dob;
     }
 
     @Override
@@ -75,7 +68,7 @@ public class Dob {
         }
 
         Dob otherDob = (Dob) other;
-        return date.equals(otherDob.date);
+        return dob.equals(otherDob.dob);
     }
 
     @Override

@@ -53,9 +53,9 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        dob.setText("DOB: " + person.getDob().value);
+        dob.setText("DOB: " + person.getDob().toString());
         ic.setText("IC: " + person.getIc().value);
-        admissionDate.setText("Admission Date: " + person.getAdmissionDate().value);
+        admissionDate.setText("Admission Date: " + person.getAdmissionDate().toString());
         ward.setText("Ward: " + person.getWard().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

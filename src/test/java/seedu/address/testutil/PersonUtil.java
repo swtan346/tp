@@ -34,9 +34,9 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_IC + person.getIc().value + " ");
-        sb.append(PREFIX_DOB + person.getDob().value + " ");
+        sb.append(PREFIX_DOB + person.getDob().toString() + " ");
         sb.append(PREFIX_WARD + person.getWard().value + " ");
-        sb.append(PREFIX_ADMISSION_DATE + person.getAdmissionDate().value + " ");
+        sb.append(PREFIX_ADMISSION_DATE + person.getAdmissionDate().toString() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " "));
         sb.append(PREFIX_REMARK + person.getRemark().value + " ");
@@ -50,10 +50,10 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getIc().ifPresent(ic -> sb.append(PREFIX_IC).append(ic.value).append(" "));
-        descriptor.getDob().ifPresent(dob -> sb.append(PREFIX_DOB).append(dob.value).append(" "));
+        descriptor.getDob().ifPresent(dob -> sb.append(PREFIX_DOB).append(dob).append(" "));
         descriptor.getWard().ifPresent(ward -> sb.append(PREFIX_WARD).append(ward.value).append(" "));
         descriptor.getAdmissionDate().ifPresent(admissionDate -> sb.append(PREFIX_ADMISSION_DATE)
-                .append(admissionDate.value).append(" "));
+                .append(admissionDate).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
