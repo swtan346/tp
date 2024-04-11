@@ -105,6 +105,7 @@ Back to [Table of Contents](#table-of-contents)
    ![Ui](images/Ui.png)
    <br>
    _Note for Windows Users: Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file executable._
+   <br>
    Should you need help navigating the interface, refer to the [Interface](#the-interface) section.
 7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
