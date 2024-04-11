@@ -45,6 +45,7 @@ public class Ic {
             return true;
         }
 
+        // instanceof handles nulls
         if (!(other instanceof Ic)) {
             return false;
         }
