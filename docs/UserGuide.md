@@ -24,14 +24,18 @@ If you are a current user, feel free to jump into our [table of contents](#table
 * [Quick Start](#quick-start)
 * [The Interface](#the-interface)
 * [Features](#features)
-  * [Adding a Patient](#adding-a-patient-add)
-  * [Viewing Patients](#listing-all-patients--list)
-  * [Editing a Patient](#editing-a-patient--edit)
-  * [Finding a Patient](#locating-a-patients-contact-find)
-  * [Deleting a Patient](#deleting-a-patient--delete)
-  * [Viewing Help](#viewing-help--help)
-  * [Clearing all Entries](#clearing-all-entries--clear)
-  * [Exiting the Application](#exiting-the-program--exit)
+  * [Patient Management Features](#patient-management-features)
+    * [Adding a Patient](#adding-a-patient--add)
+    * [Listing relevant patients](#listing-patients--list)
+    * [Editing a patient’s details](#editing-a-patients-details--edit)
+    * [Locating patient contacts](#locating-a-patients-contact--find)
+    * [Deleting a Patient](#deleting-a-patient--delete)
+  * [General Features](#general-features)
+    * [Viewing Help](#viewing-help--help)
+    * [Clearing all Entries](#clearing-all-entries--clear)
+    * [Exiting the Program](#exiting-the-program--exit)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
 * [Command Summary](#command-summary)
 * [FAQ](#faq)
 * [Known Issues & Troubleshooting](#known-issues--troubleshoting)
@@ -197,17 +201,13 @@ Example command:
 `add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk r\Requires assistance feeding. t\Diabetes`
 
 ```
-The patient, John Doe, is added! Here are his details:
-
-1. John Doe
+New patient added: John Doe
 IC: T1234567P
-DOB: 21 Mar 2000
+DOB: 21/03/2000
 Ward: A1
-Admission Date: 2 Feb 2022
-Remarks: 
-Tags: FallRisk, Diabetes
-
-You now have 1 patient(s) in your address book.
+Admission Date: 02/02/2022
+Remarks: Requires assistance feeding.
+Tags: [FallRisk][Diabetes]
 ```
 
 #### Listing patients : `list`
@@ -312,7 +312,6 @@ Allows you to find patients whose names or IC contain any of the given keywords.
 
 Format: `find n\NAME OR find ic\IC_NUMBER`
 
-* Exactly one of the optional fields must be provided
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -322,8 +321,8 @@ Format: `find n\NAME OR find ic\IC_NUMBER`
 
 Example command:
 * `find n\John` returns `john` and `John Doe`
-* `find n\alex david` returns `Alex Yeoh` and `David Li`
-* `find ic\a1234567b` returns `A1234567B`<br>
+* `find n\alex denver` returns `Alex Denver` and `Denver Li`
+* `find ic\a1234567b` returns `A1234567B`
 
 #### Deleting a patient : `delete`
 
