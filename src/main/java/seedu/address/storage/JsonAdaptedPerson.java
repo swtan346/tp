@@ -122,8 +122,8 @@ class JsonAdaptedPerson {
         if (!Dob.isValidDate(dob)) {
             throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_FORMAT);
         }
-        if (!Dob.isValidDob(dob)) {
-            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE);
+        if (Dob.isFutureDate(dob)) {
+            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE);
         }
         return new Dob(dob);
     }
@@ -158,7 +158,7 @@ class JsonAdaptedPerson {
         if (!AdmissionDate.isValidDate(admissionDate)) {
             throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS_FORMAT);
         }
-        if (!AdmissionDate.isValidAdmissionDate(admissionDate)) {
+        if (AdmissionDate.isFutureDate(admissionDate)) {
             throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS_OCCURRENCE);
         }
         return new AdmissionDate(admissionDate);
@@ -194,8 +194,9 @@ class JsonAdaptedPerson {
     }
 
     private void isDobBeforeAdmissionDate(Dob dob, AdmissionDate admissionDate) throws IllegalValueException {
-        if (dob.date.isAfter(admissionDate.date)) {
-            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE);
+        if (dob.getDate().isAfter(admissionDate.getDate())) {
+            // TODO: Update after refactoring
+            throw new IllegalValueException("Date of birth should not be later than admission date");
         }
     }
 }
