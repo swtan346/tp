@@ -272,9 +272,11 @@ Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DA
 
 * Edits the patient details at the specified `INDEX`. The index **must be a positive integer** that refers to the patient shown in the displayed list.
 * You must provide at least one of the optional fields.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags via `edit` is not cumulative.
+* Existing values will be replaced with the input values.
+  
+    :exclamation: **Caution** When editing tags and/or remarks, the existing tags and/or remarks of the patient will be removed i.e adding of tags and/or remarks via `edit` is not cumulative. Be sure to copy the previous tags and remarks if you wish to retain them.
 * You can remove all the patient’s tags by typing `t\ ` without specifying any tags after it.
+* Similarly, you can remove all the patient’s remarks by typing `r\ ` without specifying any remarks after it.
 
 Example command:
 
@@ -309,7 +311,7 @@ Tags:
 
 Allows you to find patients whose names or IC contain any of the given keywords.
 
-Format: `find n\NAME [MORE_NAMES] OR find ic\IC_NUMBER`
+Format: `find n\NAME OR find ic\IC_NUMBER`
 
 * Exactly one of the optional fields must be provided
 * The search is case-insensitive. e.g. `hans` will match `Hans`
@@ -473,7 +475,12 @@ Back to [Table of Contents](#table-of-contents)
 | Term             | Further Explanation, Representation and Examples                                                                                                          |
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Alphanumeric** | A string that must contain any of alphabetical and numerical characters only. Excludes other special characters, whitespace etc. e.g., `A1`, `T1234567P`. |
+| **CamelCase**    | A naming convention where the first letter of each word is capitalized except the first word. e.g., `FallRisk`, `HearingImpaired`.                        |
+| **Case-insensitive** | A search that does not differentiate between uppercase and lowercase letters. e.g., `john` will match `John`.                                             |
 | **CLI**          | Command Line Interface. It is a text-based interface where you input commands to interact with the system. Perfect for fast typists like you!             |
+| **Command**      | An instruction given to the application to perform a specific task. e.g., `add`, `list`, `delete`.                                                        |
+| **Command Terminal** | A text-based interface where you can input commands to interact with the computer's operating system. e.g., `cmd` for Windows users.                      |
+| **Data File**    | A file that stores the data of the application. e.g., `addressbook.json`.                                                                                 |
 | **GUI**          | Graphical User Interface. It is the visual representation of the system you see.                                                                          |
 
 Back to [Table of Contents](#table-of-contents)
