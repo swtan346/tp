@@ -133,7 +133,7 @@ The main window of NAB is separated into the following sections:
 1. **Command Box**: This is where you can input commands to interact with the application. Press `Enter` to execute the command.
 2. **Display Box**: This is where the application displays feedback for your commands (for e.g., whether it is successful, or has an error).
     <div markdown="span" class="alert alert-primary">
-    :bulb: **Tip** You can resize the display box to your liking!
+    :bulb: <b>Tip:</b> You can resize the display box to your liking!
     </div>
 3. **Patient Contacts**: This is where the application displays the list of patients.
 4. **Data Storage Location**: This is where the application stores the data file.
@@ -248,7 +248,7 @@ Additional details:
 * `WARD` : Must only list at most **ONE** ward.
 * Only patients with tags (and appropriate ward, if specified) that encompass all the provided tags will be listed.
 <div markdown="span" class="alert alert-warning">
-    :exclamation: **Caution:** If you wish to list all patients, utilise the command `list` instead of using empty parameters. Otherwise, it will assume that it is an invalid input.
+    :exclamation: <b>Caution:</b> If you wish to list all patients, utilise the command `list` instead of using empty parameters. Otherwise, it will assume that it is an invalid input.
 </div>
 * `list` results are permissive, meaning that specified tags will be treated as case-insensitive. Patients with tags that meet the above criteria will be listed. 
 * For the `list` commands below, we assume the list contains 2 people, John Doe and Jane Doe)
@@ -306,7 +306,7 @@ Additional details:
 * You must provide at least one of the optional fields.
 * Existing values will be replaced with the input values.
 <div markdown="span" class="alert alert-warning">
-    :exclamation: **Caution** When editing tags and/or remarks, the existing tags and/or remarks of the patient will be removed i.e adding of tags and/or remarks via `edit` is not cumulative. Be sure to copy the previous tags and remarks if you wish to retain them.
+    :exclamation: <b>Caution:</b> When editing tags and/or remarks, the existing tags and/or remarks of the patient will be removed i.e adding of tags and/or remarks via `edit` is not cumulative. Be sure to copy the previous tags and remarks if you wish to retain them.
 </div>
 
 * You can remove all the patient’s tags by typing `t\ ` without specifying any tags after it.
@@ -411,7 +411,7 @@ Format: `help`
 On entering the `help` command, the following window will pop up:
 ![Help](images/help.png)
 <div markdown="span" class="alert alert-primary">
-    :bulb: **Tip** <br>
+    :bulb: <b>Tip</b> <br>
     Mac users can use ``Cmd + ` `` to switch between windows! Windows users can do the same with `Alt + Tab`!
 </div>
 
@@ -421,7 +421,7 @@ On entering the `help` command, the following window will pop up:
 Allows you to clear all entries from the address book.
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:** This action is irreversible.
+:exclamation: <b>Caution:</b> This action is irreversible.
 </div>
 
 Format: `clear`
