@@ -345,13 +345,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Find feature
 
+#### Introduction
+This section describes the implementation of the find by name or NRIC mechanism in NAB. 
+
 #### Implementation
 
-The filter by tags and/or ward mechanism is facilitated by `FindCommand`, `FindCommandParser`,
-`NameContainsKeywordsPredicate` and
+The find feature is facilitated by `FindCommand`, `FindCommandParser`, `NameContainsKeywordsPredicate` and
 `IcContainsKeywordsPredicate`.
-
-![FindClassDiagram](images/FindClassDiagram.png)
 
 Additionally, it implements the following operations:
 
@@ -365,6 +365,15 @@ Step 1. The user executes `find n\Bob` command to find patient with the name Bob
 Step 2. For each patient in the address book, the `predicate` object will be passed to
 `Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob,
 the patient will be shown in result.
+
+**UML Diagrams:**
+
+The following sequence diagram shows how the finding of patient would work:
+![FindCommandSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command to find a patient:
+
+<img src="images/FindActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -429,7 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Nursing Address Book` and the **Actor** is the `user`, unless 
 specified otherwise)
 
-**Use case: UC01 - View all patient records**
+**Use case: `UC01 - View all patient records`**
 
 **MSS**
 
@@ -445,7 +454,7 @@ specified otherwise)
 
   Use case resumes at step 1.
 
-**Use case: UC02 - Add a patient**
+**Use case: `UC02 - Add a patient`**
 
 **MSS**
 
@@ -462,7 +471,7 @@ specified otherwise)
     
     Use case resumes at step 1.
 
-**Use case: US03 - Delete a patient**
+**Use case: `US03 - Delete a patient`**
 
 **MSS**
 
@@ -480,7 +489,7 @@ specified otherwise)
 
     Use case resumes at step 2.
 
-**Use case: US04 - Edit a patient records**
+**Use case: `US04 - Edit a patient records`**
 
 **MSS**
 
@@ -498,7 +507,7 @@ specified otherwise)
 
       Use case resumes at step 2.
 
-**Use case: US05 - Find patient**
+**Use case: `US05 - Find patient`**
 
 **MSS**
 
@@ -514,7 +523,7 @@ specified otherwise)
 
       Use case resumes at step 1.
 
-**Use case: US06 - View patient with specific tags**
+**Use case: `US06 - View patient with specific tags`**
 
 **MSS**
 
@@ -530,7 +539,7 @@ specified otherwise)
 
       Use case resumes at step 1.
 
-**Use case: US07 - View patients in specific ward**
+**Use case: `US07 - View patients in specific ward`**
 
 **MSS**
 
@@ -546,7 +555,7 @@ specified otherwise)
 
       Use case resumes at step 1.
 
-**Use case: US08 - Get help with command usage**
+**Use case: `US08 - Get help with command usage`**
 
 **MSS**
 
@@ -564,7 +573,7 @@ specified otherwise)
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The user interface should be intuitive and easy to navigate.
@@ -583,17 +592,15 @@ specified otherwise)
 16.  The final JAR/PDF files should not be bloated unnecessarily.
 17.  The DG and UG should be PDF-friendly, without any expandable panels, embedded videos, animated GIFs etc.
 18.  The use of third-party frameworks/libraries/services is allowed only if they, are free, open-source (this
-     doesn't apply to services), and have permissive license terms; do not require any installation by the user; do
-     not violate other constraints.
-19.  The product should process a user input command within 1 second.
-20.  The system must perform without failure in 95 percent of use cases during a month.
+     doesn't apply to services), and have permissive license terms; do not require any installation by the user.
+19.  The product should process a user input command within 2 second.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Patient**: A person receiving medical services at a hospital
-* **NRIC**: Identity card number of the National Registration Identity Card, used as the primary means of 
-  identification for patients in Nursing Address Book
+* **NRIC**: Identity card number of the National Registration Identity Card, used as a unique identifier for 
+  patients in Nursing Address Book
 
 --------------------------------------------------------------------------------------------------------------------
 
