@@ -23,6 +23,7 @@ public class ListCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG + "FallRisk "
             + PREFIX_WARD + "3 ";
+    
     public static final String MESSAGE_SUCCESS = "Listed all persons";
     public static final String MESSAGE_SUCCESS_LIST = "Listed all persons with: %1$s";
     private final ListKeywordsPredicate predicate;
