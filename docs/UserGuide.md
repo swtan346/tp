@@ -423,7 +423,7 @@ Back to [General Features](#general-features) or [Table of Contents](#table-of-c
 --------------------------------------------------------------------------------------------------------------------
 
 
-## Command summary
+## Command Summary
 
 | Action     | Format and Examples                                                                                                                                                                                     |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -448,7 +448,7 @@ Back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues & Troubleshooting
+## Known Issues & Troubleshooting
 
 1. **When using multiple screens**, if you move the application window to a secondary screen, and later disconnect/turn off that secondary screen while the application is still open, the GUI will open off-screen on the primary screen. The remedy is to delete the `preferences.json` file created by the application before running it again.
 2. **When re-accessing the help window after minimising it**, the help window may not pop up again. The remedy is to mouse over the NAB icon and click on the preview window to bring it back to the front.
