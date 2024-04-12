@@ -11,7 +11,7 @@ end box
 
 box UI UI_COLOR_T1
 participant ":MainWindow" as MainWindow UI_COLOR
-participant ":ResultDisplay" as ResultDisplay UI_COLOR
+participant ":HelpWindow" as HelpWindow UI_COLOR
 end box
 
 [-> LogicManager : execute("help")
@@ -46,17 +46,11 @@ deactivate HelpCommand
 LogicManager -> MainWindow : executeCommand("help")
 activate MainWindow
 
-MainWindow -> MainWindow : handleHelp()
-activate MainWindow
+MainWindow -> HelpWindow : show()
+activate HelpWindow
 
-MainWindow -> ResultDisplay : setFeedbackToUser(HelpCommand.SHOWING_HELP_MESSAGE)
-activate ResultDisplay
-
-ResultDisplay --> MainWindow
-deactivate ResultDisplay
-
-MainWindow --> MainWindow
-deactivate MainWindow
+HelpWindow --> MainWindow
+deactivate HelpWindow
 
 MainWindow --> LogicManager : r
 deactivate MainWindow

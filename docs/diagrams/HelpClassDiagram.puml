@@ -25,7 +25,13 @@ HelpCommand -right-> CommandResult
 Parser -[hidden]down-> HelpCommand
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside .down.> Logic
+Package Ui as UiPackage <<Rectangle>>{
+Class MainWindow
+Class HelpWindow
+}
+
+MainWindow -right-> Logic
+MainWindow -down-> HelpWindow
+HelpWindow -up-> CommandResult
 
 @enduml
