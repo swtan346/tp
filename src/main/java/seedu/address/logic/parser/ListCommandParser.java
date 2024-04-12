@@ -42,13 +42,13 @@ public class ListCommandParser implements Parser<ListCommand> {
         List<String> tagList = List.of();
         if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             tagList = ParserUtil.parseTagsKeywords(argMultimap.getAllValues(PREFIX_TAG));
-            assert !tagList.isEmpty(): "tagList should not be empty";
+            assert !tagList.isEmpty() : "tagList should not be empty";
         }
 
         String ward = "";
         if (arePrefixesPresent(argMultimap, PREFIX_WARD)) {
             ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null)).toString();
-            assert !ward.isEmpty(): "ward should not be empty";
+            assert !ward.isEmpty() : "ward should not be empty";
         }
 
         if (ward.isEmpty() && tagList.isEmpty()) {
