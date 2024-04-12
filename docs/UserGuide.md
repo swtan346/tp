@@ -462,16 +462,16 @@ Back to [Table of Contents](#table-of-contents)
 
 ## Glossary
 
-| Term             | Further Explanation, Representation and Examples                                                                                                          |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Term             | Further Explanation, Representation and Examples                                                                                                         |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Alphanumeric** | A string that must contain any of alphabetical and numerical characters only. Excludes other special characters, whitespace etc. e.g., `A1`, `T1234567P`. |
-| **CamelCase**    | A naming convention where the first letter of each word is capitalized except the first word. e.g., `FallRisk`, `HearingImpaired`.                        |
-| **Case-insensitive** | A search that does not differentiate between uppercase and lowercase letters. e.g., `john` will match `John`.                                             |
-| **CLI**          | Command Line Interface. It is a text-based interface where you input commands to interact with the system. Perfect for fast typists like you!             |
-| **Command**      | An instruction given to the application to perform a specific task. e.g., `add`, `list`, `delete`.                                                        |
-| **Command Terminal** | A text-based interface where you can input commands to interact with the computer's operating system. e.g., `cmd` for Windows users.                      |
-| **Data File**    | A file that stores the data of the application. e.g., `addressbook.json`.                                                                                 |
-| **GUI**          | Graphical User Interface. It is the visual representation of the system you see.                                                                          |
+| **CamelCase**    | A naming convention where the first letter of each word is capitalized. e.g., `FallRisk`, `HearingImpaired`.                                             |
+| **Case-insensitive** | A search that does not differentiate between uppercase and lowercase letters. e.g., `john` will match `John`.                                            |
+| **CLI**          | Command Line Interface. It is a text-based interface where you input commands to interact with the system. Perfect for fast typists like you!            |
+| **Command**      | An instruction given to the application to perform a specific task. e.g., `add`, `list`, `delete`.                                                       |
+| **Command Terminal** | A text-based interface where you can input commands to interact with the computer's operating system. e.g., `cmd` for Windows users.                     |
+| **Data File**    | A file that stores the data of the application. e.g., `addressbook.json`.                                                                                |
+| **GUI**          | Graphical User Interface. It is the visual representation of the system you see.                                                                         |
 
 Back to [Table of Contents](#table-of-contents)
 
