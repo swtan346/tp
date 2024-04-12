@@ -212,6 +212,11 @@ Additional details:
 * `ADMISSION_DATE` : Admission date must not be earlier than date of birth, and not be later than the current date.
 * `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remark field.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+Each patient in NAB must have a unique IC_NUMBER. Attempting to add a patient that has an IC_NUMBER that already exists will result in an error.
+</div>
+
 Example command:
 
 `add n\John Doe ic\T1234567P dob\21/03/2000 ad\02/02/2022 w\A1 t\FallRisk r\Requires assistance feeding. t\Diabetes`
