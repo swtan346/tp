@@ -6,13 +6,12 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 * The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book is based from.
---------------------------------------------------------------------------------------------------------------------
+* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -20,8 +19,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-
-<div markdown="span" class="alert alert-primary">
 
 ### Architecture
 
@@ -114,7 +111,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -149,29 +146,31 @@ This section contains some noteworthy details on how certain features are being 
 
 #### Implementation
 
-The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `LogicManager`.
+The add patient feature is facilitated mainly by `AddCommand`, `AddCommandParser` and `LogicManager`.
 
 Given below is an example usage scenario and how the add patient feature behaves at each step.
 
-Step 1. The user inputs an add Command (e.g. `add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA`) to add a new patient named Alice to the address book.
+**Step 1.** The user inputs an add Command (e.g. `add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA`) to add a new patient named Alice to the address book.  
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The format of the add command is as follows:
-n\: Indicates the name of the patient
-ic\: Indicates the NRIC of the patient
-ad\: Indicates the admission date of the patient
-dob\: Indicates the date of birth of the patient
-w\: Indicates the ward of the patient is currently in
-r\: Indicates remarks for the patient (optional)
-t\: Indicates the tags of the patient (optional, can have multiple)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The format of the add command is as follows:  
+  
+- **n\\**: Indicates the name of the patient  
+- **ic\\**: Indicates the NRIC of the patient  
+- **ad\\**: Indicates the admission date of the patient into the hospital  
+- **dob\\**: Indicates the date of birth of the patient  
+- **w\\**: Indicates the ward the patient is currently in  
+- **r\\**: Indicates remarks for the patient (optional)  
+- **t\\**: Indicates the tags of the patient (optional, can have multiple)    
 </div>
 
-Step 2. The `add` command calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
-Step 3. The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
+**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
-Step 4. The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+**Step 3.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
 
-Step 5. The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 4.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+
+**Step 5.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
@@ -179,24 +178,57 @@ The following sequence diagram summarizes what happens when a user executes a ne
 
 ![AddSequenceDiagram.png](images%2FAddSequenceDiagram.png)
 
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![AddActivityDiagram.png](images%2FAddActivityDiagram.png)
+
+### Deleting a patient from Nursing Address Book
+
+#### Implementation
+
+The delete patient feature is facilitated mainly by `DeleteCommand`, `DeleteCommandParser` and `LogicManager`.
+
+Given below is an example usage scenario and how the delete patient feature behaves at each step.
+
+**Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
+
+**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
+
+**Step 3.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
+
+**Step 4.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+
+**Step 5.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+
+**UML Diagrams:**
+
+Given below is the sequence diagram that summarizes what happens when a user executes a new command:
+
+![DeleteSequenceDiagram.png](images/DeleteSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![DeleteActivityDiagram.png](images/DeleteActivityDiagram.png)
+
 ### Editing a patient's details
 
 #### Implementation
 
-Editing a patient's details is facilitated by `EditCommand`, `EditCommandParser` and `LogicManager`.
+Editing a patient's details is facilitated mainly by `EditCommand`, `EditCommandParser` and `LogicManager`.
 
 Given below is an example usage scenario and how the edit patient feature behaves at each step.
 
-Step 1. The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
+**Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
 
-Step 2. The `edit` command calls `EditCommandParser#parse(String)` to parse the user input. 
+**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
 
-Step 3. A new `EditPersonDescriptor` object is created with the new ward details. 
+**Step 3.** A new `EditPersonDescriptor` object is created with the new ward details. 
 A new `EditCommand` instance will be created with the index of the patient to be edited and the new `EditPersonDescriptor` object.
 
-Step 4. The `EditCommand` instace is returned to the `LogicManager` and `execute` is called.
+**Step 4.** The `EditCommand` instace is returned to the `LogicManager` and `execute` is called.
 
-Step 5. The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
+**Step 5.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
 The patient specified will have its ward updated to the new ward specified.
 
 **UML Diagrams:**
@@ -221,10 +253,15 @@ The `HelpCommand` class extends the `Command` interface and is responsible for e
 The following class diagram shows the relevant classes involved in the help command implementation:
 
 Step 1. The `LogicManager` is called to execute the "help" command.
+
 Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+
 Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+
 Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
+
 Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+
 Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
 
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
@@ -253,32 +290,7 @@ When the user executes the help command, the following steps occur:
 
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
 
-### Add a patient
-
-#### Implementation
-
-The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`.
-
-Given below is an example usage scenario and how the add patient feature behaves at each step.
-
-Step 1. The user launches the application for the first time.
-
-Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book.
-
-n\: Indicates the name of the patient
-ic\: Indicates the NRIC of the patient
-ad\: Indicates the admission date of the patient
-dob\: Indicates the date of birth of the patient
-w\: Indicates the ward of the patient is currently in
-
-The `AddCommandParser` parses the user input, creating a new `AddCommand` object.
-The `AddCommand` object then creates a new `Person` object with the parsed details.
-
-### List with filter by tags and/or ward feature
-#### Introduction
-This section describes the implementation of the list with filter by tags and/or ward mechanism in NAB. This mechanism 
-allows users to list patients based on their tags and/or ward, on top of listing all patients. This feature is useful 
-for nurses to quickly find patients with specific medical conditions or patients in a specific ward.
+### List by tags and/or ward feature
 
 #### Implementation
 
@@ -373,7 +385,7 @@ The following sequence diagram shows how the finding of patient would work:
 
 The following activity diagram summarizes what happens when a user executes a new command to find a patient:
 
-<img src="images/FindActivityDiagram.png" width="250" />
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design considerations:
 
