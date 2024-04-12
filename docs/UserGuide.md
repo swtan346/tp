@@ -104,9 +104,12 @@ Back to [Table of Contents](#table-of-contents)
    Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
    ![Ui](images/Ui.png)
    <br>
-   _Note for Windows Users: Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file executable._
+
+   <div markdown="block" class="alert alert-info">
+   **:information_source: Note for Windows users:** _Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file executable._
    <br>
    Should you need help navigating the interface, refer to the [Interface](#the-interface) section.
+   </div>
 7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -129,6 +132,9 @@ Back to [Table of Contents](#table-of-contents)
 The main window of NAB is separated into the following sections:
 1. **Command Box**: This is where you can input commands to interact with the application. Press `Enter` to execute the command.
 2. **Display Box**: This is where the application displays feedback for your commands (for e.g., whether it is successful, or has an error).
+    <div markdown="span" class="alert alert-primary">
+    :bulb: **Tip** You can resize the display box to your liking!
+    </div>   
 3. **Patient Contacts**: This is where the application displays the list of patients.
 4. **Data Storage Location**: This is where the application stores the data file.
 
@@ -171,7 +177,7 @@ The features are categorized into two main sections:
 | Parameter          | Description                                                                    | Valid Input                                                                                                                                                                                                                                                                               |
 |--------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **INDEX**          | The position of a patient in the displayed list.                               | Positive integers (i.e. from 1 onwards) e.g., `1`, `2`, `3`. Should not be larger than the length of displayed list.                                                                                                                                                                      |                                                                                                                                         
-| **NAME**           | The name of a patient.                                                         | Common names are generally accepted. Names should be alphanumeric, with the inclusion of the following special characters: " ' ", " - " and " / ". e.g., `John Doe`, `Nagaratnam s/o Suppiah`.                                                                                            |                                                                                                                                                                                                         
+| **NAME**           | The name of a patient.                                                         | Common names are generally accepted. Names should be alphanumeric, with the inclusion of the following special characters: whitespaces, `'`, `-`, `,` and `/`. e.g., `John Doe`, `Nagaratnam s/o Suppiah`.                                                                                |                                                                                                                                                                                                         
 | **IC_NUMBER**      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.           |
 | **DATE_OF_BIRTH**  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, impossible dates such as 30th February etc).     |              
 | **ADMISSION_DATE** | The date a patient was admitted to the ward.                                   | The admission date of the patient must be in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, impossible dates such as 30th February etc). |
@@ -199,10 +205,9 @@ Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\R
 A person can have any number of tags (including 0)
 </div>
 
-* NAME: The full name of the patient. Each word should be split with a whitespace.
-* DATE_OF_BIRTH: Date of birth must not be later than admission date, and not be later than the current date.
-* ADMISSION_DATE: Admission date must not be earlier than date of birth, and not be later than the current date.
-* REMARK: Remarks have no length limit, and each patient can only have ONE remark field.
+* `DATE_OF_BIRTH` : Date of birth must not be later than admission date, and not be later than the current date.
+* `ADMISSION_DATE` : Admission date must not be earlier than date of birth, and not be later than the current date.
+* `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remark field.
 
 Example command:
 
@@ -228,10 +233,11 @@ You may also filter by ward and/or tags to list only patients in a specific ward
 
 Format: `list [w\WARD] [t\TAG]...`
 
-* WARD: Must only list at most 1 ward.
+* `WARD` : Must only list at most **ONE** ward.
 * Only patients with tags (and appropriate ward, if specified) that encompass all the provided tags will be listed.
-
-  :exclamation: **Caution:** If you wish to list all patients, utilise the command `list` instead of using empty parameters. Otherwise, it will assume that it is an invalid input.
+    <div markdown="span" class="alert alert-warning">
+        :exclamation: **Caution:** If you wish to list all patients, utilise the command `list` instead of using empty parameters. Otherwise, it will assume that it is an invalid input.
+    </div>
 * `list` results are permissive, meaning that specified tags will be treated as case-insensitive. Patients with tags that meet the above criteria will be listed. 
 * For the `list` commands below, we assume the list contains 2 people, John Doe and Jane Doe)
 
@@ -283,8 +289,9 @@ Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DA
 * Edits the patient details at the specified `INDEX`. The index **must be a positive integer** that refers to the patient shown in the displayed list.
 * You must provide at least one of the optional fields.
 * Existing values will be replaced with the input values.
-  
-    :exclamation: **Caution** When editing tags and/or remarks, the existing tags and/or remarks of the patient will be removed i.e adding of tags and/or remarks via `edit` is not cumulative. Be sure to copy the previous tags and remarks if you wish to retain them.
+    <div markdown="span" class="alert alert-warning">
+        :exclamation: **Caution** When editing tags and/or remarks, the existing tags and/or remarks of the patient will be removed i.e adding of tags and/or remarks via `edit` is not cumulative. Be sure to copy the previous tags and remarks if you wish to retain them.
+    </div>
 * You can remove all the patient’s tags by typing `t\ ` without specifying any tags after it.
 * Similarly, you can remove all the patient’s remarks by typing `r\ ` without specifying any remarks after it.
 
@@ -292,9 +299,10 @@ Example command:
 
 `edit 1 ic\T0123456P t\ r\ `
 
-_Edits the IC_NUMBER, TAGS and REMARKS of the 1st person to be `T0123456P` for IC_NUMBER and empty for both tags and remarks._
+_Edits the IC_NUMBER, TAGS and REMARKS of the 1st person to be `T0123456P` for IC_NUMBER and empty for both TAG and REMARK._
 
 The following shows the change in contact details:
+
 **Before**:
 ```
 John Doe
@@ -382,7 +390,9 @@ On entering the `help` command, the following window will pop up:
 
 Allows you to clear all entries from the address book.
 
+<div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:** This action is irreversible.
+</div>
 
 Format: `clear`
 
@@ -446,6 +456,7 @@ Back to [Table of Contents](#table-of-contents)
 Back to [Table of Contents](#table-of-contents)
 4. **Language Support:** NAB is currently available only in English. Support for additional languages will be introduced in future releases.
 5. **Slow performance**: If you experience slow performance or lag while using NAB, especially on older or low-end systems, you can try closing other running applications to free up system resources. Additionally, you can try restarting the application or your system to clear any potential memory leaks or temporary issues.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
