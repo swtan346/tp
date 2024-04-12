@@ -52,7 +52,7 @@ public class DobTest {
         assertTrue(Dob.isValidDate(todayFormatted));
 
         // valid Dob
-        assertFalse(Dob.isValidDob(tomorrowFormatted));
+        assertFalse(!Dob.isFutureDate(tomorrowFormatted));
     }
 
     @Test

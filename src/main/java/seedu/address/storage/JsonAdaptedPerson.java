@@ -57,15 +57,15 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
+        name = source.getName().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        dob = source.getDob().value;
-        ic = source.getIc().value;
-        admissionDate = source.getAdmissionDate().value;
-        ward = source.getWard().value;
-        remark = source.getRemark().value;
+        dob = source.getDob().toString();
+        ic = source.getIc().toString();
+        admissionDate = source.getAdmissionDate().toString();
+        ward = source.getWard().toString();
+        remark = source.getRemark().toString();
     }
 
     /**
@@ -79,35 +79,78 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
+        final Name modelName = validateAndConvertName();
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Dob modelDob = validateAndConvertDob();
+        final Ic modelIc = validateAndConvertIc();
+        final AdmissionDate modelAdmissionDate = validateAndConvertAdmissionDate();
+        final Ward modelWard = validateAndConvertWard();
+        final Remark modelRemark = validateAndConvertRemark();
+
+        isDobBeforeAdmissionDate(modelDob, modelAdmissionDate);
+
+        return new Person(modelName, modelTags, modelDob, modelIc,
+                modelAdmissionDate, modelWard, modelRemark);
+    }
+
+    /**
+     * Validates and converts the name of the person.
+     *
+     * @return Name object.
+     * @throws IllegalValueException if the name is invalid.
+     */
+    private Name validateAndConvertName() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        return new Name(name);
+    }
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-
+    /**
+     * Validates and converts the date of birth of the person.
+     *
+     * @return Dob object.
+     * @throws IllegalValueException if the date of birth is invalid.
+     */
+    private Dob validateAndConvertDob() throws IllegalValueException {
         if (dob == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Dob.class.getSimpleName()));
         }
         if (!Dob.isValidDate(dob)) {
             throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_FORMAT);
         }
-        if (!Dob.isValidDob(dob)) {
-            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE);
+        if (Dob.isFutureDate(dob)) {
+            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE);
         }
-        final Dob modelDob = new Dob(dob);
+        return new Dob(dob);
+    }
 
+    /**
+     * Validates and converts the IC of the person.
+     *
+     * @return Ic object.
+     * @throws IllegalValueException if the IC is invalid.
+     */
+    private Ic validateAndConvertIc() throws IllegalValueException {
         if (ic == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Ic.class.getSimpleName()));
         }
         if (!Ic.isValidIc(ic)) {
             throw new IllegalValueException(Ic.MESSAGE_CONSTRAINTS);
         }
-        final Ic modelIc = new Ic(ic);
+        return new Ic(ic);
+    }
 
+    /**
+     * Validates and converts the admission date of the person.
+     *
+     * @return AdmissionDate object.
+     * @throws IllegalValueException if the admission date is invalid.
+     */
+    private AdmissionDate validateAndConvertAdmissionDate() throws IllegalValueException {
         if (admissionDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AdmissionDate.class.getSimpleName()));
@@ -115,23 +158,45 @@ class JsonAdaptedPerson {
         if (!AdmissionDate.isValidDate(admissionDate)) {
             throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS_FORMAT);
         }
-        if (!AdmissionDate.isValidAdmissionDate(admissionDate)) {
+        if (AdmissionDate.isFutureDate(admissionDate)) {
             throw new IllegalValueException(AdmissionDate.MESSAGE_CONSTRAINTS_OCCURRENCE);
         }
-        final AdmissionDate modelAdmissionDate = new AdmissionDate(admissionDate);
+        return new AdmissionDate(admissionDate);
+    }
 
+    /**
+     * Validates and converts the ward of the person.
+     *
+     * @return Ward object.
+     * @throws IllegalValueException if the ward is invalid.
+     */
+    private Ward validateAndConvertWard() throws IllegalValueException {
         if (ward == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Ward.class.getSimpleName()));
         }
-        final Ward modelWard = new Ward(ward);
+        if (!Ward.isValidWard(ward)) {
+            throw new IllegalValueException(Ward.MESSAGE_CONSTRAINTS);
+        }
+        return new Ward(ward);
+    }
 
+    /**
+     * Validates and converts the remark of the person.
+     *
+     * @return Remark object.
+     * @throws IllegalValueException if the remark is invalid.
+     */
+    private Remark validateAndConvertRemark() throws IllegalValueException {
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
-        final Remark modelRemark = new Remark(remark);
-
-        return new Person(modelName, modelTags, modelDob, modelIc,
-                modelAdmissionDate, modelWard, modelRemark);
+        return new Remark(remark);
     }
 
+    private void isDobBeforeAdmissionDate(Dob dob, AdmissionDate admissionDate) throws IllegalValueException {
+        if (dob.getDate().isAfter(admissionDate.getDate())) {
+            // TODO: Update after refactoring
+            throw new IllegalValueException("Date of birth should not be later than admission date");
+        }
+    }
 }

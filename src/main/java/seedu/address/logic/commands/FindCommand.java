@@ -27,6 +27,9 @@ public class FindCommand extends Command {
 
     private final Predicate<Person> predicate;
 
+    /**
+     * Creates a FindCommand to find the specified {@code Predicate<Person>}
+     */
     public FindCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
@@ -35,8 +38,11 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        int listSize = model.getFilteredPersonList().size();
+        if (listSize < 2) {
+            return new CommandResult(String.format(Messages.MESSAGE_PERSON_LISTED_OVERVIEW, listSize));
+        }
+        return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, listSize));
     }
 
     @Override

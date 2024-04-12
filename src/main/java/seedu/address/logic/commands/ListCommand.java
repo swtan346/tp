@@ -28,10 +28,18 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_LIST = "Listed all persons with: %1$s";
     private final ListKeywordsPredicate predicate;
 
+    /**
+     * Creates a ListCommand to list relevant patients as filtered by predicate.
+     *
+     * @param predicate the predicate to filter the list of patients.
+     */
     public ListCommand(ListKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * Creates a ListCommand with no predicate to display all patients.
+     */
     public ListCommand() {
         this.predicate = null;
     }

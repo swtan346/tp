@@ -44,7 +44,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_IC);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_IC, PREFIX_DOB, PREFIX_ADMISSION_DATE,
+                PREFIX_WARD, PREFIX_REMARK);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Dob dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).orElse(null));

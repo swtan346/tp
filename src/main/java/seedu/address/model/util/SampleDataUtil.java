@@ -24,17 +24,17 @@ public class SampleDataUtil {
         return new Person[]{
 
             new Person(new Name("Alex Yeoh"), getTagSet("Diabetes"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("01/01/2022"), new Ward("WA"),
+                    new Ic("S1233567A"), new AdmissionDate("01/01/2022"), new Ward("WA"),
                     new Remark("Requires assistance with feeding.")),
             new Person(new Name("Bernice Yu"), getTagSet("FallRisk", "Diabetes"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("02/01/2022"), new Ward("WB"),
+                    new Ic("S1244567A"), new AdmissionDate("02/01/2022"), new Ward("WB"),
                     new Remark("Flip every 2 hours to prevent bed sores.")),
             new Person(new Name("Charlotte Oliveiro"), getTagSet("FallRisk"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("03/01/2022"), new Ward("WC"), new Remark("")),
+                    new Ic("S1234577A"), new AdmissionDate("03/01/2022"), new Ward("WC"), new Remark("")),
             new Person(new Name("David Li"), getTagSet("Dementia"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("04/01/2022"), new Ward("WD"), new Remark("")),
+                    new Ic("S1234566A"), new AdmissionDate("04/01/2022"), new Ward("WD"), new Remark("")),
             new Person(new Name("Irfan Ibrahim"), getTagSet("NPO"), new Dob("01/01/1990"),
-                    new Ic("S1234567A"), new AdmissionDate("05/01/2022"), new Ward("WE"), new Remark("")),
+                    new Ic("S2234567A"), new AdmissionDate("05/01/2022"), new Ward("WE"), new Remark("")),
             new Person(new Name("Roy Balakrishnan"), getTagSet("Dementia"), new Dob("01/01/1990"),
                     new Ic("S1234567A"), new AdmissionDate("06/01/2022"), new Ward("WF"), new Remark(""))
         };
