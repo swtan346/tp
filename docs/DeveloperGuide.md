@@ -7,10 +7,10 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Acknowledgements
+## **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 * The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book is based from.
+* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,17 +22,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Design
 
-<div markdown="span" class="alert alert-primary">
-
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
-
 
 **Main components of the architecture**
 
@@ -95,7 +91,6 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -157,48 +152,33 @@ This section contains some noteworthy details on how certain features are being 
 
 ### Adding a patient into Nursing Address Book
 
-The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`.
-
-Given below is an example usage scenario and how the add patient feature behaves at each step.
-
-Step 1. The user launches the application for the first time.
-
-Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book.
-
-n\: Indicates the name of the patient
-ic\: Indicates the NRIC of the patient
-ad\: Indicates the admission date of the patient
-dob\: Indicates the date of birth of the patient
-w\: Indicates the ward of the patient is currently in
-
-The `AddCommandParser` parses the user input, creating a new `AddCommand` object.
-The `AddCommand` object then creates a new `Person` object with the parsed details.
-
 #### Implementation
 
-The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `LogicManager`.
+The add patient feature is facilitated mainly by `AddCommand`, `AddCommandParser` and `LogicManager`.
 
 Given below is an example usage scenario and how the add patient feature behaves at each step.
 
-Step 1. The user inputs an add Command (e.g. `add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA`) to add a new patient named Alice to the address book.
+**Step 1.** The user inputs an add Command (e.g. `add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA`) to add a new patient named Alice to the address book.  
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The format of the add command is as follows:
-n\: Indicates the name of the patient
-ic\: Indicates the NRIC of the patient
-ad\: Indicates the admission date of the patient
-dob\: Indicates the date of birth of the patient
-w\: Indicates the ward of the patient is currently in
-r\: Indicates remarks for the patient (optional)
-t\: Indicates the tags of the patient (optional, can have multiple)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The format of the add command is as follows:  
+  
+- **n\\**: Indicates the name of the patient  
+- **ic\\**: Indicates the NRIC of the patient  
+- **ad\\**: Indicates the admission date of the patient into the hospital  
+- **dob\\**: Indicates the date of birth of the patient  
+- **w\\**: Indicates the ward the patient is currently in  
+- **r\\**: Indicates remarks for the patient (optional)  
+- **t\\**: Indicates the tags of the patient (optional, can have multiple)    
 </div>
 
-Step 2. The `add` command calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
-Step 3. The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
+**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
-Step 4. The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+**Step 3.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
 
-Step 5. The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 4.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+
+**Step 5.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
@@ -206,24 +186,57 @@ The following sequence diagram summarizes what happens when a user executes a ne
 
 ![AddSequenceDiagram.png](images%2FAddSequenceDiagram.png)
 
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![AddActivityDiagram.png](images%2FAddActivityDiagram.png)
+
+### Deleting a patient from Nursing Address Book
+
+#### Implementation
+
+The delete patient feature is facilitated mainly by `DeleteCommand`, `DeleteCommandParser` and `LogicManager`.
+
+Given below is an example usage scenario and how the delete patient feature behaves at each step.
+
+**Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
+
+**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
+
+**Step 3.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
+
+**Step 4.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+
+**Step 5.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+
+**UML Diagrams:**
+
+Given below is the sequence diagram that summarizes what happens when a user executes a new command:
+
+![DeleteSequenceDiagram.png](images/DeleteSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![DeleteActivityDiagram.png](images/DeleteActivityDiagram.png)
+
 ### Editing a patient's details
 
 #### Implementation
 
-Editing a patient's details is facilitated by `EditCommand`, `EditCommandParser` and `LogicManager`.
+Editing a patient's details is facilitated mainly by `EditCommand`, `EditCommandParser` and `LogicManager`.
 
 Given below is an example usage scenario and how the edit patient feature behaves at each step.
 
-Step 1. The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
+**Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
 
-Step 2. The `edit` command calls `EditCommandParser#parse(String)` to parse the user input. 
+**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
 
-Step 3. A new `EditPersonDescriptor` object is created with the new ward details. 
+**Step 3.** A new `EditPersonDescriptor` object is created with the new ward details. 
 A new `EditCommand` instance will be created with the index of the patient to be edited and the new `EditPersonDescriptor` object.
 
-Step 4. The `EditCommand` instace is returned to the `LogicManager` and `execute` is called.
+**Step 4.** The `EditCommand` instace is returned to the `LogicManager` and `execute` is called.
 
-Step 5. The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
+**Step 5.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
 The patient specified will have its ward updated to the new ward specified.
 
 **UML Diagrams:**
@@ -233,16 +246,64 @@ The following sequence diagram summarizes what happens when a user executes a ne
 ![EditSequenceDiagram.png](images/EditSequenceDiagram.png)
 
 
-### List with filter by tags and/or ward feature
-#### Introduction
-This section describes the implementation of the list with filter by tags and/or ward mechanism in NAB. This mechanism
-allows users to list patients based on their tags and/or ward, on top of listing all patients. This feature is useful
-for nurses to quickly find patients with specific medical conditions or patients in a specific ward.
+### Showing help for commands
+
+#### Implementation
+
+The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
+
+
+
+The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
+
+**UML Diagrams:**
+
+The following class diagram shows the relevant classes involved in the help command implementation:
+
+Step 1. The `LogicManager` is called to execute the "help" command.
+
+Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+
+Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+
+Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
+
+Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+
+Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
+The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+
+
+![HelpCommandClassDiagram](images/HelpClassDiagram.png)
+
+The following sequence diagram shows how the help command works:
+
+![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250"/>
+
+When the user executes the help command, the following steps occur:
+  
+
+1. The `LogicManager` is called to execute the "help" command.
+2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+4. The `HelpCommand` creates a new `CommandResult` with the help message.
+5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
+
+The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+
+### List by tags and/or ward feature
 
 #### Implementation
 
 The filter by tags and/or ward mechanism is facilitated by `ListCommand`, `ListCommandParser`, `ListKeywordsPredicate`
-and `LogicManager`, which implements the `Logic` interface. `LogicManager` holds a `AddressBookParser` that parses the
+and `LogicManager`, which implements the `Logic` interface. `LogicManager` holds a `AddressBookParser` that parses the 
 user input, and a model where the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute(String)`— Executes the given user String input to return a `CommandResult` object.
@@ -303,7 +364,6 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to be more specific.
     * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
 
-
 ### Find feature
 
 #### Introduction
@@ -334,7 +394,7 @@ The following sequence diagram shows how the finding of patient would work:
 
 The following activity diagram summarizes what happens when a user executes a new command to find a patient:
 
-<img src="images/FindActivityDiagram.png" width="250" />
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design considerations:
 
@@ -347,54 +407,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Allow finding by letters.
     * Pros: Able to search even if lacking patient information.
     * Cons: Harder to get specific patient as result will be a list.
-
-
-### Showing help for commands
-
-#### Implementation
-
-The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
-
-
-The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
-
-**UML Diagrams:**
-
-The following class diagram shows the relevant classes involved in the help command implementation:
-
-Step 1. The `LogicManager` is called to execute the "help" command.
-Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
-Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
-Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
-Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
-Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
-
-The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
-
-
-![HelpCommandClassDiagram](images/HelpClassDiagram.png)
-
-The following sequence diagram shows how the help command works:
-
-![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250"/>
-
-When the user executes the help command, the following steps occur:
-
-
-1. The `LogicManager` is called to execute the "help" command.
-2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
-3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
-4. The `HelpCommand` creates a new `CommandResult` with the help message.
-5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
-6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
-
-
-The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -627,49 +639,53 @@ Given below are instructions to test the app manually.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum. 
+    1. Download the jar file and copy into an empty folder
+    2. Double-click the jar file <br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
-   2. Re-launch the app by double-clicking the jar file.<br>
-    Expected: The most recent window size and location is retained.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    2. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
 
 ### Adding a patient
 
 1. Adding a patient
 
-   1. Prerequisites: There exist no patient with NRIC `A1234567B` in the patient records. 
+    1. Prerequisites: There exist no patient with NRIC `A1234567B` in the patient records.
 
-   2. Test case (Valid parameters): `add n\John Smith ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea 
-      r\likes to go to the park`<br>
-      Expected: Patient successfully added into patient list. Details of the added patient shown in the status bar. 
+    2. Test case (Valid parameters): `add n\John Smith ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea
+       r\likes to go to the park`<br>
+       Expected: Patient successfully added into patient list. Details of the added patient shown in the status bar.
 
-   3. Test case (Missing parameter): `add n\John Smith`<br>
-   Expected: No patient is added. Error details shown in the status bar.
+    3. Test case (Missing parameter): `add n\John Smith`<br>
+       Expected: No patient is added. Error details shown in the status bar.
 
-   4. Test case (Invalid Name): `add n\ ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
-      Expected: Similar to previous.
+    4. Test case (Invalid Name): `add n\ ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
+       Expected: Similar to previous.
 
-   5. Test case (Invalid NRIC): `add n\John Smith ic\A12347B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
-      Expected: Similar to previous.
+    5. Test case (Invalid NRIC): `add n\John Smith ic\A12347B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
+       Expected: Similar to previous.
 
-   6. Test case (Invalid Date of Birth): `add n\John Smith ic\A1234567B dob\2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
-      Expected: Similar to previous.
+    6. Test case (Invalid Date of Birth): `add n\John Smith ic\A1234567B dob\2000 ad\02/02/2020 w\a1 t\diarrhea r\likes to go to the park`<br>
+       Expected: Similar to previous.
 
-   7. Test case (Repeated Parameter): `add n\John Smith ic\A1234567B ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 
-   t\diarrhea r\likes to go to the park`<br>
-      Expected: Similar to previous.
+    7. Test case (Repeated Parameter): `add n\John Smith ic\A1234567B ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1
+       t\diarrhea r\likes to go to the park`<br>
+       Expected: Similar to previous.
+
+    8. Test case (Date of Birth after Admission Date): `add n\John Smith ic\A1234567B dob\03/03/2000 ad\01/01/1999 w\a1`<br>
+       Expected: Similar to previous.
 
 ### Viewing patients
 
 1. Viewing all patients
 
-   1. Prerequisites: Multiple patients in the patient list.
+    1. Prerequisites: Multiple patients in the patient list.
 
-   2. Test case: `list`<br>
-   Expected: List of patients is shown.
+    2. Test case: `list`<br>
+       Expected: List of patients is shown.
 
    3. Test case: `list 181` or any command with extra characters supplied<br>
       Expected: No change in displayed patient list. Error details shown in the status message.
@@ -680,7 +696,7 @@ Given below are instructions to test the app manually.
     1. Prerequisites: Multiple patients in the patient list.
 
     1. Test case: `list tag\diarrhea w\a1`<br>
-        Expected: List of patients is shown.
+       Expected: List of patients is shown.
 
     1. Test case: `list t\diarrhea`<br>
        Expected: List of patients is shown.
@@ -690,27 +706,45 @@ Given below are instructions to test the app manually.
 
 ### Editing a patient
 
-1. Edit a person while all persons are being shown
+1. Edit a patient while all patients are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
     1. Test case: `edit 1 n\John`<br>
        Expected: Name of first patient is changed. Details of the edited patient is shown in the status bar.
 
-   1. Test case: `edit 1 ic\W9876543M`<br>
-      Expected: NRIC of first patient is changed. Details of the edited patient is shown in the status bar.
+    1. Test case: `edit 1 ic\W9876543M`<br>
+       Expected: NRIC of first patient is changed. Details of the edited patient is shown in the status bar.
 
-   1. Test case: `edit 1 dob\03/03/2005`<br>
-      Expected: Date of birth of first patient is changed. Details of the edited patient is shown in the status bar.
+    1. Test case: `edit 1 dob\03/03/2005`<br>
+       Expected: Date of birth of first patient is changed. Details of the edited patient is shown in the status bar.
 
-   1. Test case: `edit 1 ad\05/05/2021`<br>
-      Expected: Admission date of first patient is changed. Details of the edited patient is shown in the status bar.
+    1. Test case: `edit 1 ad\05/05/2021`<br>
+       Expected: Admission date of first patient is changed. Details of the edited patient is shown in the status bar.
 
-   1. Test case: `edit 1 t\flu r\afraid of darkness`<br>
-      Expected: tag and remark of first patient is changed. Details of the edited patient is shown in the status bar.
+    1. Test case: `edit 1 t\flu r\afraid of darkness`<br>
+       Expected: tag and remark of first patient is changed. Details of the edited patient is shown in the status bar.
 
-    1. Test case(invalid name): `edit n\ `<br>
-       Expected: Patient name is not changed. Error details shown in the status message.
+    2. Test case (Invalid Index): `edit x n\John` where x is larger than list size <br>
+       Expected: Error details shown in status bar.
+
+    1. Test case (Invalid Name): `edit 1 n\ `<br>
+       Expected: Patient name is not changed. Error details shown in the status bar.
+
+    2. Test case (Invalid NRIC): `edit 1 ic\a1231234b`<br>
+       Expected: Patient NRIC is not changed. Error details shown in the status bar.
+
+    3. Test case (Invalid Date of Birth): `edit 1 dob\03-03-2004`<br>
+       Expected: Patient Date of Birth is not changed. Error details shown in the status bar.
+
+    4. Test case (Invalid Admission Date): `edit 1 ad\04-02-2024 `<br>
+       Expected: Patient Admission Date is not changed. Error details shown in the status bar.
+
+    5. Test case (Date of Birth after Admission Date): `edit 1 dob\03/03/2024 ad\01/01/2024 `<br>
+       Expected: Patient Date of Birth and Admission Date is not changed. Error details shown in the status bar.
+
+    6. Test case (Invalid Ward): `edit 1 w\B-1 `<br>
+       Expected: Patient ward is not changed. Error details shown in the status bar.
 
 ### Finding a patient
 
@@ -727,15 +761,15 @@ Given below are instructions to test the app manually.
     1. Test case: `find n\Smith`<br>
        Expected: Similar to previous.
 
-   1. Test case: `find n\j`<br>
-      Expected: No patient is shown.
+    1. Test case: `find n\j`<br>
+       Expected: No patient is shown.
 
-   1. Test case: `find n\`<br>
-      Expected: Similar to previous.
+    1. Test case: `find n\`<br>
+       Expected: Similar to previous.
 
 2. Finding a patient by NRIC
 
-    1. Prerequisites: There exist a patient with the NRIC `A1234567B` in the patient records.
+    1. Prerequisites: There exist a patient with the NRIC `A1234567B` in the address book.
 
     1. Test case: `find ic\A1234567`<br>
        Expected: The patient with the NRIC `A1234567B` is shown.
@@ -743,26 +777,23 @@ Given below are instructions to test the app manually.
     1. Test case: `find ic\a1234567b`<br>
        Expected: Similar to previous.
 
-    1. Test case: `find n\Smith`<br>
-       Expected: Similar to previous.
-
     1. Test case: `find ic\`<br>
        Expected: No patient is shown.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a patient while all patients are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First patient is deleted from the list. Details of the deleted contact shown in the status message. 
+    1. Test case: `delete 1`<br>
+       Expected: First patient is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message.
+    1. Test case: `delete 0`<br>
+       Expected: No patient is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 
 ### Saving data
@@ -772,4 +803,4 @@ Given below are instructions to test the app manually.
     1. Prerequisites: The addressbook.json file in the data directory must exist.
 
     1. Test case: Delete the addressbook.json file.<br>
-    Expected: The app launches successfully, populated with the sample data.
+       Expected: The app launches successfully, populated with the sample data.

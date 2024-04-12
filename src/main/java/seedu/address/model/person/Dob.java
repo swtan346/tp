@@ -17,11 +17,11 @@ public class Dob extends DateUtil {
             String.format(DateUtil.MESSAGE_CONSTRAINTS_FORMAT, DATE_TYPE);
     public static final String MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE =
             String.format(DateUtil.MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE, DATE_TYPE);
-
     public static final String MESSAGE_DOB_AFTER_ADMISSION =
             "Date of birth should not be later than date of admission.";
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     private final LocalDate dob;
     private final String value;
 
@@ -34,7 +34,7 @@ public class Dob extends DateUtil {
         requireNonNull(value);
         checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS_FORMAT);
         checkArgument(!isFutureDate(value), MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE);
-        this.dob = LocalDate.parse(value, formatter);
+        this.dob = LocalDate.parse(value, FORMATTER);
         this.value = value;
     }
 
@@ -63,6 +63,7 @@ public class Dob extends DateUtil {
             return true;
         }
 
+        // instanceof handles nulls
         if (!(other instanceof Dob)) {
             return false;
         }

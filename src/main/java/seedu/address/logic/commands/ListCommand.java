@@ -26,6 +26,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
     public static final String MESSAGE_SUCCESS_LIST = "Listed all persons with: %1$s";
+
     private final ListKeywordsPredicate predicate;
 
     /**
@@ -74,7 +75,7 @@ public class ListCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate == null ? "null" : predicate)
+                .add("predicate", (predicate == null) ? "null" : predicate)
                 .toString();
     }
 }

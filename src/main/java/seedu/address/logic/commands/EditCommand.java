@@ -207,36 +207,47 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+
         public void setIc(Ic ic) {
             this.ic = ic;
         }
+
         public Optional<Ic> getIc() {
             return Optional.ofNullable(ic);
         }
+
         public void setDob(Dob dob) {
             this.dob = dob;
         }
+
         public Optional<Dob> getDob() {
             return Optional.ofNullable(dob);
         }
+
         public void setAdmissionDate(AdmissionDate admissionDate) {
             this.admissionDate = admissionDate;
         }
+
         public Optional<AdmissionDate> getAdmissionDate() {
             return Optional.ofNullable(admissionDate);
         }
+
         public void setWard(Ward ward) {
             this.ward = ward;
         }
+
         public Optional<Ward> getWard() {
             return Optional.ofNullable(ward);
         }
+
         public void setRemark(Remark remark) {
             this.remark = remark;
         }
+
         public Optional<Remark> getRemark() {
             return Optional.ofNullable(remark);
         }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
