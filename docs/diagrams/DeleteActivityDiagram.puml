@@ -5,7 +5,7 @@ start
 : User enters delete command;
 : LogicManager executes user input;
 : AddressBookParser parses delete command;
-: DeleteCommandParser  parses the arguments provided in add command;
+: DeleteCommandParser parses the arguments provided in add command;
 if() then ([valid index])
 : AddressBookManager deletes the contact;
 else ([else])
