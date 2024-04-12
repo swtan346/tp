@@ -7,19 +7,20 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
 * Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 * The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book is based from.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -27,9 +28,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
+
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
 
 **Main components of the architecture**
 
@@ -55,9 +58,13 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API 
+`interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using 
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component 
+through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the 
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -88,6 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
+
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -112,6 +120,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -146,6 +155,23 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section contains some noteworthy details on how certain features are being implemented.
 
 ### Adding a patient into Nursing Address Book
+
+The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`.
+
+Given below is an example usage scenario and how the add patient feature behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book.
+
+n\: Indicates the name of the patient
+ic\: Indicates the NRIC of the patient
+ad\: Indicates the admission date of the patient
+dob\: Indicates the date of birth of the patient
+w\: Indicates the ward of the patient is currently in
+
+The `AddCommandParser` parses the user input, creating a new `AddCommand` object.
+The `AddCommand` object then creates a new `Person` object with the parsed details.
 
 #### Implementation
 
@@ -206,84 +232,16 @@ The following sequence diagram summarizes what happens when a user executes a ne
 ![EditSequenceDiagram.png](images/EditSequenceDiagram.png)
 
 
-### Showing help for commands
-
-#### Implementation
-
-The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
-
-
-
-The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
-
-**UML Diagrams:**
-
-The following class diagram shows the relevant classes involved in the help command implementation:
-
-Step 1. The `LogicManager` is called to execute the "help" command.
-Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
-Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
-Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
-Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
-Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
-
-The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
-
-
-![HelpCommandClassDiagram](images/HelpClassDiagram.png)
-
-The following sequence diagram shows how the help command works:
-
-![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250"/>
-
-When the user executes the help command, the following steps occur:
-  
-
-1. The `LogicManager` is called to execute the "help" command.
-2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
-3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
-4. The `HelpCommand` creates a new `CommandResult` with the help message.
-5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
-6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
-
-
-The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
-
-### Add a patient
-
-#### Implementation
-
-The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`.
-
-Given below is an example usage scenario and how the add patient feature behaves at each step.
-
-Step 1. The user launches the application for the first time.
-
-Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book.
-
-n\: Indicates the name of the patient
-ic\: Indicates the NRIC of the patient
-ad\: Indicates the admission date of the patient
-dob\: Indicates the date of birth of the patient
-w\: Indicates the ward of the patient is currently in
-
-The `AddCommandParser` parses the user input, creating a new `AddCommand` object.
-The `AddCommand` object then creates a new `Person` object with the parsed details.
-
 ### List with filter by tags and/or ward feature
 #### Introduction
-This section describes the implementation of the list with filter by tags and/or ward mechanism in NAB. This mechanism 
-allows users to list patients based on their tags and/or ward, on top of listing all patients. This feature is useful 
+This section describes the implementation of the list with filter by tags and/or ward mechanism in NAB. This mechanism
+allows users to list patients based on their tags and/or ward, on top of listing all patients. This feature is useful
 for nurses to quickly find patients with specific medical conditions or patients in a specific ward.
 
 #### Implementation
 
 The filter by tags and/or ward mechanism is facilitated by `ListCommand`, `ListCommandParser`, `ListKeywordsPredicate`
-and `LogicManager`, which implements the `Logic` interface. `LogicManager` holds a `AddressBookParser` that parses the 
+and `LogicManager`, which implements the `Logic` interface. `LogicManager` holds a `AddressBookParser` that parses the
 user input, and a model where the command is executed. Additionally, it implements the following operations:
 
 * `LogicManager#execute(String)`— Executes the given user String input to return a `CommandResult` object.
@@ -292,22 +250,22 @@ These operations are exposed in the UI interface as `MainWindow#executeCommand(S
 
 Given below is an example usage scenario and how the filter by tags and/or ward mechanism behaves at each step.
 
-Step 1. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. 
+Step 1. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book.
 - The `list` command triggers `AddressBookParser` to parse the user input, identifying the `list` command word to call
-`ListCommandParser#parse(String)` to parse the rest of the user input.
+  `ListCommandParser#parse(String)` to parse the rest of the user input.
 
-Step 2. `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a 
+Step 2. `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a
 `ListKeywordPredicate` object is created with the keyword(s) provided. The keywords can be either a ward or tag(s) or both,
 supplied by the user with the relevant prefix. In this case, it would be a tag, `t\diabetes`.
 
-Step 3. A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters 
+Step 3. A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters
 provided, it will still simply create a `ListCommand` object.)
 
 The following is a list of objects created thus far:
 ![ListObjectDiagram](images/ListObjectDiagram.png)
 
-Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)` 
-filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it 
+Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)`
+filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it
 returns the full list of patients.)
 
 Step 5. The filtered list of patients (with diabetes) is displayed to the user through the GUI.
@@ -342,6 +300,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Allow multiple ward tags.
     * Pros: Easy to be more specific.
     * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
+
 
 ### Find feature
 
@@ -387,6 +346,54 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Able to search even if lacking patient information.
     * Cons: Harder to get specific patient as result will be a list.
 
+
+### Showing help for commands
+
+#### Implementation
+
+The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
+
+
+The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
+
+**UML Diagrams:**
+
+The following class diagram shows the relevant classes involved in the help command implementation:
+
+Step 1. The `LogicManager` is called to execute the "help" command.
+Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
+Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
+The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+
+
+![HelpCommandClassDiagram](images/HelpClassDiagram.png)
+
+The following sequence diagram shows how the help command works:
+
+![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250"/>
+
+When the user executes the help command, the following steps occur:
+
+
+1. The `LogicManager` is called to execute the "help" command.
+2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+4. The `HelpCommand` creates a new `CommandResult` with the help message.
+5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+
+
+The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -421,17 +428,17 @@ Ward nurses
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                | So that I can…​                                              |
-| ---- | -------------------------------------- |---------------------------------------------|--------------------------------------------------------------|
-| `* * *` | user                                   | add patient records                      | keep track of their medical condition in the hospital        |
-| `* * *` | user                                   | view existing patient records               | access information on existing patients                      |
-| `* * *` | user                                   | delete a patient record                     | remove outdated or irrelevant patient data                   |
-| `* *` | user                                   | edit patient records                        | ensure that all patient details are current and accurate     |
-| `* *` | user                                   | list patients based on their tags           | view patients based on category                              |
-| `* *` | user                                   | list all patients tied to a specific ward   | know which patients belong to which ward                     |
-| `* *` | user                                   | find patients via their name or NRIC        | quickly find information of specific patient                 |
-| `* *` | user                                   | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
-| `*`  | user                                   | view patient list sorted by name            | look through the list of patients in a more organized manner |
+| Priority | As a …​ | I want to …​                                 | So that I can…​                                              |
+|----------|---------|----------------------------------------------|--------------------------------------------------------------|
+| `* * *`  | user    | add patient records                          | keep track of their medical condition in the hospital        |
+| `* * *`  | user    | view existing patient records                | access information on existing patients                      |
+| `* * *`  | user    | delete a patient record                      | remove outdated or irrelevant patient data                   |
+| `* *`    | user    | edit patient records                         | ensure that all patient details are current and accurate     |
+| `* *`    | user    | list patients based on their tags            | view patients based on category                              |
+| `* *`    | user    | list all patients tied to a specific ward    | know which patients belong to which ward                     |
+| `* *`    | user    | find patients via their name or NRIC         | quickly find information of specific patient                 |
+| `* *`    | user    | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
+| `*`      | user    | view patient list sorted by name             | look through the list of patients in a more organized manner |
 
 ### Use cases
 
@@ -663,7 +670,8 @@ Given below are instructions to test the app manually.
    Expected: List of patients is shown.
 
    3. Test case: `list 181` or any command with extra characters supplied<br>
-      Expected: Similar to previous.
+      Expected: No change in displayed patient list. Error details shown in the status message.
+
 
 2. Viewing patients by tags and ward
 
