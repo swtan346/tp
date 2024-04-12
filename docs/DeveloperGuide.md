@@ -194,7 +194,7 @@ Step 2. The `edit` command calls `EditCommandParser#parse(String)` to parse the 
 Step 3. A new `EditPersonDescriptor` object is created with the new ward details. 
 A new `EditCommand` instance will be created with the index of the patient to be edited and the new `EditPersonDescriptor` object.
 
-Step 4. The `EditCommand` instace is returned to the `LogicManager` and `execute` is called.
+Step 4. The `EditCommand` instance is returned to the `LogicManager` and `execute` is called.
 
 Step 5. The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
 The patient specified will have its ward updated to the new ward specified.
