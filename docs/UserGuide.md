@@ -410,6 +410,10 @@ Format: `help`
 
 On entering the `help` command, the following window will pop up:
 ![Help](images/help.png)
+<div markdown="span" class="alert alert-primary">
+    :bulb: **Tip** <br>
+    Mac users can use ``Cmd + ` `` to switch between windows! Windows users can do the same with `Alt + Tab`!
+</div>
 
 
 #### Clearing all entries : `clear`
