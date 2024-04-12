@@ -132,9 +132,9 @@ Back to [Table of Contents](#table-of-contents)
 The main window of NAB is separated into the following sections:
 1. **Command Box**: This is where you can input commands to interact with the application. Press `Enter` to execute the command.
 2. **Display Box**: This is where the application displays feedback for your commands (for e.g., whether it is successful, or has an error).
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip** You can resize the display box to your liking!
-</div>   
+    <div markdown="span" class="alert alert-primary">
+    :bulb: **Tip** You can resize the display box to your liking!
+    </div>
 3. **Patient Contacts**: This is where the application displays the list of patients.
 4. **Data Storage Location**: This is where the application stores the data file.
 
