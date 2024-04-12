@@ -100,7 +100,8 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<b markdown="span" class="alert alert-info">:information_source: <b>Note:</b> The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: <b>Note:</b> The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
 How the `Logic` component works:
@@ -262,6 +263,7 @@ Step 3. A new `ListCommand` instance is created using the `ListKeywordsPredicate
 provided, it will still simply create a `ListCommand` object.)
 
 The following is a list of objects created thus far:
+
 ![ListObjectDiagram](images/ListObjectDiagram.png)
 
 Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)`
