@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 nav_order : 2
 ---
-# Nursing Address Book (NAB)
+# NAB (NAB)
 Welcome to the user guide for Nursing Address Book (NAB)! NAB is a desktop application tailored for ward nurses in 
 Singapore, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User
 Interface (GUI) for ease of use.
@@ -50,7 +50,7 @@ If you are a current user, feel free to jump into our [Table of Contents](#table
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-This guide is designed to help you navigate Nursing Address Book (NAB) with ease. The guide is divided into several 
+This guide is designed to help you navigate NAB (NAB) with ease. The guide is divided into several 
 sections, each focusing on a specific aspect of the application. As it is meant to give comprehensive details to master 
 the use of NAB, it is recommended to read through the guide sequentially. However, we acknowledge that it can be 
 overwhelming. Do not worry, as you can use the [Table of Contents](#table-of-contents) to navigate to the section you 
@@ -98,7 +98,7 @@ Back to [Table of Contents](#table-of-contents)
 
 2. Download the latest `nab.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your Nursing Address Book.
+3. Copy the file to the folder you want to use as the _home folder_ for your NAB.
 
 4. Open a command terminal. 
    * For Windows users: Search for `cmd` in the Start menu and run it as an administrator if necessary.
@@ -474,12 +474,12 @@ Format: `exit`
 
 #### Saving the data
 
-Data from Nursing Address Book are saved in the hard disk automatically after any command that changes the data. There 
+Data from NAB are saved in the hard disk automatically after any command that changes the data. There 
 is no need to save manually.
 
 #### Editing the data file
 
-Nursing Address Book data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. While not
+NAB data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. While not
 advisable given the critical nature of the system, advanced users are welcome to update data directly by editing the
 data file.
 
@@ -516,7 +516,7 @@ Back to [Table of Contents](#table-of-contents)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
-the data of your previous Nursing Address Book home folder.
+the data of your previous NAB home folder.
 
 **Q**: Is your platform available in other languages such as Chinese?<br>
 **A**: NAB is currently available only in English, as it is the main language of Singapore. Support for additional 
