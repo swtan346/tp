@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User enters add command;
+:LogicManager executes user input;
+:AddressBookParser parses add command;
+:AddCommandParser parses the arguments provided in add command;
+
+if () then ([else])
+    :Outputs error message;
+    stop
+else ([valid arguments])
+    :AddCommand object is created;
+    if () then ([person already exists])
+        :Outputs error message;
+    else ([else])
+        :AddCommand object is passed to LogicManager;
+        :New patient added into Nursing Address Book;
+endif
+stop
+
+@enduml
