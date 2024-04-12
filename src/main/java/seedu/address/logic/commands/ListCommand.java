@@ -16,14 +16,13 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists relevant contacts from the address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists relevant contacts from the address book. "
             + "Parameters: "
-            + "[" + PREFIX_WARD + "WARD]"
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_WARD + "WARD]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_WARD + "3 "
             + PREFIX_TAG + "FallRisk ";
-
     public static final String MESSAGE_SUCCESS = "Listed all persons";
     public static final String MESSAGE_SUCCESS_LIST = "Listed all persons with: %1$s";
     private final ListKeywordsPredicate predicate;
