@@ -11,7 +11,8 @@ public class DateUtil {
 
     public static final String MESSAGE_CONSTRAINTS_FORMAT = "%1$s takes in a date of format dd/MM/yyyy";
     public static final String MESSAGE_CONSTRAINTS_FUTURE_OCCURRENCE = "%1$s should not be later than current date";
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**
      * Returns true if a given string is a valid date.
@@ -20,7 +21,7 @@ public class DateUtil {
      */
     public static boolean isValidDate(String value) {
         try {
-            LocalDate date = LocalDate.parse(value, formatter);
+            LocalDate date = LocalDate.parse(value, FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -33,7 +34,7 @@ public class DateUtil {
      */
     public static boolean isFutureDate(String value) {
         if (isValidDate(value)) {
-            LocalDate date = LocalDate.parse(value, formatter);
+            LocalDate date = LocalDate.parse(value, FORMATTER);
             return date.isAfter(LocalDate.now());
         }
         return false;
@@ -43,6 +44,6 @@ public class DateUtil {
      * Returns the formatter for the date.
      */
     public static DateTimeFormatter getFormatter() {
-        return formatter;
+        return FORMATTER;
     }
 }

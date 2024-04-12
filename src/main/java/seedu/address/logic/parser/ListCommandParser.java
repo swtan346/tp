@@ -19,18 +19,21 @@ public class ListCommandParser implements Parser<ListCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
      * and returns a ListCommand object for execution.
+     *
+     * @param args the arguments to parse.
+     * @return a ListCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        // If there are no arguments, return a ListCommand object with no predicate
+
+        // If there are no arguments, list all patients
         if (trimmedArgs.isEmpty()) {
-            return new ListCommand(); // return a ListCommand object with no predicate
+            return new ListCommand();
         }
 
-        // If there are arguments, parse the arguments and return a ListCommand object with the parsed predicate
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_WARD);
+        // If there are arguments, filter patients based on the arguments
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_WARD);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
@@ -39,20 +42,20 @@ public class ListCommandParser implements Parser<ListCommand> {
         List<String> tagList = List.of();
         if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             tagList = ParserUtil.parseTagsKeywords(argMultimap.getAllValues(PREFIX_TAG));
-            assert !tagList.isEmpty();
+            assert !tagList.isEmpty() : "tagList should not be empty";
         }
 
         String ward = "";
         if (arePrefixesPresent(argMultimap, PREFIX_WARD)) {
             ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).orElse(null)).toString();
-            assert !ward.isEmpty();
+            assert !ward.isEmpty() : "ward should not be empty";
         }
 
-        if (ward.isEmpty() && tagList.isEmpty()) { // If there are no valid arguments, throw an exception
+        if (ward.isEmpty() && tagList.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        assert !tagList.isEmpty() || !ward.isEmpty();
+        assert !tagList.isEmpty() || !ward.isEmpty() : "at least either tagList or ward must be supplied";
 
         return new ListCommand(new ListKeywordsPredicate(tagList, ward));
     }
@@ -60,6 +63,9 @@ public class ListCommandParser implements Parser<ListCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap the {@code ArgumentMultimap} to check for the presence of prefixes.
+     * @param prefixes the prefixes to check for.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
