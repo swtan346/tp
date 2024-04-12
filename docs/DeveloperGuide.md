@@ -1,3 +1,14 @@
+<style>
+img
+{
+    display:block;
+    float:none;
+    margin-left:auto;
+    margin-right:auto;
+    width:60%;
+}
+</style>
+
 ---
 layout: page
 title: Developer Guide
@@ -803,4 +814,4 @@ Given below are instructions to test the app manually.
     1. Prerequisites: The addressbook.json file in the data directory must exist.
 
     1. Test case: Delete the addressbook.json file.<br>
-       Expected: The app launches successfully, populated with the sample data.
+    Expected: The app launches successfully, populated with the sample data.
