@@ -128,7 +128,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String admissionDate, Dob dob} into a {@code AdmissionDate}.
+     * Parses a {@code String admissionDate} into a {@code AdmissionDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code admissionDate} is invalid.
@@ -163,7 +163,7 @@ public class ParserUtil {
      * Parses a {@code String remark} into a {@code Remark}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Remark parseRemark(String remark) throws ParseException {
+    public static Remark parseRemark(String remark) {
         if (remark == null) {
             return new Remark("");
         } else {

@@ -1,0 +1,24 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User executes command;
+:AddressBookParser parses the command;
+:FindCommandParser parses the command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([argument is valid])
+    :Create a new predicate
+    based on the parameters;
+    :Return filtered addressbook
+    using the predicate;
+    :Show the filtered contacts;
+else ([argument is invalid])
+    : Show error message;
+endif
+stop
+@enduml

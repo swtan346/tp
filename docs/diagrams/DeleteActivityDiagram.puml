@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+: User enters delete command;
+: LogicManager executes user input;
+: AddressBookParser parses delete command;
+: DeleteCommandParser  parses the arguments provided in add command;
+if() then ([valid index])
+: AddressBookManager deletes the contact;
+else ([else])
+: Outputs an error message;
+endif
+
+
+stop
+
+@enduml

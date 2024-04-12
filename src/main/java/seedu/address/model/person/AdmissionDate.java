@@ -12,10 +12,10 @@ import seedu.address.commons.util.DateUtil;
  */
 public class AdmissionDate extends DateUtil {
     public static final String DATE_TYPE = "Admission date";
-    public static final String MESSAGE_CONSTRAINTS_FORMAT =
-            String.format(DateUtil.MESSAGE_CONSTRAINTS_FORMAT, DATE_TYPE);
-    public static final String MESSAGE_CONSTRAINTS_OCCURRENCE =
-            "Admission date should not be earlier than date of birth or later than current date";
+    public static final String MESSAGE_CONSTRAINTS_FORMAT = String
+            .format(DateUtil.MESSAGE_CONSTRAINTS_FORMAT, DATE_TYPE);
+    public static final String MESSAGE_CONSTRAINTS_OCCURRENCE = String
+            .format("%1$s should not be earlier than date of birth or later than current date", DATE_TYPE);
 
     private final LocalDate admissionDate;
     private final String value;
@@ -51,6 +51,7 @@ public class AdmissionDate extends DateUtil {
             return true;
         }
 
+        // instanceof handles nulls
         if (!(other instanceof AdmissionDate)) {
             return false;
         }

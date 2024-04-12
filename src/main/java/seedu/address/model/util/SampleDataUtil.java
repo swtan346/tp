@@ -20,6 +20,10 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
+    /**
+     * Returns an array of sample persons.
+     */
     public static Person[] getSamplePersons() {
         return new Person[]{
 
@@ -40,6 +44,9 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Returns an address book containing sample persons.
+     */
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
