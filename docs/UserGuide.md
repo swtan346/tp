@@ -419,6 +419,11 @@ Additional details:
 
 * Deletes the patient records at the specified `INDEX`.
 
+<div markdown="span" class="alert alert-primary"> :bulb: <b>Tip:</b>
+    In accordance with local regulations (such as PDPA), it is advisable to remove patient details once they are 
+discharged.
+</div>
+
 Example command:
 
 `delete 2` deletes the second person in the displayed list.
