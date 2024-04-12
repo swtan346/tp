@@ -385,7 +385,7 @@ The following sequence diagram shows how the finding of patient would work:
 
 The following activity diagram summarizes what happens when a user executes a new command to find a patient:
 
-<img src="images/FindActivityDiagram.png" width="250" />
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design considerations:
 
