@@ -312,6 +312,11 @@ Additional details:
 * You can remove all the patient’s tags by typing `t\ ` without specifying any tags after it.
 * Similarly, you can remove all the patient’s remarks by typing `r\ ` without specifying any remarks after it.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+Each patient in NAB must have a unique IC_NUMBER. Attempting to change the IC_NUMBER of a patient to one that already exists will result in an error.
+</div>
+
 Example command:
 
 `edit 1 ic\T0123456P t\ r\ `
