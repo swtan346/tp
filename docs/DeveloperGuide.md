@@ -6,13 +6,12 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 * The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book is based from.
---------------------------------------------------------------------------------------------------------------------
+* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -20,8 +19,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-
-<div markdown="span" class="alert alert-primary">
 
 ### Architecture
 
@@ -114,7 +111,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -156,14 +153,15 @@ Given below is an example usage scenario and how the add patient feature behaves
 Step 1. The user inputs an add Command (e.g. `add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA`) to add a new patient named Alice to the address book.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The format of the add command is as follows:
-n\: Indicates the name of the patient
-ic\: Indicates the NRIC of the patient
-ad\: Indicates the admission date of the patient
-dob\: Indicates the date of birth of the patient
-w\: Indicates the ward of the patient is currently in
-r\: Indicates remarks for the patient (optional)
-t\: Indicates the tags of the patient (optional, can have multiple)
+- **n**: Indicates the name of the patient
+- **ic**: Indicates the NRIC of the patient
+- **ad**: Indicates the admission date of the patient
+- **dob**: Indicates the date of birth of the patient
+- **w**: Indicates the ward the patient is currently in
+- **r**: Indicates remarks for the patient (optional)
+- **t**: Indicates the tags of the patient (optional, can have multiple)
 </div>
+
 
 Step 2. The `add` command calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
@@ -221,10 +219,15 @@ The `HelpCommand` class extends the `Command` interface and is responsible for e
 The following class diagram shows the relevant classes involved in the help command implementation:
 
 Step 1. The `LogicManager` is called to execute the "help" command.
+
 Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+
 Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+
 Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
+
 Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
+
 Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
 
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
@@ -252,27 +255,6 @@ When the user executes the help command, the following steps occur:
 
 
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
-
-### Add a patient
-
-#### Implementation
-
-The add patient feature is facilitated by `AddCommand`, `AddCommandParser` and `Person`.
-
-Given below is an example usage scenario and how the add patient feature behaves at each step.
-
-Step 1. The user launches the application for the first time.
-
-Step 2. The user executes an Add Command (e.g. 'add n\Alice ic\A0055679T ad\01/01/2022 dob\01/01/2002 w\WA') to add a new patient to the address book.
-
-n\: Indicates the name of the patient
-ic\: Indicates the NRIC of the patient
-ad\: Indicates the admission date of the patient
-dob\: Indicates the date of birth of the patient
-w\: Indicates the ward of the patient is currently in
-
-The `AddCommandParser` parses the user input, creating a new `AddCommand` object.
-The `AddCommand` object then creates a new `Person` object with the parsed details.
 
 ### List by tags and/or ward feature
 
