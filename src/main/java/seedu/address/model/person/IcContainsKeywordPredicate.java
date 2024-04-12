@@ -25,7 +25,7 @@ public class IcContainsKeywordPredicate implements Predicate<Person> {
         if (this.keyword.equals("")) {
             return false;
         }
-        return StringUtil.containsWordIgnoreCase(person.getIc().value, keyword);
+        return StringUtil.containsWordIgnoreCase(person.getIc().toString(), keyword);
     }
 
     @Override

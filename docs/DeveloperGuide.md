@@ -89,7 +89,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+<b markdown="span" class="alert alert-info">:information_source: <b>Note:</b> The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
 How the `Logic` component works:
@@ -294,25 +294,44 @@ The `HelpCommand` class interacts with the `Logic` component and utilizes the `C
 
 #### Implementation
 
-The filter by tags and/or ward mechanism is facilitated by `ListCommand`, `ListCommandParser` and `ListKeywordsPredicate`. Additionally, it implements the following operations:
+The filter by tags and/or ward mechanism is facilitated by `ListCommand`, `ListCommandParser`, `ListKeywordsPredicate`
+and `LogicManager`, which implements the `Logic` interface. `LogicManager` holds a `AddressBookParser` that parses the 
+user input, and a model where the command is executed. Additionally, it implements the following operations:
 
-* `ListCommandParser#parse()` — Parses user input and creates a `ListCommand` object.
+* `LogicManager#execute(String)`— Executes the given user String input to return a `CommandResult` object.
+
+These operations are exposed in the UI interface as `MainWindow#executeCommand(String)`.
 
 Given below is an example usage scenario and how the filter by tags and/or ward mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time.
+Step 1. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. 
+- The `list` command triggers `AddressBookParser` to parse the user input, identifying the `list` command word to call
+`ListCommandParser#parse(String)` to parse the rest of the user input.
 
-Step 2. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. The `ListCommandParser` parses the user input, creating a new `ListCommand` and `ListKeywordPredicate` object as `predicate` (since there are keywords provided). `predicate` will filter the list of patients in the address book to only show patients with the diabetes tag. 
+Step 2. `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a 
+`ListKeywordPredicate` object is created with the keyword(s) provided. The keywords can be either a ward or tag(s) or both,
+supplied by the user with the relevant prefix. In this case, it would be a tag, `t\diabetes`.
 
+Step 3. A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters 
+provided, it will still simply create a `ListCommand` object.)
+
+The following is a list of objects created thus far:
 ![ListObjectDiagram](images/ListObjectDiagram.png)
 
-Step 3. For each patient in the address book, the `predicate` object will be passed to `Model#updateFilteredPersonList` check if the patient has the diabetes tag. If the patient has the diabetes tag, the patient will be shown in the list of patients.
+Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)` 
+filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it 
+returns the full list of patients.)
+
+Step 5. The filtered list of patients (with diabetes) is displayed to the user through the GUI.
 
 **UML Diagrams:**
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the listing of relevant patients would work:
+![ListCommandSequenceDiagram](images/ListCommandSequenceDiagram.png)
 
-<img src="images/ListCommandActivityDiagram.png" width="250" />
+The following activity diagram summarizes what happens when a user executes a new command to list relevant patients:
+
+<img src="images/ListCommandActivityDiagram2.png" width="250" />
 
 #### Design considerations:
 

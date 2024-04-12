@@ -67,11 +67,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_WARD).isPresent()) {
             editPersonDescriptor.setWard(ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).get()));
         }
-
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
             editPersonDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
         }
-
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -93,5 +91,4 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
 }

@@ -52,7 +52,7 @@ public class AdmissionDateTest {
         assertTrue(AdmissionDate.isValidDate(todayFormatted));
 
         // valid AdmissionDate
-        assertFalse(AdmissionDate.isValidAdmissionDate(tomorrowFormatted));
+        assertFalse(!AdmissionDate.isFutureDate(tomorrowFormatted));
     }
 
     @Test

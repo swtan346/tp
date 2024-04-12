@@ -57,8 +57,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "A patient with this IC already exists in the address book.";
-    public static final String MESSAGE_DOB_AFTER_ADMISSION =
-            "Date of birth should not be later than date of admission.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -91,8 +89,8 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (editedPerson.getDob().date.isAfter(editedPerson.getAdmissionDate().date)) {
-            throw new CommandException(MESSAGE_DOB_AFTER_ADMISSION);
+        if (editedPerson.getDob().isAfterAdmissionDate(editedPerson.getAdmissionDate())) {
+            throw new CommandException(Dob.MESSAGE_DOB_AFTER_ADMISSION);
         }
 
         model.setPerson(personToEdit, editedPerson);

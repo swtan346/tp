@@ -47,10 +47,11 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        try {
+            return new Name(trimmedName);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        return new Name(trimmedName);
     }
 
     /**
@@ -62,10 +63,11 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        try {
+            return new Tag(trimmedTag);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        return new Tag(trimmedTag);
     }
 
     /**
@@ -102,13 +104,11 @@ public class ParserUtil {
     public static Dob parseDob(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
-        if (!Dob.isValidDate(trimmedDob)) {
-            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_FORMAT);
+        try {
+            return new Dob(trimmedDob);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        if (!Dob.isValidDob(trimmedDob)) {
-            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_OCCURRENCE);
-        }
-        return new Dob(trimmedDob);
     }
 
     /**
@@ -120,10 +120,11 @@ public class ParserUtil {
     public static Ic parseIc(String ic) throws ParseException {
         requireNonNull(ic);
         String trimmedIc = ic.trim();
-        if (!Ic.isValidIc(trimmedIc)) {
-            throw new ParseException(Ic.MESSAGE_CONSTRAINTS);
+        try {
+            return new Ic(trimmedIc);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        return new Ic(trimmedIc);
     }
 
     /**
@@ -135,14 +136,11 @@ public class ParserUtil {
     public static AdmissionDate parseAdmissionDate(String admissionDate) throws ParseException {
         requireNonNull(admissionDate);
         String trimmedAdmissionDate = admissionDate.trim();
-        if (!AdmissionDate.isValidDate(admissionDate.trim())) {
-            throw new ParseException(AdmissionDate.MESSAGE_CONSTRAINTS_FORMAT);
+        try {
+            return new AdmissionDate(trimmedAdmissionDate);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-
-        if (!AdmissionDate.isValidAdmissionDate(admissionDate.trim())) {
-            throw new ParseException(AdmissionDate.MESSAGE_CONSTRAINTS_OCCURRENCE);
-        }
-        return new AdmissionDate(trimmedAdmissionDate);
     }
 
     /**
@@ -154,12 +152,11 @@ public class ParserUtil {
     public static Ward parseWard(String ward) throws ParseException {
         requireNonNull(ward);
         String trimmedWard = ward.trim();
-        if (!Ward.isValidWard(trimmedWard)) {
-            throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
+        try {
+            return new Ward(trimmedWard);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        // For now we assume all strings are valid wards.
-        // We can change this to be better in the future.
-        return new Ward(trimmedWard);
     }
 
     /**
