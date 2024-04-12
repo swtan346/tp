@@ -19,7 +19,7 @@ If you wish to get started immediately, you can skip the introduction and head s
 If you are a current user, feel free to jump into our [table of contents](#table-of-contents) to find the section you need help with.
 
 <div markdown="span" class="alert alert-info">
-**:information_source: Note:** The Nursing Address Book (NAB) application is currently available only in English. However, we are actively working on expanding the language support, and plan to offer additional language options in future releases.
+:information_source: <b>Note:</b> The Nursing Address Book (NAB) application is currently available only in English. However, we are actively working on expanding the language support, and plan to offer additional language options in future releases.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ Back to [Table of Contents](#table-of-contents)
    <br>
 
    <div markdown="block" class="alert alert-info">
-   **:information_source: Note for Windows users:** _Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file executable._
+   :information_source: <b>Note for Windows users:</b> _Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file executable._
    <br>
    Should you need help navigating the interface, refer to the [Interface](#the-interface) section.
    </div>
@@ -152,7 +152,7 @@ The features are categorized into two main sections:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+:information_source: <b>Notes about the command format:</b><br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n\NAME`, `NAME` is a parameter which can be used as `add n\John Doe`.
@@ -213,7 +213,7 @@ Additional details:
 * `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remark field.
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:**<br>
+:information_source: <b>Note:</b><br>
 Each patient in NAB must have a unique IC_NUMBER. Attempting to add a patient that has an IC_NUMBER that already exists will result in an error.
 </div>
 
@@ -313,7 +313,7 @@ Additional details:
 * Similarly, you can remove all the patient’s remarks by typing `r\ ` without specifying any remarks after it.
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:**<br>
+:information_source: <b>Note:</b><br>
 Each patient in NAB must have a unique IC_NUMBER. Attempting to change the IC_NUMBER of a patient to one that already exists will result in an error.
 </div>
 
