@@ -107,10 +107,12 @@ Back to [Table of Contents](#table-of-contents)
 5. Use the `cd` command to navigate to the folder where you placed the jar file.
 
 6. Run the application by executing `java -jar nab.jar`.<br>
-   Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
-   ![Ui](images/Ui.png)
-   <br>
 
+   Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
+   <br>
+    ![Ui](images/Ui.png)
+   <br>
+   <br>
    <div markdown="block" class="alert alert-info"> :information_source: <b>Note for Windows users:</b><br>
    _Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be
    required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file 
@@ -195,7 +197,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 | Parameter        | Description                                                                    | Valid Input                                                                                                                                                                                                                                                                               |
 |------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`          | The position of a patient in the displayed list.                               | Positive integers (i.e. from 1 onwards) e.g., `1`, `2`, `3`. Should not be larger than the length of displayed list.                                                                                                                                                                      |                                                                                                                                         
+| `INDEX`          | The position of a patient in the currently displayed list.                     | Positive integers (i.e. from 1 onwards) e.g., `1`, `2`, `3`. Should not be larger than the length of displayed list.                                                                                                                                                                      |                                                                                                                                         
 | `NAME`           | The name of a patient.                                                         | Common names are generally accepted. Names should be alphanumeric, with the inclusion of the following special characters: whitespaces, `'`, `-`, `,` and `/`. e.g., `John Doe`, `Nagaratnam s/o Suppiah`.                                                                                |                                                                                                                                                                                                         
 | `IC_NUMBER`      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.           |
 | `DATE_OF_BIRTH`  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, or impossible dates such as 30th February etc).  |              
@@ -228,7 +230,7 @@ Allows you to add a new patient's information to the address book.
 Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]…​`
 
 <div markdown="span" class="alert alert-primary"> :bulb: <b>Tip:</b>
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 You can find details about each parameter [here](#parameters-for-commands).
@@ -237,11 +239,11 @@ Additional details:
 
 * `DATE_OF_BIRTH` : Date of birth must not be later than admission date, and not be later than the current date.
 * `ADMISSION_DATE` : Admission date must not be earlier than date of birth, and not be later than the current date.
-* `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remark field.
+* `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remarks field.
 
 <div markdown="block" class="alert alert-info"> :information_source: <b>Note:</b>
-Each patient in NAB must have a unique IC_NUMBER. Attempting to add a patient that has an IC_NUMBER that already exists 
-will result in an error.
+Each patient in NAB must have a unique  <code>IC_NUMBER</code>. Attempting to add a patient with an 
+<code>IC_NUMBER</code> that already exists will result in an error.
 </div>
 
 Example command:
@@ -285,6 +287,7 @@ that meet the above criteria will be listed.
 * For the `list` commands below, we assume the list contains 2 people, John Doe and Jane Doe)
 
 Example command:
+
 `list`
 ```
 Listed all persons
@@ -338,26 +341,24 @@ patient shown in the displayed list.
 * You must provide at least one of the optional fields.
 * Existing values will be replaced with the input values.
 
-<div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
-When editing tags and/or remarks, the existing tags and/or remarks of the patient will 
-be removed i.e adding of tags and/or remarks via `edit` is not cumulative. Be sure to copy the previous tags and remarks 
-if you wish to retain them.
-</div>
+    <div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
+    When editing tags and/or remarks, the existing tags and/or remarks of the patient will 
+    be removed i.e adding of tags and/or remarks via `edit` is not cumulative. Be sure to copy the previous tags and remarks 
+    if you wish to retain them.
+    </div>
 
 * You can remove all the patient’s tags by typing `t\ ` without specifying any tags after it.
 * Similarly, you can remove all the patient’s remarks by typing `r\ ` without specifying any remarks after it.
 
 <div markdown="block" class="alert alert-info"> :information_source: <b>Note:</b>
-Each patient in NAB must have a unique IC_NUMBER. Attempting to change the IC_NUMBER of a patient to one that already 
-exists will result in an error.
+Each patient in NAB must have a unique <code>IC_NUMBER</code>. Attempting to change the <code>IC_NUMBER</code> of a 
+patient to one that already exists will result in an error.
 </div>
 
 Example command:
 
-`edit 1 ic\T0123456P t\ r\ `
-
-_Edits the IC_NUMBER, TAGS and REMARKS of the 1st person to be `T0123456P` for IC_NUMBER and empty for both TAG and 
-REMARK._
+`edit 1 ic\T0123456P t\ r\ ` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first person to be `T0123456P` for 
+`IC_NUMBER` and empty for both `TAG` and `REMARK`.
 
 The following shows the change in contact details:
 
@@ -393,17 +394,18 @@ You can find details about each parameter [here](#parameters-for-commands).
 
 Additional details:
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Only full IC will be matched e.g. `a1234567b` will not match `123`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* Only full IC will be matched e.g. `a1234567b` will not match `123`.
 
 Example command:
-* `find n\John` returns patient contacts with `john` and `John Doe`
-* `find n\alex denver` returns patient contacts with `Alex Denver` and `Denver Li`
-* `find ic\a1234567b` returns patient contacts with `A1234567B`
+
+* `find n\John` returns patient contacts with `john` and `John Doe`.
+* `find n\alex denver` returns patient contacts with `Alex Denver` and `Denver Li`.
+* `find ic\a1234567b` returns patient contacts with `A1234567B`.
 
 #### Deleting a patient : `delete`
 
@@ -411,13 +413,15 @@ Allows you to delete the specified patient from the address book.
 
 Format: `delete INDEX`
 
+You can find details about each parameter [here](#parameters-for-commands).
+
+Additional details:
+
 * Deletes the patient records at the specified `INDEX`.
-* The index refers to the index number shown in the displayed list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Example command:
 
-`delete 2` deletes the 2nd person in the displayed list.
+`delete 2` deletes the second person in the displayed list.
 ```
 Deleted Person: Jane Doe
 IC: A1234567B
@@ -450,7 +454,8 @@ On entering the `help` command, the following window will pop up:
 ![Help](images/help.png)
 
 <div markdown="span" class="alert alert-primary"> :bulb: <b>Tip</b>
-Mac users can use ``Cmd + ` `` to switch between windows! Windows users can do the same with `Alt + Tab`!
+Mac users can use <code>Cmd</code> + <code> `</code> to switch between windows! 
+Windows users can do the same with <code>Alt</code> + <code>Tab</code>!
 </div>
 
 
@@ -552,9 +557,10 @@ Back to [Table of Contents](#table-of-contents)
 systems, you can try closing other running applications to free up system resources. Additionally, you can try 
 restarting the application or your system to clear any potential memory leaks or temporary issues.
 
-2. **Empty tags and/or ward cannot be listed.**  The `list` command will not display patients with tags and/or ward that 
-do not contain any associated content. This feature was intentionally designed to filter through relevant patients with
-the appropriate tags and/or ward, hence the exclusion of empty tags and/or ward.
+2. **Error for empty tags and/or ward prefix(es) for `list`:**  The `list` command will not display patients with tags 
+and/or ward prefix(es) that **do not contain** any associated content. This feature was intentionally designed to filter 
+relevant patients with the appropriate tags and/or ward. As there is no use case (patients should usually have a ward 
+and/or tag associated with them) for being able to look up empty tags and/or wards, they are not displayed.
 
 Back to [Table of Contents](#table-of-contents)
 
