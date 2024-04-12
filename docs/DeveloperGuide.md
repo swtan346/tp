@@ -237,6 +237,8 @@ The following sequence diagram summarizes what happens when a user executes a ne
 
 ![EditSequenceDiagram.png](images/EditSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes a new command:
+![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
 ### Showing help for commands
 
