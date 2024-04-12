@@ -204,6 +204,9 @@ Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\R
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 A person can have any number of tags (including 0)
 </div>
+You can find details about each parameter [here](#parameters-for-commands).
+
+Additional details:
 
 * `DATE_OF_BIRTH` : Date of birth must not be later than admission date, and not be later than the current date.
 * `ADMISSION_DATE` : Admission date must not be earlier than date of birth, and not be later than the current date.
@@ -232,6 +235,10 @@ If you use `list` command without optional parameters, you will be able to list 
 You may also filter by ward and/or tags to list only patients in a specific ward and/or with specific tags.
 
 Format: `list [w\WARD] [t\TAG]...`
+
+You can find details about each parameter [here](#parameters-for-commands).
+
+Additional details:
 
 * `WARD` : Must only list at most **ONE** ward.
 * Only patients with tags (and appropriate ward, if specified) that encompass all the provided tags will be listed.
@@ -286,6 +293,10 @@ Allows you to edit an existing patient's details in the address book.
 
 Format: `edit INDEX [n\NAME] [ic\IC_NUMBER] [dob\DATE_OF_BIRTH] [ad\ADMISSION_DATE] [w\WARD] [r\REMARK] [t\TAG]…​`
 
+You can find details about each parameter [here](#parameters-for-commands).
+
+Additional details:
+
 * Edits the patient details at the specified `INDEX`. The index **must be a positive integer** that refers to the patient shown in the displayed list.
 * You must provide at least one of the optional fields.
 * Existing values will be replaced with the input values.
@@ -330,6 +341,10 @@ Remarks:
 Allows you to find patients whose name or IC contain any of the given keywords.
 
 Format: `find n\NAME OR find ic\IC_NUMBER`
+
+You can find details about each parameter [here](#parameters-for-commands).
+
+Additional details:
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
