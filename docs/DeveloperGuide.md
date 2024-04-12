@@ -345,13 +345,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Find feature
 
+#### Introduction
+This section describes the implementation of the find by name or NRIC mechanism in NAB. 
+
 #### Implementation
 
-The filter by tags and/or ward mechanism is facilitated by `FindCommand`, `FindCommandParser`,
-`NameContainsKeywordsPredicate` and
+The find feature is facilitated by `FindCommand`, `FindCommandParser`, `NameContainsKeywordsPredicate` and
 `IcContainsKeywordsPredicate`.
-
-![FindClassDiagram](images/FindClassDiagram.png)
 
 Additionally, it implements the following operations:
 
@@ -365,6 +365,15 @@ Step 1. The user executes `find n\Bob` command to find patient with the name Bob
 Step 2. For each patient in the address book, the `predicate` object will be passed to
 `Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob,
 the patient will be shown in result.
+
+**UML Diagrams:**
+
+The following sequence diagram shows how the finding of patient would work:
+![FindCommandSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command to find a patient:
+
+<img src="images/FindActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
