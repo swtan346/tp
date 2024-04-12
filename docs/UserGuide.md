@@ -205,7 +205,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 | `TAG`            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `FallRisk`.                                     |                                                                                             
 
 <div markdown="block" class="alert alert-info">
-:information_source: <b>Note:</b><br>
+:information_source: <b>Note:</b>
 Each parameter will _usually_ be supplied with a prefix to indicate the type of parameter. For example, `n\John Doe` 
 indicates that the parameter `John Doe` is the name of the patient.
 </div>
@@ -230,6 +230,7 @@ Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\R
 <div markdown="span" class="alert alert-primary"> :bulb: <b>Tip:</b>
 A person can have any number of tags (including 0)
 </div>
+
 You can find details about each parameter [here](#parameters-for-commands).
 
 Additional details:
@@ -238,7 +239,7 @@ Additional details:
 * `ADMISSION_DATE` : Admission date must not be earlier than date of birth, and not be later than the current date.
 * `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remark field.
 
-<div markdown="block" class="alert alert-info"> :information_source: <b>Note:</b><br>
+<div markdown="block" class="alert alert-info"> :information_source: <b>Note:</b>
 Each patient in NAB must have a unique IC_NUMBER. Attempting to add a patient that has an IC_NUMBER that already exists 
 will result in an error.
 </div>
@@ -274,7 +275,7 @@ Additional details:
 * `WARD` : Must only list at most **ONE** ward.
 * Only patients with tags (and appropriate ward, if specified) that encompass all the provided tags will be listed.
 
-<div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b> <br>
+<div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
 If you wish to list all patients, utilise the command `list` instead of using empty parameters. Otherwise, it will 
 assume that it is an invalid input.
 </div>
@@ -346,7 +347,7 @@ if you wish to retain them.
 * You can remove all the patient’s tags by typing `t\ ` without specifying any tags after it.
 * Similarly, you can remove all the patient’s remarks by typing `r\ ` without specifying any remarks after it.
 
-<div markdown="block" class="alert alert-info"> :information_source: <b>Note:</b><br>
+<div markdown="block" class="alert alert-info"> :information_source: <b>Note:</b>
 Each patient in NAB must have a unique IC_NUMBER. Attempting to change the IC_NUMBER of a patient to one that already 
 exists will result in an error.
 </div>
@@ -386,7 +387,7 @@ Remarks:
 
 Allows you to find patients whose name or IC contain any of the given keywords.
 
-Format: `find n\NAME OR find ic\IC_NUMBER`
+Format: `find n\NAME` OR `find ic\IC_NUMBER`
 
 You can find details about each parameter [here](#parameters-for-commands).
 
@@ -400,9 +401,9 @@ Additional details:
 * Only full IC will be matched e.g. `a1234567b` will not match `123`
 
 Example command:
-* `find n\John` returns `john` and `John Doe`
-* `find n\alex denver` returns `Alex Denver` and `Denver Li`
-* `find ic\a1234567b` returns `A1234567B`
+* `find n\John` returns patient contacts with `john` and `John Doe`
+* `find n\alex denver` returns patient contacts with `Alex Denver` and `Denver Li`
+* `find ic\a1234567b` returns patient contacts with `A1234567B`
 
 #### Deleting a patient : `delete`
 
@@ -448,7 +449,7 @@ On entering the `help` command, the following window will pop up:
 
 ![Help](images/help.png)
 
-<div markdown="span" class="alert alert-primary"> :bulb: <b>Tip</b> <br>
+<div markdown="span" class="alert alert-primary"> :bulb: <b>Tip</b>
 Mac users can use ``Cmd + ` `` to switch between windows! Windows users can do the same with `Alt + Tab`!
 </div>
 
@@ -482,7 +483,7 @@ Nursing Address Book data are saved automatically as a JSON file `[JAR file loca
 advisable given the critical nature of the system, advanced users are welcome to update data directly by editing the
 data file.
 
-<div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b><br>
+<div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, NAB will discard all data and start with an empty data file 
 at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 
