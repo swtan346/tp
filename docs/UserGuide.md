@@ -77,9 +77,9 @@ Here are the icons used in this guide and their meanings:
 
 | Icon                          | Meaning                                                                           |
 |-------------------------------|-----------------------------------------------------------------------------------|
-| :exclamation: **Caution**     | Indicates a caution or warning. Typically, these are common errors made by users. |
+| :exclamation:**Caution**      | Indicates a caution or warning. Typically, these are common errors made by users. |
 | :information_source: **Note** | Provides additional information.                                                  |
-| :bulb: **Tip**                | Provides additional tips for you to master the application.                       |
+| :bulb:**Tip**                 | Provides additional tips for you to master the application.                       |
 
 
 
