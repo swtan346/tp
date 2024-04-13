@@ -106,7 +106,7 @@ Back to [Table of Contents](#table-of-contents)
 
 5. Use the `cd` command to navigate to the folder where you placed the jar file.
 
-6. Run the application by executing `java -jar nab.jar`.<br>
+6. Run the application by executing `java -jar nab.jar` on the command terminal.<br>
 
    Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
    <br>
@@ -230,7 +230,7 @@ Allows you to add a new patient's information to the address book.
 Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]…​`
 
 <div markdown="span" class="alert alert-primary"> :bulb: <b>Tip:</b>
-A person can have any number of tags (including 0).
+A patient can have any number of tags (including 0).
 </div>
 
 You can find details about each parameter [here](#parameters-for-commands).
@@ -239,7 +239,7 @@ Additional details:
 
 * `DATE_OF_BIRTH` : Date of birth must not be later than admission date, and not be later than the current date.
 * `ADMISSION_DATE` : Admission date must not be earlier than date of birth, and not be later than the current date.
-* `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remarks field.
+* `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remark field.
 
 <div markdown="block" class="alert alert-info"> :information_source: <b>Note:</b>
 Each patient in NAB must have a unique  <code>IC_NUMBER</code>. Attempting to add a patient with an 
@@ -293,20 +293,20 @@ Example command:
 Listed all persons
 
 1. John Doe
-Tags: FallRisk, Diabetes
 IC: T1234567P
 DOB: 21 Mar 2000
 Ward: A1
 Admission Date: 2 Feb 2022
 Remarks: 
+Tags: [FallRisk][Diabetes]
 
 2. Jane Doe
-Tags: FallRisk, SevereAllergies
 IC: T1234765P
 DOB: 22 Apr 2000
 Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
+Tags: [FallRisk][SevereAllergies]
 ```
 
 
@@ -318,12 +318,12 @@ Tags: FallRisk
 Ward: B4
 
 1. Jane Doe
-Tags: FallRisk, SevereAllergies
 IC: T1234765P
 DOB: 22 Apr 2000
 Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
+Tags: [FallRisk][SevereAllergies]
 ```
 
 #### Editing a patient's details : `edit`
@@ -338,7 +338,7 @@ Additional details:
 
 * Edits the patient details at the specified `INDEX`. The index **must be a positive integer** that refers to the 
 patient shown in the displayed list.
-* You must provide at least one of the optional fields.
+* **You must provide at least one of the optional fields.**
 * Existing values will be replaced with the input values.
 
     <div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
@@ -357,31 +357,31 @@ patient to one that already exists will result in an error.
 
 Example command:
 
-`edit 1 ic\T0123456P t\ r\ ` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first person to be `T0123456P` for 
+`edit 1 ic\T0123456P t\ r\` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first patient to be `T0123456P` for 
 `IC_NUMBER` and empty for both `TAG` and `REMARK`.
 
-The following shows the change in contact details:
+Assuming John Doe is at index 1, the following shows the change in contact details:
 
 
 **Before**:
 ```
 John Doe
-Tags: FallRisk, Diabetes
 IC: T1234567P
 DOB: 21/03/2000
 Ward: A1
 Admission Date: 02/02/2022
 Remarks: Requires assistance feeding.
+Tags: [FallRisk][Diabetes]
 ```
 **After**:
 ```
 John Doe
-Tags:
 IC: T0123456P
 DOB: 21/03/2000
 Ward: A1
 Admission Date: 02/02/2022
 Remarks:
+Tags:
 ```
 
 #### Locating a patient's contact : `find`
@@ -397,7 +397,7 @@ Additional details:
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 * Only full IC will be matched e.g. `a1234567b` will not match `123`.
 
@@ -426,15 +426,15 @@ discharged.
 
 Example command:
 
-`delete 2` deletes the second person in the displayed list.
+`delete 2` deletes the second patient in the displayed list.
 ```
 Deleted Person: Jane Doe
-Tags: SevereAllergies
 IC: A1234567B
 DOB: 02/02/2000
 Ward: A1
 Admitted: 02/02/2020
-Remarks: likes to go to the park
+Remarks: Likes to go to the park
+Tags: [SevereAllergies]
 ```
 Back to [Patient Management Features](#patient-management-features) or [Table of Contents](#table-of-contents)
 
