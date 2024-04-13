@@ -106,7 +106,7 @@ Back to [Table of Contents](#table-of-contents)
 
 5. Use the `cd` command to navigate to the folder where you placed the jar file.
 
-6. Run the application by executing `java -jar nab.jar`.<br>
+6. Run the application by executing `java -jar nab.jar` on the command terminal.<br>
 
    Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
    <br>
@@ -239,7 +239,7 @@ Additional details:
 
 * `DATE_OF_BIRTH` : Date of birth must not be later than admission date, and not be later than the current date.
 * `ADMISSION_DATE` : Admission date must not be earlier than date of birth, and not be later than the current date.
-* `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remarks field.
+* `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remark field.
 
 <div markdown="block" class="alert alert-info"> :information_source: <b>Note:</b>
 Each patient in NAB must have a unique  <code>IC_NUMBER</code>. Attempting to add a patient with an 
@@ -293,20 +293,20 @@ Example command:
 Listed all persons
 
 1. John Doe
-Tags: FallRisk, Diabetes
 IC: T1234567P
 DOB: 21 Mar 2000
 Ward: A1
 Admission Date: 2 Feb 2022
 Remarks: 
+Tags: [FallRisk][Diabetes]
 
 2. Jane Doe
-Tags: FallRisk, SevereAllergies
 IC: T1234765P
 DOB: 22 Apr 2000
 Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
+Tags: [FallRisk][SevereAllergies]
 ```
 
 
