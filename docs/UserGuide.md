@@ -195,16 +195,16 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 ### Parameters for commands
 
-| Parameter        | Description                                                                    | Valid Input                                                                                                                                                                                                                                                                               |
-|------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`          | The position of a patient in the currently displayed list.                     | Positive integers (i.e. from 1 onwards) e.g., `1`, `2`, `3`. Should not be larger than the length of displayed list.                                                                                                                                                                      |                                                                                                                                         
-| `NAME`           | The name of a patient.                                                         | Common names are generally accepted. Names should be alphanumeric, with the inclusion of the following special characters: whitespaces, `'`, `-`, `,` and `/`. e.g., `John Doe`, `Nagaratnam s/o Suppiah`.                                                                                |                                                                                                                                                                                                         
-| `IC_NUMBER`      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.           |
-| `DATE_OF_BIRTH`  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, or impossible dates such as 30th February etc).  |              
-| `ADMISSION_DATE` | The date a patient was admitted to the ward.                                   | The admission date of the patient must be in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, impossible dates such as 30th February etc). |
-| `WARD`           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `WardA`.                                                                                        |                                                                                               
-| `REMARK`         | Optional remark about a patient.                                               | Any string input, e.g., `Patient is an amputee`.                                                                                                                                                                                                                                          |                                                                                              
-| `TAG`            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `FallRisk`.                                     |                                                                                             
+| Parameter        | Description                                                                    | Valid Input                                                                                                                                                                                                                                                                                  |
+|------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`          | The position of a patient in the currently displayed list.                     | Positive integers (i.e. from 1 onwards) e.g., `1`, `2`, `3`. Should not be larger than the length of displayed list.                                                                                                                                                                         |                                                                                                                                         
+| `NAME`           | The name of a patient.                                                         | Common names are generally accepted. Names should be alphanumeric, with the inclusion of the following special characters: whitespaces, `'`, `-`, `,` and `/`. e.g., `John Doe`, `Nagaratnam s/o Suppiah`.                                                                                   |                                                                                                                                                                                                         
+| `IC_NUMBER`      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.              |
+| `DATE_OF_BIRTH`  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, or impossible dates such as 30th February etc).     |              
+| `ADMISSION_DATE` | The date a patient was admitted to the ward.                                   | The admission date of the patient must be in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, or impossible dates such as 30th February etc). |
+| `WARD`           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `WardA`.                                                                                           |                                                                                               
+| `REMARK`         | Optional remark about a patient.                                               | Any string input, e.g., `Patient is an amputee`.                                                                                                                                                                                                                                             |                                                                                              
+| `TAG`            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `FallRisk`.                                        |                                                                                             
 
 <div markdown="block" class="alert alert-info">
 :information_source: <b>Note:</b>
@@ -284,7 +284,7 @@ assume that it is an invalid input.
 
 * `list` results are permissive, meaning that specified tags will be treated as case-insensitive. Patients with tags 
 that meet the above criteria will be listed. 
-* For the `list` commands below, we assume the list contains 2 people, John Doe and Jane Doe)
+* For the `list` commands below, we assume the list contains 2 people, John Doe and Jane Doe
 
 Example command:
 
@@ -293,20 +293,20 @@ Example command:
 Listed all persons
 
 1. John Doe
+Tags: FallRisk, Diabetes
 IC: T1234567P
 DOB: 21 Mar 2000
 Ward: A1
 Admission Date: 2 Feb 2022
 Remarks: 
-Tags: FallRisk, Diabetes
 
 2. Jane Doe
+Tags: FallRisk, SevereAllergies
 IC: T1234765P
 DOB: 22 Apr 2000
 Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
-Tags: FallRisk, SevereAllergies
 ```
 
 
@@ -318,12 +318,12 @@ Tags: FallRisk
 Ward: B4
 
 1. Jane Doe
+Tags: FallRisk, SevereAllergies
 IC: T1234765P
 DOB: 22 Apr 2000
 Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
-Tags: FallRisk, SevereAllergies
 ```
 
 #### Editing a patient's details : `edit`
@@ -429,12 +429,12 @@ Example command:
 `delete 2` deletes the second person in the displayed list.
 ```
 Deleted Person: Jane Doe
+Tags: SevereAllergies
 IC: A1234567B
 DOB: 02/02/2000
 Ward: A1
 Admitted: 02/02/2020
 Remarks: likes to go to the park
-Tags: SevereAllergies
 ```
 Back to [Patient Management Features](#patient-management-features) or [Table of Contents](#table-of-contents)
 
@@ -458,7 +458,7 @@ On entering the `help` command, the following window will pop up:
 
 ![Help](images/help.png)
 
-<div markdown="span" class="alert alert-primary"> :bulb: <b>Tip</b>
+<div markdown="span" class="alert alert-primary"> :bulb: <b>Tip:</b>
 Mac users can use <code>Cmd</code> + <code> `</code> to switch between windows! 
 Windows users can do the same with <code>Alt</code> + <code>Tab</code>!
 </div>
