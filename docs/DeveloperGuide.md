@@ -140,7 +140,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section contains some noteworthy details on how certain features are being implemented.
+This section outlines some notable details on how specific features are being implemented.
 
 ### Adding a patient into Nursing Address Book
 
@@ -164,13 +164,15 @@ Given below is an example usage scenario and how the add patient feature behaves
 </div>
 
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
+**Step 2.** `LogicManager$execute(String)` is called to execute the add command.   
 
-**Step 3.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
-**Step 4.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+**Step 4.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
 
-**Step 5.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 5.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+
+**Step 6.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
@@ -193,13 +195,15 @@ Given below is an example usage scenario and how the delete patient feature beha
 
 **Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
+**Step 2.** `LogicManager$execute(String)` is called to execute the delete command.
 
-**Step 3.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
 
-**Step 4.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+**Step 4.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
 
-**Step 5.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 5.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+
+**Step 6.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
@@ -221,23 +225,25 @@ Given below is an example usage scenario and how the edit patient feature behave
 
 **Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
+**Step 2.** `LogicManager$execute(String)` is called to execute the edit command.
 
-**Step 3.** A new `EditPersonDescriptor` object is created with the new ward details. 
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
+
+**Step 4.** A new `EditPersonDescriptor` object is created with the new ward details. 
 A new `EditCommand` instance will be created with the index of the patient to be edited and the new `EditPersonDescriptor` object.
 
-**Step 4.** The `EditCommand` instance is returned to the `LogicManager` and `execute` is called.
+**Step 5.** The `EditCommand` instance is returned to the `LogicManager` and `execute` is called.
 
-**Step 5.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
+**Step 6.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
 The patient specified will have its ward updated to the new ward specified.
 
 **UML Diagrams:**
 
-The following sequence diagram summarizes what happens when a user executes a new command:
+The following sequence diagram summarizes what happens when a user executes an edit command:
 
 ![EditSequenceDiagram.png](images/EditSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes an edit command:
 ![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
 ### Showing help for commands
@@ -246,30 +252,25 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
 
-
-
 The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
+
+Given below is an example usage scenario and how the help command feature behaves at each step.
+
+**Step 1.** The `LogicManager` is called to execute the "help" command.
+
+**Step 2.** The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+
+**Step 3.** The `LogicManager` calls the `execute()` method of the `HelpCommand`.
+
+**Step 4.** The `HelpCommand` creates a new `CommandResult` with the help message.
+
+**Step 5.** The `MainWindow` handles the help command and calls the `handleHelp()` method.
+
+**Step 6.** The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
 
 **UML Diagrams:**
 
-The following class diagram shows the relevant classes involved in the help command implementation:
-
-Step 1. The `LogicManager` is called to execute the "help" command.
-
-Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
-
-Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
-
-Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
-
-Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
-
-Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
-
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
-
-
-![HelpCommandClassDiagram](images/HelpClassDiagram.png)
 
 The following sequence diagram shows how the help command works:
 
@@ -278,17 +279,6 @@ The following sequence diagram shows how the help command works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/CommitActivityDiagram.png" width="250"/>
-
-When the user executes the help command, the following steps occur:
-  
-
-1. The `LogicManager` is called to execute the "help" command.
-2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
-3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
-4. The `HelpCommand` creates a new `CommandResult` with the help message.
-5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
-6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
-
 
 The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
 
@@ -306,25 +296,27 @@ These operations are exposed in the UI interface as `MainWindow#executeCommand(S
 
 Given below is an example usage scenario and how the filter by tags and/or ward mechanism behaves at each step.
 
-Step 1. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. 
+**Step 1.** The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. 
 - The `list` command triggers `AddressBookParser` to parse the user input, identifying the `list` command word to call
 `ListCommandParser#parse(String)` to parse the rest of the user input.
 
-Step 2. `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a 
+**Step 2.** `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a 
 `ListKeywordPredicate` object is created with the keyword(s) provided. The keywords can be either a ward or tag(s) or both,
 supplied by the user with the relevant prefix. In this case, it would be a tag, `t\diabetes`.
 
-Step 3. A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters 
-provided, it will still simply create a `ListCommand` object.)
-
+**Step 3.** A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters 
+provided, it will still simply create a `ListCommand` object.)  
+  
+  
 The following is a list of objects created thus far:
 ![ListObjectDiagram](images/ListObjectDiagram.png)
 
-Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)` 
+
+**Step 4.** The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)` 
 filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it 
 returns the full list of patients.)
 
-Step 5. The filtered list of patients (with diabetes) is displayed to the user through the GUI.
+**Step 5.** The filtered list of patients (with diabetes) is displayed to the user through the GUI.
 
 **UML Diagrams:**
 

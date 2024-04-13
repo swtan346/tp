@@ -1,6 +1,10 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
 
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
 start
 : User enters delete command;
 : LogicManager executes user input;
