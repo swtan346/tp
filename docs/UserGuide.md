@@ -230,7 +230,7 @@ Allows you to add a new patient's information to the address book.
 Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]…​`
 
 <div markdown="span" class="alert alert-primary"> :bulb: <b>Tip:</b>
-A person can have any number of tags (including 0).
+A patient can have any number of tags (including 0).
 </div>
 
 You can find details about each parameter [here](#parameters-for-commands).
@@ -357,7 +357,7 @@ patient to one that already exists will result in an error.
 
 Example command:
 
-`edit 1 ic\T0123456P t\ r\` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first person to be `T0123456P` for 
+`edit 1 ic\T0123456P t\ r\` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first patient to be `T0123456P` for 
 `IC_NUMBER` and empty for both `TAG` and `REMARK`.
 
 Assuming John Doe is at index 1, the following shows the change in contact details:
@@ -397,7 +397,7 @@ Additional details:
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 * Only full IC will be matched e.g. `a1234567b` will not match `123`.
 
@@ -426,15 +426,15 @@ discharged.
 
 Example command:
 
-`delete 2` deletes the second person in the displayed list.
+`delete 2` deletes the second patient in the displayed list.
 ```
 Deleted Person: Jane Doe
-Tags: SevereAllergies
 IC: A1234567B
 DOB: 02/02/2000
 Ward: A1
 Admitted: 02/02/2020
-Remarks: likes to go to the park
+Remarks: Likes to go to the park
+Tags: [SevereAllergies]
 ```
 Back to [Patient Management Features](#patient-management-features) or [Table of Contents](#table-of-contents)
 
