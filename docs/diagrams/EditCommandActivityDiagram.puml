@@ -1,0 +1,27 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User executes command;
+:AddressBookParser parses the command;
+:EditCommandParser parses the command;
+if () then ([index is valid])
+    if () then ([no duplicate prefixes present])
+        :get value for each prefix that is present;
+        :store value in EditPersonDescriptor;
+        :return new EditCommand;
+        :replace selected contact with edited contact;
+        :show all contacts;
+    else ([duplicate prefixes present])
+        :show error message;
+    endif
+else ([index is not valid])
+    :show error message;
+endif
+
+
+stop
+
+@enduml
