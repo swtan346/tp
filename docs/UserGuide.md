@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 nav_order : 2
 ---
-# NAB (NAB)
+# Nursing Address Book (NAB)
 Welcome to the user guide for Nursing Address Book (NAB)! NAB is a desktop application tailored for ward nurses in 
 Singapore, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User
 Interface (GUI) for ease of use.
@@ -31,7 +31,7 @@ If you are a current user, feel free to jump into our [Table of Contents](#table
 * [Features](#features)
   * [Patient Management Features](#patient-management-features)
     * [Adding a patient](#adding-a-patient--add)
-    * [Listing relevant patients](#listing-patients--list)
+    * [Listing patients](#listing-patients--list)
     * [Editing a patient’s details](#editing-a-patients-details--edit)
     * [Locating patient contacts](#locating-a-patients-contact--find)
     * [Deleting a patient](#deleting-a-patient--delete)
@@ -50,7 +50,7 @@ If you are a current user, feel free to jump into our [Table of Contents](#table
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-This guide is designed to help you navigate NAB (NAB) with ease. The guide is divided into several 
+This guide is designed to help you navigate Nursing Address Book (NAB) with ease. The guide is divided into several 
 sections, each focusing on a specific aspect of the application. As it is meant to give comprehensive details to master 
 the use of NAB, it is recommended to read through the guide sequentially. However, we acknowledge that it can be 
 overwhelming. Do not worry, as you can use the [Table of Contents](#table-of-contents) to navigate to the section you 
@@ -202,7 +202,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 | `IC_NUMBER`      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.           |
 | `DATE_OF_BIRTH`  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, or impossible dates such as 30th February etc).  |              
 | `ADMISSION_DATE` | The date a patient was admitted to the ward.                                   | The admission date of the patient must be in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, impossible dates such as 30th February etc). |
-| `WARD`           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `FallRisk`.                                                                                     |                                                                                               
+| `WARD`           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `WardA`.                                                                                        |                                                                                               
 | `REMARK`         | Optional remark about a patient.                                               | Any string input, e.g., `Patient is an amputee`.                                                                                                                                                                                                                                          |                                                                                              
 | `TAG`            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `FallRisk`.                                     |                                                                                             
 
@@ -216,7 +216,7 @@ indicates that the parameter `John Doe` is the name of the patient.
 ### Patient Management Features
 For patient management features, NAB provides the following commands:
 - [**Adding a patient**](#adding-a-patient--add): `add`
-- [**Listing relevant patients**](#listing-patients--list): `list`
+- [**Listing patients**](#listing-patients--list): `list`
 - [**Editing a patient's details**](#editing-a-patients-details--edit): `edit`
 - [**Locating patient contacts**](#locating-a-patients-contact--find): `find`
 - [**Deleting a patient**](#deleting-a-patient--delete): `delete`
