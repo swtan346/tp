@@ -363,7 +363,7 @@ The following sequence diagram shows how the listing of relevant patients would 
 
 The following activity diagram summarizes what happens when a user executes a new command to list relevant patients:
 
-<img src="images/ListCommandActivityDiagram2.png" width="250" />
+<img src="images/ListCommandActivityDiagram2.png" width="500" />
 
 #### Design considerations:
 
@@ -387,7 +387,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to be more specific.
     * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
 
-### Find feature
+### Find a patient by name or NRIC
 
 #### Introduction
 This section describes the implementation of the find by name or NRIC mechanism in NAB. 
@@ -397,16 +397,12 @@ This section describes the implementation of the find by name or NRIC mechanism 
 The find feature is facilitated by `FindCommand`, `FindCommandParser`, `NameContainsKeywordsPredicate` and
 `IcContainsKeywordsPredicate`.
 
-Additionally, it implements the following operations:
-
-* `FindCommandParser#parse()` — Parses user input and creates a `FindCommand` object.
-
 Given below is an example usage scenario and how the find by name or IC mechanism behaves at each step.
 
-Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
+**Step 1.** The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
 `FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
 
-Step 2. For each patient in the address book, the `predicate` object will be passed to
+**Step 2.** For each patient in the address book, the `predicate` object will be passed to
 `Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob,
 the patient will be shown in result.
 
@@ -442,22 +438,21 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 
 ### Product scope
 
 **Target user profile**:
 Ward nurses
-* manage a significant number of patient contacts with varying details
-* quickly access critical patient information in time-sensitive situations
-* track and log details of care administered to each patient over time
+* Manage a significant number of patient contacts with varying details
+* Quickly access critical patient information in time-sensitive situations
+* Track and log details of care administered to each patient over time
 
-**Preferences/ Skills**
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI (command-line interface) apps
+**Preferences/Skills**
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI (command-line interface) apps
 
 **Value proposition**: streamlined text-based commands to manage contacts faster than a typical mouse/GUI driven app
 
@@ -465,17 +460,17 @@ Ward nurses
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                | So that I can…​                                              |
-| ---- | -------------------------------------- |---------------------------------------------|--------------------------------------------------------------|
-| `* * *` | user                                   | add patient records                      | keep track of their medical condition in the hospital        |
-| `* * *` | user                                   | view existing patient records               | access information on existing patients                      |
-| `* * *` | user                                   | delete a patient record                     | remove outdated or irrelevant patient data                   |
-| `* *` | user                                   | edit patient records                        | ensure that all patient details are current and accurate     |
-| `* *` | user                                   | list patients based on their tags           | view patients based on category                              |
-| `* *` | user                                   | list all patients tied to a specific ward   | know which patients belong to which ward                     |
-| `* *` | user                                   | find patients via their name or NRIC        | quickly find information of specific patient                 |
-| `* *` | user                                   | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
-| `*`  | user                                   | view patient list sorted by name            | look through the list of patients in a more organized manner |
+| Priority | As a …​ | I want to …​                                | So that I can…​                                                   |
+| ---- |---------|---------------------------------------------|-------------------------------------------------------------------|
+| `* * *` | nurse   | add patient records                      | keep track of their medical condition in the hospital             |
+| `* * *` | nurse   | view existing patient records               | access information on existing patients                           |
+| `* * *` | nurse   | delete a patient record                     | ensure that the system is up to date with the latest patient data |
+| `* *` | nurse   | edit patient records                        | ensure that all patient details are current and accurate          |
+| `* *` | nurse   | list patients based on their tags           | view patients based on category                                   |
+| `* *` | nurse   | list all patients tied to a specific ward   | know which patients belong to which ward                          |
+| `* *` | nurse   | find patients via their name or NRIC        | quickly find information of specific patient                      |
+| `* *` | nurse   | access the user guide through the app easily | learn how to use the Nursing Address Book                         |
+| `*`  | nurse   | view patient list sorted by name            | look through the list of patients in a more organized manner      |
 
 ### Use cases
 
