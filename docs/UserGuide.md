@@ -106,15 +106,15 @@ Back to [Table of Contents](#table-of-contents)
 
 5. Use the `cd` command to navigate to the folder where you placed the jar file.
 
-6. Run the application by executing `java -jar nab.jar`.<br>
+6. Run the application by executing `java -jar nab.jar` on the command terminal.<br>
 
    Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
    <br>
-    ![Ui](images/Ui.png)
+   ![Ui](images/Ui.png)
    <br>
    <br>
-   <div markdown="block" class="alert alert-info"> :information_source: <b>Note for Windows users:</b><br>
-   _Ensure you have the necessary permissions to execute commands. Running the command prompt as an administrator may be
+   <div markdown="block" class="alert alert-info"> :information_source:
+   _Ensure you have the necessary permissions to execute commands. For Windows Users, running the command prompt as an administrator may be
    required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file 
    executable._
    <br>
@@ -123,6 +123,7 @@ Back to [Table of Contents](#table-of-contents)
 
 7. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will 
 open the help window.<br>
+
    Some example commands you can try:
 
    * `list` : Lists all patients.
@@ -195,23 +196,22 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 ### Parameters for commands
 
-| Parameter        | Description                                                                    | Valid Input                                                                                                                                                                                                                                                                                  |
-|------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`          | The position of a patient in the currently displayed list.                     | Positive integers (i.e. from 1 onwards) e.g., `1`, `2`, `3`. Should not be larger than the length of displayed list.                                                                                                                                                                         |                                                                                                                                         
-| `NAME`           | The name of a patient.                                                         | Common names are generally accepted. Names should be alphanumeric, with the inclusion of the following special characters: whitespaces, `'`, `-`, `,` and `/`. e.g., `John Doe`, `Nagaratnam s/o Suppiah`.                                                                                   |                                                                                                                                                                                                         
-| `IC_NUMBER`      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.              |
-| `DATE_OF_BIRTH`  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, or impossible dates such as 30th February etc).     |              
-| `ADMISSION_DATE` | The date a patient was admitted to the ward.                                   | The admission date of the patient must be in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, or impossible dates such as 30th February etc). |
-| `WARD`           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `WardA`.                                                                                           |                                                                                               
-| `REMARK`         | Optional remark about a patient.                                               | Any string input, e.g., `Patient is an amputee`.                                                                                                                                                                                                                                             |                                                                                              
-| `TAG`            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `FallRisk`.                                        |                                                                                             
+| Parameter          | Description                                                                    | Valid Input                                                                                                                                                                                                                                                                                                                                               |
+|--------------------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **INDEX**          | The position of a patient in the displayed list.                               | Positive integers (i.e. from 1 onwards) e.g., `1`, `2`, `3`. Should not be larger than the length of displayed list.                                                                                                                                                                                                                                      |                                                                                                                                         
+| **NAME**           | The name of a patient.                                                         | Common names are generally accepted. Names should be alphanumeric, with the inclusion of the following special characters: whitespaces, `'`, `-`, `,` and `/`. e.g., `John Doe`, `Nagaratnam s/o Suppiah`. <br><br> **Name should be limited to 40 characters. Longer names may not display fully in the GUI.**                                           |                                                                                                                                                                                                         
+| **IC_NUMBER**      | The IC number of the patient.                                                  | A unique identification number in the format of a capital letter, followed by a 7-digit number, and ending with a capital letter. e.g., `T1234567Z`. Note that while the platform performs some level of IC validation, it is up to the user to ensure that the IC is accurate.                                                                           |
+| **DATE_OF_BIRTH**  | The date of birth of a patient.                                                | The date of birth of the patient must be in the format dd/MM/yyyy. e.g., `21/03/2000`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, or impossible dates such as 30th February etc).                                                                  |              
+| **ADMISSION_DATE** | The date a patient was admitted to the ward.                                   | The admission date of the patient must be in the format of dd/MM/yyyy. e.g., `21/03/2022`. Note that while the platform performs some level of date validation, it is up to the user to ensure that the date is accurate (not in the future, impossible dates such as 30th February etc).                                                                 |
+| **WARD**           | The ward where a patient is located.                                           | An alphanumeric string, e.g., `A1`. Note that special characters are not allowed, and you can work around this issue by utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `FallRisk`.                                                                                                                                                     |                                                                                               
+| **REMARK**         | Optional remark about a patient.                                               | Any string input, e.g., `Patient is an amputee`.                                                                                                                                                                                                                                                                                                          |                                                                                              
+| **TAG**            | Optional tag to categorize a patient by health condition or other descriptors. | An alphanumeric string for each tag, e.g., `Diabetes`. Note that special characters are not allowed, and you can work around this issue by omitting special characters, utilising [camelCase](#glossary) or [PascalCase](#glossary) e.g., `FallRisk`. <br><br> **Tags should be limited to 15 characters. Longer tags may not display fully in the GUI.** |                                                                                             
 
 <div markdown="block" class="alert alert-info">
 :information_source: <b>Note:</b>
 Each parameter will _usually_ be supplied with a prefix to indicate the type of parameter. For example, `n\John Doe` 
 indicates that the parameter `John Doe` is the name of the patient.
 </div>
-
 
 ### Patient Management Features
 For patient management features, NAB provides the following commands:
@@ -230,7 +230,7 @@ Allows you to add a new patient's information to the address book.
 Format: `add n\NAME ic\IC_NUMBER dob\DATE_OF_BIRTH ad\ADMISSION_DATE w\WARD [r\REMARK] [t\TAG]…​`
 
 <div markdown="span" class="alert alert-primary"> :bulb: <b>Tip:</b>
-A person can have any number of tags (including 0).
+A patient can have any number of tags (including 0).
 </div>
 
 You can find details about each parameter [here](#parameters-for-commands).
@@ -239,7 +239,7 @@ Additional details:
 
 * `DATE_OF_BIRTH` : Date of birth must not be later than admission date, and not be later than the current date.
 * `ADMISSION_DATE` : Admission date must not be earlier than date of birth, and not be later than the current date.
-* `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remarks field.
+* `REMARK` : Remarks have no length limit, and each patient can only have **ONE** remark field.
 
 <div markdown="block" class="alert alert-info"> :information_source: <b>Note:</b>
 Each patient in NAB must have a unique  <code>IC_NUMBER</code>. Attempting to add a patient with an 
@@ -293,20 +293,20 @@ Example command:
 Listed all persons
 
 1. John Doe
-Tags: FallRisk, Diabetes
 IC: T1234567P
 DOB: 21 Mar 2000
 Ward: A1
 Admission Date: 2 Feb 2022
 Remarks: 
+Tags: [FallRisk][Diabetes]
 
 2. Jane Doe
-Tags: FallRisk, SevereAllergies
 IC: T1234765P
 DOB: 22 Apr 2000
 Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
+Tags: [FallRisk][SevereAllergies]
 ```
 
 
@@ -318,12 +318,12 @@ Tags: FallRisk
 Ward: B4
 
 1. Jane Doe
-Tags: FallRisk, SevereAllergies
 IC: T1234765P
 DOB: 22 Apr 2000
 Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
+Tags: [FallRisk][SevereAllergies]
 ```
 
 #### Editing a patient's details : `edit`
@@ -338,7 +338,7 @@ Additional details:
 
 * Edits the patient details at the specified `INDEX`. The index **must be a positive integer** that refers to the 
 patient shown in the displayed list.
-* You must provide at least one of the optional fields.
+* **You must provide at least one of the optional fields.**
 * Existing values will be replaced with the input values.
 
     <div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
@@ -357,31 +357,31 @@ patient to one that already exists will result in an error.
 
 Example command:
 
-`edit 1 ic\T0123456P t\ r\ ` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first person to be `T0123456P` for 
+`edit 1 ic\T0123456P t\ r\` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first patient to be `T0123456P` for 
 `IC_NUMBER` and empty for both `TAG` and `REMARK`.
 
-The following shows the change in contact details:
+Assuming John Doe is at index 1, the following shows the change in contact details:
 
 
 **Before**:
 ```
 John Doe
-Tags: FallRisk, Diabetes
 IC: T1234567P
 DOB: 21/03/2000
 Ward: A1
 Admission Date: 02/02/2022
 Remarks: Requires assistance feeding.
+Tags: [FallRisk][Diabetes]
 ```
 **After**:
 ```
 John Doe
-Tags:
 IC: T0123456P
 DOB: 21/03/2000
 Ward: A1
 Admission Date: 02/02/2022
 Remarks:
+Tags:
 ```
 
 #### Locating a patient's contact : `find`
@@ -397,7 +397,7 @@ Additional details:
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 * Only full IC will be matched e.g. `a1234567b` will not match `123`.
 
@@ -426,15 +426,15 @@ discharged.
 
 Example command:
 
-`delete 2` deletes the second person in the displayed list.
+`delete 2` deletes the second patient in the displayed list.
 ```
 Deleted Person: Jane Doe
-Tags: SevereAllergies
 IC: A1234567B
 DOB: 02/02/2000
 Ward: A1
 Admitted: 02/02/2020
-Remarks: likes to go to the park
+Remarks: Likes to go to the park
+Tags: [SevereAllergies]
 ```
 Back to [Patient Management Features](#patient-management-features) or [Table of Contents](#table-of-contents)
 

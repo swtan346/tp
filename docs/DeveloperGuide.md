@@ -250,37 +250,75 @@ The following activity diagram summarizes what happens when a user executes an e
 
 #### Implementation
 
-The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
+Showing help for commands is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
 
-The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
+The following class diagram shows the structure of the `HelpCommand` class:
 
-Given below is an example usage scenario and how the help command feature behaves at each step.
+![HelpCommandClassDiagram](images/HelpClassDiagram.png)
 
-**Step 1.** The `LogicManager` is called to execute the "help" command.
+The `HelpCommand` class interacts with the following components:
 
-**Step 2.** The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
+* `Logic`: The `HelpCommand` class is part of the `Logic` component and is executed by the `LogicManager` when the user enters the `help` command.
+* `UI`: The `MainWindow` class in the `UI` component subscribes to the `CommandResult` event raised by the `HelpCommand` and displays the help message in the `HelpWindow`.
 
-**Step 3.** The `LogicManager` calls the `execute()` method of the `HelpCommand`.
 
-**Step 4.** The `HelpCommand` creates a new `CommandResult` with the help message.
+The `HelpCommand` class extends the `Command` interface and implements the `execute()` method. When the `help` command is executed, the `HelpCommand#execute()` method is called, which creates a `CommandResult` object with the help message to be displayed to the user.
 
-**Step 5.** The `MainWindow` handles the help command and calls the `handleHelp()` method.
+Here are the steps involved when a user calls the `help` command:
 
-**Step 6.** The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+**Step 1.** The user enters the `help` command in the CLI.
 
-**UML Diagrams:**
+**Step 2.** The `LogicManager` receives the command and calls the `parseCommand()` method of the `AddressBookParser`.
 
-The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+**Step 3.** The `AddressBookParser` identifies the command as a `HelpCommand` and creates a new instance of the `HelpCommand` class.
+
+**Step 4.** The `AddressBookParser` returns the `HelpCommand` instance to the `LogicManager`.
+
+**Step 5.** The `LogicManager` calls the `execute()` method of the `HelpCommand` instance.
+
+**Step 6.** The `HelpCommand#execute()` method creates a new `CommandResult` object with the help message.
+
+**Step 7.** The `CommandResult` object is returned to the `LogicManager`.
+
+**Step 8.** The `LogicManager` passes the `CommandResult` to the `MainWindow` for display.
+
+**Step 9.** The `MainWindow` extracts the help message from the `CommandResult` and displays it in the `HelpWindow`.
 
 The following sequence diagram shows how the help command works:
-
 ![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+#### Design considerations
 
-<img src="images/CommitActivityDiagram.png" width="250"/>
+**Aspect: Displaying the help message**
 
-The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+* **Alternative 1 (current choice)**: Display the help message in a separate window.
+    * Pros: Allows the user to view the help message without navigating away from the main window.
+    * Cons: Requires additional implementation to create and manage a separate help window.
+
+* **Alternative 2**: Display the help message in the main window's result display.
+    * Pros: Simpler implementation, as it reuses the existing result display component.
+    * Cons: The help message may be obscured by subsequent command results, and the user may need to scroll to view the entire message.
+
+**Aspect: Providing command-specific help**
+
+* **Alternative 1 (current choice)**: Provide a general help message that covers all commands.
+    * Pros: Simplifies the implementation and maintains a consistent help message format.
+    * Cons: The user may need to read through the entire help message to find information about a specific command.
+
+* **Alternative 2**: Provide command-specific help messages.
+    * Pros: Allows users to quickly access help information for a particular command.
+    * Cons: Requires additional implementation to map each command to its specific help message, and may lead to inconsistencies in the help message format.
+
+#### Future enhancements
+
+Here are some possible enhancements for the help feature:
+
+* Implement context-sensitive help that provides guidance based on the user's current input or state.
+* Add support for displaying rich media content, such as images or videos, to provide more engaging and informative help content.
+* Integrate a search functionality within the help system to allow users to quickly find relevant information.
+
+These enhancements would improve the user experience and make the help feature more interactive and user-friendly.
+
 
 ### List by tags and/or ward feature
 
