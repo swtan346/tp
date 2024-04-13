@@ -318,12 +318,12 @@ Tags: FallRisk
 Ward: B4
 
 1. Jane Doe
-Tags: FallRisk, SevereAllergies
 IC: T1234765P
 DOB: 22 Apr 2000
 Ward: B4
 Admission Date: 3 Feb 2022
 Remarks: Likes to read
+Tags: [FallRisk][SevereAllergies]
 ```
 
 #### Editing a patient's details : `edit`
@@ -338,7 +338,7 @@ Additional details:
 
 * Edits the patient details at the specified `INDEX`. The index **must be a positive integer** that refers to the 
 patient shown in the displayed list.
-* You must provide at least one of the optional fields.
+* **You must provide at least one of the optional fields.**
 * Existing values will be replaced with the input values.
 
     <div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
@@ -357,31 +357,31 @@ patient to one that already exists will result in an error.
 
 Example command:
 
-`edit 1 ic\T0123456P t\ r\ ` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first person to be `T0123456P` for 
+`edit 1 ic\T0123456P t\ r\` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first person to be `T0123456P` for 
 `IC_NUMBER` and empty for both `TAG` and `REMARK`.
 
-The following shows the change in contact details:
+Assuming John Doe is at index 1, the following shows the change in contact details:
 
 
 **Before**:
 ```
 John Doe
-Tags: FallRisk, Diabetes
 IC: T1234567P
 DOB: 21/03/2000
 Ward: A1
 Admission Date: 02/02/2022
 Remarks: Requires assistance feeding.
+Tags: [FallRisk][Diabetes]
 ```
 **After**:
 ```
 John Doe
-Tags:
 IC: T0123456P
 DOB: 21/03/2000
 Ward: A1
 Admission Date: 02/02/2022
 Remarks:
+Tags:
 ```
 
 #### Locating a patient's contact : `find`
