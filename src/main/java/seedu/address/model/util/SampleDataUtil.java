@@ -1,9 +1,14 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.AdmissionDate;
@@ -14,12 +19,15 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.JsonAddressBookStorage;
 
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
+    private static final Logger logger = LogsCenter.getLogger(SampleDataUtil.class);
 
     /**
      * Returns an array of sample persons.
@@ -32,7 +40,7 @@ public class SampleDataUtil {
                     new Remark("Requires assistance with feeding.")),
             new Person(new Name("Bernice Yu"), getTagSet("FallRisk", "Diabetes"), new Dob("01/01/1990"),
                     new Ic("S1244567A"), new AdmissionDate("02/01/2022"), new Ward("WB"),
-                    new Remark("Flip every 2 hours to prevent bed sores.")),
+                    new Remark("Flip every 2 hours to prevent bed sores.")), null,
             new Person(new Name("Charlotte Oliveiro"), getTagSet("FallRisk"), new Dob("01/01/1990"),
                     new Ic("S1234577A"), new AdmissionDate("03/01/2022"), new Ward("WC"), new Remark("")),
             new Person(new Name("David Li"), getTagSet("Dementia"), new Dob("01/01/1990"),
@@ -49,10 +57,22 @@ public class SampleDataUtil {
      */
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        try {
+            for (Person samplePerson : getSamplePersons()) {
+                sampleAb.addPerson(samplePerson);
+            }
+            return sampleAb;
+        } catch (NullPointerException e) {
+            logger.warning("Sample data file could not be loaded. "
+                    + e.getMessage() + " value detected. "
+                    + "Will be starting with an empty AddressBook.");
+            return new AddressBook();
+        } catch (IllegalArgumentException e) {
+            logger.warning("Sample data file could not be loaded. "
+                    + e.getMessage() + ". "
+                    + "Will be starting with an empty AddressBook.");
+            return new AddressBook();
         }
-        return sampleAb;
     }
 
     /**
