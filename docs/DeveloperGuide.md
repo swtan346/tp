@@ -193,7 +193,7 @@ Given below is an example usage scenario and how the add patient feature behaves
 - **ad\\**: Indicates the admission date of the patient into the hospital  
 - **dob\\**: Indicates the date of birth of the patient  
 - **w\\**: Indicates the ward the patient is currently in  
-- **r\\**: Indicates remarks for the patient (optional)  
+- **r\\**: Indicates remarks for the patient (optional, can only have 1)  
 - **t\\**: Indicates the tags of the patient (optional, can have multiple)    
 </div>
 
@@ -529,7 +529,7 @@ Ward nurses
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​ | I want to …​                                 | So that I can…​                                              |
+| Priority | As a …  | I want to …                                  | So that I can…                                               |
 |----------|---------|----------------------------------------------|--------------------------------------------------------------|
 | `* * *`  | user    | add patient records                          | keep track of their medical condition in the hospital        |
 | `* * *`  | user    | view existing patient records                | access information on existing patients                      |
@@ -593,9 +593,9 @@ specified otherwise)
 **Extensions**
 
 * 2a. The given index is invalid.
-  * 2a2. AddressBook shows an error message.
+  * 2a2. NAB shows an error message.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: `UC04 - Edit a patient records`**
 
@@ -628,6 +628,8 @@ specified otherwise)
 
 * 1a. NAB detects that the given parameter is invalid.
     * 1a1. NAB shows an error message.
+* 1b. No patient with specified name is present in the NAB.
+    * 1b1. NAB displays an empty list.    
 
     Use case ends.
 
@@ -644,6 +646,8 @@ specified otherwise)
 
 * 1a. NAB detects that the given parameter is invalid.
     * 1a1. NAB shows an error message.
+* 1b. No patient with specified NRIC is present in the NAB.
+    * 1b1. NAB displays an empty list.
 
   Use case ends.
 
@@ -660,6 +664,8 @@ specified otherwise)
 
 * 1a. NAB detects that the given parameter is invalid.
     * 1a1. NAB shows an error message.
+* 1b. No patient with the specified tags are found in NAB.
+    * 1b1. NAB displays an empty list.
 
     Use case ends.
 
@@ -676,6 +682,8 @@ specified otherwise)
 
 * 1a. NAB detects that the given parameter is invalid.
     * 1a1. NAB shows an error message.
+* 1b. No patient with specified ward is present in the NAB.
+    * 1b1. NAB displays an empty list. 
 
     Use case ends.
 
@@ -706,7 +714,7 @@ specified otherwise)
 1.  The software should work without requiring an installer.
 1.  The software should not depend on any specific remote server.
 1.  The product should be available as a single JAR file of size 100MB or below.
-1.  The product should process a user input command within 2 second.
+1.  The product should process a user input command within 2 seconds.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -738,7 +746,7 @@ Given below are instructions to test the app manually.
 
 1. Adding a patient
 
-    1. Prerequisites: There exist no patient with NRIC `A1234567B` in the patient records.
+    1. Prerequisites: There exists no patient with NRIC `A1234567B` in the patient records.
 
     2. Test case (Valid parameters): `add n\John Smith ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea
        r\likes to go to the park`<br>
