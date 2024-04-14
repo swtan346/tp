@@ -24,23 +24,23 @@ activate AddCommandParser
 
 AddCommandParser --> AddressBookParser
 deactivate AddCommandParser
-AddressBookParser -> AddCommandParser : parse(" n\Alice \n ic\A0055679T ad\01/01/2022 \n dob\01/01/2002 w\WA")
+AddressBookParser -> AddCommandParser : parse("n\Alice \n ic\A0055679T ad\01/01/2022 \n dob\01/01/2002 w\WA")
 activate AddCommandParser
 
 create AddCommand
 AddCommandParser -> AddCommand
 activate AddCommand
 
-AddCommand --> AddCommandParser :
+AddCommand --> AddCommandParser : a
 deactivate AddCommand
 
-AddCommandParser --> AddressBookParser
+AddCommandParser --> AddressBookParser : a
 deactivate AddCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddCommandParser -[hidden]-> AddressBookParser
 destroy AddCommandParser
 
-AddressBookParser --> LogicManager
+AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 
 LogicManager -> AddCommand : execute(m)
@@ -56,10 +56,10 @@ create CommandResult
 AddCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddCommand
+CommandResult --> AddCommand : r
 deactivate CommandResult
 
-AddCommand --> LogicManager :
+AddCommand --> LogicManager : r
 deactivate AddCommand
 
 [<--LogicManager

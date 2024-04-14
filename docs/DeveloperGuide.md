@@ -6,12 +6,14 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Acknowledgements**
 
-* The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book is based from.
+* The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book (NAB) is based from.
 * Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -22,7 +24,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<div align="center">
+    <img src="images/ArchitectureDiagram.png" width="280" alt="Architecture diagram"/>
+    <br>
+</div>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -47,16 +52,26 @@ The bulk of the app's work is done by the following four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<div align="center">
+    <img src="images/ArchitectureSequenceDiagram.png" width="574" alt="Architecture sequence diagram" />
+    <br>
+</div>
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API 
+`interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using 
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component 
+through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the 
+implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<div align="center">
+    <img src="images/ComponentManagers.png" width="300" alt="Component managers"/>
+    <br>
+</div>
 
 The sections below give more details of each component.
 
@@ -64,7 +79,10 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<div align="center">
+    <img src="images/UiClassDiagram.png" alt="Ui class diagram"/>
+    <br>
+</div>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -83,36 +101,49 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<div align="center">
+    <img src="images/LogicClassDiagram.png" width="550" alt="Logic class diagram"/>
+    <br>
+</div>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<div align="center">
+    <img src="images/DeleteSequenceDiagram.png" alt="Delete sequence diagram"/>
+    <br>
+</div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: <b>Note:</b> The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<div align="center">
+    <img src="images/ParserClasses.png" width="600" alt="Parser classes"/>
+    <br>
+</div>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="600" />
-
+<div align="center">
+    <img src="images/ModelClassDiagram.png" width="450" alt="Model class diagram"/>
+    <br>
+</div>
 
 The `Model` component,
 
@@ -125,7 +156,10 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<div align="center">
+    <img src="images/StorageClassDiagram.png" width="550" alt="Storage class diagram"/>
+    <br>
+</div>
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -140,9 +174,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section contains some noteworthy details on how certain features are being implemented.
+This section outlines some notable details on how specific features are being implemented.
 
-### Adding a patient into Nursing Address Book
+### Adding a patient into NAB
 
 #### Implementation
 
@@ -159,31 +193,37 @@ Given below is an example usage scenario and how the add patient feature behaves
 - **ad\\**: Indicates the admission date of the patient into the hospital  
 - **dob\\**: Indicates the date of birth of the patient  
 - **w\\**: Indicates the ward the patient is currently in  
-- **r\\**: Indicates remarks for the patient (optional)  
+- **r\\**: Indicates remarks for the patient (optional, can only have 1)  
 - **t\\**: Indicates the tags of the patient (optional, can have multiple)    
 </div>
 
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
+**Step 2.** `LogicManager#execute(String)` is called to execute the add command.   
 
-**Step 3.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
-**Step 4.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+**Step 4.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
 
-**Step 5.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 5.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+
+**Step 6.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
 The following sequence diagram summarizes what happens when a user executes a new command:
 
-![AddSequenceDiagram.png](images%2FAddSequenceDiagram.png)
-
+<div align="center">
+    <img src="images/AddSequenceDiagram.png" alt="Add sequence diagram"/>
+    <br>
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![AddActivityDiagram.png](images%2FAddActivityDiagram.png)
+<div align="center">
+    <img src="images/AddActivityDiagram.png" alt="Add activity diagram"/>
+</div>
 
-### Deleting a patient from Nursing Address Book
+### Deleting a patient from NAB
 
 #### Implementation
 
@@ -191,25 +231,32 @@ The delete patient feature is facilitated mainly by `DeleteCommand`, `DeleteComm
 
 Given below is an example usage scenario and how the delete patient feature behaves at each step.
 
-**Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
+**Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in NAB.
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
+**Step 2.** `LogicManager#execute(String)` is called to execute the delete command.
 
-**Step 3.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
 
-**Step 4.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+**Step 4.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
 
-**Step 5.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 5.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+
+**Step 6.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
 Given below is the sequence diagram that summarizes what happens when a user executes a new command:
 
-![DeleteSequenceDiagram.png](images/DeleteSequenceDiagram.png)
+<div align="center">
+    <img src="images/DeleteSequenceDiagram.png" alt="Delete sequence diagram"/>
+    <br>
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![DeleteActivityDiagram.png](images/DeleteActivityDiagram.png)
+<div align="center">
+    <img src="images/DeleteActivityDiagram.png" alt="Delete activity diagram"/>
+</div>
 
 ### Editing a patient's details
 
@@ -219,26 +266,34 @@ Editing a patient's details is facilitated mainly by `EditCommand`, `EditCommand
 
 Given below is an example usage scenario and how the edit patient feature behaves at each step.
 
-**Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
+**Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in NAB.
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
+**Step 2.** `LogicManager#execute(String)` is called to execute the edit command.
 
-**Step 3.** A new `EditPersonDescriptor` object is created with the new ward details. 
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
+
+**Step 4.** A new `EditPersonDescriptor` object is created with the new ward details. 
 A new `EditCommand` instance will be created with the index of the patient to be edited and the new `EditPersonDescriptor` object.
 
-**Step 4.** The `EditCommand` instance is returned to the `LogicManager` and `execute` is called.
+**Step 5.** The `EditCommand` instance is returned to the `LogicManager` and `execute` is called.
 
-**Step 5.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
+**Step 6.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
 The patient specified will have its ward updated to the new ward specified.
 
 **UML Diagrams:**
 
-The following sequence diagram summarizes what happens when a user executes a new command:
+The following sequence diagram summarizes what happens when a user executes an edit command:
 
-![EditSequenceDiagram.png](images/EditSequenceDiagram.png)
+<div align="center">
+    <img src="images/EditSequenceDiagram.png" alt="Edit sequence diagram"/>
+    <br>
+</div>
 
-The following activity diagram summarizes what happens when a user executes a new command:
-![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
+The following activity diagram summarizes what happens when a user executes an edit command:
+
+<div align="center">
+    <img src="images/EditCommandActivityDiagram.png" alt="Edit activity diagram"/>
+</div>
 
 ### Showing help for commands
 
@@ -246,9 +301,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Showing help for commands is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
 
-The following class diagram shows the structure of the `HelpCommand` class:
-
-![HelpCommandClassDiagram](images/HelpClassDiagram.png)
+<div align="center">
+    <img src="images/HelpClassDiagram.png" alt="Help class diagram"/>
+    <br>
+</div>
 
 The `HelpCommand` class interacts with the following components:
 
@@ -278,7 +334,10 @@ Here are the steps involved when a user calls the `help` command:
 **Step 9.** The `MainWindow` extracts the help message from the `CommandResult` and displays it in the `HelpWindow`.
 
 The following sequence diagram shows how the help command works:
-![HelpCommandSequenceDiagram](images/HelpSequenceDiagram.png)
+
+<div align="center">
+    <img src="images/HelpSequenceDiagram.png" alt="Help sequence diagram">
+</div>
 
 #### Design considerations
 
@@ -312,7 +371,6 @@ Here are some possible enhancements for the help feature:
 
 These enhancements would improve the user experience and make the help feature more interactive and user-friendly.
 
-
 ### List by tags and/or ward feature
 
 #### Implementation
@@ -327,34 +385,45 @@ These operations are exposed in the UI interface as `MainWindow#executeCommand(S
 
 Given below is an example usage scenario and how the filter by tags and/or ward mechanism behaves at each step.
 
-Step 1. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. 
-- The `list` command triggers `AddressBookParser` to parse the user input, identifying the `list` command word to call
-`ListCommandParser#parse(String)` to parse the rest of the user input.
+**Step 1.** The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. 
 
-Step 2. `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a 
+- The `list` command triggers `AddressBookParser` to parse the user input, identifying the `list` command word to call
+  `ListCommandParser#parse(String)` to parse the rest of the user input.
+
+**Step 2.** `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a 
 `ListKeywordPredicate` object is created with the keyword(s) provided. The keywords can be either a ward or tag(s) or both,
 supplied by the user with the relevant prefix. In this case, it would be a tag, `t\diabetes`.
 
-Step 3. A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters 
-provided, it will still simply create a `ListCommand` object.)
+**Step 3.** A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters 
+provided, it will still simply create a `ListCommand` object.)  
 
 The following is a list of objects created thus far:
-![ListObjectDiagram](images/ListObjectDiagram.png)
 
-Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)` 
-filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it 
+<div align="center">
+    <img src="images/ListObjectDiagram.png" width="280" alt="List object diagram"/>
+    <br>
+</div>
+
+**Step 4.** The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)`
+filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it
 returns the full list of patients.)
 
-Step 5. The filtered list of patients (with diabetes) is displayed to the user through the GUI.
+**Step 5.** The filtered list of patients (with diabetes) is displayed to the user through the GUI.
 
 **UML Diagrams:**
 
 The following sequence diagram shows how the listing of relevant patients would work:
-![ListCommandSequenceDiagram](images/ListCommandSequenceDiagram.png)
+
+<div align="center">
+    <img src="images/ListCommandSequenceDiagram.png" alt="List sequence diagram"/>
+    <br>
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new command to list relevant patients:
 
-<img src="images/ListCommandActivityDiagram2.png" width="250" />
+<div align="center">
+    <img src="images/ListCommandActivityDiagram2.png" width="500" alt="List activity diagram"/>
+</div>
 
 #### Design considerations:
 
@@ -378,7 +447,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to be more specific.
     * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
 
-### Find feature
+### Find a patient by name or NRIC
 
 #### Introduction
 This section describes the implementation of the find by name or NRIC mechanism in NAB. 
@@ -388,27 +457,29 @@ This section describes the implementation of the find by name or NRIC mechanism 
 The find feature is facilitated by `FindCommand`, `FindCommandParser`, `NameContainsKeywordsPredicate` and
 `IcContainsKeywordsPredicate`.
 
-Additionally, it implements the following operations:
-
-* `FindCommandParser#parse()` — Parses user input and creates a `FindCommand` object.
-
 Given below is an example usage scenario and how the find by name or IC mechanism behaves at each step.
 
-Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
+**Step 1.** The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
 `FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
 
-Step 2. For each patient in the address book, the `predicate` object will be passed to
+**Step 2.** For each patient in the address book, the `predicate` object will be passed to
 `Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob,
 the patient will be shown in result.
 
 **UML Diagrams:**
 
 The following sequence diagram shows how the finding of patient would work:
-![FindCommandSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div align="center">
+    <img src="images/FindSequenceDiagram.png" alt="Find sequence diagram"/>
+    <br>
+</div>
 
 The following activity diagram summarizes what happens when a user executes a new command to find a patient:
 
-![FindActivityDiagram](images/FindActivityDiagram.png)
+<div align="center">
+    <img src="images/FindActivityDiagram.png" alt="Find activity diagram"/>
+</div>
 
 #### Design considerations:
 
@@ -433,44 +504,46 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix**
 
-## **Appendix: Requirements**
+### **Appendix: Requirements**
 
-### Product scope
+#### Product scope
 
 **Target user profile**:
 Ward nurses
-* manage a significant number of patient contacts with varying details
-* quickly access critical patient information in time-sensitive situations
-* track and log details of care administered to each patient over time
+* Manage a significant number of patient contacts with varying details
+* Quickly access critical patient information in time-sensitive situations
+* Track and log details of care administered to each patient over time
 
-**Preferences/ Skills**
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI (command-line interface) apps
+**Preferences/Skills**
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI (command-line interface) apps
 
 **Value proposition**: streamlined text-based commands to manage contacts faster than a typical mouse/GUI driven app
 
-### User stories
+#### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                | So that I can…​                                              |
-| ---- | -------------------------------------- |---------------------------------------------|--------------------------------------------------------------|
-| `* * *` | user                                   | add patient records                      | keep track of their medical condition in the hospital        |
-| `* * *` | user                                   | view existing patient records               | access information on existing patients                      |
-| `* * *` | user                                   | delete a patient record                     | remove outdated or irrelevant patient data                   |
-| `* *` | user                                   | edit patient records                        | ensure that all patient details are current and accurate     |
-| `* *` | user                                   | list patients based on their tags           | view patients based on category                              |
-| `* *` | user                                   | list all patients tied to a specific ward   | know which patients belong to which ward                     |
-| `* *` | user                                   | find patients via their name or NRIC        | quickly find information of specific patient                 |
-| `* *` | user                                   | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
-| `*`  | user                                   | view patient list sorted by name            | look through the list of patients in a more organized manner |
 
-### Use cases
+| Priority | As a …  | I want to …                                  | So that I can…                                               |
+|----------|---------|----------------------------------------------|--------------------------------------------------------------|
+| `* * *`  | user    | add patient records                          | keep track of their medical condition in the hospital        |
+| `* * *`  | user    | view existing patient records                | access information on existing patients                      |
+| `* * *`  | user    | delete a patient record                      | remove outdated or irrelevant patient data                   |
+| `* *`    | user    | edit patient records                         | ensure that all patient details are current and accurate     |
+| `* *`    | user    | list patients based on their tags            | view patients based on category                              |
+| `* *`    | user    | list all patients tied to a specific ward    | know which patients belong to which ward                     |
+| `* *`    | user    | find patients via their name or NRIC         | quickly find information of specific patient                 |
+| `* *`    | user    | access the user guide through the app easily | learn how to use the NAB                    |
+| `*`      | user    | view patient list sorted by name             | look through the list of patients in a more organized manner |
 
-(For all use cases below, the **System** is the `Nursing Address Book` and the **Actor** is the `user`, unless 
+#### Use cases
+
+(For all use cases below, the **System** is the `NAB` and the **Actor** is the `user`, unless 
 specified otherwise)
 
 **Use case: `UC01 - View all patient records`**
@@ -478,135 +551,159 @@ specified otherwise)
 **MSS**
 
 1.  User requests to list patients.
-2.  Nursing Address Book shows a list of patients.
+2.  NAB shows a list of patients.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the command is invalid. 
-  * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the command is invalid. 
+  * 1a1. NAB shows an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 **Use case: `UC02 - Add a patient`**
 
 **MSS**
 
 1.  User requests to add a patient.
-2.  Nursing Address Book adds the patient.
-3.  Nursing Address Book shows success message to the user.
+2.  NAB adds the patient.
+3.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the patient details is invalid.
-    * 1a1. Nursing Address Book shows an error message.
-    
-    Use case resumes at step 1.
+* 1a. NAB detects that the patient details is invalid.
+    * 1a1. NAB shows an error message.
 
-**Use case: `US03 - Delete a patient`**
+    Use case ends.
+
+**Use case: `UC03 - Delete a patient`**
 
 **MSS**
 
-1.  User requests to view patient records(UC01).
+1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to delete a patient in the list.
-3.  Nursing Address Book deletes the person.
-4.  Nursing Address Book shows success message to the user.
+3.  NAB deletes the person.
+4.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The given index is invalid.
-  * 2a2. AddressBook shows an error message.
+  * 2a2. NAB shows an error message.
 
-    Use case resumes at step 2.
+  Use case ends.
 
-**Use case: `US04 - Edit a patient's records`**
+**Use case: `UC04 - Edit a patient's records`**
 
 **MSS**
 
-1.  User requests to view patient records(UC01).
+1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to edit a patient's record in the list.
-3.  Nursing Address Book edits the patient's record.
-4.  Nursing Address Book shows success message to the user.
+3.  NAB edits the patient's record.
+4.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Nursing Address Book detects that the patient details is invalid.
-    * 2a1. Nursing Address Book shows an error message.
+* 2a. NAB detects that the patient details is invalid.
+    * 2a1. NAB shows an error message.
 
-      Use case resumes at step 2.
+  Use case ends.
 
-**Use case: `US05 - Find patient`**
+**Use case: `UC05 - Find patient by name`**
 
 **MSS**
 
-1. User requests to find a patient in the list. 
-2. Nursing Address Book shows the patient.
+1. User requests to find a patient in the list with specific name. 
+2. NAB shows the patient.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
+* 1b. No patient with specified name is present in the NAB.
+    * 1b1. NAB displays an empty list.    
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US06 - View patient with specific tags`**
+**Use case: `UC06 - Find patient by NRIC`**
+
+**MSS**
+
+1. User requests to find a patient in the list with specific NRIC.
+2. NAB shows the patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
+* 1b. No patient with specified NRIC is present in the NAB.
+    * 1b1. NAB displays an empty list.
+
+  Use case ends.
+
+**Use case: `UC07 - View patient with specific tags`**
 
 **MSS**
 
 1. User requests to view patients with specific tags.
-2. Nursing Address Book shows the patient list.
+2. NAB shows the patient list.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
+* 1b. No patient with the specified tags are found in NAB.
+    * 1b1. NAB displays an empty list.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US07 - View patients in specific ward`**
+**Use case: `UC08 - View patients in specific ward`**
 
 **MSS**
 
 1. User requests to view patients in specific ward.
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
+* 1b. No patient with specified ward is present in the NAB.
+    * 1b1. NAB displays an empty list. 
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US08 - Get help with command usage`**
+**Use case: `UC09 - Get help with command usage`**
 
 **MSS**
 
 1. User requests to get help with command usage.
-2. Nursing Address Book shows command usage.
+2. NAB shows command usage.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the command is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the command is invalid.
+    * 1a1. NAB shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-### Non-Functional Requirements
+#### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -643,7 +740,7 @@ specified otherwise)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+### **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -653,7 +750,7 @@ Given below are instructions to test the app manually.
 
 [//]: # (</div>)
 
-### Launch and shutdown
+#### Launch and shutdown
 
 1. Initial launch
 
@@ -667,11 +764,11 @@ Given below are instructions to test the app manually.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Adding a patient
+#### Adding a patient
 
 1. Adding a patient
 
-    1. Prerequisites: There exist no patient with NRIC `A1234567B` in the patient records.
+    1. Prerequisites: There exists no patient with NRIC `A1234567B` in the patient records.
 
     2. Test case (Valid parameters): `add n\John Smith ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 t\diarrhea
        r\likes to go to the park`<br>
@@ -696,8 +793,7 @@ Given below are instructions to test the app manually.
     8. Test case (Date of Birth after Admission Date): `add n\John Smith ic\A1234567B dob\03/03/2000 ad\01/01/1999 w\a1`<br>
        Expected: Similar to previous.
 
-
-### Viewing patients
+#### Viewing patients
 
 1. Viewing all patients
 
@@ -706,8 +802,9 @@ Given below are instructions to test the app manually.
     2. Test case: `list`<br>
        Expected: List of patients is shown.
 
-    3. Test case: `list 181` or any command with extra characters supplied<br>
-       Expected: Similar to previous.
+   3. Test case: `list 181` or any command with extra characters supplied<br>
+      Expected: No change in displayed patient list. Error details shown in the status message.
+
 
 2. Viewing patients by tags and ward
 
@@ -722,7 +819,7 @@ Given below are instructions to test the app manually.
     1. Test case: `list w\a1`<br>
        Expected: List of patients is shown.
 
-### Editing a patient
+#### Editing a patient
 
 1. Edit a patient while all patients are being shown
 
@@ -764,7 +861,7 @@ Given below are instructions to test the app manually.
     6. Test case (Invalid Ward): `edit 1 w\B-1 `<br>
        Expected: Patient ward is not changed. Error details shown in the status bar.
 
-### Finding a patient
+#### Finding a patient
 
 1. Finding a patient by name
 
@@ -798,7 +895,7 @@ Given below are instructions to test the app manually.
     1. Test case: `find ic\`<br>
        Expected: No patient is shown.
 
-### Deleting a person
+#### Deleting a person
 
 1. Deleting a patient while all patients are being shown
 
@@ -814,11 +911,49 @@ Given below are instructions to test the app manually.
        Expected: Similar to previous.
 
 
-### Saving data
+#### Saving data
 
 1. Dealing with missing/corrupted data files
 
     1. Prerequisites: The addressbook.json file in the data directory must exist.
 
     1. Test case: Delete the addressbook.json file.<br>
-       Expected: The app launches successfully, populated with the sample data.
+    Expected: The app launches successfully, populated with the sample data.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Appendix: Planned Enhancements
+Team size: 5
+
+**1.  Checking if a date is valid:**
+    Currently, the app performs some form of date validation in terms of the syntax of the date. For the day, month and
+    year, the range is also limited to within reasonable calendar days (i.e. up till 31), months (i.e. up till 12) and
+    years (i.e. up till 9999). The entire date itself must also be up till the current date. However, the app does not
+    check if the date is valid. For example, a nurse could key in 30/02/2022 (reasonable range for each date segment and
+    before current date) as the date of birth of a patient.
+
+For more accurate error checking, we plan to perform more concrete validation of the dates to check if the date exists.
+    This is done by checking if the input date is a valid date as a whole (not just its parts), and throwing the error that
+    the date does not exist if it is invalid.
+
+**2. Standardise patient look-up/ accessing:**
+   Currently, the app does not allow users to delete or edit a patient's details by their Singapore Identity Card (NRIC)
+   number. As patients will predominantly (except foreigners) have an NRIC number, it would be more intuitive for nurses to
+   be able to edit and delete by NRIC as well.
+
+**3. Editing of patient details:**
+   Currently, the app does not directly edit patient contact details from the patient list. Some patient entries (or
+   details) may be accidentally deleted. For example, when editing the tags field, all tags will be overwritten. This
+   may result in key information being lost. 
+
+We plan to allow nurses to view the corresponding patient's details while editing. This can be done by having the nurse
+    first input only edit INDEX (as per the original command) and then the app will show the patient's details. The nurse
+    will then be able to edit the specific field(s) of the patient's details with a follow-up command. This will prevent
+    accidental deletion of critical details.
+
+## Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Patient**: A person receiving medical services at a hospital
+* **NRIC**: Identity card number of the National Registration Identity Card, used as a unique identifier for
+  patients in NAB
