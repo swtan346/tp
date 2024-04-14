@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book is based from.
+* The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book (NAB) is based from.
 * Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -176,7 +176,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section outlines some notable details on how specific features are being implemented.
 
-### Adding a patient into Nursing Address Book
+### Adding a patient into NAB
 
 #### Implementation
 
@@ -223,7 +223,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     <img src="images/AddActivityDiagram.png" alt="Add activity diagram"/>
 </div>
 
-### Deleting a patient from Nursing Address Book
+### Deleting a patient from NAB
 
 #### Implementation
 
@@ -231,7 +231,7 @@ The delete patient feature is facilitated mainly by `DeleteCommand`, `DeleteComm
 
 Given below is an example usage scenario and how the delete patient feature behaves at each step.
 
-**Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
+**Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in NAB.
 
 **Step 2.** `LogicManager#execute(String)` is called to execute the delete command.
 
@@ -266,7 +266,7 @@ Editing a patient's details is facilitated mainly by `EditCommand`, `EditCommand
 
 Given below is an example usage scenario and how the edit patient feature behaves at each step.
 
-**Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
+**Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in NAB.
 
 **Step 2.** `LogicManager#execute(String)` is called to execute the edit command.
 
@@ -538,12 +538,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user    | list patients based on their tags            | view patients based on category                              |
 | `* *`    | user    | list all patients tied to a specific ward    | know which patients belong to which ward                     |
 | `* *`    | user    | find patients via their name or NRIC         | quickly find information of specific patient                 |
-| `* *`    | user    | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
+| `* *`    | user    | access the user guide through the app easily | learn how to use the NAB                    |
 | `*`      | user    | view patient list sorted by name             | look through the list of patients in a more organized manner |
 
 #### Use cases
 
-(For all use cases below, the **System** is the `Nursing Address Book` and the **Actor** is the `user`, unless 
+(For all use cases below, the **System** is the `NAB` and the **Actor** is the `user`, unless 
 specified otherwise)
 
 **Use case: `UC01 - View all patient records`**
@@ -551,14 +551,14 @@ specified otherwise)
 **MSS**
 
 1.  User requests to list patients.
-2.  Nursing Address Book shows a list of patients.
+2.  NAB shows a list of patients.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the command is invalid. 
-  * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the command is invalid. 
+  * 1a1. NAB shows an error message.
 
   Use case ends.
 
@@ -567,15 +567,15 @@ specified otherwise)
 **MSS**
 
 1.  User requests to add a patient.
-2.  Nursing Address Book adds the patient.
-3.  Nursing Address Book shows success message to the user.
+2.  NAB adds the patient.
+3.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the patient details is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the patient details is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -585,8 +585,8 @@ specified otherwise)
 
 1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to delete a patient in the list.
-3.  Nursing Address Book deletes the person.
-4.  Nursing Address Book shows success message to the user.
+3.  NAB deletes the person.
+4.  NAB shows success message to the user.
 
     Use case ends.
 
@@ -603,15 +603,15 @@ specified otherwise)
 
 1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to edit a patient's record in the list.
-3.  Nursing Address Book edits the patient's record.
-4.  Nursing Address Book shows success message to the user.
+3.  NAB edits the patient's record.
+4.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Nursing Address Book detects that the patient details is invalid.
-    * 2a1. Nursing Address Book shows an error message.
+* 2a. NAB detects that the patient details is invalid.
+    * 2a1. NAB shows an error message.
 
   Use case ends.
 
@@ -620,14 +620,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to find a patient in the list with specific name. 
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -636,14 +636,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to find a patient in the list with specific NRIC.
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
 
   Use case ends.
 
@@ -652,14 +652,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to view patients with specific tags.
-2. Nursing Address Book shows the patient list.
+2. NAB shows the patient list.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -668,14 +668,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to view patients in specific ward.
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -684,14 +684,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to get help with command usage.
-2. Nursing Address Book shows command usage.
+2. NAB shows command usage.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the command is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the command is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -926,4 +926,4 @@ We plan to allow nurses to view the corresponding patient's details while editin
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Patient**: A person receiving medical services at a hospital
 * **NRIC**: Identity card number of the National Registration Identity Card, used as a unique identifier for
-  patients in Nursing Address Book
+  patients in NAB
