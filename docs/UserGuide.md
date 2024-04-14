@@ -4,7 +4,7 @@ title: User Guide
 nav_order : 2
 ---
 # Nursing Address Book (NAB)
-Welcome to the user guide for Nursing Address Book (NAB)! NAB is a desktop application tailored for ward nurses in 
+Welcome to the user guide for NAB! NAB is a desktop application tailored for ward nurses in 
 Singapore, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User
 Interface (GUI) for ease of use.
 
@@ -565,7 +565,7 @@ restarting the application or your system to clear any potential memory leaks or
 2. **Error for empty tags and/or ward prefix(es) for `list`:**  The `list` command will not display patients with tags 
 and/or ward prefix(es) that **do not contain** any associated content. This feature was intentionally designed to filter 
 relevant patients with the appropriate tags and/or ward. As there is no use case (patients should usually have a ward 
-and/or tag associated with them) for being able to look up empty tags and/or wards, they are not displayed.
+and/or tag associated with them) for being able to look up empty tags and/or wards, it is not implemented.
 
 Back to [Table of Contents](#table-of-contents)
 
