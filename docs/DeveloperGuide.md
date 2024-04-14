@@ -488,7 +488,7 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the command is invalid. 
   * 1a1. Nursing Address Book shows an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 **Use case: `UC02 - Add a patient`**
 
@@ -504,14 +504,14 @@ specified otherwise)
 
 * 1a. Nursing Address Book detects that the patient details is invalid.
     * 1a1. Nursing Address Book shows an error message.
-    
-    Use case resumes at step 1.
+
+    Use case ends.
 
 **Use case: `US03 - Delete a patient`**
 
 **MSS**
 
-1.  User requests to view patient records(UC01).
+1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to delete a patient in the list.
 3.  Nursing Address Book deletes the person.
 4.  Nursing Address Book shows success message to the user.
@@ -523,13 +523,13 @@ specified otherwise)
 * 2a. The given index is invalid.
   * 2a2. AddressBook shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
 **Use case: `US04 - Edit a patient records`**
 
 **MSS**
 
-1.  User requests to view patient records(UC01).
+1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to edit a patient's record in the list.
 3.  Nursing Address Book edits the patient's record.
 4.  Nursing Address Book shows success message to the user.
@@ -541,13 +541,13 @@ specified otherwise)
 * 2a. Nursing Address Book detects that the patient details is invalid.
     * 2a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 2.
+  Use case ends.
 
-**Use case: `US05 - Find patient`**
+**Use case: `US05 - Find patient by name`**
 
 **MSS**
 
-1. User requests to find a patient in the list. 
+1. User requests to find a patient in the list with specific name. 
 2. Nursing Address Book shows the patient.
 
     Use case ends.
@@ -557,9 +557,25 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the given parameter is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US06 - View patient with specific tags`**
+**Use case: `US06 - Find patient by NRIC`**
+
+**MSS**
+
+1. User requests to find a patient in the list with specific NRIC.
+2. Nursing Address Book shows the patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the given parameter is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+  Use case ends.
+
+**Use case: `US07 - View patient with specific tags`**
 
 **MSS**
 
@@ -573,9 +589,9 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the given parameter is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US07 - View patients in specific ward`**
+**Use case: `US08 - View patients in specific ward`**
 
 **MSS**
 
@@ -589,9 +605,9 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the given parameter is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US08 - Get help with command usage`**
+**Use case: `US09 - Get help with command usage`**
 
 **MSS**
 
@@ -605,7 +621,7 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the command is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
 ### Non-Functional Requirements
 
