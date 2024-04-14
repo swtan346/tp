@@ -164,7 +164,7 @@ Given below is an example usage scenario and how the add patient feature behaves
 </div>
 
 
-**Step 2.** `LogicManager$execute(String)` is called to execute the add command.   
+**Step 2.** `LogicManager#execute(String)` is called to execute the add command.   
 
 **Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
@@ -195,7 +195,7 @@ Given below is an example usage scenario and how the delete patient feature beha
 
 **Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
 
-**Step 2.** `LogicManager$execute(String)` is called to execute the delete command.
+**Step 2.** `LogicManager#execute(String)` is called to execute the delete command.
 
 **Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
 
@@ -225,7 +225,7 @@ Given below is an example usage scenario and how the edit patient feature behave
 
 **Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
 
-**Step 2.** `LogicManager$execute(String)` is called to execute the edit command.
+**Step 2.** `LogicManager#execute(String)` is called to execute the edit command.
 
 **Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
 
@@ -491,7 +491,7 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the command is invalid. 
   * 1a1. Nursing Address Book shows an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 **Use case: `UC02 - Add a patient`**
 
@@ -507,14 +507,14 @@ specified otherwise)
 
 * 1a. Nursing Address Book detects that the patient details is invalid.
     * 1a1. Nursing Address Book shows an error message.
-    
-    Use case resumes at step 1.
 
-**Use case: `US03 - Delete a patient`**
+    Use case ends.
+
+**Use case: `UC03 - Delete a patient`**
 
 **MSS**
 
-1.  User requests to view patient records(UC01).
+1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to delete a patient in the list.
 3.  Nursing Address Book deletes the person.
 4.  Nursing Address Book shows success message to the user.
@@ -526,13 +526,13 @@ specified otherwise)
 * 2a. The given index is invalid.
   * 2a2. AddressBook shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
-**Use case: `US04 - Edit a patient records`**
+**Use case: `UC04 - Edit a patient records`**
 
 **MSS**
 
-1.  User requests to view patient records(UC01).
+1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to edit a patient's record in the list.
 3.  Nursing Address Book edits the patient's record.
 4.  Nursing Address Book shows success message to the user.
@@ -544,13 +544,13 @@ specified otherwise)
 * 2a. Nursing Address Book detects that the patient details is invalid.
     * 2a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 2.
+  Use case ends.
 
-**Use case: `US05 - Find patient`**
+**Use case: `UC05 - Find patient by name`**
 
 **MSS**
 
-1. User requests to find a patient in the list. 
+1. User requests to find a patient in the list with specific name. 
 2. Nursing Address Book shows the patient.
 
     Use case ends.
@@ -560,9 +560,25 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the given parameter is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US06 - View patient with specific tags`**
+**Use case: `UC06 - Find patient by NRIC`**
+
+**MSS**
+
+1. User requests to find a patient in the list with specific NRIC.
+2. Nursing Address Book shows the patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the given parameter is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+  Use case ends.
+
+**Use case: `UC07 - View patient with specific tags`**
 
 **MSS**
 
@@ -576,9 +592,9 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the given parameter is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US07 - View patients in specific ward`**
+**Use case: `UC08 - View patients in specific ward`**
 
 **MSS**
 
@@ -592,9 +608,9 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the given parameter is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US08 - Get help with command usage`**
+**Use case: `UC09 - Get help with command usage`**
 
 **MSS**
 
@@ -608,31 +624,20 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the command is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The user interface should be intuitive and easy to navigate.
-5.  The codebase should be well-structured and well-documented to facilitate future maintenance and enhancements.
-6.  The application should only support a single user.
-7.  The product needs to be developed in a breadth-first incremental manner over the project duration.
-8.  The data should be stored locally and should be in a human editable text file.
-9.  The software should follow the Object-oriented paradigm primarily.
-10.  The software should work without requiring an installer.
-11.  The software should not depend on a specific remote server.
-12.  The GUI should work well for standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%.
-13.  The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for,
-     resolutions 1280x720 and higher, and, for screen scales 150%.
-14.  The product should be available as a single JAR file of size 100MB or below.
-15.  The web documents saved should be a PDF file of size 15MB or below.
-16.  The final JAR/PDF files should not be bloated unnecessarily.
-17.  The DG and UG should be PDF-friendly, without any expandable panels, embedded videos, animated GIFs etc.
-18.  The use of third-party frameworks/libraries/services is allowed only if they, are free, open-source (this
-     doesn't apply to services), and have permissive license terms; do not require any installation by the user.
-19.  The product should process a user input command within 2 second.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+    should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  The codebase should be well-structured and well-documented to facilitate future maintenance and enhancements.
+1.  The application should only support a single user.
+1.  The data should be stored locally and should be in a human editable text file.
+1.  The software should work without requiring an installer.
+1.  The software should not depend on any specific remote server.
+1.  The product should be available as a single JAR file of size 100MB or below.
+1.  The product should process a user input command within 2 second.
 
 ### Glossary
 
