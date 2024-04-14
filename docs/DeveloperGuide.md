@@ -140,7 +140,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section contains some noteworthy details on how certain features are being implemented.
+This section outlines some notable details on how specific features are being implemented.
 
 ### Adding a patient into Nursing Address Book
 
@@ -164,13 +164,15 @@ Given below is an example usage scenario and how the add patient feature behaves
 </div>
 
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
+**Step 2.** `LogicManager$execute(String)` is called to execute the add command.   
 
-**Step 3.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
-**Step 4.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+**Step 4.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
 
-**Step 5.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 5.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+
+**Step 6.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
@@ -193,13 +195,15 @@ Given below is an example usage scenario and how the delete patient feature beha
 
 **Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
+**Step 2.** `LogicManager$execute(String)` is called to execute the delete command.
 
-**Step 3.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
 
-**Step 4.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+**Step 4.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
 
-**Step 5.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 5.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+
+**Step 6.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
@@ -221,23 +225,25 @@ Given below is an example usage scenario and how the edit patient feature behave
 
 **Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
+**Step 2.** `LogicManager$execute(String)` is called to execute the edit command.
 
-**Step 3.** A new `EditPersonDescriptor` object is created with the new ward details. 
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
+
+**Step 4.** A new `EditPersonDescriptor` object is created with the new ward details. 
 A new `EditCommand` instance will be created with the index of the patient to be edited and the new `EditPersonDescriptor` object.
 
-**Step 4.** The `EditCommand` instance is returned to the `LogicManager` and `execute` is called.
+**Step 5.** The `EditCommand` instance is returned to the `LogicManager` and `execute` is called.
 
-**Step 5.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
+**Step 6.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
 The patient specified will have its ward updated to the new ward specified.
 
 **UML Diagrams:**
 
-The following sequence diagram summarizes what happens when a user executes a new command:
+The following sequence diagram summarizes what happens when a user executes an edit command:
 
 ![EditSequenceDiagram.png](images/EditSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes an edit command:
 ![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
 ### Showing help for commands
@@ -328,25 +334,27 @@ These operations are exposed in the UI interface as `MainWindow#executeCommand(S
 
 Given below is an example usage scenario and how the filter by tags and/or ward mechanism behaves at each step.
 
-Step 1. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. 
+**Step 1.** The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. 
 - The `list` command triggers `AddressBookParser` to parse the user input, identifying the `list` command word to call
 `ListCommandParser#parse(String)` to parse the rest of the user input.
 
-Step 2. `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a 
+**Step 2.** `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a 
 `ListKeywordPredicate` object is created with the keyword(s) provided. The keywords can be either a ward or tag(s) or both,
 supplied by the user with the relevant prefix. In this case, it would be a tag, `t\diabetes`.
 
-Step 3. A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters 
-provided, it will still simply create a `ListCommand` object.)
-
+**Step 3.** A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters 
+provided, it will still simply create a `ListCommand` object.)  
+  
+  
 The following is a list of objects created thus far:
 ![ListObjectDiagram](images/ListObjectDiagram.png)
 
-Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)` 
+
+**Step 4.** The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)` 
 filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it 
 returns the full list of patients.)
 
-Step 5. The filtered list of patients (with diabetes) is displayed to the user through the GUI.
+**Step 5.** The filtered list of patients (with diabetes) is displayed to the user through the GUI.
 
 **UML Diagrams:**
 
@@ -355,7 +363,7 @@ The following sequence diagram shows how the listing of relevant patients would 
 
 The following activity diagram summarizes what happens when a user executes a new command to list relevant patients:
 
-<img src="images/ListCommandActivityDiagram2.png" width="250" />
+<img src="images/ListCommandActivityDiagram2.png" width="500" />
 
 #### Design considerations:
 
@@ -379,7 +387,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to be more specific.
     * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
 
-### Find feature
+### Find a patient by name or NRIC
 
 #### Introduction
 This section describes the implementation of the find by name or NRIC mechanism in NAB. 
@@ -389,16 +397,12 @@ This section describes the implementation of the find by name or NRIC mechanism 
 The find feature is facilitated by `FindCommand`, `FindCommandParser`, `NameContainsKeywordsPredicate` and
 `IcContainsKeywordsPredicate`.
 
-Additionally, it implements the following operations:
-
-* `FindCommandParser#parse()` — Parses user input and creates a `FindCommand` object.
-
 Given below is an example usage scenario and how the find by name or IC mechanism behaves at each step.
 
-Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
+**Step 1.** The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
 `FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
 
-Step 2. For each patient in the address book, the `predicate` object will be passed to
+**Step 2.** For each patient in the address book, the `predicate` object will be passed to
 `Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob,
 the patient will be shown in result.
 
@@ -434,22 +438,21 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 
 ### Product scope
 
 **Target user profile**:
 Ward nurses
-* manage a significant number of patient contacts with varying details
-* quickly access critical patient information in time-sensitive situations
-* track and log details of care administered to each patient over time
+* Manage a significant number of patient contacts with varying details
+* Quickly access critical patient information in time-sensitive situations
+* Track and log details of care administered to each patient over time
 
-**Preferences/ Skills**
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI (command-line interface) apps
+**Preferences/Skills**
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI (command-line interface) apps
 
 **Value proposition**: streamlined text-based commands to manage contacts faster than a typical mouse/GUI driven app
 
@@ -457,17 +460,17 @@ Ward nurses
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                | So that I can…​                                              |
-| ---- | -------------------------------------- |---------------------------------------------|--------------------------------------------------------------|
-| `* * *` | user                                   | add patient records                      | keep track of their medical condition in the hospital        |
-| `* * *` | user                                   | view existing patient records               | access information on existing patients                      |
-| `* * *` | user                                   | delete a patient record                     | remove outdated or irrelevant patient data                   |
-| `* *` | user                                   | edit patient records                        | ensure that all patient details are current and accurate     |
-| `* *` | user                                   | list patients based on their tags           | view patients based on category                              |
-| `* *` | user                                   | list all patients tied to a specific ward   | know which patients belong to which ward                     |
-| `* *` | user                                   | find patients via their name or NRIC        | quickly find information of specific patient                 |
-| `* *` | user                                   | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
-| `*`  | user                                   | view patient list sorted by name            | look through the list of patients in a more organized manner |
+| Priority | As a …​ | I want to …​                                | So that I can…​                                                   |
+| ---- |---------|---------------------------------------------|-------------------------------------------------------------------|
+| `* * *` | nurse   | add patient records                      | keep track of their medical condition in the hospital             |
+| `* * *` | nurse   | view existing patient records               | access information on existing patients                           |
+| `* * *` | nurse   | delete a patient record                     | ensure that the system is up to date with the latest patient data |
+| `* *` | nurse   | edit patient records                        | ensure that all patient details are current and accurate          |
+| `* *` | nurse   | list patients based on their tags           | view patients based on category                                   |
+| `* *` | nurse   | list all patients tied to a specific ward   | know which patients belong to which ward                          |
+| `* *` | nurse   | find patients via their name or NRIC        | quickly find information of specific patient                      |
+| `* *` | nurse   | access the user guide through the app easily | learn how to use the Nursing Address Book                         |
+| `*`  | nurse   | view patient list sorted by name            | look through the list of patients in a more organized manner      |
 
 ### Use cases
 

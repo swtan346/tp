@@ -34,7 +34,7 @@ create DeleteCommand
 DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser :
+DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
 DeleteCommandParser --> AddressBookParser : d
@@ -59,7 +59,7 @@ create CommandResult
 DeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteCommand : r
 deactivate CommandResult
 
 DeleteCommand --> LogicManager : r

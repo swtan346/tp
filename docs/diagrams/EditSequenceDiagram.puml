@@ -42,12 +42,12 @@ activate EditCommand
 EditCommand --> EditCommandParser : a
 deactivate EditCommand
 
-EditCommandParser --> AddressBookParser
+EditCommandParser --> AddressBookParser : a
 deactivate EditCommandParser
 EditCommandParser -[hidden]-> AddressBookParser
 destroy EditCommandParser
 
-AddressBookParser --> LogicManager
+AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 
 LogicManager -> EditCommand : execute(model)
