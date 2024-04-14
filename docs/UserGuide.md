@@ -79,11 +79,11 @@ We hope you find this guide helpful in your journey to mastering NAB.
 ### Icons used in this guide
 Here are the icons used in this guide and their meanings:
 
-| Icon                          | Meaning                                                                           |
-|-------------------------------|-----------------------------------------------------------------------------------|
-| :exclamation:**Caution**      | Indicates a caution or warning. Typically, these are common errors made by users. |
-| :information_source: **Note** | Provides additional information.                                                  |
-| :bulb:**Tip**                 | Provides additional tips for you to master the application.                       |
+| Icon                                | Meaning                                                                           |
+|-------------------------------------|-----------------------------------------------------------------------------------|
+| <div>:exclamation:**Caution**</div> | Indicates a caution or warning. Typically, these are common errors made by users. |
+| :information_source: **Note**       | Provides additional information.                                                  |
+| :bulb:**Tip**                       | Provides additional tips for you to master the application.                       |
 
 
 
@@ -114,7 +114,8 @@ Back to [Table of Contents](#table-of-contents)
    <br>
    <br>
    <div markdown="block" class="alert alert-info"> :information_source:
-   _Ensure you have the necessary permissions to execute commands. For Windows Users, running the command prompt as an administrator may be
+   **Ensure you have the necessary permissions to execute commands.** <br> 
+   _For Windows Users, running the command prompt as an administrator may be
    required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file 
    executable._
    </div>
