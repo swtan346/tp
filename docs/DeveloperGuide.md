@@ -815,3 +815,34 @@ Given below are instructions to test the app manually.
 
     1. Test case: Delete the addressbook.json file.<br>
     Expected: The app launches successfully, populated with the sample data.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Planned Enhancements
+Team size: 5
+
+**1.  Checking if a date is valid:**
+    Currently, the app performs some form of date validation in terms of the syntax of the date. For the day, month and
+    year, the range is also limited to within reasonable calendar days (i.e. up till 31), months (i.e. up till 12) and
+    years (i.e. up till 9999). The entire date itself must also be up till the current date. However, the app does not
+    check if the date is valid. For example, a nurse could key in 30/02/2022 (reasonable range for each date segment and
+    before current date) as the date of birth of a patient.
+
+For more accurate error checking, we plan to perform more concrete validation of the dates to check if the date exists.
+    This is done by checking if the input date is a valid date as a whole (not just its parts), and throwing the error that
+    the date does not exist if it is invalid.
+
+**2. Standardise patient look-up/ accessing:**
+   Currently, the app does not allow users to delete or edit a patient's details by their Singapore Identity Card (NRIC)
+   number. As patients will predominantly (except foreigners) have an NRIC number, it would be more intuitive for nurses to
+   be able to edit and delete by NRIC as well.
+
+**3. Editing of patient details:**
+   Currently, the app does not directly edit patient contact details from the patient list. Some patient entries (or
+   details) may be accidentally deleted. For example, when editing the tags field, all tags will be overwritten. This
+   may result in key information being lost. 
+
+We plan to allow nurses to view the corresponding patient's details while editing. This can be done by having the nurse
+    first input only edit INDEX (as per the original command) and then the app will show the patient's details. The nurse
+    will then be able to edit the specific field(s) of the patient's details with a follow-up command. This will prevent
+    accidental deletion of critical details.
