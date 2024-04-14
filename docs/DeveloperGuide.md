@@ -14,13 +14,13 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Setting up, getting started
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Design
+## **Design**
 
 ### Architecture
 
@@ -77,7 +77,7 @@ The sections below give more details of each component.
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <div align="center">
-    <img src="images/UiClassDiagram.png">
+    <img src="images/UiClassDiagram.png" />
 </div>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
@@ -104,7 +104,7 @@ Here's a (partial) class diagram of the `Logic` component:
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
 <div align="center">
-    <img src="images/DeleteSequenceDiagram.png">
+    <img src="images/DeleteSequenceDiagram.png" />
 </div>
 
 <div markdown="span" class="alert alert-info">
@@ -134,7 +134,7 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <div align="center">
-    <img src="images/ModelClassDiagram.png" width="450" />
+    <img src="images/ModelClassDiagram.png" width="450"/>
 </div>
 
 The `Model` component,
@@ -149,7 +149,7 @@ The `Model` component,
 **API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <div align="center">
-    <img src="images/StorageClassDiagram.png" width="550" />
+    <img src="images/StorageClassDiagram.png" width="550"/>
 </div>
 
 The `Storage` component,
@@ -204,14 +204,14 @@ Given below is an example usage scenario and how the add patient feature behaves
 The following sequence diagram summarizes what happens when a user executes a new command:
 
 <div align="center">
-    <img src="images/AddSequenceDiagram.png">
+    <img src="images/AddSequenceDiagram.png"/>
 </div>
 
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <div align="center">
-    <img src="images/AddActivityDiagram.png">
+    <img src="images/AddActivityDiagram.png"/>
 </div>
 
 ### Deleting a patient from Nursing Address Book
@@ -239,13 +239,13 @@ Given below is an example usage scenario and how the delete patient feature beha
 Given below is the sequence diagram that summarizes what happens when a user executes a new command:
 
 <div align="center">
-    <img src="images/DeleteSequenceDiagram.png">
+    <img src="images/DeleteSequenceDiagram.png"/>
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <div align="center">
-    <img src="images/DeleteActivityDiagram.png">
+    <img src="images/DeleteActivityDiagram.png"/>
 </div>
 
 ### Editing a patient's details
@@ -275,13 +275,13 @@ The patient specified will have its ward updated to the new ward specified.
 The following sequence diagram summarizes what happens when a user executes an edit command:
 
 <div align="center">
- <img src="images/EditSequenceDiagram.png">
+ <img src="images/EditSequenceDiagram.png"/>
 </div>
 
 The following activity diagram summarizes what happens when a user executes an edit command:
 
 <div align="center">
-  <img src="images/EditCommandActivityDiagram.png">
+  <img src="images/EditCommandActivityDiagram.png"/>
 </div>
 
 ### Showing help for commands
@@ -291,7 +291,7 @@ The following activity diagram summarizes what happens when a user executes an e
 Showing help for commands is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
 
 <div align="center">
-    <img src="images/HelpClassDiagram.png">
+    <img src="images/HelpClassDiagram.png"/>
 </div>
 
 The `HelpCommand` class interacts with the following components:
@@ -390,10 +390,10 @@ provided, it will still simply create a `ListCommand` object.)
 The following is a list of objects created thus far:
 
 <div align="center">
-    <img src="images/ListObjectDiagram.png">
+    <img src="images/ListObjectDiagram.png"/>
 </div>
 
-Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)`
+**Step 4.** The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)`
 filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it
 returns the full list of patients.)
 
@@ -404,7 +404,7 @@ returns the full list of patients.)
 The following sequence diagram shows how the listing of relevant patients would work:
 
 <div align="center">
-    <img src="images/ListCommandSequenceDiagram.png">
+    <img src="images/ListCommandSequenceDiagram.png"/>
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command to list relevant patients:
@@ -459,13 +459,13 @@ the patient will be shown in result.
 The following sequence diagram shows how the finding of patient would work:
 
 <div align="center">
-    <img src="images/FindSequenceDiagram.png">
+    <img src="images/FindSequenceDiagram.png"/>
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command to find a patient:
 
 <div align="center">
-    <img src="images/FindActivityDiagram.png">
+    <img src="images/FindActivityDiagram.png"/>
 </div>
 
 #### Design considerations:
@@ -491,9 +491,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-## **Appendix: Requirements**
+## **Appendix**
 
-### Product scope
+### **Appendix: Requirements**
+
+#### Product scope
 
 **Target user profile**:
 Ward nurses
@@ -509,7 +511,7 @@ Ward nurses
 
 **Value proposition**: streamlined text-based commands to manage contacts faster than a typical mouse/GUI driven app
 
-### User stories
+#### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -526,7 +528,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user    | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
 | `*`      | user    | view patient list sorted by name             | look through the list of patients in a more organized manner |
 
-### Use cases
+#### Use cases
 
 (For all use cases below, the **System** is the `Nursing Address Book` and the **Actor** is the `user`, unless 
 specified otherwise)
@@ -680,7 +682,7 @@ specified otherwise)
 
     Use case ends.
 
-### Non-Functional Requirements
+#### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
@@ -702,7 +704,7 @@ specified otherwise)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+### **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -712,7 +714,7 @@ Given below are instructions to test the app manually.
 
 [//]: # (</div>)
 
-### Launch and shutdown
+#### Launch and shutdown
 
 1. Initial launch
 
@@ -726,7 +728,7 @@ Given below are instructions to test the app manually.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Adding a patient
+#### Adding a patient
 
 1. Adding a patient
 
@@ -755,7 +757,7 @@ Given below are instructions to test the app manually.
     8. Test case (Date of Birth after Admission Date): `add n\John Smith ic\A1234567B dob\03/03/2000 ad\01/01/1999 w\a1`<br>
        Expected: Similar to previous.
 
-### Viewing patients
+#### Viewing patients
 
 1. Viewing all patients
 
@@ -781,7 +783,7 @@ Given below are instructions to test the app manually.
     1. Test case: `list w\a1`<br>
        Expected: List of patients is shown.
 
-### Editing a patient
+#### Editing a patient
 
 1. Edit a patient while all patients are being shown
 
@@ -823,7 +825,7 @@ Given below are instructions to test the app manually.
     6. Test case (Invalid Ward): `edit 1 w\B-1 `<br>
        Expected: Patient ward is not changed. Error details shown in the status bar.
 
-### Finding a patient
+#### Finding a patient
 
 1. Finding a patient by name
 
@@ -857,7 +859,7 @@ Given below are instructions to test the app manually.
     1. Test case: `find ic\`<br>
        Expected: No patient is shown.
 
-### Deleting a person
+#### Deleting a person
 
 1. Deleting a patient while all patients are being shown
 
@@ -873,7 +875,7 @@ Given below are instructions to test the app manually.
        Expected: Similar to previous.
 
 
-### Saving data
+#### Saving data
 
 1. Dealing with missing/corrupted data files
 
@@ -884,7 +886,7 @@ Given below are instructions to test the app manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix: Planned Enhancements
+### Appendix: Planned Enhancements
 Team size: 5
 
 **1.  Checking if a date is valid:**
