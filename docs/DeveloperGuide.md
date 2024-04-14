@@ -164,7 +164,7 @@ Given below is an example usage scenario and how the add patient feature behaves
 </div>
 
 
-**Step 2.** `LogicManager$execute(String)` is called to execute the add command.   
+**Step 2.** `LogicManager#execute(String)` is called to execute the add command.   
 
 **Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
@@ -195,7 +195,7 @@ Given below is an example usage scenario and how the delete patient feature beha
 
 **Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
 
-**Step 2.** `LogicManager$execute(String)` is called to execute the delete command.
+**Step 2.** `LogicManager#execute(String)` is called to execute the delete command.
 
 **Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
 
@@ -225,7 +225,7 @@ Given below is an example usage scenario and how the edit patient feature behave
 
 **Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
 
-**Step 2.** `LogicManager$execute(String)` is called to execute the edit command.
+**Step 2.** `LogicManager#execute(String)` is called to execute the edit command.
 
 **Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
 
