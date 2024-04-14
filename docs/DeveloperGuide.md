@@ -255,7 +255,6 @@ The `HelpCommand` class interacts with the following components:
 * `Logic`: The `HelpCommand` class is part of the `Logic` component and is executed by the `LogicManager` when the user enters the `help` command.
 * `UI`: The `MainWindow` class in the `UI` component subscribes to the `CommandResult` event raised by the `HelpCommand` and displays the help message in the `HelpWindow`.
 
-
 The `HelpCommand` class extends the `Command` interface and implements the `execute()` method. When the `help` command is executed, the `HelpCommand#execute()` method is called, which creates a `CommandResult` object with the help message to be displayed to the user.
 
 Here are the steps involved when a user calls the `help` command:
@@ -525,7 +524,7 @@ specified otherwise)
 
     Use case resumes at step 2.
 
-**Use case: `US04 - Edit a patient records`**
+**Use case: `US04 - Edit a patient's records`**
 
 **MSS**
 
@@ -630,13 +629,17 @@ specified otherwise)
 18.  The use of third-party frameworks/libraries/services is allowed only if they, are free, open-source (this
      doesn't apply to services), and have permissive license terms; do not require any installation by the user.
 19.  The product should process a user input command within 2 second.
+20.  The application should comply with Singapore's Personal Data Protection Act (PDPA) by implementing appropriate measures to protect the personal data of patients, such as securing data storage, restricting access to authorized personnel only, and ensuring proper disposal of data when no longer needed.
 
 ### Glossary
 
+* **CLI**: Command Line Interface
+* **GUI**: Graphical User Interface
+* **JSON**: JavaScript Object Notation
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **NRIC**: Identity card number of the National Registration Identity Card, used as a unique identifier for
+    patients in Nursing Address Book
 * **Patient**: A person receiving medical services at a hospital
-* **NRIC**: Identity card number of the National Registration Identity Card, used as a unique identifier for 
-  patients in Nursing Address Book
 
 --------------------------------------------------------------------------------------------------------------------
 
