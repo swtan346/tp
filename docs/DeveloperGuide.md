@@ -9,23 +9,24 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book is based from.
+* The [original AB3 project](https://github.com/se-edu/addressbook-level3), which Nursing Address Book (NAB) is based from.
 * Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Setting up, getting started
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Design
+## **Design**
 
 ### Architecture
 
 <div align="center">
     <img src="images/ArchitectureDiagram.png" width="280" alt="Architecture diagram"/>
+    <br>
 </div>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
@@ -53,6 +54,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <div align="center">
     <img src="images/ArchitectureSequenceDiagram.png" width="574" alt="Architecture sequence diagram" />
+    <br>
 </div>
 
 Each of the four main components (also shown in the diagram above),
@@ -68,6 +70,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 <div align="center">
     <img src="images/ComponentManagers.png" width="300" alt="Component managers"/>
+    <br>
 </div>
 
 The sections below give more details of each component.
@@ -77,7 +80,8 @@ The sections below give more details of each component.
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <div align="center">
-    <img src="images/UiClassDiagram.png">
+    <img src="images/UiClassDiagram.png" alt="Ui class diagram"/>
+    <br>
 </div>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
@@ -99,12 +103,14 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <div align="center">
     <img src="images/LogicClassDiagram.png" width="550" alt="Logic class diagram"/>
+    <br>
 </div>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
 <div align="center">
-    <img src="images/DeleteSequenceDiagram.png">
+    <img src="images/DeleteSequenceDiagram.png" alt="Delete sequence diagram"/>
+    <br>
 </div>
 
 <div markdown="span" class="alert alert-info">
@@ -122,7 +128,8 @@ How the `Logic` component works:
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <div align="center">
-    <img src="images/ParserClasses.png" width="600"/>
+    <img src="images/ParserClasses.png" width="600" alt="Parser classes"/>
+    <br>
 </div>
 
 How the parsing works:
@@ -134,7 +141,8 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <div align="center">
-    <img src="images/ModelClassDiagram.png" width="450" />
+    <img src="images/ModelClassDiagram.png" width="450" alt="Model class diagram"/>
+    <br>
 </div>
 
 The `Model` component,
@@ -149,7 +157,8 @@ The `Model` component,
 **API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <div align="center">
-    <img src="images/StorageClassDiagram.png" width="550" />
+    <img src="images/StorageClassDiagram.png" width="550" alt="Storage class diagram"/>
+    <br>
 </div>
 
 The `Storage` component,
@@ -167,7 +176,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section outlines some notable details on how specific features are being implemented.
 
-### Adding a patient into Nursing Address Book
+### Adding a patient into NAB
 
 #### Implementation
 
@@ -204,17 +213,17 @@ Given below is an example usage scenario and how the add patient feature behaves
 The following sequence diagram summarizes what happens when a user executes a new command:
 
 <div align="center">
-    <img src="images/AddSequenceDiagram.png">
+    <img src="images/AddSequenceDiagram.png" alt="Add sequence diagram"/>
+    <br>
 </div>
-
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <div align="center">
-    <img src="images/AddActivityDiagram.png">
+    <img src="images/AddActivityDiagram.png" alt="Add activity diagram"/>
 </div>
 
-### Deleting a patient from Nursing Address Book
+### Deleting a patient from NAB
 
 #### Implementation
 
@@ -222,7 +231,7 @@ The delete patient feature is facilitated mainly by `DeleteCommand`, `DeleteComm
 
 Given below is an example usage scenario and how the delete patient feature behaves at each step.
 
-**Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
+**Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in NAB.
 
 **Step 2.** `LogicManager#execute(String)` is called to execute the delete command.
 
@@ -239,13 +248,14 @@ Given below is an example usage scenario and how the delete patient feature beha
 Given below is the sequence diagram that summarizes what happens when a user executes a new command:
 
 <div align="center">
-    <img src="images/DeleteSequenceDiagram.png">
+    <img src="images/DeleteSequenceDiagram.png" alt="Delete sequence diagram"/>
+    <br>
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <div align="center">
-    <img src="images/DeleteActivityDiagram.png">
+    <img src="images/DeleteActivityDiagram.png" alt="Delete activity diagram"/>
 </div>
 
 ### Editing a patient's details
@@ -256,7 +266,7 @@ Editing a patient's details is facilitated mainly by `EditCommand`, `EditCommand
 
 Given below is an example usage scenario and how the edit patient feature behaves at each step.
 
-**Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
+**Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in NAB.
 
 **Step 2.** `LogicManager#execute(String)` is called to execute the edit command.
 
@@ -275,13 +285,14 @@ The patient specified will have its ward updated to the new ward specified.
 The following sequence diagram summarizes what happens when a user executes an edit command:
 
 <div align="center">
- <img src="images/EditSequenceDiagram.png">
+    <img src="images/EditSequenceDiagram.png" alt="Edit sequence diagram"/>
+    <br>
 </div>
 
 The following activity diagram summarizes what happens when a user executes an edit command:
 
 <div align="center">
-  <img src="images/EditCommandActivityDiagram.png">
+    <img src="images/EditCommandActivityDiagram.png" alt="Edit activity diagram"/>
 </div>
 
 ### Showing help for commands
@@ -291,7 +302,8 @@ The following activity diagram summarizes what happens when a user executes an e
 Showing help for commands is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
 
 <div align="center">
-    <img src="images/HelpClassDiagram.png">
+    <img src="images/HelpClassDiagram.png" alt="Help class diagram"/>
+    <br>
 </div>
 
 The `HelpCommand` class interacts with the following components:
@@ -324,9 +336,8 @@ Here are the steps involved when a user calls the `help` command:
 The following sequence diagram shows how the help command works:
 
 <div align="center">
-    <img src="images/HelpSequenceDiagram.png">
+    <img src="images/HelpSequenceDiagram.png" alt="Help sequence diagram">
 </div>
-
 
 #### Design considerations
 
@@ -360,7 +371,6 @@ Here are some possible enhancements for the help feature:
 
 These enhancements would improve the user experience and make the help feature more interactive and user-friendly.
 
-
 ### List by tags and/or ward feature
 
 #### Implementation
@@ -390,10 +400,11 @@ provided, it will still simply create a `ListCommand` object.)
 The following is a list of objects created thus far:
 
 <div align="center">
-    <img src="images/ListObjectDiagram.png">
+    <img src="images/ListObjectDiagram.png" width="280" alt="List object diagram"/>
+    <br>
 </div>
 
-Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)`
+**Step 4.** The `ListCommand` object is returned to `LogicManager` and `execute` is called. `ListCommand#execute(Model)`
 filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it
 returns the full list of patients.)
 
@@ -404,13 +415,14 @@ returns the full list of patients.)
 The following sequence diagram shows how the listing of relevant patients would work:
 
 <div align="center">
-    <img src="images/ListCommandSequenceDiagram.png">
+    <img src="images/ListCommandSequenceDiagram.png" alt="List sequence diagram"/>
+    <br>
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command to list relevant patients:
 
 <div align="center">
-    <img src="images/ListCommandActivityDiagram2.png" width="500"/>
+    <img src="images/ListCommandActivityDiagram2.png" width="500" alt="List activity diagram"/>
 </div>
 
 #### Design considerations:
@@ -459,13 +471,14 @@ the patient will be shown in result.
 The following sequence diagram shows how the finding of patient would work:
 
 <div align="center">
-    <img src="images/FindSequenceDiagram.png">
+    <img src="images/FindSequenceDiagram.png" alt="Find sequence diagram"/>
+    <br>
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command to find a patient:
 
 <div align="center">
-    <img src="images/FindActivityDiagram.png">
+    <img src="images/FindActivityDiagram.png" alt="Find activity diagram"/>
 </div>
 
 #### Design considerations:
@@ -491,9 +504,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-## **Appendix: Requirements**
+## **Appendix**
 
-### Product scope
+### **Appendix: Requirements**
+
+#### Product scope
 
 **Target user profile**:
 Ward nurses
@@ -509,7 +524,7 @@ Ward nurses
 
 **Value proposition**: streamlined text-based commands to manage contacts faster than a typical mouse/GUI driven app
 
-### User stories
+#### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -523,12 +538,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user    | list patients based on their tags            | view patients based on category                              |
 | `* *`    | user    | list all patients tied to a specific ward    | know which patients belong to which ward                     |
 | `* *`    | user    | find patients via their name or NRIC         | quickly find information of specific patient                 |
-| `* *`    | user    | access the user guide through the app easily | learn how to use the Nursing Address Book                    |
+| `* *`    | user    | access the user guide through the app easily | learn how to use the NAB                    |
 | `*`      | user    | view patient list sorted by name             | look through the list of patients in a more organized manner |
 
-### Use cases
+#### Use cases
 
-(For all use cases below, the **System** is the `Nursing Address Book` and the **Actor** is the `user`, unless 
+(For all use cases below, the **System** is the `NAB` and the **Actor** is the `user`, unless 
 specified otherwise)
 
 **Use case: `UC01 - View all patient records`**
@@ -536,14 +551,14 @@ specified otherwise)
 **MSS**
 
 1.  User requests to list patients.
-2.  Nursing Address Book shows a list of patients.
+2.  NAB shows a list of patients.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the command is invalid. 
-  * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the command is invalid. 
+  * 1a1. NAB shows an error message.
 
   Use case ends.
 
@@ -552,15 +567,15 @@ specified otherwise)
 **MSS**
 
 1.  User requests to add a patient.
-2.  Nursing Address Book adds the patient.
-3.  Nursing Address Book shows success message to the user.
+2.  NAB adds the patient.
+3.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the patient details is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the patient details is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -570,8 +585,8 @@ specified otherwise)
 
 1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to delete a patient in the list.
-3.  Nursing Address Book deletes the person.
-4.  Nursing Address Book shows success message to the user.
+3.  NAB deletes the person.
+4.  NAB shows success message to the user.
 
     Use case ends.
 
@@ -588,15 +603,15 @@ specified otherwise)
 
 1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to edit a patient's record in the list.
-3.  Nursing Address Book edits the patient's record.
-4.  Nursing Address Book shows success message to the user.
+3.  NAB edits the patient's record.
+4.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Nursing Address Book detects that the patient details is invalid.
-    * 2a1. Nursing Address Book shows an error message.
+* 2a. NAB detects that the patient details is invalid.
+    * 2a1. NAB shows an error message.
 
   Use case ends.
 
@@ -605,14 +620,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to find a patient in the list with specific name. 
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -621,14 +636,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to find a patient in the list with specific NRIC.
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
 
   Use case ends.
 
@@ -637,14 +652,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to view patients with specific tags.
-2. Nursing Address Book shows the patient list.
+2. NAB shows the patient list.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -653,14 +668,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to view patients in specific ward.
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -669,18 +684,18 @@ specified otherwise)
 **MSS**
 
 1. User requests to get help with command usage.
-2. Nursing Address Book shows command usage.
+2. NAB shows command usage.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the command is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the command is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
-### Non-Functional Requirements
+#### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
@@ -693,16 +708,9 @@ specified otherwise)
 1.  The product should be available as a single JAR file of size 100MB or below.
 1.  The product should process a user input command within 2 second.
 
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Patient**: A person receiving medical services at a hospital
-* **NRIC**: Identity card number of the National Registration Identity Card, used as a unique identifier for 
-  patients in Nursing Address Book
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+### **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -712,7 +720,7 @@ Given below are instructions to test the app manually.
 
 [//]: # (</div>)
 
-### Launch and shutdown
+#### Launch and shutdown
 
 1. Initial launch
 
@@ -726,7 +734,7 @@ Given below are instructions to test the app manually.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Adding a patient
+#### Adding a patient
 
 1. Adding a patient
 
@@ -755,7 +763,7 @@ Given below are instructions to test the app manually.
     8. Test case (Date of Birth after Admission Date): `add n\John Smith ic\A1234567B dob\03/03/2000 ad\01/01/1999 w\a1`<br>
        Expected: Similar to previous.
 
-### Viewing patients
+#### Viewing patients
 
 1. Viewing all patients
 
@@ -781,7 +789,7 @@ Given below are instructions to test the app manually.
     1. Test case: `list w\a1`<br>
        Expected: List of patients is shown.
 
-### Editing a patient
+#### Editing a patient
 
 1. Edit a patient while all patients are being shown
 
@@ -823,7 +831,7 @@ Given below are instructions to test the app manually.
     6. Test case (Invalid Ward): `edit 1 w\B-1 `<br>
        Expected: Patient ward is not changed. Error details shown in the status bar.
 
-### Finding a patient
+#### Finding a patient
 
 1. Finding a patient by name
 
@@ -857,7 +865,7 @@ Given below are instructions to test the app manually.
     1. Test case: `find ic\`<br>
        Expected: No patient is shown.
 
-### Deleting a person
+#### Deleting a person
 
 1. Deleting a patient while all patients are being shown
 
@@ -873,7 +881,7 @@ Given below are instructions to test the app manually.
        Expected: Similar to previous.
 
 
-### Saving data
+#### Saving data
 
 1. Dealing with missing/corrupted data files
 
@@ -884,7 +892,7 @@ Given below are instructions to test the app manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix: Planned Enhancements
+### Appendix: Planned Enhancements
 Team size: 5
 
 **1.  Checking if a date is valid:**
@@ -912,3 +920,10 @@ We plan to allow nurses to view the corresponding patient's details while editin
     first input only edit INDEX (as per the original command) and then the app will show the patient's details. The nurse
     will then be able to edit the specific field(s) of the patient's details with a follow-up command. This will prevent
     accidental deletion of critical details.
+
+## Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Patient**: A person receiving medical services at a hospital
+* **NRIC**: Identity card number of the National Registration Identity Card, used as a unique identifier for
+  patients in NAB
