@@ -4,7 +4,7 @@ title: User Guide
 nav_order : 2
 ---
 # Nursing Address Book (NAB)
-Welcome to the user guide for Nursing Address Book (NAB)! NAB is a desktop application tailored for ward nurses in 
+Welcome to the user guide for NAB! NAB is a desktop application tailored for ward nurses in 
 Singapore, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User
 Interface (GUI) for ease of use.
 
@@ -117,9 +117,9 @@ Back to [Table of Contents](#table-of-contents)
    _Ensure you have the necessary permissions to execute commands. For Windows Users, running the command prompt as an administrator may be
    required. If you encounter permission issues on Mac/Linux, you might need to use `chmod +x nab.jar` to make the file 
    executable._
+   </div>
    <br>
    Should you need help navigating the interface, refer to the [Interface](#the-interface) section.
-   </div>
 
 7. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will 
 open the help window.<br>
@@ -139,6 +139,7 @@ open the help window.<br>
 Back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## The Interface
 ![Navigation.png](images/Navigation.png)
 
@@ -360,8 +361,7 @@ Example command:
 `edit 1 ic\T0123456P t\ r\` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first patient to be `T0123456P` for 
 `IC_NUMBER` and empty for both `TAG` and `REMARK`.
 
-Assuming John Doe is at index 1, the following shows the change in contact details:
-
+Assuming John Doe is at index 1 and previously had IC Number `T1234567P`, the tags `[FallRisk]` and `[HearingImpaired]`, and remark `Requires assistance feeding.`, the following shows the change in contact details:
 
 **Before**:
 ```
@@ -565,7 +565,7 @@ restarting the application or your system to clear any potential memory leaks or
 2. **Error for empty tags and/or ward prefix(es) for `list`:**  The `list` command will not display patients with tags 
 and/or ward prefix(es) that **do not contain** any associated content. This feature was intentionally designed to filter 
 relevant patients with the appropriate tags and/or ward. As there is no use case (patients should usually have a ward 
-and/or tag associated with them) for being able to look up empty tags and/or wards, they are not displayed.
+and/or tag associated with them) for being able to look up empty tags and/or wards, it is not implemented.
 
 Back to [Table of Contents](#table-of-contents)
 
