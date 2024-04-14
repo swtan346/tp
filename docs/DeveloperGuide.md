@@ -165,7 +165,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section contains some noteworthy details on how certain features are being implemented.
+This section outlines some notable details on how specific features are being implemented.
 
 ### Adding a patient into Nursing Address Book
 
@@ -189,13 +189,15 @@ Given below is an example usage scenario and how the add patient feature behaves
 </div>
 
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
+**Step 2.** `LogicManager#execute(String)` is called to execute the add command.   
 
-**Step 3.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `AddCommandParser#parse(String)` to parse the user input and creates a new `AddCommand` object.
 
-**Step 4.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+**Step 4.** The created `AddCommand` is returned to `LogicManager`. Then, `AddCommand` is executed by calling `AddCommand#execute(Model)`.
 
-**Step 5.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 5.** The `AddCommand#execute(Model)` then calls `Model#addPerson(Person)` to add the new patient to the address book.
+
+**Step 6.** The `CommandResult` from the `AddCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
@@ -222,13 +224,15 @@ Given below is an example usage scenario and how the delete patient feature beha
 
 **Step 1.** The user inputs a delete Command (e.g. `delete 1`) to delete the patient at index 1 in Nursing Address Book.
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
+**Step 2.** `LogicManager#execute(String)` is called to execute the delete command.
 
-**Step 3.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `DeleteCommandParser#parse(String)` to parse the user input and creates a new `DeleteCommand` object.
 
-**Step 4.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+**Step 4.** The created `DeleteCommand` is returned to `LogicManager`. Then, `DeleteCommand` is executed by calling `DeleteCommand#execute(Model)`.
 
-**Step 5.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
+**Step 5.** The `DeleteCommand#execute(Model)` then calls `Model#deletePerson(Person)` to delete the patient from the address book.
+
+**Step 6.** The `CommandResult` from the `DeleteCommand` object is returned to `LogicManager` and then to `UI` to display the success message.
 
 **UML Diagrams:**
 
@@ -254,53 +258,68 @@ Given below is an example usage scenario and how the edit patient feature behave
 
 **Step 1.** The user inputs an edit Command (e.g. `edit 1 w\WB`) to edit the ward of the patient at index 1 in Nursing Address Book.
 
-**Step 2.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
+**Step 2.** `LogicManager#execute(String)` is called to execute the edit command.
 
-**Step 3.** A new `EditPersonDescriptor` object is created with the new ward details. 
+**Step 3.** The command is parsed via `AddressBookParser#parseCommand(String)`, which calls `EditCommandParser#parse(String)`to parse the user input and creates a new `EditCommand` object.
+
+**Step 4.** A new `EditPersonDescriptor` object is created with the new ward details. 
 A new `EditCommand` instance will be created with the index of the patient to be edited and the new `EditPersonDescriptor` object.
 
-**Step 4.** The `EditCommand` instace is returned to the `LogicManager` and `execute` is called.
+**Step 5.** The `EditCommand` instance is returned to the `LogicManager` and `execute` is called.
 
-**Step 5.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
+**Step 6.** The `EditCommand` instance calls `Model#setPerson(Person, Person)` to edit the patient's details.
 The patient specified will have its ward updated to the new ward specified.
 
 **UML Diagrams:**
 
-The following sequence diagram summarizes what happens when a user executes a new command:
+The following sequence diagram summarizes what happens when a user executes an edit command:
 
 <div align="center">
  <img src="images/EditSequenceDiagram.png">
+</div>
+
+The following activity diagram summarizes what happens when a user executes an edit command:
+
+<div align="center">
+  <img src="images/EditCommandActivityDiagram.png">
 </div>
 
 ### Showing help for commands
 
 #### Implementation
 
-The help command is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
-
-The `HelpCommand` class extends the `Command` interface and is responsible for executing the `help` command. It creates a `CommandResult` object with the help message to be displayed to the user.
-
-**UML Diagrams:**
-
-The following class diagram shows the relevant classes involved in the help command implementation:
-
-Step 1. The `LogicManager` is called to execute the "help" command.
-
-Step 2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
-
-Step 3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
-
-Step 4. The `HelpCommand` creates a new `CommandResult` with the help message.
-
-Step 5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
-
-Step 6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
-
-The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+Showing help for commands is facilitated by the `HelpCommand` class. It allows users to view the usage instructions for the application.
 
 <div align="center">
     <img src="images/HelpClassDiagram.png">
 </div>
+
+The `HelpCommand` class interacts with the following components:
+
+* `Logic`: The `HelpCommand` class is part of the `Logic` component and is executed by the `LogicManager` when the user enters the `help` command.
+* `UI`: The `MainWindow` class in the `UI` component subscribes to the `CommandResult` event raised by the `HelpCommand` and displays the help message in the `HelpWindow`.
+
+The `HelpCommand` class extends the `Command` interface and implements the `execute()` method. When the `help` command is executed, the `HelpCommand#execute()` method is called, which creates a `CommandResult` object with the help message to be displayed to the user.
+
+Here are the steps involved when a user calls the `help` command:
+
+**Step 1.** The user enters the `help` command in the CLI.
+
+**Step 2.** The `LogicManager` receives the command and calls the `parseCommand()` method of the `AddressBookParser`.
+
+**Step 3.** The `AddressBookParser` identifies the command as a `HelpCommand` and creates a new instance of the `HelpCommand` class.
+
+**Step 4.** The `AddressBookParser` returns the `HelpCommand` instance to the `LogicManager`.
+
+**Step 5.** The `LogicManager` calls the `execute()` method of the `HelpCommand` instance.
+
+**Step 6.** The `HelpCommand#execute()` method creates a new `CommandResult` object with the help message.
+
+**Step 7.** The `CommandResult` object is returned to the `LogicManager`.
+
+**Step 8.** The `LogicManager` passes the `CommandResult` to the `MainWindow` for display.
+
+**Step 9.** The `MainWindow` extracts the help message from the `CommandResult` and displays it in the `HelpWindow`.
 
 The following sequence diagram shows how the help command works:
 
@@ -308,24 +327,39 @@ The following sequence diagram shows how the help command works:
     <img src="images/HelpSequenceDiagram.png">
 </div>
 
-The following activity diagram summarizes what happens when a user executes a new command:
 
-<div align="center">
-<img src="images/CommitActivityDiagram.png" width="250"/>
-</div>
+#### Design considerations
 
-When the user executes the help command, the following steps occur:
-  
+**Aspect: Displaying the help message**
 
-1. The `LogicManager` is called to execute the "help" command.
-2. The `AddressBookParser` parses the command and creates a new `HelpCommand` instance.
-3. The `LogicManager` calls the `execute()` method of the `HelpCommand`.
-4. The `HelpCommand` creates a new `CommandResult` with the help message.
-5. The `MainWindow` handles the help command and calls the `handleHelp()` method.
-6. The `ResultDisplay` is updated with the help message obtained from `HelpCommand.SHOWING_HELP_MESSAGE`.
+* **Alternative 1 (current choice)**: Display the help message in a separate window.
+    * Pros: Allows the user to view the help message without navigating away from the main window.
+    * Cons: Requires additional implementation to create and manage a separate help window.
 
+* **Alternative 2**: Display the help message in the main window's result display.
+    * Pros: Simpler implementation, as it reuses the existing result display component.
+    * Cons: The help message may be obscured by subsequent command results, and the user may need to scroll to view the entire message.
 
-The `HelpCommand` class interacts with the `Logic` component and utilizes the `CommandResult` class to encapsulate the result of executing the `help` command. The `MainWindow` and `ResultDisplay` classes in the UI component are responsible for handling the display of the help message to the user.
+**Aspect: Providing command-specific help**
+
+* **Alternative 1 (current choice)**: Provide a general help message that covers all commands.
+    * Pros: Simplifies the implementation and maintains a consistent help message format.
+    * Cons: The user may need to read through the entire help message to find information about a specific command.
+
+* **Alternative 2**: Provide command-specific help messages.
+    * Pros: Allows users to quickly access help information for a particular command.
+    * Cons: Requires additional implementation to map each command to its specific help message, and may lead to inconsistencies in the help message format.
+
+#### Future enhancements
+
+Here are some possible enhancements for the help feature:
+
+* Implement context-sensitive help that provides guidance based on the user's current input or state.
+* Add support for displaying rich media content, such as images or videos, to provide more engaging and informative help content.
+* Integrate a search functionality within the help system to allow users to quickly find relevant information.
+
+These enhancements would improve the user experience and make the help feature more interactive and user-friendly.
+
 
 ### List by tags and/or ward feature
 
@@ -341,16 +375,17 @@ These operations are exposed in the UI interface as `MainWindow#executeCommand(S
 
 Given below is an example usage scenario and how the filter by tags and/or ward mechanism behaves at each step.
 
-Step 1. The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book.
+**Step 1.** The user executes `list t\diabetes` command to list patients with the diabetes tag in the address book. 
+
 - The `list` command triggers `AddressBookParser` to parse the user input, identifying the `list` command word to call
   `ListCommandParser#parse(String)` to parse the rest of the user input.
 
-Step 2. `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a
+**Step 2.** `ListCommandParser#parse(String)` parses the user input. If there are subsequent arguments, a 
 `ListKeywordPredicate` object is created with the keyword(s) provided. The keywords can be either a ward or tag(s) or both,
 supplied by the user with the relevant prefix. In this case, it would be a tag, `t\diabetes`.
 
-Step 3. A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters
-provided, it will still simply create a `ListCommand` object.)
+**Step 3.** A new `ListCommand` instance is created using the `ListKeywordsPredicate` object. (If there are no parameters 
+provided, it will still simply create a `ListCommand` object.)  
 
 The following is a list of objects created thus far:
 
@@ -362,7 +397,7 @@ Step 4. The `ListCommand` object is returned to `LogicManager` and `execute` is 
 filters the list of patients in `Model` based on the `ListKeywordsPredicate` object if it is present. (Otherwise, it
 returns the full list of patients.)
 
-Step 5. The filtered list of patients (with diabetes) is displayed to the user through the GUI.
+**Step 5.** The filtered list of patients (with diabetes) is displayed to the user through the GUI.
 
 **UML Diagrams:**
 
@@ -375,7 +410,7 @@ The following sequence diagram shows how the listing of relevant patients would 
 The following activity diagram summarizes what happens when a user executes a new command to list relevant patients:
 
 <div align="center">
-    <img src="images/ListCommandActivityDiagram2.png">
+    <img src="images/ListCommandActivityDiagram2.png" width="500"/>
 </div>
 
 #### Design considerations:
@@ -400,7 +435,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to be more specific.
     * Cons: Not relevant for the nurses use case. Allowing more wards also make it harder to filter fast.
 
-### Find feature
+### Find a patient by name or NRIC
 
 #### Introduction
 This section describes the implementation of the find by name or NRIC mechanism in NAB. 
@@ -410,16 +445,12 @@ This section describes the implementation of the find by name or NRIC mechanism 
 The find feature is facilitated by `FindCommand`, `FindCommandParser`, `NameContainsKeywordsPredicate` and
 `IcContainsKeywordsPredicate`.
 
-Additionally, it implements the following operations:
-
-* `FindCommandParser#parse()` — Parses user input and creates a `FindCommand` object.
-
 Given below is an example usage scenario and how the find by name or IC mechanism behaves at each step.
 
-Step 1. The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
+**Step 1.** The user executes `find n\Bob` command to find patient with the name Bob in the address book. The
 `FindCommandParser` parses the user input, creating a new `FindCommand` and `NameContainsKeywordsPredicate` object.
 
-Step 2. For each patient in the address book, the `predicate` object will be passed to
+**Step 2.** For each patient in the address book, the `predicate` object will be passed to
 `Model#updateFilteredPersonList` check if the patient has Bob as part of his/her name. If the patient has the name Bob,
 the patient will be shown in result.
 
@@ -460,28 +491,28 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 
 ### Product scope
 
 **Target user profile**:
 Ward nurses
-* manage a significant number of patient contacts with varying details
-* quickly access critical patient information in time-sensitive situations
-* track and log details of care administered to each patient over time
+* Manage a significant number of patient contacts with varying details
+* Quickly access critical patient information in time-sensitive situations
+* Track and log details of care administered to each patient over time
 
-**Preferences/ Skills**
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI (command-line interface) apps
+**Preferences/Skills**
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI (command-line interface) apps
 
 **Value proposition**: streamlined text-based commands to manage contacts faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
 
 | Priority | As a …​ | I want to …​                                 | So that I can…​                                              |
 |----------|---------|----------------------------------------------|--------------------------------------------------------------|
@@ -514,7 +545,7 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the command is invalid. 
   * 1a1. Nursing Address Book shows an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 **Use case: `UC02 - Add a patient`**
 
@@ -530,14 +561,14 @@ specified otherwise)
 
 * 1a. Nursing Address Book detects that the patient details is invalid.
     * 1a1. Nursing Address Book shows an error message.
-    
-    Use case resumes at step 1.
 
-**Use case: `US03 - Delete a patient`**
+    Use case ends.
+
+**Use case: `UC03 - Delete a patient`**
 
 **MSS**
 
-1.  User requests to view patient records(UC01).
+1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to delete a patient in the list.
 3.  Nursing Address Book deletes the person.
 4.  Nursing Address Book shows success message to the user.
@@ -549,13 +580,13 @@ specified otherwise)
 * 2a. The given index is invalid.
   * 2a2. AddressBook shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
-**Use case: `US04 - Edit a patient records`**
+**Use case: `UC04 - Edit a patient records`**
 
 **MSS**
 
-1.  User requests to view patient records(UC01).
+1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to edit a patient's record in the list.
 3.  Nursing Address Book edits the patient's record.
 4.  Nursing Address Book shows success message to the user.
@@ -567,13 +598,13 @@ specified otherwise)
 * 2a. Nursing Address Book detects that the patient details is invalid.
     * 2a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 2.
+  Use case ends.
 
-**Use case: `US05 - Find patient`**
+**Use case: `UC05 - Find patient by name`**
 
 **MSS**
 
-1. User requests to find a patient in the list. 
+1. User requests to find a patient in the list with specific name. 
 2. Nursing Address Book shows the patient.
 
     Use case ends.
@@ -583,9 +614,25 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the given parameter is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US06 - View patient with specific tags`**
+**Use case: `UC06 - Find patient by NRIC`**
+
+**MSS**
+
+1. User requests to find a patient in the list with specific NRIC.
+2. Nursing Address Book shows the patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Nursing Address Book detects that the given parameter is invalid.
+    * 1a1. Nursing Address Book shows an error message.
+
+  Use case ends.
+
+**Use case: `UC07 - View patient with specific tags`**
 
 **MSS**
 
@@ -599,9 +646,9 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the given parameter is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US07 - View patients in specific ward`**
+**Use case: `UC08 - View patients in specific ward`**
 
 **MSS**
 
@@ -615,9 +662,9 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the given parameter is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-**Use case: `US08 - Get help with command usage`**
+**Use case: `UC09 - Get help with command usage`**
 
 **MSS**
 
@@ -631,31 +678,20 @@ specified otherwise)
 * 1a. Nursing Address Book detects that the command is invalid.
     * 1a1. Nursing Address Book shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The user interface should be intuitive and easy to navigate.
-5.  The codebase should be well-structured and well-documented to facilitate future maintenance and enhancements.
-6.  The application should only support a single user.
-7.  The product needs to be developed in a breadth-first incremental manner over the project duration.
-8.  The data should be stored locally and should be in a human editable text file.
-9.  The software should follow the Object-oriented paradigm primarily.
-10.  The software should work without requiring an installer.
-11.  The software should not depend on a specific remote server.
-12.  The GUI should work well for standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%.
-13.  The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for,
-     resolutions 1280x720 and higher, and, for screen scales 150%.
-14.  The product should be available as a single JAR file of size 100MB or below.
-15.  The web documents saved should be a PDF file of size 15MB or below.
-16.  The final JAR/PDF files should not be bloated unnecessarily.
-17.  The DG and UG should be PDF-friendly, without any expandable panels, embedded videos, animated GIFs etc.
-18.  The use of third-party frameworks/libraries/services is allowed only if they, are free, open-source (this
-     doesn't apply to services), and have permissive license terms; do not require any installation by the user.
-19.  The product should process a user input command within 2 second.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+    should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  The codebase should be well-structured and well-documented to facilitate future maintenance and enhancements.
+1.  The application should only support a single user.
+1.  The data should be stored locally and should be in a human editable text file.
+1.  The software should work without requiring an installer.
+1.  The software should not depend on any specific remote server.
+1.  The product should be available as a single JAR file of size 100MB or below.
+1.  The product should process a user input command within 2 second.
 
 ### Glossary
 
