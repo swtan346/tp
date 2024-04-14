@@ -474,7 +474,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Nursing Address Book` and the **Actor** is the `user`, unless 
+(For all use cases below, the **System** is the `NAB` and the **Actor** is the `user`, unless 
 specified otherwise)
 
 **Use case: `UC01 - View all patient records`**
@@ -482,14 +482,14 @@ specified otherwise)
 **MSS**
 
 1.  User requests to list patients.
-2.  Nursing Address Book shows a list of patients.
+2.  NAB shows a list of patients.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the command is invalid. 
-  * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the command is invalid. 
+  * 1a1. NAB shows an error message.
 
   Use case ends.
 
@@ -498,15 +498,15 @@ specified otherwise)
 **MSS**
 
 1.  User requests to add a patient.
-2.  Nursing Address Book adds the patient.
-3.  Nursing Address Book shows success message to the user.
+2.  NAB adds the patient.
+3.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the patient details is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the patient details is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
@@ -516,15 +516,15 @@ specified otherwise)
 
 1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to delete a patient in the list.
-3.  Nursing Address Book deletes the person.
-4.  Nursing Address Book shows success message to the user.
+3.  NAB deletes the person.
+4.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The given index is invalid.
-  * 2a2. Nursing Address Book shows an error message.
+  * 2a2. NAB shows an error message.
 
   Use case ends.
 
@@ -534,15 +534,15 @@ specified otherwise)
 
 1.  User requests to <u>view patient records(UC01)</u>.
 2.  User requests to edit a patient's record in the list.
-3.  Nursing Address Book edits the patient's record.
-4.  Nursing Address Book shows success message to the user.
+3.  NAB edits the patient's record.
+4.  NAB shows success message to the user.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Nursing Address Book detects that the patient details is invalid.
-    * 2a1. Nursing Address Book shows an error message.
+* 2a. NAB detects that the patient details is invalid.
+    * 2a1. NAB shows an error message.
 
   Use case ends.
 
@@ -551,16 +551,16 @@ specified otherwise)
 **MSS**
 
 1. User requests to find a patient in the list with specific name. 
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
-* 1b. No patient with specified name is present in the Nursing Address Book.
-    * 1b1. Nursing Address Book displays an empty list.    
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
+* 1b. No patient with specified name is present in the NAB.
+    * 1b1. NAB displays an empty list.    
 
     Use case ends.
 
@@ -569,16 +569,16 @@ specified otherwise)
 **MSS**
 
 1. User requests to find a patient in the list with specific NRIC.
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
-* 1b. No patient with specified NRIC is present in the Nursing Address Book.
-    * 1b1. Nursing Address Book displays an empty list.
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
+* 1b. No patient with specified NRIC is present in the NAB.
+    * 1b1. NAB displays an empty list.
 
   Use case ends.
 
@@ -587,16 +587,16 @@ specified otherwise)
 **MSS**
 
 1. User requests to view patients with specific tags.
-2. Nursing Address Book shows the patient list.
+2. NAB shows the patient list.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
-* 1b. No patient with the specified tags are found in Nursing Address Book.
-    * 1b1. Nursing Address Book displays an empty list. 
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
+* 1b. No patient with the specified tags are found in NAB.
+    * 1b1. NAB displays an empty list. 
 
     Use case ends.
 
@@ -605,16 +605,16 @@ specified otherwise)
 **MSS**
 
 1. User requests to view patients in specific ward.
-2. Nursing Address Book shows the patient.
+2. NAB shows the patient.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the given parameter is invalid.
-    * 1a1. Nursing Address Book shows an error message.
-* 1b. No patient with specified ward is present in the Nursing Address Book.
-    * 1b1. Nursing Address Book displays an empty list.     
+* 1a. NAB detects that the given parameter is invalid.
+    * 1a1. NAB shows an error message.
+* 1b. No patient with specified ward is present in the NAB.
+    * 1b1. NAB displays an empty list.     
 
     Use case ends.
 
@@ -623,14 +623,14 @@ specified otherwise)
 **MSS**
 
 1. User requests to get help with command usage.
-2. Nursing Address Book shows command usage.
+2. NAB shows command usage.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Nursing Address Book detects that the command is invalid.
-    * 1a1. Nursing Address Book shows an error message.
+* 1a. NAB detects that the command is invalid.
+    * 1a1. NAB shows an error message.
 
     Use case ends.
 
