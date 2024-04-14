@@ -507,7 +507,7 @@ specified otherwise)
 
     Use case ends.
 
-**Use case: `US03 - Delete a patient`**
+**Use case: `UC03 - Delete a patient`**
 
 **MSS**
 
@@ -525,7 +525,7 @@ specified otherwise)
 
     Use case ends.
 
-**Use case: `US04 - Edit a patient records`**
+**Use case: `UC04 - Edit a patient records`**
 
 **MSS**
 
@@ -543,7 +543,7 @@ specified otherwise)
 
   Use case ends.
 
-**Use case: `US05 - Find patient by name`**
+**Use case: `UC05 - Find patient by name`**
 
 **MSS**
 
@@ -559,7 +559,7 @@ specified otherwise)
 
     Use case ends.
 
-**Use case: `US06 - Find patient by NRIC`**
+**Use case: `UC06 - Find patient by NRIC`**
 
 **MSS**
 
@@ -575,7 +575,7 @@ specified otherwise)
 
   Use case ends.
 
-**Use case: `US07 - View patient with specific tags`**
+**Use case: `UC07 - View patient with specific tags`**
 
 **MSS**
 
@@ -591,7 +591,7 @@ specified otherwise)
 
     Use case ends.
 
-**Use case: `US08 - View patients in specific ward`**
+**Use case: `UC08 - View patients in specific ward`**
 
 **MSS**
 
@@ -607,7 +607,7 @@ specified otherwise)
 
     Use case ends.
 
-**Use case: `US09 - Get help with command usage`**
+**Use case: `UC09 - Get help with command usage`**
 
 **MSS**
 
