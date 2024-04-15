@@ -728,16 +728,6 @@ specified otherwise)
 19.  The product should process a user input command within 2 second.
 20.  The application should comply with Singapore's Personal Data Protection Act (PDPA) by implementing appropriate measures to protect the personal data of patients, such as securing data storage, restricting access to authorized personnel only, and ensuring proper disposal of data when no longer needed.
 
-### Glossary
-
-* **CLI**: Command Line Interface
-* **GUI**: Graphical User Interface
-* **JSON**: JavaScript Object Notation
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **NRIC**: Identity card number of the National Registration Identity Card, used as a unique identifier for
-    patients in Nursing Address Book
-* **Patient**: A person receiving medical services at a hospital
-
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Appendix: Instructions for manual testing**
@@ -757,6 +747,7 @@ Given below are instructions to test the app manually.
     1. Download the jar file and copy into an empty folder
     2. Double-click the jar file <br>
        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
 
 2. Saving window preferences
 
@@ -951,9 +942,15 @@ We plan to allow nurses to view the corresponding patient's details while editin
     will then be able to edit the specific field(s) of the patient's details with a follow-up command. This will prevent
     accidental deletion of critical details.
 
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Glossary
 
+* **CLI**: Command Line Interface
+* **GUI**: Graphical User Interface
+* **JSON**: JavaScript Object Notation
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Patient**: A person receiving medical services at a hospital
 * **NRIC**: Identity card number of the National Registration Identity Card, used as a unique identifier for
   patients in NAB
+* **Patient**: A person receiving medical services at a hospital
