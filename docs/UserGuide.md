@@ -344,8 +344,8 @@ patient shown in the displayed list.
 
     <div markdown="span" class="alert alert-warning"> :exclamation: <b>Caution:</b>
     When editing tags and/or remarks, the existing tags and/or remarks of the patient will 
-    be removed i.e adding of tags and/or remarks via `edit` is not cumulative. Be sure to copy the previous tags and remarks 
-    if you wish to retain them.
+    be removed i.e adding of tags and/or remarks via `edit` is not cumulative. Be sure to copy the previous tags and 
+    remarks if you wish to retain them.
     </div>
 
 * You can remove all the patient’s tags by typing `t\ ` without specifying any tags after it.
@@ -361,7 +361,8 @@ Example command:
 `edit 1 ic\T0123456P t\ r\` edits the `IC_NUMBER`, `TAG` and `REMARK` of the first patient to be `T0123456P` for 
 `IC_NUMBER` and empty for both `TAG` and `REMARK`.
 
-Assuming John Doe is at index 1 and previously had IC Number `T1234567P`, the tags `[FallRisk]` and `[HearingImpaired]`, and remark `Requires assistance feeding.`, the following shows the change in contact details:
+Assuming John Doe is at index 1 and previously had IC Number `T1234567P`, the tags `[FallRisk]` and `[HearingImpaired]`,
+and remark `Requires assistance feeding.`, the following shows the change in contact details:
 
 **Before**:
 ```
