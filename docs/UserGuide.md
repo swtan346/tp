@@ -586,9 +586,12 @@ Back to [Table of Contents](#table-of-contents)
 | **Command Terminal** | A text-based interface where you can input commands to interact with the computer's operating system. e.g., `cmd` for Windows users.                                      |
 | **Data File**        | A file that stores the data of the application. e.g., `addressbook.json`.                                                                                                 |
 | **GUI**              | Graphical User Interface. It is the visual representation of the system you see. e.g., Windows Desktop, Chrome Browser.                                                   |
+| **JSON**             | JavaScript Object Notation. It is a data file type. For e.g., to store contacts saved in NAB.                                                                             |
+| **Mainstream OS**    | Windows, Linux, Unix, MacOS. The most commonly used operating systems.                                                                                                    |
+| **NRIC**             | Identity card number of the National Registration Identity Card. It is a unique identifier for individuals in Singapore. e.g., `S1234567A`.                               |
 | **Parameter**        | A value that is passed to a command to perform a specific task. e.g., `n\John Doe`, `ic\T1234567P`.                                                                       |
 | **PascalCase**       | A naming convention where the first letter of each word is capitalized. e.g., `FallRisk`, `HearingImpaired`.                                                              |
-| **Person/Patient**   | A contact entry in NAB                                                                                                                                                    |
+| **Person/Patient**   | A contact entry in NAB, who is receiving medical services.                                                                                                                |
 | **Prefix**           | A string of characters that precedes a parameter to indicate the type of parameter. e.g., `n\John Doe`, `ic\T1234567P`.                                                   |
 
 Back to [Table of Contents](#table-of-contents)
