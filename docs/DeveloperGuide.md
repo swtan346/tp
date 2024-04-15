@@ -920,17 +920,17 @@ Team size: 5
     Currently, the app performs some form of date validation in terms of the syntax of the date. For the day, month and
     year, the range is also limited to within reasonable calendar days (i.e. up till 31), months (i.e. up till 12) and
     years (i.e. up till 9999). The entire date itself must also be up till the current date. However, the app does not
-    check if the date is valid. For example, a nurse could key in 30/02/2022 (reasonable range for each date segment and
-    before current date) as the date of birth of a patient.
+    check if the date is valid. For example, a nurse could key in `30/02/2022` (reasonable range for each date segment 
+    and before current date) as the date of birth of a patient. 
 
 For more accurate error checking, we plan to perform more concrete validation of the dates to check if the date exists.
-    This is done by checking if the input date is a valid date as a whole (not just its parts), and throwing the error that
-    the date does not exist if it is invalid.
+    This is done by checking if the input date is a valid date as a whole (not just its parts), and throwing the error 
+    that the date does not exist if it is invalid.
 
-**2. Standardise patient look-up/ accessing:**
-   Currently, the app does not allow users to delete or edit a patient's details by their Singapore Identity Card (NRIC)
-   number. As patients will predominantly (except foreigners) have an NRIC number, it would be more intuitive for nurses to
-   be able to edit and delete by NRIC as well.
+**2. Standardise patient look-up/ accessing with the NRIC:**
+    Currently, the app does not allow users to `edit` or `delete` a patient's details by their NRIC number. As patients 
+    will predominantly (except foreigners) have a unique NRIC number, it would be more intuitive for nurses to be able 
+    to `edit` and `delete` with an NRIC parameter as well, switching to `INDEX` should the patient not have an NRIC.
 
 **3. Editing of patient details:**
    Currently, the app does not directly edit patient contact details from the patient list. Some patient entries (or
@@ -938,9 +938,13 @@ For more accurate error checking, we plan to perform more concrete validation of
    may result in key information being lost. 
 
 We plan to allow nurses to view the corresponding patient's details while editing. This can be done by having the nurse
-    first input only edit INDEX (as per the original command) and then the app will show the patient's details. The nurse
-    will then be able to edit the specific field(s) of the patient's details with a follow-up command. This will prevent
-    accidental deletion of critical details.
+    first input only `edit INDEX` (as per the original command). The app will then show the patient's details. 
+    Subsequently, the nurse will be able to edit specific field(s) of the patient's details with a follow-up command, 
+    while referencing the patient data. 
+
+Alternatively, we plan to allow nurses to edit the fields directly, after specifying the patient to be edited.
+
+Either approach will reduce accidental deletion of critical details.
 
 
 --------------------------------------------------------------------------------------------------------------------
