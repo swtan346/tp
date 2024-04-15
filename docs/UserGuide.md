@@ -529,9 +529,12 @@ Back to [Table of Contents](#table-of-contents)
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
 the data of your previous NAB home folder.
 
-**Q**: Is your platform available in other languages such as Chinese?<br>
+**Q**: Is your platform available in other languages?<br>
 **A**: NAB is currently available only in English, as it is the main language of Singapore. Support for additional 
-languages will be introduced in future releases.
+languages will be introduced in future releases. Should patients have names in other languages, it is recommended to use
+the translation provided on their NRIC. For extenuating circumstances such as foreigners, it is recommended to use an 
+approximation of their name in English. For e.g., `李小明` can be approximated as `Lee Xiaoming`, `Hallé` can be 
+approximated as `Halle`.
 
 **Q**: What is the difference between `list` and `find`?<br>
 **A**: The `list` command allows you to retrieve multiple contacts, for which they are _all useful_. In contrast, the 
