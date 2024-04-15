@@ -425,7 +425,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     <img src="images/ListCommandActivityDiagram2.png" width="500" alt="List activity diagram"/>
 </div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Command to filter:**
 
